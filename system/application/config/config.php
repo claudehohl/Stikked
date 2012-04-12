@@ -11,7 +11,7 @@
 |	http://www.example.com/
 |
 */
-$config['base_url']	= "http://www.example.com/";
+$config['base_url']	= "http://stikked/";
 
 /*
 |--------------------------------------------------------------------------
