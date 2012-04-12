@@ -1,0 +1,18 @@
+
+ README
+ stikked - Version 0.5.3
+ 
+ Created by Ben McRedmond on 2008-09-15.
+ Contact me about stikked at hello@benmcredmond.com.
+ Copyright 2008 Stikked. Some rights reserved.
+
+
+Stikked is an open-source php pastebin, this pastebin may be used under the following conditions:
+	(1). The footer message remains intact, you may add to it but not take away. Removing the current footer message breaches the license.
+	(2). You acknowledge that Stikked is built off the open-source CodeIgniter framework available at http://codeigniter.com which is licensed under the terms outlined in "CI_LICENSE".
+	(3). You acknowledge the JQuery library is included with Stikked and is dual licensed under the GPL/MIT licenses available at http://jquery.com.
+	(4). You acknowledge that the geshi library is included with stikked, licensing information on this can be found in /system/application/libraries/geshi/docs/.
+	(5). You acknowledge the terms under which the jQuery "clipboard" plugin is released, these terms can be found in /static/js/jquery.clipboard.js.
+	(6). You agree to the terms of the GPL license agreement under which stikked is released, you can find a copy of this license in this directory under the name "LICENSE".
+
+For install instructions see INSTALL.
