@@ -32,10 +32,6 @@ class Main extends CI_Controller
 		$this->load->model('languages');
 		$this->load->helper('form');
 		$data['languages'] = $this->languages->get_languages();
-		$data['scripts'] = array(
-			'jquery.js',
-			'jquery.timers.js'
-		);
 		
 		if (!$this->input->post('submit')) 
 		{

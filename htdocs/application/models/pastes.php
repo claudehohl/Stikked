@@ -219,9 +219,6 @@ class Pastes extends CI_Model
 				$data['inreply'] = false;
 			}
 		}
-		$data['scripts'] = array(
-			'jquery.js'
-		);
 		
 		if ($this->db_session->flashdata('acopy') == 'true') 
 		{
@@ -235,11 +232,6 @@ class Pastes extends CI_Model
 				$url = $data['url'];
 			}
 			$data['status_message'] = 'URL copied to clipboard';
-			$data['scripts'] = array(
-				'jquery.js',
-				'jquery.clipboard.js',
-				'jquery.timers.js'
-			);
 			$data['insert'] = '
 			<script type="text/javascript" charset="utf-8">
 				$.clipboardReady(function(){
