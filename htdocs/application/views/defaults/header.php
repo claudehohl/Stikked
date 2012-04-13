@@ -11,14 +11,14 @@
 	
 		<?php if(!empty($scripts)){?>
 		<?php foreach($scripts as $script){?>
-		<script src="<?=base_url()?>static/js/<?=$script?>" type="text/javascript"></script>
+		<script src="<?php echo base_url()?>static/js/<?php echo $script?>" type="text/javascript"></script>
 		<?}}?>		
 	</head>
 	<body>
 		<div id="container">
 			<div class="container">			
 				<div class="header">
-					<h1><a href="<?=base_url()?>" class="title"><?php echo $this->config->item('site_name');?></a></h1>
+					<h1><a href="<?php echo base_url(); ?>" class="title"><?php echo $this->config->item('site_name');?></a></h1>
 					<ul class="tabs">
 						<?php $l = $this->uri->segment(1)?>
 						<li><a <?php if($l == ""){ echo 'class="active"'; }?> href="<?=base_url()?>" title="Create A New Paste">Create</a></li>
