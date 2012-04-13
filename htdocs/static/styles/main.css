@@ -378,6 +378,7 @@ h4 {
 	margin-top: 10px;
 	margin-left: 10px;
 	background: #ebf4fb;
+    position: relative;
 }
 
 .paste .text_formatted.full {

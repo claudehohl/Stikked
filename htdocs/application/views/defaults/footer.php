@@ -4,7 +4,7 @@
 			</div>
 		</div>	
 <?php
-$this->load->view("defaults/stats");
+$this->load->view('defaults/stats');
 
 //Javascript
 $this->carabiner->js('jquery.js');
