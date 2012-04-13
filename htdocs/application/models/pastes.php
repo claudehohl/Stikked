@@ -33,7 +33,7 @@ class Pastes extends CI_Model
 		$this->load->library('process');
 		$data['id'] = NULL;
 		$data['created'] = time();
-		$data['raw'] = htmlspecialchars($this->input->post('code'));
+		$data['raw'] = $this->input->post('code');
 		$data['lang'] = htmlspecialchars($this->input->post('lang'));
 		$data['replyto'] = $this->input->post('reply');
 		

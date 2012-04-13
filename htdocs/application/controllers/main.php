@@ -50,7 +50,7 @@ class Main extends CI_Controller
 			$data['private_set'] = $this->db_session->userdata('private');
 			$data['snipurl_set'] = $this->db_session->userdata('snipurl');
 			$data['remember_set'] = $this->db_session->userdata('remember');
-			$data['paste_set'] = $paste;
+			$data['paste_set'] = htmlspecialchars($paste);
 			$data['title_set'] = $title;
 			$data['reply'] = $reply;
 			
