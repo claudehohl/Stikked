@@ -5,10 +5,26 @@
 	<head>
 		<meta http-equiv="Content-type" content="text/html; charset=utf-8" />
 		<title><?php echo $this->config->item('site_name');?></title>
-		<link rel="stylesheet" href="<?php echo base_url()?>static/styles/reset.css" type="text/css" />
-		<link rel="stylesheet" href="<?php echo base_url()?>static/styles/fonts.css" type="text/css" />
-		<link rel="stylesheet" href="<?php echo base_url()?>static/styles/main.css" type="text/css" media="screen" title="main" charset="utf-8" />
-	
+<?php
+
+//Carabiner
+$this->carabiner->config(array(
+    'script_dir' => 'static/js/', 
+    'style_dir'  => 'static/styles/',
+    'cache_dir'  => 'static/asset/',
+    'base_uri'	 => base_url(),
+    'combine'	 => true,
+    //'dev'		 => true,
+));
+
+// CSS
+$this->carabiner->css('reset.css');
+$this->carabiner->css('fonts.css');
+$this->carabiner->css('main.css');
+
+$this->carabiner->display('css'); 
+
+?>
 		<?php if(!empty($scripts)){?>
 		<?php foreach($scripts as $script){?>
 		<script src="<?php echo base_url()?>static/js/<?php echo $script?>" type="text/javascript"></script>
