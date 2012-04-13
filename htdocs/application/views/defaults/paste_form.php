@@ -10,7 +10,7 @@
 
 <?php if(isset($this->validation->error_string)){ echo $this->validation->error_string; }?>
 <div class="form_wrapper margin">
-	<form action="<?=base_url()?>" method="post">
+	<form action="<?php echo base_url(); ?>" method="post">
 
 		<h1><?php if(!isset($page['title'])){ ?>
 			Create a new paste
