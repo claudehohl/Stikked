@@ -18,7 +18,7 @@ header("HTTP/1.1 404 Not Found");
 		<div id="container">
 			<div class="container">
 				<div class="header">
-					<h1><a href="<? echo base_url(); ?>" class="title"><?php echo $CI->config->item('site_name'); ?></a></h1>
+					<h1><a href="<?php echo base_url(); ?>" class="title"><?php echo $CI->config->item('site_name'); ?></a></h1>
 					<div class="tabs">
 						<ul>
 							<li><a href="<?php echo site_url(''); ?>">Paste</a></li>
@@ -31,9 +31,9 @@ header("HTTP/1.1 404 Not Found");
 				<div class="page">
 					<div class="content">
 						<div class="container">
-							<h1><?=$heading?></h1>
+							<h1><?php echo $heading; ?></h1>
 							<div class="about">
-								<?=$message?>
+								<?php echo $message; ?>
 								<p><a href="<?php echo base_url(); ?>">Go Home</a></p>
 							</div>
 						</div>
