@@ -82,7 +82,7 @@ class Main extends CI_Controller
 	function index() 
 	{
 		
-		if (!isset($_POST['submit'])) 
+		if (!$this->input->post('submit')) 
 		{
 			$data = $this->_form_prep();
 			$this->load->view('home', $data);
@@ -119,7 +119,7 @@ class Main extends CI_Controller
 			else
 			{
 				
-				if (isset($_POST['acopy']) and $_POST['acopy'] > 0) 
+				if ($this->input->post('acopy')) 
 				{
 					$this->db_session->set_flashdata('acopy', 'true');
 				}
@@ -247,7 +247,7 @@ class Main extends CI_Controller
 	function view_options() 
 	{
 		
-		if (!isset($_POST['submit'])) 
+		if ($this->input->post('submit')) 
 		{
 			$data = $this->_view_options_prep();
 			$this->load->view('view/view_options', $data);
