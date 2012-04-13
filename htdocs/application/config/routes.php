@@ -38,9 +38,20 @@
 |
 */
 
-$route['default_controller'] = "welcome";
-$route['404_override'] = '';
+$route['default_controller'] = "main";
+$route['scaffolding_trigger'] = "";
 
+$route['cron/:any'] = "main/cron";
+
+$route['view/raw/:any'] = 'main/raw/';
+$route['view/options'] = 'main/view_options';
+$route['view/:any'] = 'main/view';
+$route['lists'] = 'main/lists';
+$route['lists/:num'] = 'main/lists/$1';
+$route['about'] = 'main/about';
+
+$route['iphone/:num'] = 'iphone';
+$route['iphone/view/:any'] = 'iphone/view';
 
 /* End of file routes.php */
 /* Location: ./application/config/routes.php */
