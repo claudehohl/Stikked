@@ -122,8 +122,10 @@ class Main extends CI_Controller
 			$this->load->model('pastes');
 			$this->load->library('form_validation');
 		
-			$rules['code'] = 'required';
-			$rules['lang'] = 'min_length[1]|required|callback__valid_lang';
+            $rules = array();
+            $rules[]['code'] = 'required';
+            $rules[]['lang'] = 'min_length[1]|required|callback__valid_lang';
+             
 
 			$fields['code'] = 'Main Paste';
 			$fields['lang'] = 'Language';
