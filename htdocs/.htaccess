@@ -1,5 +1,5 @@
 RewriteEngine on
-RewriteBase /
+RewriteBase /stikked/htdocs/
 RewriteCond $1 !^(index\.php|static)
 RewriteRule ^(.*)$ index.php/$1 [QSA,L]
 
