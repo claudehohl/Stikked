@@ -1,0 +1,31 @@
+RewriteEngine on
+RewriteBase /
+RewriteCond $1 !^(index\.php|static)
+RewriteRule ^(.*)$ index.php/$1 [QSA,L]
+
+SetOutputFilter DEFLATE
+FileETag MTime Size
+
+<IfModule !mod_rewrite.c>
+    # If we don't have mod_rewrite installed, all 404's
+    # can be sent to index.php, and everything works as normal.
+    # Submitted by: ElliotHaughin
+
+    ErrorDocument 404 /index.php
+</IfModule> 
+
+ExpiresActive On
+ExpiresByType text/javascript "access plus 1 year"
+ExpiresByType application/x-javascript "access plus 1 year"
+ExpiresByType application/javascript "access plus 1 year"
+ExpiresByType text/css "access plus 1 year"
+ExpiresByType image/jpeg "access plus 1 year"
+ExpiresByType image/jpg "access plus 1 year"
+ExpiresByType image/gif "access plus 1 year"
+ExpiresByType image/png "access plus 1 year"
+ExpiresByType image/x-icon "access plus 1 year"
+
+#AuthType Basic
+#AuthName "Backend"
+#AuthUserFile /path/to/.htpasswd
+#Require user username
