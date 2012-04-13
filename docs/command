@@ -1,1 +1,0 @@
-phpdoc -d system/application -s -o HTML:frames:earthli -t ./docs -i geshi/,config/,views/,errors/
