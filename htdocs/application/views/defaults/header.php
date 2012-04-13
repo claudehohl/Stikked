@@ -12,7 +12,7 @@
 		<?php if(!empty($scripts)){?>
 		<?php foreach($scripts as $script){?>
 		<script src="<?php echo base_url()?>static/js/<?php echo $script?>" type="text/javascript"></script>
-		<?}}?>		
+		<?php }}?>		
 	</head>
 	<body>
 		<div id="container">
@@ -37,7 +37,7 @@
 						});</script>
 						<div class="message success change">
 							<div class="container">
-								<?php echo($status_message); ?>
+								<?php echo $status_message; ?>
 							</div>
 						</div>
 						<?php }?>				
