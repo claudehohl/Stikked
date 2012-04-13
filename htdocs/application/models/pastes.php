@@ -350,7 +350,7 @@ class Pastes extends CI_Model
 		}
 		
 		$this->db->where('private', 0);
-		$this->db->orderby('created', 'desc');
+		$this->db->order_by('created', 'desc');
 		$query = $this->db->get('pastes', $amount, $page);
 		$data['pastes'] = $query->result_array();
 		
