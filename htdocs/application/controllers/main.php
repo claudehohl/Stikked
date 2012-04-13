@@ -129,7 +129,6 @@ class Main extends CI_Controller
 			$fields['lang'] = 'Language';
 			
 			$this->form_validation->set_rules($rules);
-			//$this->form_validation->set_fields($fields);
 			$this->form_validation->set_message('min_length', 'The %s field can not be empty');
 			$this->form_validation->set_error_delimiters('<div class="message error"><div class="container">', '</div></div>');
 			
