@@ -4,25 +4,25 @@
 						return ($num%2) ? TRUE : FALSE;
 					}?>
 					<ul class="recent">
-					<?	foreach($pastes as $paste) {
+					<?php	foreach($pastes as $paste) {
 							if(checkNum($paste['id']) == TRUE) {
 								$eo = "even";
 							} else {
 								$eo = "odd";
 							}
 					?>
-						<li class="<?=$eo?>">
-							<span class="title"><a href="<?=base_url()?>iphone/view/<?=$paste['pid']?>"><?=$paste['title']?></a></span>
-							<span class="author"><?=$paste['name']?></span>
+						<li class="<?php echo $eo; ?>">
+							<span class="title"><a href="<?php echo base_url(); ?>iphone/view/<?php echo $paste['pid']; ?>"><?php echo $paste['title']; ?></a></span>
+							<span class="author"><?php echo $paste['name']; ?></span>
 						</li>
-						<? }?>
+						<?php }?>
 				
 					
-						<?=$pages?>
+						<?php echo $pages; ?>
 					</ul>
-				<? } else { ?>
+				<?php } else { ?>
 					<p>Sorry no pastes to show :)</p>
-				<? }?>	
+				<?php }?>	
 					
 				
 <?php $this->load->view('iphone/footer.php'); ?>

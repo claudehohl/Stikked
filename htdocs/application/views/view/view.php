@@ -19,20 +19,20 @@
 
 <div class="paste_info">
 	<div class="info">
-		<h1 class="pagetitle right"><?=$title?></h1>
+		<h1 class="pagetitle right"><?php echo $title; ?></h1>
 		<div class="meta">
-			<span class="detail by">By <?=$name?>, <? $p = explode(',', timespan($created, time())); echo $p[0]?> ago, written in <?=$lang?>.</span>
+			<span class="detail by">By <?php echo $name; ?>, <?php $p = explode(',', timespan($created, time())); echo $p[0]?> ago, written in <?php echo $lang; ?>.</span>
 			<?php if(isset($inreply)){?><span class="detail by">This paste is a reply to <a href="<?php echo $inreply['url']?>"><?php echo $inreply['title']; ?></a> by <?php echo $inreply['name']; ?></span><?php }?>
 			<div class="spacer"></div>
-			<span class="detail"><span class="item">URL </span><a href="<?=$url?>"><?=$url?></a></span>
+			<span class="detail"><span class="item">URL </span><a href="<?php echo $url; ?>"><?php echo $url; ?></a></span>
 			
 			<?php if(!empty($snipurl)){?>
-				<span class="detail"><span class="item">Snipurl </span><a href="<?=$snipurl?>"><?php echo htmlspecialchars($snipurl) ?></a></span>
+				<span class="detail"><span class="item">Snipurl </span><a href="<?php echo $snipurl; ?>"><?php echo htmlspecialchars($snipurl) ?></a></span>
 			<?php }?>
 			
 			<div class="spacer"></div>
 			
-			<span class="detail"><a class="control" href="<?=site_url("view/download/".$pid)?>">Download Paste</a> or <a class="control" href="<?=site_url("view/raw/".$pid)?>">View Raw</a> &mdash; <a href="#" class="expand control">Expand paste</a> to full width of browser | <a href="<?=site_url("view/options")?>">Change Viewing Options</a></span>
+			<span class="detail"><a class="control" href="<?php echo site_url("view/download/".$pid); ?>">Download Paste</a> or <a class="control" href="<?php echo site_url("view/raw/".$pid); ?>">View Raw</a> &mdash; <a href="#" class="expand control">Expand paste</a> to full width of browser | <a href="<?php echo site_url('view/options'); ?>">Change Viewing Options</a></span>
 		</div>
 	</div>
 </div>
@@ -44,7 +44,7 @@
 <div class="paste <?php if($full_width){ echo "full"; }?>">
 	<div class="text_formatted <?php if($full_width){ echo "full"; }?>">
 		<div class="container">
-			<?=$paste?>
+			<?php echo $paste; ?>
 		</div>
 	</div>
 </div>
@@ -82,10 +82,10 @@
 					$n++;
 			?>
 				
-				<tr class="<?=$eo?>">
-					<td class="first"><a href="<?=site_url("view/".$reply['pid'])?>"><?=$reply['title']?></a></td>
-					<td><?=$reply['name']?></td>
-					<td><? $p = explode(",", timespan($reply['created'], time())); echo $p[0];?> ago.</td>
+				<tr class="<?php echo $eo; ?>">
+					<td class="first"><a href="<?php echo site_url("view/".$reply['pid']); ?>"><?php echo $reply['title']; ?></a></td>
+					<td><?php echo $reply['name']; ?></td>
+					<td><?php $p = explode(",", timespan($reply['created'], time())); echo $p[0];?> ago.</td>
 				</tr>
 		
 			<?php }?>

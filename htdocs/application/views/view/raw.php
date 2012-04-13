@@ -4,12 +4,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 	<head>
 		<meta http-equiv="Content-type" content="text/html; charset=utf-8" />
-		<title><?php echo $this->config->item('site_name');?></title>
-		<link rel="stylesheet" href="<?=base_url()?>static/styles/raw.css" type="text/css" media="screen" title="raw stylesheet" charset="utf-8" />
-		<?php if(!empty($scripts)){?>
-		<?php foreach($scripts as $script){?>
-		<script src="<?=base_url()?>static/js/<?=$script?>" type="text/javascript"></script>
-		<?}}?>
+		<title><?php echo $this->config->item('site_name'); ?></title>
+		<link rel="stylesheet" href="<?php echo base_url(); ?>static/styles/raw.css" type="text/css" media="screen" title="raw stylesheet" charset="utf-8" />
+		<?php if(!empty($scripts)){ ?>
+		<?php foreach($scripts as $script){ ?>
+		<script src="<?php echo base_url(); ?>static/js/<?php echo $script; ?>" type="text/javascript"></script>
+		<?php }} ?>
 	</head>
 	<body>
 		<div id="container">
@@ -17,17 +17,17 @@
 				echo $insert;
 			}?>
 			
-			<h1><?=$title?></h1>
+			<h1><?php echo $title?></h1>
 			<?php if(!$this->db_session->userdata("view_raw")){?>
-				<a href="<?=site_url("view/".$pid)?>">Go Back</a>
+				<a href="<?php echo site_url("view/".$pid)?>">Go Back</a>
 			<?php } else { ?>
-				<a href="<?=base_url()?>">Go Home</a>
+				<a href="<?php echo base_url()?>">Go Home</a>
 			<?php }?> 
-			&mdash; <a href="<?=site_url("view/options")?>">Change Paste Viewing Options</a>
+			&mdash; <a href="<?php echo site_url("view/options")?>">Change Paste Viewing Options</a>
 			<pre>
-<?=$raw?>
+<?php echo $raw?>
 			</pre>
-			<?php if(!$this->db_session->userdata("view_raw")){?><a href="<?=site_url("view/".$pid)?>">Go Back</a><?php } else { ?><a href="<?=base_url()?>">Go Home</a><?php }?>		
+			<?php if(!$this->db_session->userdata("view_raw")){?><a href="<?php echo site_url("view/".$pid)?>">Go Back</a><?php } else { ?><a href="<?php echo base_url()?>">Go Home</a><?php }?>		
 		</div>
 		<?php $this->load->view('defaults/stats'); ?>
 	</body>
