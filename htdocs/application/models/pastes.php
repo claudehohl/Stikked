@@ -21,7 +21,7 @@
 *
 */
 
-class Pastes extends Model 
+class Pastes extends CI_Model 
 {
 
     function __construct()
@@ -397,4 +397,3 @@ class Pastes extends Model
 	}
 }
 
-?>
