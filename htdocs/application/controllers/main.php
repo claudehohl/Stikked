@@ -30,7 +30,7 @@ class Main extends CI_Controller
 	function _form_prep($lang = 'php', $title = '', $paste = '', $reply = false) 
 	{
 		$this->load->model('languages');
-		$this->load->helper("form");
+		$this->load->helper('form');
 		$data['languages'] = $this->languages->get_languages();
 		$data['scripts'] = array(
 			'jquery.js',
@@ -91,9 +91,22 @@ class Main extends CI_Controller
 		{
 			$this->load->model('pastes');
 			$this->load->library('form_validation');
-			$rules = array();
-			$rules[]['code'] = 'required';
-			$rules[]['lang'] = 'min_length[1]|required|callback__valid_lang';
+
+			//rules
+			$rules = array(
+				array(
+					'field' => 'code',
+					'label' => 'Your paste',
+					'rules' => 'required'
+				) ,
+				array(
+					'field' => 'lang',
+					'label' => 'Language',
+					'rules' => 'min_length[1]|required|callback__valid_lang'
+				) ,
+			);
+
+			//form validation
 			$this->form_validation->set_rules($rules);
 			$this->form_validation->set_message('min_length', 'The %s field can not be empty');
 			$this->form_validation->set_error_delimiters('<div class="message error"><div class="container">', '</div></div>');

@@ -8,7 +8,8 @@
 	});
 </script>
 
-<?php if(isset($this->validation->error_string)){ echo $this->validation->error_string; }?>
+<?php echo validation_errors(); ?>
+
 <div class="form_wrapper margin">
 	<form action="<?php echo base_url(); ?>" method="post">
 
