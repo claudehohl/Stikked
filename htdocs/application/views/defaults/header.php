@@ -5,9 +5,9 @@
 	<head>
 		<meta http-equiv="Content-type" content="text/html; charset=utf-8" />
 		<title><?php echo $this->config->item('site_name');?></title>
-		<link rel="stylesheet" href="<?=base_url()?>static/styles/reset.css" type="text/css" />
-		<link rel="stylesheet" href="<?=base_url()?>static/styles/fonts.css" type="text/css" />
-		<link rel="stylesheet" href="<?=base_url()?>static/styles/main.css" type="text/css" media="screen" title="main" charset="utf-8" />
+		<link rel="stylesheet" href="<?php echo base_url()?>static/styles/reset.css" type="text/css" />
+		<link rel="stylesheet" href="<?php echo base_url()?>static/styles/fonts.css" type="text/css" />
+		<link rel="stylesheet" href="<?php echo base_url()?>static/styles/main.css" type="text/css" media="screen" title="main" charset="utf-8" />
 	
 		<?php if(!empty($scripts)){?>
 		<?php foreach($scripts as $script){?>
@@ -21,9 +21,9 @@
 					<h1><a href="<?php echo base_url(); ?>" class="title"><?php echo $this->config->item('site_name');?></a></h1>
 					<ul class="tabs">
 						<?php $l = $this->uri->segment(1)?>
-						<li><a <?php if($l == ""){ echo 'class="active"'; }?> href="<?=base_url()?>" title="Create A New Paste">Create</a></li>
-						<li><a <?php if($l == "lists" || $l == "view" and $this->uri->segment(2) != "options"){ echo 'class="active"'; }?> href="<?=site_url("lists")?>" title="Recent Pastes">Recent</a></li>
-						<li><a  <?php if($l == "about"){ echo 'class="active"'; }?> href="<?=site_url("about/")?>" title="About Paste.mycodenow.com">About</a></li>
+						<li><a <?php if($l == ""){ echo 'class="active"'; }?> href="<?php echo base_url()?>" title="Create A New Paste">Create</a></li>
+						<li><a <?php if($l == "lists" || $l == "view" and $this->uri->segment(2) != "options"){ echo 'class="active"'; }?> href="<?php echo site_url("lists"); ?>" title="Recent Pastes">Recent</a></li>
+						<li><a  <?php if($l == "about"){ echo 'class="active"'; }?> href="<?php echo site_url("about/"); ?>" title="About Paste.mycodenow.com">About</a></li>
 					</ul>
 				</div>
 
