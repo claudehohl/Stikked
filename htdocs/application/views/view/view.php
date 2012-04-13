@@ -1,18 +1,5 @@
 <?php $this->load->view('defaults/header'); ?>
 
-<script type="text/javascript" charset="utf-8">
-	$(document).ready(function(){
-		$(".expand").click(function(){
-			$(".paste").css("width", "90%");
-			$(".text_formatted").hide();
-			$(".text_formatted").css("width", "100%");
-			$(".text_formatted").css("margin-left", "0");
-			$(".text_formatted").fadeIn(500);
-			return false;
-		});
-	});
-</script>
-
 <?php if(isset($insert)){
 	echo $insert;
 }?>

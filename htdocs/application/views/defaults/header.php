@@ -41,12 +41,7 @@ $this->carabiner->display('css');
 
 				<div class="content">
 					<div class="container">
-						<?php if(isset($status_message)){?><script type="text/javascript" charset="utf-8">
-							$(document).ready(function(){
-								$(".change").oneTime(3000, function() {
-								$(this).fadeOut(2000);
-							});						
-						});</script>
+						<?php if(isset($status_message)){?>
 						<div class="message success change">
 							<div class="container">
 								<?php echo $status_message; ?>

@@ -1,12 +1,3 @@
-<script type="text/javascript">
-	$(document).ready(function(){
-		$(".show").click(function(){
-			$(".advanced").hide();
-			$(".advanced_options").show();					
-			return false;
-		});
-	});
-</script>
 
 <?php echo validation_errors(); ?>
 
