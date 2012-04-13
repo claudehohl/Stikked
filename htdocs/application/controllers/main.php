@@ -96,7 +96,7 @@ class Main extends CI_Controller
 			$rules = array(
 				array(
 					'field' => 'code',
-					'label' => 'Your paste',
+					'label' => 'Main Paste',
 					'rules' => 'required'
 				) ,
 				array(
