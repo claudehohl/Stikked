@@ -16,6 +16,8 @@ class Languages extends CI_Model
 	function __construct() 
 	{
 		parent::__construct();
+		$this->load->config('geshi_languages');
+		$this->geshi_languages = $this->config->item('geshi_languages');
 	}
 	
 	function valid_language($lang) 
