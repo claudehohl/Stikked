@@ -22,28 +22,17 @@ class Languages extends CI_Model
 	
 	function valid_language($lang) 
 	{
-		$this->db->where('code', $lang);
-		$query = $this->db->get('languages');
-		
-		if ($query->num_rows() > 0) 
-		{
-			return true;
-		}
-		else
-		{
-			return false;
-		}
+		return array_key_exists($lang, $this->geshi_languages);
 	}
 	
 	function get_languages() 
 	{
-		$query = $this->db->get('languages');
 		$data = array();
-		foreach ($query->result_array() as $row) 
+		foreach ($this->geshi_languages as $key => $value) 
 		{
-			$data[$row['code']] = $row['description'];
+			$data[$key] = $value;
 			
-			if ($row['code'] == 'text') 
+			if ($key == 'text') 
 			{
 				$data["0"] = "-----------------";
 			}
@@ -53,20 +42,6 @@ class Languages extends CI_Model
 	
 	function code_to_description($code) 
 	{
-		$this->db->select('description');
-		$this->db->where('code', $code);
-		$query = $this->db->get('languages');
-		
-		if ($query->num_rows() > 0) 
-		{
-			foreach ($query->result_array() as $row) 
-			{
-				return $row['description'];
-			}
-		}
-		else
-		{
-			return false;
-		}
+		return $this->geshi_languages[$code];
 	}
 }

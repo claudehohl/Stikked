@@ -19,46 +19,6 @@ class Pastes extends CI_Model
 	function __construct() 
 	{
 		parent::__construct();
-		
-		if (!$this->db->table_exists('pastes')) 
-		{
-			$this->db->simple_query(<<<EOT
---
--- Table structure for table `ci_sessions`
---
-
-CREATE TABLE IF NOT EXISTS `ci_sessions` (
-  `session_id` varchar(40) NOT NULL default '0',
-  `ip_address` varchar(16) NOT NULL default '0',
-  `user_agent` varchar(50) NOT NULL,
-  `last_activity` int(10) unsigned NOT NULL default '0',
-  `session_data` text NOT NULL,
-  PRIMARY KEY  (`session_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
-
---
--- Table structure for table `pastes`
---
-
-CREATE TABLE IF NOT EXISTS `pastes` (
-  `id` int(10) NOT NULL auto_increment,
-  `pid` varchar(8) character set utf8 collate utf8_unicode_ci NOT NULL,
-  `title` varchar(32) character set utf8 collate utf8_unicode_ci NOT NULL,
-  `name` varchar(32) character set utf8 collate utf8_unicode_ci NOT NULL,
-  `lang` varchar(32) character set utf8 collate utf8_unicode_ci NOT NULL,
-  `private` tinyint(1) NOT NULL,
-  `paste` longtext character set utf8 collate utf8_unicode_ci NOT NULL,
-  `raw` longtext character set utf8 collate utf8_unicode_ci NOT NULL,
-  `created` int(10) NOT NULL,
-  `expire` int(10) NOT NULL default '0',
-  `toexpire` tinyint(1) unsigned NOT NULL,
-  `snipurl` varchar(64) character set utf8 collate utf8_unicode_ci NOT NULL default '0',
-  `replyto` varchar(8) character set utf8 collate utf8_unicode_ci NOT NULL,
-  PRIMARY KEY  (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=154 ;
-EOT;
-			);
-		}
 	}
 	
 	function countPastes() 
