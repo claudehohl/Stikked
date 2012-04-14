@@ -33,7 +33,9 @@ class Pastes extends CI_Model
 		$this->load->library('process');
 		$data['id'] = NULL;
 		$data['created'] = time();
-		$data['raw'] = $this->input->post('code');
+
+		//this is SO evil… saving the «raw» data with htmlspecialchars :-( (but I have to leave this, because of backwards-compatibility)
+		$data['raw'] = htmlspecialchars($this->input->post('code'));
 		$data['lang'] = htmlspecialchars($this->input->post('lang'));
 		$data['replyto'] = $this->input->post('reply');
 		
