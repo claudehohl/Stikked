@@ -93,12 +93,12 @@ class Main extends CI_Controller
 				array(
 					'field' => 'code',
 					'label' => 'Main Paste',
-					'rules' => 'required'
+					'rules' => 'required',
 				) ,
 				array(
 					'field' => 'lang',
 					'label' => 'Language',
-					'rules' => 'min_length[1]|required|callback__valid_lang'
+					'rules' => 'min_length[1]|required|callback__valid_lang',
 				) ,
 			);
 
@@ -243,7 +243,7 @@ class Main extends CI_Controller
 	function view_options() 
 	{
 		
-		if ($this->input->post('submit')) 
+		if (!$this->input->post('submit')) 
 		{
 			$data = $this->_view_options_prep();
 			$this->load->view('view/view_options', $data);
@@ -251,8 +251,18 @@ class Main extends CI_Controller
 		else
 		{
 			$this->load->library('form_validation');
-			$rules['full_width'] = 'max_length[1]';
-			$rules['view_raw'] = 'max_length[1]';
+			$rules = array(
+				array(
+					'field' => 'full_width',
+					'label' => 'full_width',
+					'rules' => 'max_length[1]',
+				) ,
+				array(
+					'field' => 'view_raw',
+					'label' => 'view_raw',
+					'rules' => 'max_length[1]',
+				) ,
+			);
 			$this->form_validation->set_rules($rules);
 			
 			if ($this->form_validation->run() == false) 

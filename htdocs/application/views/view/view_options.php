@@ -19,6 +19,7 @@
 			</div>
 		</div>
 		
+<!-- the 'new' raw mode is like the pastebin.com raw mode. makes no sense to enable that by default…
 		<div class="item">
 			<label for="view_raw">View Raw
 				<span class="instruction">This changes the default paste view to the raw view. Useful for dialup + low bandwith users.</span>
@@ -28,7 +29,8 @@
 			echo form_checkbox($set);
 			?><p>Use the raw view by default</p>
 			</div>
-		</div>			
+		</div>
+-->
 			
 		<div><button type="submit" value="submit" name="submit">Save</button></div>
 		<div class="spacer"></div>
