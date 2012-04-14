@@ -39,7 +39,10 @@ class DB_Session {
 		$this->object =& get_instance();
 
 		log_message('debug', "Session Class Initialized (db)");
-		$this->sess_run();
+
+        if($this->object->db->table_exists('ci_sessions')) {
+            $this->sess_run();
+        }
 	}
 	
 	// --------------------------------------------------------------------

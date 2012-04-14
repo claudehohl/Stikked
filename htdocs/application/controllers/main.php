@@ -25,6 +25,39 @@ class Main extends CI_Controller
 	{
 		parent::__construct();
 		$this->load->model('languages');
+		
+		if (!$this->db->table_exists('ci_sessions')) 
+		{
+			$this->load->dbforge();
+			$fields = array(
+				'session_id' => array(
+					'type' => 'VARCHAR',
+					'constraint' => 40,
+					'default' => 0,
+				) ,
+				'ip_address' => array(
+					'type' => 'VARCHAR',
+					'constraint' => 16,
+					'default' => 0,
+				) ,
+				'user_agent' => array(
+					'type' => 'VARCHAR',
+					'constraint' => 50,
+				) ,
+				'last_activity' => array(
+					'type' => 'INT',
+					'constraint' => 10,
+					'unsigned' => TRUE,
+					'default' => 0,
+				) ,
+				'session_data' => array(
+					'type' => 'TEXT',
+				) ,
+			);
+			$this->dbforge->add_field($fields);
+			$this->dbforge->add_key('session_id', true);
+			$this->dbforge->create_table('ci_sessions', true);
+		}
 	}
 	
 	function _form_prep($lang = 'php', $title = '', $paste = '', $reply = false) 
