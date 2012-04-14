@@ -130,12 +130,18 @@ class Pastes extends CI_Model
 		}
 		else
 		{
-			$target = 'http://snipr.com/site/snip?r=simple&link=' . site_url('view/' . $data['pid']);
+			$url = site_url('view/' . $data['pid']);
+			$url = urlencode($url);
+			$bitly_username = $this->config->item('bitly_username');
+			$bitly_apikey = $this->config->item('bitly_apikey');
+			$target = 'http://api.bitly.com/v3/shorten?login=' . $bitly_username . '&apiKey=' . $bitly_apikey . '&longUrl=' . $url;
 			$ch = curl_init();
 			curl_setopt($ch, CURLOPT_URL, $target);
 			curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-			$data['snipurl'] = curl_exec($ch);
+			$resp = curl_exec($ch);
 			curl_close($ch);
+			$resp = json_decode($resp);
+			$data['snipurl'] = $resp->data->url;
 			
 			if (empty($data['snipurl'])) 
 			{

@@ -6,7 +6,7 @@
  * The name of your site
  *
 */
-$config['site_name'] = "Stikked";
+$config['site_name'] = 'Stikked';
 
 /**
  * Combine JS & CSS files
@@ -17,12 +17,22 @@ $config['site_name'] = "Stikked";
 $config['combine_assets'] = false;
 
 /**
+ * Bit.ly config
+ *
+ * The username & API-Key for bit.ly
+ * (go to: http://bitly.com/a/your_api_key)
+ *
+**/
+$config['bitly_username'] = '';
+$config['bitly_apikey'] = '';
+
+/**
  * Key for Cron
  *
  * The password required to run the cron job
  *
 **/
-$config['cron_key'] = "";
+$config['cron_key'] = '';
 
 /**
  * Pastes Per Page
@@ -41,7 +51,7 @@ $config['per_page'] = 10;
  * NOTE: if changed only pastes from then on will be updated.
  *
 **/
-$config['unknown_poster'] = "random";
+$config['unknown_poster'] = 'random';
 
 /**
  * Name for untitled pastes
@@ -50,7 +60,7 @@ $config['unknown_poster'] = "random";
  * DO NOT SET BLANK
  * NOTE: if changed only pastes from then on will be updated.
 **/
-$config['unknown_title'] = "Untitled";
+$config['unknown_title'] = 'Untitled';
 
 /**
  *

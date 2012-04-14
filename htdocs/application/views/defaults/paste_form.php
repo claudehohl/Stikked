@@ -52,14 +52,14 @@
 		
 		<div class="item_group">
 			<div class="item">
-				<label for="snipurl">Create a snipurl
+				<label for="snipurl">Create a bit.ly url
 					<span class="instruction">Create a shorter url that redirects to your paste?</span>
 				</label>
 				<div class="text_beside">
 					<?php
 						$set = array('name' => 'snipurl', 'id' => 'snipurl', 'value' => '1', 'tabindex' => '5', 'checked' => $snipurl_set);
 						echo form_checkbox($set);
-					?><p>Create a snipurl</p>
+					?><p>Create a bit.ly url</p>
 				</div>
 			</div>
 		
