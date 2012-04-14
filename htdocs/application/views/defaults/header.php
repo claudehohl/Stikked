@@ -14,7 +14,7 @@ $this->carabiner->config(array(
     'cache_dir'  => 'static/asset/',
     'base_uri'	 => base_url(),
     'combine'	 => true,
-    //'dev'		 => true,
+    'dev'		 => !$this->config->item('combine_assets'),
 ));
 
 // CSS
@@ -30,12 +30,12 @@ $this->carabiner->display('css');
 		<div id="container">
 			<div class="container">			
 				<div class="header">
-					<h1><a href="<?php echo base_url(); ?>" class="title"><?php echo $this->config->item('site_name');?></a></h1>
+					<h1><a href="<?php echo base_url(); ?>" class="title"><?php echo $this->config->item('site_name'); ?></a></h1>
 					<ul class="tabs">
 						<?php $l = $this->uri->segment(1)?>
 						<li><a <?php if($l == ""){ echo 'class="active"'; }?> href="<?php echo base_url()?>" title="Create A New Paste">Create</a></li>
-						<li><a <?php if($l == "lists" || $l == "view" and $this->uri->segment(2) != "options"){ echo 'class="active"'; }?> href="<?php echo site_url("lists"); ?>" title="Recent Pastes">Recent</a></li>
-						<li><a  <?php if($l == "about"){ echo 'class="active"'; }?> href="<?php echo site_url("about/"); ?>" title="About Paste.mycodenow.com">About</a></li>
+						<li><a <?php if($l == "lists" || $l == "view" and $this->uri->segment(2) != "options"){ echo 'class="active"'; }?> href="<?php echo site_url('lists'); ?>" title="Recent Pastes">Recent</a></li>
+						<li><a  <?php if($l == "about"){ echo 'class="active"'; }?> href="<?php echo site_url('about'); ?>" title="About">About</a></li>
 					</ul>
 				</div>
 

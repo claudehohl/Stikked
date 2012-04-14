@@ -9,6 +9,14 @@
 $config['site_name'] = "Stikked";
 
 /**
+ * Combine JS & CSS files
+ * 
+ * htdocs/static/asset/ folder must be writeable
+ *
+*/
+$config['combine_assets'] = false;
+
+/**
  * Key for Cron
  *
  * The password required to run the cron job
