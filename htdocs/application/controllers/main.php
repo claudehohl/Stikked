@@ -58,6 +58,70 @@ class Main extends CI_Controller
 			$this->dbforge->add_key('session_id', true);
 			$this->dbforge->create_table('ci_sessions', true);
 		}
+		
+		if (!$this->db->table_exists('pastes')) 
+		{
+			$this->load->dbforge();
+			$fields = array(
+				'id' => array(
+					'type' => 'INT',
+					'constraint' => 10,
+					'auto_increment' => TRUE,
+				) ,
+				'pid' => array(
+					'type' => 'VARCHAR',
+					'constraint' => 8,
+				) ,
+				'title' => array(
+					'type' => 'VARCHAR',
+					'constraint' => 32,
+				) ,
+				'name' => array(
+					'type' => 'VARCHAR',
+					'constraint' => 32,
+				) ,
+				'lang' => array(
+					'type' => 'VARCHAR',
+					'constraint' => 32,
+				) ,
+				'private' => array(
+					'type' => 'TINYINT',
+					'constraint' => 1,
+				) ,
+				'paste' => array(
+					'type' => 'LONGTEXT',
+				) ,
+				'raw' => array(
+					'type' => 'LONGTEXT',
+				) ,
+				'created' => array(
+					'type' => 'INT',
+					'constraint' => 10,
+				) ,
+				'expire' => array(
+					'type' => 'INT',
+					'constraint' => 10,
+					'default' => 0,
+				) ,
+				'toexpire' => array(
+					'type' => 'TINYINT',
+					'constraint' => 1,
+					'unsigned' => TRUE,
+				) ,
+				'snipurl' => array(
+					'type' => 'VARCHAR',
+					'constraint' => 64,
+					'default' => 0,
+				) ,
+				'replyto' => array(
+					'type' => 'VARCHAR',
+					'constraint' => 8,
+				) ,
+			);
+			$this->dbforge->add_field($fields);
+			$this->dbforge->add_key('id', true);
+			$this->dbforge->create_table('pastes', true);
+		}
 	}
 	
 	function _form_prep($lang = 'php', $title = '', $paste = '', $reply = false) 
