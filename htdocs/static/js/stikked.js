@@ -23,9 +23,9 @@ ST.show = function() {
 
 ST.expand = function() {
 	$('.expand').click(function() {
-        if($('.paste').hasClass('full')) {
-            return false;
-        }
+		if ($('.paste').hasClass('full')) {
+			return false;
+		}
 		var window_width = $(window).width();
 		var spacer = 20;
 		if (window_width < 900) {
