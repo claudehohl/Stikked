@@ -1,5 +1,48 @@
-Hello.
+Stikked is an Open-Source PHP Pastebin, with the aim of keeping a simple and easy to use user interface.
 
-It's not ready, yet.*
+Stikked allows you to easily share code with anyone you wish. Stikked was created for the following reasons:
 
-* Testphase has begun
+* IRC and Private Chats were spammed.
+* Pastebins were ugly.
+* Pastebins were confusing.
+* Pastebins were messy and not thought through.
+* Stikked rethought code collaboration, by making it easy to paste code.
+
+I copied the original Stikked (http://code.google.com/p/stikked/) and fixed several bugs.
+
+This is Version 0.6.
+New features and bugfixes:
+
+* The language-selection was broken; the dropdown now features all the languages that GeSHi supports
+* Updated to CodeIgniter version 2.1.0
+* Creation of bit.ly-URLs (instead of snipurl)
+* Fixed download link
+* Paste downloads as a .txt file
+* No need to have short tags enabled
+* Automatic creation of all necessary MySQL tables
+* Raw-mode is now like the raw-mode on pastebin.com
+* Minification and concatenation of CSS and JavaScript files (can be turned on/off)
+* Breached the license by removing the nasty copyright footer
+
+Version 0.5 featured:
+
+* Paste Replies
+* Fluid width pastes
+* Auto copying paste url to clipboard.
+* Paste expiration.
+* Fully standards compliant css and xhtml.
+* Random generating names for anonymous users
+* Paste downloading
+
+In the future you can expect the following:
+
+* Paste embedding
+
+
+Installation
+------------
+
+1.  Download stikked from https://github.com/claudehohl/Stikked/downloads
+2.  Create a user and database for Stikked
+3.  Edit configuration settings in application/config/stikked.php (view on Github: https://github.com/claudehohl/Stikked/blob/master/htdocs/application/config/stikked.php)
+
