@@ -1,5 +1,5 @@
 RewriteEngine on
-RewriteBase /stikked/htdocs/
+#RewriteBase /
 RewriteCond $1 !^(index\.php|static)
 RewriteRule ^(.*)$ index.php/$1 [QSA,L]
 
@@ -7,10 +7,6 @@ SetOutputFilter DEFLATE
 FileETag MTime Size
 
 <IfModule !mod_rewrite.c>
-    # If we don't have mod_rewrite installed, all 404's
-    # can be sent to index.php, and everything works as normal.
-    # Submitted by: ElliotHaughin
-
     ErrorDocument 404 /index.php
 </IfModule> 
 
@@ -27,5 +23,5 @@ ExpiresByType image/x-icon "access plus 1 year"
 
 #AuthType Basic
 #AuthName "Backend"
-#AuthUserFile /path/to/.htpasswd
+#AuthUserFile /path/to/.htpasswd #create one with htpasswd -c .htpasswd username
 #Require user username
