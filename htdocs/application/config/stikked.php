@@ -9,6 +9,17 @@
 $config['site_name'] = 'Stikked';
 
 /**
+ * Database connection
+ * 
+ * Credentials for your database
+ *
+*/
+$config['db_hostname'] = '127.0.0.1';
+$config['db_database'] = 'stikked';
+$config['db_username'] = 'stikked';
+$config['db_password'] = 'stikked';
+
+/**
  * Combine JS & CSS files
  * 
  * htdocs/static/asset/ folder must be writeable

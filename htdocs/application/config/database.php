@@ -48,10 +48,14 @@
 $active_group = 'default';
 $active_record = TRUE;
 
-$db['default']['hostname'] = '127.0.0.1';
-$db['default']['username'] = 'stikked';
-$db['default']['password'] = 'stikked';
-$db['default']['database'] = 'stikked';
+$CI =& get_instance();
+$CI->load->config('stikked');
+
+
+$db['default']['hostname'] = $CI->config->item('db_hostname');
+$db['default']['username'] = $CI->config->item('db_username');
+$db['default']['password'] = $CI->config->item('db_password');
+$db['default']['database'] = $CI->config->item('db_database');
 $db['default']['dbdriver'] = 'mysql';
 $db['default']['dbprefix'] = '';
 $db['default']['pconnect'] = TRUE;
