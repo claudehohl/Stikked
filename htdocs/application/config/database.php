@@ -49,8 +49,6 @@ $active_group = 'default';
 $active_record = TRUE;
 
 $CI =& get_instance();
-$CI->load->config('stikked');
-
 
 $db['default']['hostname'] = $CI->config->item('db_hostname');
 $db['default']['username'] = $CI->config->item('db_username');
