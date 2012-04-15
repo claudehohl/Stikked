@@ -11,7 +11,7 @@ Stikked allows you to easily share code with anyone you wish. Stikked was create
 I copied the original Stikked (http://code.google.com/p/stikked/) and fixed several bugs.
 
 This is Version 0.6.
-New features and bugfixes:
+It has new features and several bugfixes:
 
 * The language-selection was broken; the dropdown now features all the languages that GeSHi supports
 * Updated to CodeIgniter version 2.1.0
