@@ -41,6 +41,7 @@ $config['bitly_apikey'] = '';
  * Key for Cron
  *
  * The password required to run the cron job
+ * Example cron: 00, 30 * * * * curl --silent --compressed http://yoursite.com/cron/key &> /dev/null
  *
 **/
 $config['cron_key'] = '';
