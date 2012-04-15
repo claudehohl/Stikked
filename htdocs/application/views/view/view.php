@@ -14,7 +14,7 @@
 			<span class="detail"><span class="item">URL </span><a href="<?php echo $url; ?>"><?php echo $url; ?></a></span>
 			
 			<?php if(!empty($snipurl)){?>
-				<span class="detail"><span class="item">Snipurl </span><a href="<?php echo $snipurl; ?>"><?php echo htmlspecialchars($snipurl) ?></a></span>
+				<span class="detail"><span class="item">Shorturl </span><a href="<?php echo $snipurl; ?>"><?php echo htmlspecialchars($snipurl) ?></a></span>
 			<?php }?>
 			
 			<div class="spacer"></div>
