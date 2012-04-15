@@ -18,7 +18,7 @@ It has new features and several bugfixes:
 * Creation of bit.ly-URLs (instead of snipurl)
 * Fixed download link
 * Paste downloads as a .txt file
-* No need to have short tags enabled
+* No need to have PHP short tags enabled
 * Automatic creation of all necessary MySQL tables
 * Raw-mode is now like the raw-mode on pastebin.com
 * Minification and concatenation of CSS and JavaScript files (can be turned on/off)
