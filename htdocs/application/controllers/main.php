@@ -124,7 +124,7 @@ class Main extends CI_Controller
 		}
 	}
 	
-	function _form_prep($lang = 'php', $title = '', $paste = '', $reply = false) 
+	function _form_prep($lang = false, $title = '', $paste = '', $reply = false) 
 	{
 		$this->load->model('languages');
 		$this->load->helper('form');
@@ -147,7 +147,12 @@ class Main extends CI_Controller
 			$data['title_set'] = $title;
 			$data['reply'] = $reply;
 			
-			if ($lang != 'php' or ($lang == 'php' and $this->db_session->userdata('lang') == false)) 
+			if (!$lang) 
+			{
+				$lang = $this->config->item('default_language');
+			}
+			
+			if ($this->db_session->userdata('lang') == false) 
 			{
 				$data['lang_set'] = $lang;
 			}

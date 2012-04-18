@@ -55,6 +55,14 @@ $config['cron_key'] = '';
 $config['per_page'] = 10;
 
 /**
+ * Default language
+ *
+ * Preselected language. See application/config/geshi_languages.php for valid values (array keys)
+ *
+**/
+$config['default_language'] = 'text';
+
+/**
  * Name for anonymous poster
  *
  * What name is to be set for anonymous posters
