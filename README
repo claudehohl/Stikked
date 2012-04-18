@@ -12,7 +12,7 @@ I copied the original Stikked (http://code.google.com/p/stikked/) and fixed seve
 
 Try it out: http://paste.scratchbook.ch/
 
-This is Version 0.6.
+This is Version 0.6.1.
 It has new features and several bugfixes:
 
 * The language-selection was broken; the dropdown now features all the languages that GeSHi supports
