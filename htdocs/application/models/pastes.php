@@ -73,7 +73,7 @@ class Pastes extends CI_Model
 			}
 			else
 			{
-				$data['pid'] = rand(10000, 99999999);
+				$data['pid'] = mt_rand(10000, 99999999);
 			}
 			$this->db->select('id');
 			$this->db->where('pid', $data['pid']);
