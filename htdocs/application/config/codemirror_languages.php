@@ -62,7 +62,14 @@ $config['codemirror_languages'] = array(
 			) ,
 		) ,
 	) ,
-	'python' => 'Python',
+	'python' => array(
+		'mode' => 'python',
+		'js' => array(
+			array(
+				'codemirror/mode/python/python.js'
+			) ,
+		) ,
+	) ,
 	'ruby' => 'Ruby',
 	'bash' => 'Bash',
 	'c' => 'C',
