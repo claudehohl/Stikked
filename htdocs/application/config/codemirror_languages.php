@@ -9,9 +9,39 @@ if (!defined('BASEPATH')) exit('No direct script access allowed');
 
 //codemirror languages
 $config['codemirror_languages'] = array(
-	'html4strict' => 'HTML',
-	'css' => 'CSS',
-	'javascript' => 'JavaScript',
+	'html4strict' => array(
+		'mode' => 'htmlmixed',
+		'js' => array(
+			array(
+				'codemirror/mode/xml/xml.js'
+			) ,
+			array(
+				'codemirror/mode/javascript/javascript.js'
+			) ,
+			array(
+				'codemirror/mode/css/css.js'
+			) ,
+			array(
+				'codemirror/mode/htmlmixed/htmlmixed.js'
+			) ,
+		) ,
+	) ,
+	'css' => array(
+		'mode' => 'css',
+		'js' => array(
+			array(
+				'codemirror/mode/css/css.js'
+			) ,
+		) ,
+	) ,
+	'javascript' => array(
+		'mode' => 'javascript',
+		'js' => array(
+			array(
+				'codemirror/mode/javascript/javascript.js'
+			) ,
+		) ,
+	) ,
 	'php' => array(
 		'mode' => 'php',
 		'js' => array(
