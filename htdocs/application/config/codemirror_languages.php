@@ -78,7 +78,14 @@ $config['codemirror_languages'] = array(
 			) ,
 		) ,
 	) ,
-	'bash' => 'Bash',
+	'bash' => array(
+		'mode' => 'text/x-sh',
+		'js' => array(
+			array(
+				'codemirror/mode/shell/shell.js'
+			) ,
+		) ,
+	) ,
 	'c' => array(
 		'mode' => 'text/x-csrc',
 		'js' => array(
@@ -95,10 +102,38 @@ $config['codemirror_languages'] = array(
 			) ,
 		) ,
 	) ,
-	'diff' => 'Diff',
-	'latex' => 'LaTeX',
-	'sql' => 'SQL',
-	'xml' => 'XML',
+	'diff' => array(
+		'mode' => 'diff',
+		'js' => array(
+			array(
+				'codemirror/mode/diff/diff.js'
+			) ,
+		) ,
+	) ,
+	'latex' => array(
+		'mode' => 'stex',
+		'js' => array(
+			array(
+				'codemirror/mode/stex/stex.js'
+			) ,
+		) ,
+	) ,
+	'sql' => array(
+		'mode' => 'mysql',
+		'js' => array(
+			array(
+				'codemirror/mode/mysql/mysql.js'
+			) ,
+		) ,
+	) ,
+	'xml' => array(
+		'mode' => 'xml',
+		'js' => array(
+			array(
+				'codemirror/mode/xml/xml.js'
+			) ,
+		) ,
+	) ,
 	'text' => 'Plain Text',
 	'abap' => 'ABAP',
 	'actionscript' => 'Actionscript',
@@ -169,7 +204,14 @@ $config['codemirror_languages'] = array(
 	'matlab' => 'Matlab',
 	'mirc' => 'mIRC',
 	'mpasm' => 'MPASM',
-	'mysql' => 'MySQL',
+	'mysql' => array(
+		'mode' => 'mysql',
+		'js' => array(
+			array(
+				'codemirror/mode/mysql/mysql.js'
+			) ,
+		) ,
+	) ,
 	'nsis' => 'NSIS',
 	'objc' => 'Objective C',
 	'ocaml' => 'ocaml',
