@@ -12,15 +12,23 @@ I copied the original Stikked (http://code.google.com/p/stikked/) and fixed seve
 Try it out: http://paste.scratchbook.ch/
 
 
+Installation
+------------
+
+1.  Download stikked from https://github.com/claudehohl/Stikked/downloads
+2.  Create a user and database for Stikked
+3.  Edit configuration settings in application/config/stikked.php (view on Github: https://github.com/claudehohl/Stikked/blob/master/htdocs/application/config/stikked.php)
+
+
 Changelog
 ---------
 
-Version 0.7:
+### Version 0.7:
 
 * An API (see http://paste.scratchbook.ch/api)
 * Integration of Codemirror (http://codemirror.net)
 
-Version 0.6:
+### Version 0.6:
 
 * The language-selection was broken; the dropdown now features all the languages that GeSHi supports
 * Updated to CodeIgniter version 2.1.0
@@ -33,7 +41,7 @@ Version 0.6:
 * Minification and concatenation of CSS and JavaScript files (can be turned on/off)
 * Breached the license by removing the nasty copyright footer
 
-Version 0.5:
+### Version 0.5:
 
 * Paste Replies
 * Fluid width pastes
@@ -42,12 +50,4 @@ Version 0.5:
 * Fully standards compliant css and xhtml.
 * Random generating names for anonymous users
 * Paste downloading
-
-
-Installation
-------------
-
-1.  Download stikked from https://github.com/claudehohl/Stikked/downloads
-2.  Create a user and database for Stikked
-3.  Edit configuration settings in application/config/stikked.php (view on Github: https://github.com/claudehohl/Stikked/blob/master/htdocs/application/config/stikked.php)
 
