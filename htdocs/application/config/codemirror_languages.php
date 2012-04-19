@@ -70,10 +70,31 @@ $config['codemirror_languages'] = array(
 			) ,
 		) ,
 	) ,
-	'ruby' => 'Ruby',
+	'ruby' => array(
+		'mode' => 'ruby',
+		'js' => array(
+			array(
+				'codemirror/mode/ruby/ruby.js'
+			) ,
+		) ,
+	) ,
 	'bash' => 'Bash',
-	'c' => 'C',
-	'cpp' => 'C++',
+	'c' => array(
+		'mode' => 'text/x-csrc',
+		'js' => array(
+			array(
+				'codemirror/mode/clike/clike.js'
+			) ,
+		) ,
+	) ,
+	'cpp' => array(
+		'mode' => 'text/x-c++src',
+		'js' => array(
+			array(
+				'codemirror/mode/clike/clike.js'
+			) ,
+		) ,
+	) ,
 	'diff' => 'Diff',
 	'latex' => 'LaTeX',
 	'sql' => 'SQL',
@@ -95,7 +116,14 @@ $config['codemirror_languages'] = array(
 	'cfdg' => 'CFDG',
 	'cfm' => 'CFM',
 	'cpp-qt' => 'C++ QT',
-	'csharp' => 'C#',
+	'csharp' => array(
+		'mode' => 'text/x-csharp',
+		'js' => array(
+			array(
+				'codemirror/mode/clike/clike.js'
+			) ,
+		) ,
+	) ,
 	'd' => 'D',
 	'delphi' => 'Delphi',
 	'div' => 'DIV',
@@ -112,10 +140,31 @@ $config['codemirror_languages'] = array(
 	'ini' => 'INI',
 	'inno' => 'Inno Script',
 	'io' => 'Io',
-	'java' => 'Java',
-	'java5' => 'Java 5',
+	'java' => array(
+		'mode' => 'text/x-java',
+		'js' => array(
+			array(
+				'codemirror/mode/clike/clike.js'
+			) ,
+		) ,
+	) ,
+	'java5' => array(
+		'mode' => 'text/x-java',
+		'js' => array(
+			array(
+				'codemirror/mode/clike/clike.js'
+			) ,
+		) ,
+	) ,
 	'lisp' => 'Lisp',
-	'lua' => 'LUA',
+	'lua' => array(
+		'mode' => 'lua',
+		'js' => array(
+			array(
+				'codemirror/mode/lua/lua.js'
+			) ,
+		) ,
+	) ,
 	'm68k' => 'm68k',
 	'matlab' => 'Matlab',
 	'mirc' => 'mIRC',
