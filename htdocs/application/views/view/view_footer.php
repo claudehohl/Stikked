@@ -10,21 +10,16 @@ $this->carabiner->js('stikked.js');
 $this->carabiner->js('codemirror/codemirror.js');
 $this->carabiner->display('js');
 
-$codemirror_specific = array(
-    'js' => array(
-        array('codemirror/mode/xml/xml.js'),
-        array('codemirror/mode/javascript/javascript.js'),
-        array('codemirror/mode/css/css.js'),
-        array('codemirror/mode/clike/clike.js'),
-        array('codemirror/mode/php/php.js'),
-    )
-);
-
-$codemirror_specific['js'][] = array('codemirror_exec.js');
-
-$this->carabiner->group('codemirror', $codemirror_specific);
-
-$this->carabiner->display('codemirror');
+if(isset($codemirror_languages[$lang_set]) && gettype($codemirror_languages[$lang_set]) == 'array')
+{
+    $codemirror_specific = array(
+        'js' => $codemirror_languages[$lang_set]['js'],
+    );
+    $codemirror_specific['js'][] = array('codemirror_exec.js');
+    $this->carabiner->group('codemirror', $codemirror_specific);
+    $this->carabiner->display('codemirror');
+    echo '<div style="display: none;" id="codemirror_mode">' . $codemirror_languages[$lang_set]['mode'] . '</div>';
+}
 
 ?>
 <script>

@@ -127,8 +127,10 @@ class Main extends CI_Controller
 	function _form_prep($lang = false, $title = '', $paste = '', $reply = false) 
 	{
 		$this->load->model('languages');
+		$this->load->config('codemirror_languages');
 		$this->load->helper('form');
 		$data['languages'] = $this->languages->get_languages();
+		$data['codemirror_languages'] = $this->config->item('codemirror_languages');
 		
 		if (!$this->input->post('submit')) 
 		{
