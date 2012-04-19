@@ -21,6 +21,7 @@ $this->carabiner->config(array(
 $this->carabiner->css('reset.css');
 $this->carabiner->css('fonts.css');
 $this->carabiner->css('main.css');
+$this->carabiner->css('codemirror.css');
 
 $this->carabiner->display('css'); 
 

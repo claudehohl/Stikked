@@ -47,7 +47,7 @@
 				<span class="instruction">Paste your paste here</span>
 			</label>
 			
-			<textarea name="code" cols="40" rows="20" tabindex="4"><?php if(isset($paste_set)){ echo $paste_set; }?></textarea>
+			<textarea id="code" name="code" cols="40" rows="20" tabindex="4"><?php if(isset($paste_set)){ echo $paste_set; }?></textarea>
 		</div>																											
 		
 		<div class="item_group">
