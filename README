@@ -9,11 +9,18 @@ Stikked allows you to easily share code with anyone you wish. Stikked was create
 * Stikked rethought code collaboration, by making it easy to paste code.
 
 I copied the original Stikked (http://code.google.com/p/stikked/) and fixed several bugs.
-
 Try it out: http://paste.scratchbook.ch/
 
-This is Version 0.6.1.
-It has new features and several bugfixes:
+
+Changelog
+---------
+
+Version 0.7:
+
+* An API (see http://paste.scratchbook.ch/api)
+* Integration of Codemirror (http://codemirror.net)
+
+Version 0.6:
 
 * The language-selection was broken; the dropdown now features all the languages that GeSHi supports
 * Updated to CodeIgniter version 2.1.0
@@ -26,7 +33,7 @@ It has new features and several bugfixes:
 * Minification and concatenation of CSS and JavaScript files (can be turned on/off)
 * Breached the license by removing the nasty copyright footer
 
-Version 0.5 featured:
+Version 0.5:
 
 * Paste Replies
 * Fluid width pastes
@@ -35,10 +42,6 @@ Version 0.5 featured:
 * Fully standards compliant css and xhtml.
 * Random generating names for anonymous users
 * Paste downloading
-
-In the future you can expect the following:
-
-* Paste embedding
 
 
 Installation
