@@ -309,7 +309,7 @@ class Main extends CI_Controller
 				redirect('view/raw/' . $this->uri->segment(2));
 			}
 			$data = $this->pastes->getPaste(2, true);
-			$data['reply_form'] = $this->_form_prep($data['lang_code'], "RE: " . $data['title'], $data['raw'], $data['pid']);
+			$data['reply_form'] = $this->_form_prep($data['lang_code'], 'Re: ' . $data['title'], $data['raw'], $data['pid']);
 			
 			if ($this->db_session->userdata('full_width')) 
 			{
