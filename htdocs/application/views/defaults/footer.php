@@ -11,6 +11,7 @@ $this->carabiner->js('jquery.js');
 $this->carabiner->js('jquery.timers.js');
 $this->carabiner->js('jquery.clipboard.js');
 $this->carabiner->js('stikked.js');
+$this->carabiner->js('codemirror/codemirror.js');
 
 $this->carabiner->display('js');
 
