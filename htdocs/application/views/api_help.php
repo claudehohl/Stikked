@@ -9,7 +9,7 @@
 
 	<h2>Return values</h2>
     <p class="explain">
-        On success, the API returns the paste URL in JSON format: <code>{"url":"<?php echo site_url('view/68582786'); ?>"}</code><br />
+        On success, the API returns the paste URL in JSON format: <code>{"url":"<?php echo site_url('view/[pasteid]'); ?>"}</code><br />
         On error, the API returns the error message in JSON format: <code>{"error":"missing paste text"}</code>
     </p>
 
@@ -31,6 +31,12 @@
         Possible values: <?php echo $languages; ?>
     </p>
 
+	<code>expire=[minutes]</code>
+    <p class="explain">Set paste expiration.</p>
+
+	<code>reply=[pasteid]</code>
+    <p class="explain">Reply to existing paste.</p>
+
 	<h2>Examples</h2>
     <p>&nbsp;</p>
 
@@ -45,6 +51,10 @@
 	<h3>Create paste from a php file</h3>
 	<code>curl -d lang=php --data-urlencode text@main.php <?php echo site_url('api/create'); ?></code>
     <p class="explain">Create a paste with PHP syntax highlighting.</p>
+
+	<h3>Get paste ;-)</h3>
+	<code>curl <?php echo site_url('view/raw/[pasteid]'); ?></code>
+    <p class="explain">Display paste.</p>
 
 </div>
 
