@@ -63,7 +63,7 @@
  	
  	public function cssmin()
  	{
- 		log_message('debug', 'CSS Minification library initialized.');
+ 		log_message('debug', 'CSSMin library initialized.');
  	}
  	
  	
