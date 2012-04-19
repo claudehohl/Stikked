@@ -19,6 +19,9 @@
 	<code>text=[your paste text]</code>
     <p class="explain">The paste content. Required.</p>
 
+	<code>title=[title]</code>
+    <p class="explain">Title for the paste.</p>
+
 	<code>name=[name]</code>
     <p class="explain">The author's name.</p>
 
