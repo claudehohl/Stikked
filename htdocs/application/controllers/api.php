@@ -3,6 +3,7 @@
  * Class and Function List:
  * Function list:
  * - __construct()
+ * - index()
  * - create()
  * Classes list:
  * - Api extends Main
@@ -15,6 +16,11 @@ class Api extends Main
 	function __construct() 
 	{
 		parent::__construct();
+	}
+	
+	function index() 
+	{
+		$this->load->view('api_help');
 	}
 	
 	function create() 
