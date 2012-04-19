@@ -20,7 +20,11 @@ class Api extends Main
 	
 	function index() 
 	{
-		$this->load->view('api_help');
+		$languages = $this->languages->get_languages();
+		$languages = array_keys($languages);
+		$languages = implode(', ', $languages);
+		$data['languages'] = $languages;
+		$this->load->view('api_help', $data);
 	}
 	
 	function create() 
