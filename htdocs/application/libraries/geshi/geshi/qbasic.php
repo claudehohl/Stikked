@@ -4,13 +4,15 @@
  * ----------
  * Author: Nigel McNie (nigel@geshi.org)
  * Copyright: (c) 2004 Nigel McNie (http://qbnz.com/highlighter/)
- * Release Version: 1.0.7.20
+ * Release Version: 1.0.8.10
  * Date Started: 2004/06/20
  *
  * QBasic/QuickBASIC language file for GeSHi.
  *
  * CHANGES
  * -------
+ * 2008/05/23 (1.0.7.22)
+ *  -  Added description of extra language features (SF#1970248)
  * 2004/11/27 (1.0.3)
  *  -  Added support for multiple object splitters
  * 2004/10/27 (1.0.2)
@@ -48,97 +50,107 @@
  *
  ************************************************************************************/
 $language_data = array (
-	'LANG_NAME' => 'QBasic/QuickBASIC',
-	'COMMENT_SINGLE' => array(1 => "'", 2 => ' REM', 3 => "\tREM"),
-	'COMMENT_MULTI' => array(),
-	'CASE_KEYWORDS' => GESHI_CAPS_UPPER,
-	'QUOTEMARKS' => array('"'),
-	'ESCAPE_CHAR' => '',
-	'KEYWORDS' => array(
-		1 => array(
-			'DO', 'LOOP', 'WHILE', 'WEND', 'THEN', 'ELSE', 'ELSEIF', 'IF',
-			'FOR', 'TO', 'NEXT', 'STEP', 'GOTO', 'GOSUB', 'RETURN', 'RESUME', 'SELECT',
-			'CASE', 'UNTIL'
-			),
-		3 => array(
-			'ABS', 'ABSOLUTE', 'ACCESS', 'ALIAS', 'AND', 'ANY', 'APPEND', 'AS', 'ASC', 'ATN',
-			'BASE', 'BEEP', 'BINARY', 'BLOAD', 'BSAVE', 'BYVAL', 'CALL', 'CALLS', 'CASE',
-			'CDBL', 'CDECL', 'CHAIN', 'CHDIR', 'CHDIR', 'CHR$', 'CINT', 'CIRCLE', 'CLEAR',
-			'CLNG', 'CLOSE', 'CLS', 'COM', 'COMMAND$', 'COMMON', 'CONST', 'COS', 'CSNG',
-			'CSRLIN', 'CVD', 'CVDMBF', 'CVI', 'CVL', 'CVS', 'CVSMDF', 'DATA', 'DATE$',
-			'DECLARE', 'DEF', 'FN', 'SEG', 'DEFDBL', 'DEFINT', 'DEFLNG', 'DEFSNG', 'DEFSTR',
-			'DIM', 'DOUBLE', 'DRAW', 'END', 'ENVIRON', 'ENVIRON$', 'EOF', 'EQV', 'ERASE',
-			'ERDEV', 'ERDEV$', 'ERL', 'ERR', 'ERROR', 'EXIT', 'EXP', 'FIELD', 'FILEATTR',
-			'FILES', 'FIX', 'FRE', 'FREEFILE', 'FUNCTION', 'GET', 'HEX$', 'IMP', 'INKEY$',
-			'INP', 'INPUT', 'INPUT$', 'INSTR', 'INT', 'INTEGER', 'IOCTL', 'IOCTL$', 'IS',
-			'KEY', 'KILL', 'LBOUND', 'LCASE$', 'LEFT$', 'LEN', 'LET', 'LINE', 'LIST', 'LOC',
-			'LOCAL', 'LOCATE', 'LOCK', 'LOF', 'LOG', 'UNLOCK', 'LONG', 'LPOS', 'LPRINT',
-			'LSET', 'LTRIM$', 'MID$', 'MKD$', 'MKDIR', 'MKDMBF$', 'MKI$', 'MKL$',
-			'MKS$', 'MKSMBF$', 'MOD', 'NAME', 'NOT', 'OCT$', 'OFF', 'ON', 'PEN', 'PLAY',
-			'STRIG', 'TIMER', 'UEVENT', 'OPEN', 'OPTION', 'BASE', 'OR', 'OUT', 'OUTPUT',
-			'PAINT', 'PALETTE', 'PCOPY', 'PEEK', 'PMAP', 'POINT', 'POKE', 'POS', 'PRESET',
-			'PRINT', 'USING', 'PSET', 'PUT', 'RANDOM', 'RANDOMIZE', 'READ', 'REDIM', 'RESET',
-			'RESTORE', 'RIGHT$', 'RMDIR', 'RND', 'RSET', 'RTRIM$', 'RUN', 'SADD', 'SCREEN',
-			'SEEK', 'SETMEM', 'SGN', 'SHARED', 'SHELL', 'SIGNAL', 'SIN', 'SINGLE', 'SLEEP',
-			'SOUND', 'SPACE$', 'SPC', 'SQR', 'STATIC', 'STICK', 'STOP', 'STR$', 'STRIG',
-			'STRING', 'STRING$', 'SUB', 'SWAP', 'SYSTEM', 'TAB', 'TAN', 'TIME$', 'TIMER',
-			'TROFF', 'TRON', 'TYPE', 'UBOUND', 'UCASE$', 'UEVENT', 'UNLOCK', 'USING', 'VAL',
-			'VARPTR', 'VARPTR$', 'VARSEG', 'VIEW', 'WAIT', 'WIDTH', 'WINDOW', 'WRITE', 'XOR'
-			)
-		),
-	'SYMBOLS' => array(
-		'(', ')'
-		),
-	'CASE_SENSITIVE' => array(
-		GESHI_COMMENTS => false,
-		1 => false,
-		3 => false
-		),
-	'STYLES' => array(
-		'KEYWORDS' => array(
-			1 => 'color: #a1a100;',
-			3 => 'color: #000066;'
-			),
-		'COMMENTS' => array(
-			1 => 'color: #808080;',
-			2 => 'color: #808080;',
-            3 => 'color: #808080;'
-			),
-		'BRACKETS' => array(
-			0 => 'color: #66cc66;'
-			),
-		'STRINGS' => array(
-			0 => 'color: #ff0000;'
-			),
-		'NUMBERS' => array(
-			0 => 'color: #cc66cc;'
-			),
-		'METHODS' => array(
-			),
-		'SYMBOLS' => array(
-			0 => 'color: #66cc66;'
-			),
-		'ESCAPE_CHAR' => array(
-			0 => 'color: #000099;'
-			),
-		'SCRIPT' => array(
-			),
-		'REGEXPS' => array(
-			)
-		),
-	'URLS' => array(
-		1 => '',
-		3 => 'http://www.qbasicnews.com/qboho/qck{FNAME}.shtml'
-		),
-	'OOLANG' => false,
-	'OBJECT_SPLITTERS' => array(
-		),
-	'REGEXPS' => array(
-		),
-	'STRICT_MODE_APPLIES' => GESHI_NEVER,
-	'SCRIPT_DELIMITERS' => array(
-		),
-	'HIGHLIGHT_STRICT_BLOCK' => array(
+    'LANG_NAME' => 'QBasic/QuickBASIC',
+    'COMMENT_SINGLE' => array(1 => "'"),
+    'COMMENT_MULTI' => array(),
+    'COMMENT_REGEXP' => array(
+        //Single-Line Comments using REM command
+        2 => "/\bREM.*?$/i",
+        //Line numbers
+        3 => "/^\s*\d+/im"
+        ),
+    'CASE_KEYWORDS' => GESHI_CAPS_UPPER,
+    'QUOTEMARKS' => array('"'),
+    'ESCAPE_CHAR' => '',
+    'KEYWORDS' => array(
+        1 => array(
+            'DO', 'LOOP', 'WHILE', 'WEND', 'THEN', 'ELSE', 'ELSEIF', 'IF',
+            'FOR', 'TO', 'NEXT', 'STEP', 'GOTO', 'GOSUB', 'CALL', 'CALLS',
+            'SUB', 'FUNCTION', 'RETURN', 'RESUME', 'SELECT', 'CASE', 'UNTIL'
+            ),
+        3 => array(
+            'ABS', 'ABSOLUTE', 'ACCESS', 'ALIAS', 'AND', 'ANY', 'APPEND', 'AS', 'ASC', 'ATN',
+            'BASE', 'BEEP', 'BINARY', 'BLOAD', 'BSAVE', 'BYVAL',
+            'CDBL', 'CDECL', 'CHAIN', 'CHDIR', 'CHR$', 'CINT', 'CIRCLE', 'CLEAR',
+            'CLNG', 'CLOSE', 'CLS', 'COM', 'COMMAND$', 'COMMON', 'CONST', 'COS', 'CSNG',
+            'CSRLIN', 'CVD', 'CVDMBF', 'CVI', 'CVL', 'CVS', 'CVSMDF', 'DATA', 'DATE$',
+            'DECLARE', 'DEF', 'FN', 'SEG', 'DEFDBL', 'DEFINT', 'DEFLNG', 'DEFSNG', 'DEFSTR',
+            'DIM', 'DOUBLE', 'DRAW', 'END', 'ENVIRON', 'ENVIRON$', 'EOF', 'EQV', 'ERASE',
+            'ERDEV', 'ERDEV$', 'ERL', 'ERR', 'ERROR', 'EXIT', 'EXP', 'FIELD', 'FILEATTR',
+            'FILES', 'FIX', 'FRE', 'FREEFILE', 'GET', 'HEX$', 'IMP', 'INKEY$',
+            'INP', 'INPUT', 'INPUT$', 'INSTR', 'INT', 'INTEGER', 'IOCTL', 'IOCTL$', 'IS',
+            'KEY', 'KILL', 'LBOUND', 'LCASE$', 'LEFT$', 'LEN', 'LET', 'LINE', 'LIST', 'LOC',
+            'LOCAL', 'LOCATE', 'LOCK', 'LOF', 'LOG', 'LONG', 'LPOS', 'LPRINT',
+            'LSET', 'LTRIM$', 'MID$', 'MKD$', 'MKDIR', 'MKDMBF$', 'MKI$', 'MKL$',
+            'MKS$', 'MKSMBF$', 'MOD', 'NAME', 'NOT', 'OCT$', 'OFF', 'ON', 'PEN', 'PLAY',
+            'OPEN', 'OPTION', 'OR', 'OUT', 'OUTPUT',
+            'PAINT', 'PALETTE', 'PCOPY', 'PEEK', 'PMAP', 'POINT', 'POKE', 'POS', 'PRESET',
+            'PRINT', 'PSET', 'PUT', 'RANDOM', 'RANDOMIZE', 'READ', 'REDIM', 'RESET',
+            'RESTORE', 'RIGHT$', 'RMDIR', 'RND', 'RSET', 'RTRIM$', 'RUN', 'SADD', 'SCREEN',
+            'SEEK', 'SETMEM', 'SGN', 'SHARED', 'SHELL', 'SIGNAL', 'SIN', 'SINGLE', 'SLEEP',
+            'SOUND', 'SPACE$', 'SPC', 'SQR', 'STATIC', 'STICK', 'STOP', 'STR$', 'STRIG',
+            'STRING', 'STRING$', 'SWAP', 'SYSTEM', 'TAB', 'TAN', 'TIME$', 'TIMER',
+            'TROFF', 'TRON', 'TYPE', 'UBOUND', 'UCASE$', 'UEVENT', 'UNLOCK', 'USING', 'VAL',
+            'VARPTR', 'VARPTR$', 'VARSEG', 'VIEW', 'WAIT', 'WIDTH', 'WINDOW', 'WRITE', 'XOR'
+            )
+        ),
+    'SYMBOLS' => array(
+        '(', ')', ',', '+', '-', '*', '/', '=', '<', '>', '^'
+        ),
+    'CASE_SENSITIVE' => array(
+        GESHI_COMMENTS => false,
+        1 => false,
+        3 => false
+        ),
+    'STYLES' => array(
+        'KEYWORDS' => array(
+            1 => 'color: #a1a100;',
+            3 => 'color: #000066;'
+            ),
+        'COMMENTS' => array(
+            1 => 'color: #808080;',
+            2 => 'color: #808080;',
+            3 => 'color: #8080C0;'
+            ),
+        'BRACKETS' => array(
+            0 => 'color: #66cc66;'
+            ),
+        'STRINGS' => array(
+            0 => 'color: #ff0000;'
+            ),
+        'NUMBERS' => array(
+            0 => 'color: #cc66cc;'
+            ),
+        'METHODS' => array(
+            ),
+        'SYMBOLS' => array(
+            0 => 'color: #66cc66;'
+            ),
+        'ESCAPE_CHAR' => array(
+            0 => 'color: #000099;'
+            ),
+        'SCRIPT' => array(
+            ),
+        'REGEXPS' => array(
+            1 => 'color: #cc66cc;',
+            2 => 'color: #339933;'
+            )
+        ),
+    'URLS' => array(
+        1 => '',
+        3 => 'http://www.qbasicnews.com/qboho/qck{FNAMEL}.shtml'
+        ),
+    'OOLANG' => false,
+    'OBJECT_SPLITTERS' => array(
+        ),
+    'REGEXPS' => array(
+        1 => '&amp;(?:H[0-9a-fA-F]+|O[0-7]+)(?!\w)',
+        2 => '#[0-9]+(?!\w)'
+        ),
+    'STRICT_MODE_APPLIES' => GESHI_NEVER,
+    'SCRIPT_DELIMITERS' => array(
+        ),
+    'HIGHLIGHT_STRICT_BLOCK' => array(
         ),
     'TAB_WIDTH' => 8
 );

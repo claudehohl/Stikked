@@ -4,13 +4,15 @@
  * --------
  * Author: deguix (cevo_deguix@yahoo.com.br)
  * Copyright: (c) 2005 deguix
- * Release Version: 1.0.7.20
+ * Release Version: 1.0.8.10
  * Date Started: 2005/03/27
  *
  * INI language file for GeSHi.
  *
  * CHANGES
  * -------
+ * 2008/05/23 (1.0.7.22)
+ *   -  Added description of extra language features (SF#1970248)
  * 2005/12/28 (1.0.1)
  *   -  Removed unnecessary keyword style index
  *   -  Added support for " strings
@@ -41,83 +43,86 @@
  ************************************************************************************/
 
 $language_data = array (
-	'LANG_NAME' => 'INI',
-	'COMMENT_SINGLE' => array(0 => ';'),
-	'COMMENT_MULTI' => array(),
-	'CASE_KEYWORDS' => GESHI_CAPS_NO_CHANGE,
-	'QUOTEMARKS' => array('"'),
-	'ESCAPE_CHAR' => '',
-	'KEYWORDS' => array(
-		),
-	'SYMBOLS' => array(
-		'[', ']', '='
-		),
-	'CASE_SENSITIVE' => array(
-		GESHI_COMMENTS => false
-		),
-	'STYLES' => array(
-		'KEYWORDS' => array(
-			),
-		'COMMENTS' => array(
-			0 => 'color: #666666; font-style: italic;'
-			),
-		'ESCAPE_CHAR' => array(
-		    0 => ''
-			),
-		'BRACKETS' => array(
-		    0 => ''
-			),
-		'STRINGS' => array(
-		    0 => 'color: #933;'
-			),
-		'NUMBERS' => array(
-		    0 => ''
-			),
-		'METHODS' => array(
-		    0 => ''
-			),
-		'SYMBOLS' => array(
-			0 => 'color: #000066; font-weight:bold;'
-			),
-		'REGEXPS' => array(
-			0 => 'color: #000066; font-weight:bold;',
-			1 => 'color: #000099;',
-			2 => 'color: #660066;'
-			),
-		'SCRIPT' => array(
-		    0 => ''
-			)
-		),
-	'URLS' => array(
-		),
-	'OOLANG' => false,
-	'OBJECT_SPLITTERS' => array(
-		),
-	'REGEXPS' => array(
-		0 => '\[.+\]',
-		1 => array(
-			GESHI_SEARCH => '([a-zA-Z0-9_]+\s*)=(.+)',
-			GESHI_REPLACE => '\\1',
-			GESHI_MODIFIERS => '',
-			GESHI_BEFORE => '',
-			GESHI_AFTER => '=\\2'
-			),
-		2 => array(
+    'LANG_NAME' => 'INI',
+    'COMMENT_SINGLE' => array(0 => ';'),
+    'COMMENT_MULTI' => array(),
+    'CASE_KEYWORDS' => GESHI_CAPS_NO_CHANGE,
+    'QUOTEMARKS' => array('"'),
+    'ESCAPE_CHAR' => '',
+    'KEYWORDS' => array(
+        ),
+    'SYMBOLS' => array(
+        '[', ']', '='
+        ),
+    'CASE_SENSITIVE' => array(
+        GESHI_COMMENTS => false
+        ),
+    'STYLES' => array(
+        'KEYWORDS' => array(
+            ),
+        'COMMENTS' => array(
+            0 => 'color: #666666; font-style: italic;'
+            ),
+        'ESCAPE_CHAR' => array(
+            0 => ''
+            ),
+        'BRACKETS' => array(
+            0 => ''
+            ),
+        'STRINGS' => array(
+            0 => 'color: #933;'
+            ),
+        'NUMBERS' => array(
+            0 => ''
+            ),
+        'METHODS' => array(
+            0 => ''
+            ),
+        'SYMBOLS' => array(
+            0 => 'color: #000066; font-weight:bold;'
+            ),
+        'REGEXPS' => array(
+            0 => 'color: #000066; font-weight:bold;',
+            1 => 'color: #000099;',
+            2 => 'color: #660066;'
+            ),
+        'SCRIPT' => array(
+            0 => ''
+            )
+        ),
+    'URLS' => array(
+        ),
+    'OOLANG' => false,
+    'OBJECT_SPLITTERS' => array(
+        ),
+    'REGEXPS' => array(
+        //Section names
+        0 => '\[.+\]',
+        //Entry names
+        1 => array(
+            GESHI_SEARCH => '^(\s*)([a-zA-Z0-9_\-]+)(\s*=)',
+            GESHI_REPLACE => '\\2',
+            GESHI_MODIFIERS => 'm',
+            GESHI_BEFORE => '\\1',
+            GESHI_AFTER => '\\3'
+            ),
+        //Entry values
+        2 => array(
             // Evil hackery to get around GeSHi bug: <>" and ; are added so <span>s can be matched
             // Explicit match on variable names because if a comment is before the first < of the span
             // gets chewed up...
-			GESHI_SEARCH => '([<>";a-zA-Z0-9_]+\s*)=(.+)',
-			GESHI_REPLACE => '\\2',
-			GESHI_MODIFIERS => '',
-			GESHI_BEFORE => '\\1=',
-			GESHI_AFTER => ''
-			)
-		),
-	'STRICT_MODE_APPLIES' => GESHI_NEVER,
-	'SCRIPT_DELIMITERS' => array(
-		),
-	'HIGHLIGHT_STRICT_BLOCK' => array(
-		)
+            GESHI_SEARCH => '([<>";a-zA-Z0-9_]+\s*)=(.*)',
+            GESHI_REPLACE => '\\2',
+            GESHI_MODIFIERS => '',
+            GESHI_BEFORE => '\\1=',
+            GESHI_AFTER => ''
+            )
+        ),
+    'STRICT_MODE_APPLIES' => GESHI_NEVER,
+    'SCRIPT_DELIMITERS' => array(
+        ),
+    'HIGHLIGHT_STRICT_BLOCK' => array(
+        )
 );
 
 ?>

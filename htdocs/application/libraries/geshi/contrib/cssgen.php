@@ -4,7 +4,7 @@
  * ----------
  * Author: Nigel McNie (nigel@geshi.org)
  * Copyright: (c) 2004 Nigel McNie
- * Release Version: 1.0.7.19
+ * Release Version: 1.0.8.6
  * Date Started: 2004/05/20
  *
  * Application to generate custom CSS files for GeSHi (based on an idea by Andreas
@@ -295,7 +295,7 @@ Detected languages:<br />';
         }
     }
 
-    echo "Select: <a href=\"javascript:select('true')\">All</a>, <a href=\"javascript:select('false')\">None</a>, <a href=\"javascript:select('invert')\">Invert</a><br />\n"; 
+    echo "Select: <a href=\"javascript:select('true')\">All</a>, <a href=\"javascript:select('false')\">None</a>, <a href=\"javascript:select('invert')\">Invert</a><br />\n";
 
     echo 'If you\'d like any other languages not detected here to be supported, please enter
 them here, one per line:<br /><textarea rows="4" cols="20" name="extra-langs"></textarea><br />

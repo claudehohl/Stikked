@@ -4,8 +4,8 @@
  * ----------
  * Author: Lars Gersmann (lars.gersmann@gmail.com)
  * Copyright: (c) 2007 Lars Gersmann, Nigel McNie (http://qbnz.com/highlighter/)
- * Release Version: 1.0.7.20
- * CVS Revision Version: $Revision: 1.4 $
+ * Release Version: 1.0.8.10
+ * Date Started: 2007/07/01
  *
  * Genero (FOURJ's Genero 4GL) language file for GeSHi.
  *
@@ -34,7 +34,7 @@
  *
  ************************************************************************************/
 
- $language_data = array (
+$language_data = array (
     'LANG_NAME' => 'genero',
     'COMMENT_SINGLE' => array(1 => '--', 2 => '#'),
     'COMMENT_MULTI' => array('{' => '}'),
@@ -43,7 +43,7 @@
     'ESCAPE_CHAR' => '\\',
     'KEYWORDS' => array(
         1 => array(
-          "ABSOLUTE",
+            "ABSOLUTE",
             "ACCEPT",
             "ACTION",
             "ADD",
@@ -53,7 +53,7 @@
             "AND",
             "ANY",
             "APPEND",
-            "APPLICATION",          
+            "APPLICATION",
             "AS",
             "AT",
             "ATTRIBUTE",
@@ -63,7 +63,6 @@
             "BEFORE",
             "BEGIN",
             "BETWEEN",
-            "BORDER",
             "BORDER",
             "BOTTOM",
             "BREAKPOINT",
@@ -98,7 +97,7 @@
             "COUNT",
             "CREATE",
             "CROSS",
-            "CURRENT",          
+            "CURRENT",
             "DATABASE",
             "DBA",
             "DEC",
@@ -118,7 +117,7 @@
             "DISCONNECT",
             "DISPLAY",
             "DISTINCT",
-            "DORMANT",          
+            "DORMANT",
             "DOWN",
             "DROP",
             "DYNAMIC",
@@ -134,7 +133,7 @@
             "EXPLAIN",
             "EXTEND",
             "EXTENT",
-            "EXTERNAL",         
+            "EXTERNAL",
             "FETCH",
             "FGL_DRAWBOX",
             "FIELD",
@@ -159,7 +158,7 @@
             "GLOBALS",
             "GO",
             "GOTO",
-            "GRANT",            
+            "GRANT",
             "GROUP",
             "HAVING",
             "HEADER",
@@ -200,7 +199,7 @@
             "LOCATE",
             "LOCK",
             "LOG",
-            "LSTR",         
+            "LSTR",
             "MAIN",
             "MARGIN",
             "MATCHES",
@@ -215,7 +214,7 @@
             "MOD",
             "MODE",
             "MODIFY",
-            "MONEY",            
+            "MONEY",
             "NAME",
             "NEED",
             "NEXT",
@@ -302,7 +301,7 @@
             "START",
             "STATISTICS",
             "STEP",
-            "STOP",         
+            "STOP",
             "STYLE",
             "SUM",
             "SYNONYM",
@@ -338,11 +337,11 @@
             "VIEW",
             "WAIT",
             "WAITING",
-            "WARNING",          
+            "WARNING",
             "WHEN",
             "WHENEVER",
             "WHERE",
-            "WHILE",            
+            "WHILE",
             "WINDOW",
             "WITH",
             "WITHOUT",
@@ -351,7 +350,7 @@
             "WRAP"
             ),
         2 => array(
-            '&AMP;IFDEF', '&AMP;ENDIF'
+            '&amp;IFDEF', '&amp;ENDIF'
             ),
         3 => array(
             "ARRAY",
@@ -360,7 +359,7 @@
             "CHARACTER",
             "CURSOR",
             "DATE",
-            "DATETIME",           
+            "DATETIME",
             "DECIMAL",
             "DOUBLE",
             "FALSE",
@@ -389,7 +388,7 @@
             "OFF",
             "WHITE",
             "YELLOW",
-            "YEAR",   
+            "YEAR",
             "DAY",
             "MONTH",
             "WEEKDAY"
@@ -400,7 +399,7 @@
         '(', ')', '[', ']'
         ),
     'CASE_SENSITIVE' => array(
-        GESHI_COMMENTS => true,
+        GESHI_COMMENTS => false,
         1 => false,
         2 => false,
         3 => false,
