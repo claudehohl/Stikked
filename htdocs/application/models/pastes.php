@@ -254,7 +254,7 @@ class Pastes extends CI_Model
 			$this->db->select('title, name, created, pid, snipurl');
 			$this->db->where('replyto', $data['pid']);
 			$this->db->order_by('id', 'desc');
-			$this->db->limit(10);
+			$this->db->limit(100);
 			$query = $this->db->get('pastes');
 			
 			if ($query->num_rows() > 0) 

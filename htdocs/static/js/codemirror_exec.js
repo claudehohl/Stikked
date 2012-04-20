@@ -9,5 +9,10 @@ CM.init = function() {
 };
 
 $(document).ready(function() {
-	CM.init();
+	$enable_codemirror = $('#enable_codemirror');
+	$enable_codemirror.click(function() {
+		CM.init();
+		$enable_codemirror.remove();
+		return false;
+	});
 });
