@@ -66,15 +66,7 @@ class Pastes extends CI_Model
 		$data['private'] = $this->input->post('private');
 		do 
 		{
-			
-			if ($this->input->post('private')) 
-			{
-				$data['pid'] = substr(md5(md5(rand())) , 0, 8);
-			}
-			else
-			{
-				$data['pid'] = mt_rand(10000, 99999999);
-			}
+			$data['pid'] = substr(md5(md5(mt_rand(0, 1000000) . mktime())) , rand(0, 24) , 8);
 			$this->db->select('id');
 			$this->db->where('pid', $data['pid']);
 			$query = $this->db->get('pastes');
