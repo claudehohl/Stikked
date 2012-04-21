@@ -290,6 +290,7 @@ class Pastes extends CI_Model
 		$config['base_url'] = site_url($root);
 		$config['total_rows'] = $this->countPastes();
 		$config['per_page'] = $amount;
+		$config['num_links'] = 9;
 		$config['full_tag_open'] = '<div class="pages">';
 		$config['full_tag_close'] = '</div>';
 		$config['uri_segment'] = $seg;
