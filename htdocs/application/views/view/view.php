@@ -78,6 +78,7 @@
 			<?php }?>
 			</tbody>
 			</table>
+<?php echo $pages; ?>
 		<div class="spacer high"></div><div class="spacer high"></div>
 		<?php }?>
 		

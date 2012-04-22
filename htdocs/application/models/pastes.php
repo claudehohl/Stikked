@@ -4,6 +4,7 @@
  * Function list:
  * - __construct()
  * - countPastes()
+ * - countReplies()
  * - createPaste()
  * - checkPaste()
  * - getPaste()
@@ -24,6 +25,13 @@ class Pastes extends CI_Model
 	function countPastes() 
 	{
 		$this->db->where('private', 0);
+		$query = $this->db->get('pastes');
+		return $query->num_rows();
+	}
+	
+	function countReplies($pid) 
+	{
+		$this->db->where('replyto', $pid);
 		$query = $this->db->get('pastes');
 		return $query->num_rows();
 	}
@@ -243,15 +251,21 @@ class Pastes extends CI_Model
 		
 		if ($replies) 
 		{
-
-			//todo
 			$amount = $this->config->item('per_page');
-			$page = $this->uri->segment(2);
+			
+			if (!$this->uri->segment(3)) 
+			{
+				$page = 0;
+			}
+			else
+			{
+				$page = $this->uri->segment(3);
+			}
 			$this->db->select('title, name, created, pid, snipurl');
 			$this->db->where('replyto', $data['pid']);
 			$this->db->order_by('id', 'desc');
 			$this->db->limit($amount);
-			$query = $this->db->get('pastes');
+			$query = $this->db->get('pastes', $amount, $page);
 			
 			if ($query->num_rows() > 0) 
 			{
@@ -265,6 +279,16 @@ class Pastes extends CI_Model
 					$data['replies'][$n]['snipurl'] = $row['snipurl'];
 					$n++;
 				}
+				$config['base_url'] = site_url('view/' . $data['pid']);
+				$config['total_rows'] = $this->countReplies($data['pid']);
+				$config['per_page'] = $amount;
+				$config['num_links'] = 9;
+				$config['full_tag_open'] = '<div class="pages">';
+				$config['full_tag_close'] = '</div>';
+				$config['uri_segment'] = 3;
+				$this->load->library('pagination');
+				$this->pagination->initialize($config);
+				$data['pages'] = $this->pagination->create_links();
 			}
 			else
 			{
