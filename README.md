@@ -23,6 +23,13 @@ Installation
 Changelog
 ---------
 
+### Version 0.8:
+
+* Added pagination to the replies table
+* GeSHi updated to version 1.0.8.10 (TODO: list missing languages)
+* Codemirror turned off by default
+* TODO: Codemirror: Syntax changes when selected language changes in dropdown
+
 ### Version 0.7:
 
 * An API (see http://paste.scratchbook.ch/api)
