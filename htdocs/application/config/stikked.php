@@ -47,6 +47,15 @@ $config['bitly_apikey'] = '';
 $config['cron_key'] = '';
 
 /**
+ * Credentials for the backup URL
+ *
+ * Basic auth user & pass for the backup URL, accessible via http://yoursite.com/backup
+ *
+**/
+$config['backup_user'] = '';
+$config['backup_pass'] = '';
+
+/**
  * Pastes Per Page
  *
  * Number of pastes per page, on the recent pastes listings.
