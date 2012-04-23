@@ -9,14 +9,11 @@ CM.init = function() {
 		CM.on = false;
 	} else {
 		CM.editor = CodeMirror.fromTextArea(document.getElementById('code'), {
-			mode: CM.mode, //$('#codemirror_mode').text(),
+			mode: CM.mode,
 			lineNumbers: true,
 			lineWrapping: true,
 		});
 		CM.on = true;
-		if (CM.mode == 'php') {
-			CM.mode = 'javascript';
-		}
 	}
 };
 
@@ -26,5 +23,10 @@ $(document).ready(function() {
 		CM.init();
 		//$enable_codemirror.remove();
 		return false;
+	});
+	$langselect = $('#lang');
+	$langselect.change(function() {
+		CM.mode = $(this).val();
+		CM.init();
 	});
 });
