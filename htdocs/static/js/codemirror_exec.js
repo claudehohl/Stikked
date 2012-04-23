@@ -6,34 +6,31 @@ CM.init = function() {
 	CM.modes = $.parseJSON($('#codemirror_modes').text());
 	$enable_codemirror = $('#enable_codemirror');
 
-	if (typeof CM.editor == 'undefined') {
-		CM.editor = CodeMirror.fromTextArea(document.getElementById('code'), {
-			lineNumbers: true,
-			lineWrapping: true,
-		});
-	}
-
 	$enable_codemirror.click(function() {
 
 		//todo: no rebind
 		$('#lang').change(function() {
 			CM.set_language();
 		});
-
 		CM.toggle();
+		return false;
 	});
 };
 
 CM.toggle = function() {
 	if (CM.enabled) {
 		CM.editor.toTextArea();
-        CM.editor = undefined;
+		CM.editor = undefined;
 		CM.enabled = false;
 	} else {
-		CM.init();
+		if (typeof CM.editor == 'undefined') {
+			CM.editor = CodeMirror.fromTextArea(document.getElementById('code'), {
+				lineNumbers: true,
+				lineWrapping: true,
+			});
+		}
 		CM.enabled = true;
 	}
-	return false;
 };
 
 CM.set_language = function() {
