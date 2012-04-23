@@ -29,6 +29,7 @@ Changelog
 * GeSHi updated to version 1.0.8.10 (TODO: list missing languages)
 * Codemirror turned off by default
 * TODO: Codemirror: Syntax changes when selected language changes in dropdown
+* Backup function
 
 ### Version 0.7:
 
