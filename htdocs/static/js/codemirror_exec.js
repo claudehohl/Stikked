@@ -1,5 +1,7 @@
 var CM = window.CM || {}
 
+CM.enabled = false;
+
 CM.init = function() {
 	CM.modes = $.parseJSON($('#codemirror_modes').text());
 	var lang = $('#lang').val();
@@ -31,11 +33,16 @@ CM.set_syntax = function(mode) {
 $(document).ready(function() {
 	$enable_codemirror = $('#enable_codemirror');
 	$enable_codemirror.click(function() {
-		CM.init();
-		$enable_codemirror.remove();
 		$('#lang').change(function() {
 			CM.init();
 		});
+		if (CM.enabled) {
+			CM.editor.toTextArea()
+			CM.enabled = false;
+		} else {
+			CM.init();
+			CM.enabled = true;
+		}
 		return false;
 	});
 });
