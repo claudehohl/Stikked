@@ -21,6 +21,7 @@ CM.toggle = function() {
 	if (CM.enabled) {
 		CM.editor.toTextArea();
 		CM.editor = undefined;
+		$('#lang').unbind();
 		CM.enabled = false;
 	} else {
 		if (typeof CM.editor == 'undefined') {
