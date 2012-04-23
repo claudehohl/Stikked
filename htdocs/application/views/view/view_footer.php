@@ -1,5 +1,10 @@
 		<?php $this->load->view('defaults/footer_message.php'); ?>
 <?php
+
+//codemirror modes
+echo '<div style="display: none;" id="codemirror_modes">' . json_encode($codemirror_modes) . '</div>';
+
+//stats
 $this->load->view('defaults/stats');
 
 //Javascript
@@ -19,8 +24,6 @@ if(isset($codemirror_languages[$lang_set]) && gettype($codemirror_languages[$lan
     $this->carabiner->group('codemirror', $codemirror_specific);
     $this->carabiner->display('codemirror');
 
-    //codemirror modes
-    echo '<div style="display: none;" id="codemirror_modes">' . json_encode($codemirror_modes) . '</div>';
 }
 
 ?>

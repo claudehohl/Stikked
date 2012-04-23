@@ -142,12 +142,12 @@ class Main extends CI_Controller
 
 		//codemirror modes
 		$cmm = array();
-		foreach ($codemirror_languages as $l) 
+		foreach ($codemirror_languages as $geshi_name => $l) 
 		{
 			
 			if (gettype($l) == 'array') 
 			{
-				$cmm[] = $l['mode'];
+				$cmm[$geshi_name] = $l['mode'];
 			}
 		}
 		$data['codemirror_modes'] = $cmm;
