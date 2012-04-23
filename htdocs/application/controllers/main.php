@@ -120,6 +120,10 @@ class Main extends CI_Controller
 			);
 			$this->dbforge->add_field($fields);
 			$this->dbforge->add_key('id', true);
+			$this->dbforge->add_key('pid');
+			$this->dbforge->add_key('private');
+			$this->dbforge->add_key('replyto');
+			$this->dbforge->add_key('created');
 			$this->dbforge->create_table('pastes', true);
 		}
 	}
