@@ -18,7 +18,9 @@ if(isset($codemirror_languages[$lang_set]) && gettype($codemirror_languages[$lan
     $codemirror_specific['js'][] = array('codemirror_exec.js');
     $this->carabiner->group('codemirror', $codemirror_specific);
     $this->carabiner->display('codemirror');
-    echo '<div style="display: none;" id="codemirror_mode">' . $codemirror_languages[$lang_set]['mode'] . '</div>';
+
+    //codemirror modes
+    echo '<div style="display: none;" id="codemirror_modes">' . json_encode($codemirror_modes) . '</div>';
 }
 
 ?>

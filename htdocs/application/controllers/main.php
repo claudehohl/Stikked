@@ -14,6 +14,7 @@
  * - cron()
  * - about()
  * - _valid_lang()
+ * - get_cm_js()
  * Classes list:
  * - Main extends CI_Controller
  */
@@ -131,10 +132,25 @@ class Main extends CI_Controller
 	function _form_prep($lang = false, $title = '', $paste = '', $reply = false) 
 	{
 		$this->load->model('languages');
-		$this->load->config('codemirror_languages');
 		$this->load->helper('form');
 		$data['languages'] = $this->languages->get_languages();
-		$data['codemirror_languages'] = $this->config->item('codemirror_languages');
+
+		//codemirror languages
+		$this->load->config('codemirror_languages');
+		$codemirror_languages = $this->config->item('codemirror_languages');
+		$data['codemirror_languages'] = $codemirror_languages;
+
+		//codemirror modes
+		$cmm = array();
+		foreach ($codemirror_languages as $l) 
+		{
+			
+			if (gettype($l) == 'array') 
+			{
+				$cmm[] = $l['mode'];
+			}
+		}
+		$data['codemirror_modes'] = $cmm;
 		
 		if (!$this->input->post('submit')) 
 		{
@@ -417,5 +433,21 @@ class Main extends CI_Controller
 		$this->load->model('languages');
 		$this->form_validation->set_message('_valid_lang', 'Please select your language');
 		return $this->languages->valid_language($lang);
+	}
+	
+	function get_cm_js() 
+	{
+		$lang = $this->uri->segment(3);
+		$this->load->config('codemirror_languages');
+		$cml = $this->config->item('codemirror_languages');
+		
+		if (isset($cml[$lang]) && gettype($cml[$lang]) == 'array') 
+		{
+			header('Content-Type: application/x-javascript; charset=utf-8');
+			foreach ($cml[$lang]['js'] as $js) 
+			{
+				echo file_get_contents('./static/js/' . $js[0]);
+			}
+		}
 	}
 }

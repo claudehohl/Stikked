@@ -34,6 +34,11 @@ $this->carabiner->css('diff.css');
 $this->carabiner->display('css'); 
 
 ?>
+	<script type="text/javascript">
+	//<![CDATA[
+	var base_url = '<?php echo base_url(); ?>';
+	//]]>
+	</script>
 	</head>
 	<body>
 		<div id="container">

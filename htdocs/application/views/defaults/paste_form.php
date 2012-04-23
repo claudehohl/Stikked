@@ -45,13 +45,9 @@
 		<div class="item">
 			<label for="paste">Your paste
 				<span class="instruction">Paste your paste here</span>
-<?php
-if($this->uri->segment(1) == 'view'
-    && isset($codemirror_languages[$lang_set])
-    && gettype($codemirror_languages[$lang_set]) == 'array'){
-    ?><span class="instruction"><a href="#" id="enable_codemirror">Enable syntax highlighting</a></span><?php
-}
-?>
+<?php if(isset($codemirror_languages[$lang_set]) && gettype($codemirror_languages[$lang_set]) == 'array'){ ?>
+    <span class="instruction"><a href="#" id="enable_codemirror">Enable syntax highlighting</a></span>
+<?php } ?>
 			</label>
 			
 			<textarea id="code" name="code" cols="40" rows="20" tabindex="4"><?php if(isset($paste_set)){ echo $paste_set; }?></textarea>
