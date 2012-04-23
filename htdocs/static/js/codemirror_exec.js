@@ -4,6 +4,39 @@ CM.enabled = false;
 
 CM.init = function() {
 	CM.modes = $.parseJSON($('#codemirror_modes').text());
+	$enable_codemirror = $('#enable_codemirror');
+
+	if (typeof CM.editor == 'undefined') {
+		CM.editor = CodeMirror.fromTextArea(document.getElementById('code'), {
+			lineNumbers: true,
+			lineWrapping: true,
+		});
+	}
+
+	$enable_codemirror.click(function() {
+
+		//todo: no rebind
+		$('#lang').change(function() {
+			CM.set_language();
+		});
+
+		CM.toggle();
+	});
+};
+
+CM.toggle = function() {
+	if (CM.enabled) {
+		CM.editor.toTextArea();
+        CM.editor = undefined;
+		CM.enabled = false;
+	} else {
+		CM.init();
+		CM.enabled = true;
+	}
+	return false;
+};
+
+CM.set_language = function() {
 	var lang = $('#lang').val();
 	mode = CM.modes[lang];
 
@@ -19,30 +52,9 @@ CM.init = function() {
 };
 
 CM.set_syntax = function(mode) {
-	if (typeof CM.editor == 'undefined') {
-		CM.editor = CodeMirror.fromTextArea(document.getElementById('code'), {
-			mode: mode,
-			lineNumbers: true,
-			lineWrapping: true,
-		});
-	} else {
-		CM.editor.setOption('mode', mode);
-	}
+	CM.editor.setOption('mode', mode);
 };
 
 $(document).ready(function() {
-	$enable_codemirror = $('#enable_codemirror');
-	$enable_codemirror.click(function() {
-		$('#lang').change(function() {
-			CM.init();
-		});
-		if (CM.enabled) {
-			CM.editor.toTextArea()
-			CM.enabled = false;
-		} else {
-			CM.init();
-			CM.enabled = true;
-		}
-		return false;
-	});
+	CM.init();
 });
