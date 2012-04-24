@@ -6,7 +6,7 @@
 <?php
 
 //codemirror modes
-if(isset($codemirror_modes){
+if(isset($codemirror_modes)){
     echo '<div style="display: none;" id="codemirror_modes">' . json_encode($codemirror_modes) . '</div>';
 }
 
