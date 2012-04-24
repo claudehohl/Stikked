@@ -437,17 +437,24 @@ class Main extends CI_Controller
 	
 	function get_cm_js() 
 	{
+		$this->load->helper('file');
 		$lang = $this->uri->segment(3);
 		$this->load->config('codemirror_languages');
 		$cml = $this->config->item('codemirror_languages');
 		
 		if (isset($cml[$lang]) && gettype($cml[$lang]) == 'array') 
 		{
-			header('Content-Type: application/x-javascript; charset=utf-8');
+			$content = '';
+			$total_size = 0;
 			foreach ($cml[$lang]['js'] as $js) 
 			{
-				echo file_get_contents('./static/js/' . $js[0]);
+				$content.= file_get_contents('./static/js/' . $js[0]);
+				$f = get_file_info('./static/js/' . $js[0]);
+				$total_size = $total_size + $f['size'];
 			}
+			header('Content-Type: application/x-javascript; charset=utf-8');
+			header('Content-length: ' . $total_size);
+			echo $content;
 		}
 	}
 }
