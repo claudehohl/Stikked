@@ -26,6 +26,23 @@ $config['codemirror_languages'] = array(
 			) ,
 		) ,
 	) ,
+	'html5' => array(
+		'mode' => 'htmlmixed',
+		'js' => array(
+			array(
+				'codemirror/mode/xml/xml.js'
+			) ,
+			array(
+				'codemirror/mode/javascript/javascript.js'
+			) ,
+			array(
+				'codemirror/mode/css/css.js'
+			) ,
+			array(
+				'codemirror/mode/htmlmixed/htmlmixed.js'
+			) ,
+		) ,
+	) ,
 	'css' => array(
 		'mode' => 'css',
 		'js' => array(
@@ -78,11 +95,27 @@ $config['codemirror_languages'] = array(
 			) ,
 		) ,
 	) ,
+	'lua' => array(
+		'mode' => 'text/x-lua',
+		'js' => array(
+			array(
+				'codemirror/mode/lua/lua.js'
+			) ,
+		) ,
+	) ,
 	'bash' => array(
 		'mode' => 'text/x-sh',
 		'js' => array(
 			array(
 				'codemirror/mode/shell/shell.js'
+			) ,
+		) ,
+	) ,
+	'go' => array(
+		'mode' => 'text/x-go',
+		'js' => array(
+			array(
+				'codemirror/mode/go/go.js'
 			) ,
 		) ,
 	) ,
@@ -192,14 +225,6 @@ $config['codemirror_languages'] = array(
 		) ,
 	) ,
 	'lisp' => 'Lisp',
-	'lua' => array(
-		'mode' => 'lua',
-		'js' => array(
-			array(
-				'codemirror/mode/lua/lua.js'
-			) ,
-		) ,
-	) ,
 	'm68k' => 'm68k',
 	'matlab' => 'Matlab',
 	'mirc' => 'mIRC',
