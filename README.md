@@ -25,11 +25,11 @@ Changelog
 
 ### Version 0.8:
 
+* Added backup function (yoursite.com/backup; set credentials in stikked.php config)
 * Added pagination to the replies table
-* GeSHi updated to version 1.0.8.10 (TODO: list missing languages)
+* GeSHi updated to version 1.0.8.10
 * Codemirror turned off by default
 * Codemirror: Syntax changes dynamically with selection in language dropdown
-* Backup function
 
 ### Version 0.7:
 
