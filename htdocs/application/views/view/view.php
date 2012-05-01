@@ -15,7 +15,7 @@
 			<?php if(!empty($snipurl)){?>
 				<span class="detail"><span class="item">Shorturl </span><a href="<?php echo $snipurl; ?>"><?php echo htmlspecialchars($snipurl) ?></a></span>
 			<?php }?>
-			<span class="detail"><span class="item">Embed </span><input id="embed_field" type="text" value="<?php echo htmlspecialchars('<iframe src="http://pastebin.com/embed_iframe.php?i=B8rZ4zEW" style="border:none;width:100%"></iframe>'); ?>" /></span>
+			<span class="detail"><span class="item">Embed </span><input id="embed_field" type="text" value="<?php echo htmlspecialchars('<iframe src="' . site_url('view/embed/' . $pid) . '" style="border:none;width:100%"></iframe>'); ?>" /></span>
 			<div class="spacer"></div>
 			
 			<span class="detail"><a class="control" href="<?php echo site_url("view/download/".$pid); ?>">Download Paste</a> or <a class="control" href="<?php echo site_url("view/raw/".$pid); ?>">View Raw</a> &mdash; <a href="#" class="expand control">Expand paste</a> to full width of browser | <a href="<?php echo site_url('view/options'); ?>">Change Viewing Options</a></span>
