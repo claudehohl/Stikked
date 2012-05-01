@@ -1,4 +1,7 @@
 
+body {
+}
+
 .paste {
 	margin: 0 auto;
 	width: auto;
@@ -13,6 +16,10 @@
 .paste p {
     clear: both;
     background: #ccc;
-    padding: 0 6px;
+    padding: 3px 6px;
+}
+
+.paste .right {
+    float: right;
 }
 

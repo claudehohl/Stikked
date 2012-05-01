@@ -42,9 +42,7 @@ $this->carabiner->display('css');
 	<body>
 
 <div class="paste">
-    <p>Data provided by <a href="<?php echo base_url(); ?>" target="_top">Stikked</a>
-    - <a href="<?php echo site_url('view/download/' . $pid); ?>">Download Raw</a>
-    - <a href="<?php echo site_url('view/' . $pid); ?>" target="_top">See Original</a></p>
+    <p><a href="<?php echo site_url('view/' . $pid); ?>" target="_top">This paste</a> brought to you by <a href="<?php echo base_url(); ?>" target="_top"><?php echo $this->config->item('site_name'); ?></a>. <a class="right" href="<?php echo site_url('view/raw/' . $pid); ?>">View Raw</a></p>
 	<div class="text_formatted">
 		<div class="container">
 			<?php echo $paste; ?>
