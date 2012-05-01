@@ -360,6 +360,11 @@ h4 {
 	float: left;
 }
 
+#embed_field {
+    width: 200px;
+    border: 1px solid #ccc;
+}
+
 .paste {
 	margin: 0 auto;
 	width: 900px;
