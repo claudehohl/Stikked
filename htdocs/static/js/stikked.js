@@ -4,6 +4,7 @@ ST.init = function() {
 	ST.change();
 	ST.show();
 	ST.expand();
+	ST.show_embed();
 };
 
 ST.change = function() {
@@ -17,6 +18,18 @@ ST.show = function() {
 	$('.show').click(function() {
 		$('.advanced').hide();
 		$('.advanced_options').show();
+		return false;
+	});
+};
+
+ST.show_embed = function() {
+	$embed_field = $('#embed_field');
+	$embed_field.hide();
+	$embed_field.after('<a id="show_code" href="#">Show code</a>');
+	$('#show_code').live('click',
+	function() {
+		$(this).hide();
+		$embed_field.show().select();
 		return false;
 	});
 };
