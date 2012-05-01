@@ -5,7 +5,14 @@
 }
 
 .paste .text_formatted {
-	width: 600px;
+	width: 100%;
 	margin: 0;
+    border: 0;
+}
+
+.paste p {
+    clear: both;
+    background: #ccc;
+    padding: 0 6px;
 }
 
