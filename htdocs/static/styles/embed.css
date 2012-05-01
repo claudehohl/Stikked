@@ -1,0 +1,11 @@
+
+.paste {
+	margin: 0 auto;
+	width: auto;
+}
+
+.paste .text_formatted {
+	width: 600px;
+	margin: 0;
+}
+
