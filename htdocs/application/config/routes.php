@@ -44,6 +44,7 @@ $route['scaffolding_trigger'] = "";
 $route['cron/:any'] = "main/cron";
 
 $route['view/raw/:any'] = 'main/raw';
+$route['view/embed/:any'] = 'main/embed';
 $route['view/options'] = 'main/view_options';
 $route['view/download/:any'] = 'main/download';
 $route['view/:any'] = 'main/view';

@@ -6,6 +6,7 @@
  * - _form_prep()
  * - index()
  * - raw()
+ * - embed()
  * - download()
  * - lists()
  * - view()
@@ -292,6 +293,22 @@ class Main extends CI_Controller
 		}
 	}
 	
+	function embed() 
+	{
+		$this->load->model('pastes');
+		$check = $this->pastes->checkPaste(3);
+		
+		if ($check) 
+		{
+			$data = $this->pastes->getPaste(3);
+			$this->load->view('view/embed', $data);
+		}
+		else
+		{
+			show_404();
+		}
+	}
+	
 	function download() 
 	{
 		$this->load->model('pastes');
@@ -449,6 +466,6 @@ class Main extends CI_Controller
 				echo file_get_contents('./static/js/' . $js[0]);
 			}
 		}
-        exit;
+		exit;
 	}
 }

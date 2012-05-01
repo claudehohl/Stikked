@@ -27,6 +27,7 @@ Changelog
 
 * Added backup function (yoursite.com/backup; set credentials in stikked.php config)
 * Added pagination to the replies table
+* Embeddable pastes
 * GeSHi updated to version 1.0.8.10
 * Codemirror turned off by default
 * Codemirror: Syntax changes dynamically with selection in language dropdown
