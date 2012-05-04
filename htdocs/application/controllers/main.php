@@ -353,7 +353,7 @@ class Main extends CI_Controller
 		if ($this->uri->segment(2) == 'rss') 
 		{
 			$data['page_title'] = $this->config->item('site_name');
-			$data['feed_url'] = site_url('view/rss/' . $this->uri->segment(3));
+			$data['feed_url'] = site_url('lists/rss');
 			$data['replies'] = $data['pastes'];
 			unset($data['pastes']);
 			$this->load->view('view/rss', $data);
