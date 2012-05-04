@@ -293,6 +293,23 @@ class Main extends CI_Controller
 		}
 	}
 	
+	function rss() 
+	{
+		$this->load->model('pastes');
+		$check = $this->pastes->checkPaste(3);
+		
+		if ($check) 
+		{
+			$data = $this->pastes->getPaste(3, true);
+            print_r($data);
+			$this->load->view('view/rss', $data);
+		}
+		else
+		{
+			show_404();
+		}
+	}
+	
 	function embed() 
 	{
 		$this->load->model('pastes');
