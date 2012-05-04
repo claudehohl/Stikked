@@ -178,8 +178,22 @@ $config['codemirror_languages'] = array(
 	'blitzbasic' => 'BlitzBasic',
 	'bnf' => 'BNF (Backus-Naur form)',
 	'boo' => 'Boo',
-	'c_loadrunner' => 'C (for LoadRunner)',
-	'c_mac' => 'C for Macs',
+	'c_loadrunner' => array(
+		'mode' => 'text/x-csharp',
+		'js' => array(
+			array(
+				'codemirror/mode/clike/clike.js'
+			) ,
+		) ,
+	) ,
+	'c_mac' => array(
+		'mode' => 'text/x-csharp',
+		'js' => array(
+			array(
+				'codemirror/mode/clike/clike.js'
+			) ,
+		) ,
+	) ,
 	'caddcl' => 'CAD DCL (Dialog Control Language)',
 	'cadlisp' => 'AutoCAD/IntelliCAD Lisp',
 	'cfdg' => 'CFDG',
@@ -190,6 +204,14 @@ $config['codemirror_languages'] = array(
 	'cmake' => 'CMake',
 	'cobol' => 'COBOL',
 	'coffeescript' => 'CoffeeScript',
+	'coffeescript' => array(
+		'mode' => 'text/x-csharp',
+		'js' => array(
+			array(
+				'codemirror/mode/coffeescript/coffeescript.js'
+			) ,
+		) ,
+	) ,
 	'csharp' => array(
 		'mode' => 'text/x-csharp',
 		'js' => array(
@@ -206,7 +228,14 @@ $config['codemirror_languages'] = array(
 	'dos' => 'DOS',
 	'dot' => 'dot',
 	'e' => 'E',
-	'ecmascript' => 'ECMAScript',
+	'ecmascript' => array(
+		'mode' => 'javascript',
+		'js' => array(
+			array(
+				'codemirror/mode/javascript/javascript.js'
+			) ,
+		) ,
+	) ,
 	'eiffel' => 'Eiffel',
 	'email' => 'Email (mbox/eml/RFC format)',
 	'epc' => 'Enerscript',
@@ -225,9 +254,23 @@ $config['codemirror_languages'] = array(
 	'glsl' => 'glSlang',
 	'gml' => 'GML',
 	'gnuplot' => 'Gnuplot script',
-	'groovy' => 'Groovy',
+	'groovy' => array(
+		'mode' => 'text/x-java',
+		'js' => array(
+			array(
+				'codemirror/mode/groovy/groovy.js'
+			) ,
+		) ,
+	) ,
 	'gwbasic' => 'GwBasic',
-	'haskell' => 'Haskell',
+	'haskell' => array(
+		'mode' => 'text/x-java',
+		'js' => array(
+			array(
+				'codemirror/mode/haskell/haskell.js'
+			) ,
+		) ,
+	) ,
 	'hicest' => 'HicEst',
 	'hq9plus' => 'HQ9+',
 	'html4strict' => array(
@@ -315,17 +358,45 @@ $config['codemirror_languages'] = array(
 	'oracle8' => 'Oracle 8',
 	'oxygene' => 'Delphi Prism (Oxygene)',
 	'oz' => 'Oz',
-	'pascal' => 'Pascal',
+	'pascal' => array(
+		'mode' => 'mysql',
+		'js' => array(
+			array(
+				'codemirror/mode/pascal/pascal.js'
+			) ,
+		) ,
+	) ,
 	'pcre' => 'PCRE',
 	'per' => 'Per (forms)',
-	'perl' => 'Perl',
-	'perl6' => 'Perl 6',
+	'perl' => array(
+		'mode' => 'perl',
+		'js' => array(
+			array(
+				'codemirror/mode/perl/perl.js'
+			) ,
+		) ,
+	) ,
+	'perl6' => array(
+		'mode' => 'perl',
+		'js' => array(
+			array(
+				'codemirror/mode/perl/perl.js'
+			) ,
+		) ,
+	) ,
 	'pf' => 'OpenBSD packet filter',
 	'pic16' => 'PIC16 Assembler',
 	'pike' => 'Pike',
 	'pixelbender' => 'Pixel Bender 1.0',
 	'pli' => 'PL/I',
-	'plsql' => 'Oracle 9.2 PL/SQL',
+	'plsql' => array(
+		'mode' => 'mysql',
+		'js' => array(
+			array(
+				'codemirror/mode/plsql/plsql.js'
+			) ,
+		) ,
+	) ,
 	'postgresql' => 'PostgreSQL',
 	'povray' => 'Povray',
 	'powerbuilder' => 'PowerBuilder (PowerScript)',
@@ -333,7 +404,14 @@ $config['codemirror_languages'] = array(
 	'proftpd' => 'ProFTPd',
 	'progress' => 'Progress',
 	'prolog' => 'Prolog',
-	'properties' => 'Property',
+	'properties' => array(
+		'mode' => 'mysql',
+		'js' => array(
+			array(
+				'codemirror/mode/properties/properties.js'
+			) ,
+		) ,
+	) ,
 	'providex' => 'ProvideX',
 	'purebasic' => 'PureBasic',
 	'q' => 'q/kdb+',
@@ -346,7 +424,14 @@ $config['codemirror_languages'] = array(
 	'rsplus' => 'R',
 	'sas' => 'SAS',
 	'scala' => 'Scala',
-	'scheme' => 'Scheme',
+	'scheme' => array(
+		'mode' => 'mysql',
+		'js' => array(
+			array(
+				'codemirror/mode/scheme/scheme.js'
+			) ,
+		) ,
+	) ,
 	'scilab' => 'SciLab',
 	'sdlbasic' => 'sdlBasic',
 	'smalltalk' => 'Smalltalk',
@@ -360,9 +445,30 @@ $config['codemirror_languages'] = array(
 	'unicon' => 'Unicon',
 	'uscript' => 'UnrealScript',
 	'vala' => 'Vala',
-	'vb' => 'Visual Basic',
-	'vbnet' => 'VB.NET',
-	'verilog' => 'Verilog',
+	'vb' => array(
+		'mode' => 'mysql',
+		'js' => array(
+			array(
+				'codemirror/mode/vbscript/vbscript.js'
+			) ,
+		) ,
+	) ,
+	'vbnet' => array(
+		'mode' => 'mysql',
+		'js' => array(
+			array(
+				'codemirror/mode/vbscript/vbscript.js'
+			) ,
+		) ,
+	) ,
+	'verilog' => array(
+		'mode' => 'mysql',
+		'js' => array(
+			array(
+				'codemirror/mode/verilog/verilog.js'
+			) ,
+		) ,
+	) ,
 	'vhdl' => 'VHDL',
 	'vim' => 'Vim scripting',
 	'visualfoxpro' => 'Visual FoxPro',
@@ -373,7 +479,14 @@ $config['codemirror_languages'] = array(
 	'xbasic' => 'XBasic',
 	'xorg_conf' => 'xorg.conf',
 	'xpp' => 'Axapta/Dynamics Ax X++',
-	'yaml' => 'YAML',
+	'yaml' => array(
+		'mode' => 'mysql',
+		'js' => array(
+			array(
+				'codemirror/mode/yaml/yaml.js'
+			) ,
+		) ,
+	) ,
 	'z80' => 'ZiLOG Z80 Assembler',
 	'zxbasic' => 'ZXBasic',
 );
