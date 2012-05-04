@@ -179,7 +179,7 @@ $config['codemirror_languages'] = array(
 	'bnf' => 'BNF (Backus-Naur form)',
 	'boo' => 'Boo',
 	'c_loadrunner' => array(
-		'mode' => 'text/x-csharp',
+		'mode' => 'text/x-csrc',
 		'js' => array(
 			array(
 				'codemirror/mode/clike/clike.js'
@@ -187,7 +187,7 @@ $config['codemirror_languages'] = array(
 		) ,
 	) ,
 	'c_mac' => array(
-		'mode' => 'text/x-csharp',
+		'mode' => 'text/x-csrc',
 		'js' => array(
 			array(
 				'codemirror/mode/clike/clike.js'
@@ -205,7 +205,7 @@ $config['codemirror_languages'] = array(
 	'cobol' => 'COBOL',
 	'coffeescript' => 'CoffeeScript',
 	'coffeescript' => array(
-		'mode' => 'text/x-csharp',
+		'mode' => 'text/x-coffeescript',
 		'js' => array(
 			array(
 				'codemirror/mode/coffeescript/coffeescript.js'
@@ -255,7 +255,7 @@ $config['codemirror_languages'] = array(
 	'gml' => 'GML',
 	'gnuplot' => 'Gnuplot script',
 	'groovy' => array(
-		'mode' => 'text/x-java',
+		'mode' => 'text/x-groovy',
 		'js' => array(
 			array(
 				'codemirror/mode/groovy/groovy.js'
@@ -264,7 +264,7 @@ $config['codemirror_languages'] = array(
 	) ,
 	'gwbasic' => 'GwBasic',
 	'haskell' => array(
-		'mode' => 'text/x-java',
+		'mode' => 'text/x-haskell',
 		'js' => array(
 			array(
 				'codemirror/mode/haskell/haskell.js'
@@ -313,7 +313,14 @@ $config['codemirror_languages'] = array(
 			) ,
 		) ,
 	) ,
-	'jquery' => 'jQuery 1.3',
+	'jquery' => array(
+		'mode' => 'javascript',
+		'js' => array(
+			array(
+				'codemirror/mode/javascript/javascript.js'
+			) ,
+		) ,
+	) ,
 
 	//'kixtart' => 'PHP',
 	'klonec' => 'KLone with C',
@@ -359,7 +366,7 @@ $config['codemirror_languages'] = array(
 	'oxygene' => 'Delphi Prism (Oxygene)',
 	'oz' => 'Oz',
 	'pascal' => array(
-		'mode' => 'mysql',
+		'mode' => 'text/x-pascal',
 		'js' => array(
 			array(
 				'codemirror/mode/pascal/pascal.js'
@@ -390,7 +397,7 @@ $config['codemirror_languages'] = array(
 	'pixelbender' => 'Pixel Bender 1.0',
 	'pli' => 'PL/I',
 	'plsql' => array(
-		'mode' => 'mysql',
+		'mode' => 'plsql',
 		'js' => array(
 			array(
 				'codemirror/mode/plsql/plsql.js'
@@ -405,7 +412,7 @@ $config['codemirror_languages'] = array(
 	'progress' => 'Progress',
 	'prolog' => 'Prolog',
 	'properties' => array(
-		'mode' => 'mysql',
+		'mode' => 'text/x-properties',
 		'js' => array(
 			array(
 				'codemirror/mode/properties/properties.js'
@@ -425,7 +432,7 @@ $config['codemirror_languages'] = array(
 	'sas' => 'SAS',
 	'scala' => 'Scala',
 	'scheme' => array(
-		'mode' => 'mysql',
+		'mode' => 'text/x-scheme',
 		'js' => array(
 			array(
 				'codemirror/mode/scheme/scheme.js'
@@ -446,7 +453,7 @@ $config['codemirror_languages'] = array(
 	'uscript' => 'UnrealScript',
 	'vala' => 'Vala',
 	'vb' => array(
-		'mode' => 'mysql',
+		'mode' => 'text/vbscript',
 		'js' => array(
 			array(
 				'codemirror/mode/vbscript/vbscript.js'
@@ -454,7 +461,7 @@ $config['codemirror_languages'] = array(
 		) ,
 	) ,
 	'vbnet' => array(
-		'mode' => 'mysql',
+		'mode' => 'text/vbscript',
 		'js' => array(
 			array(
 				'codemirror/mode/vbscript/vbscript.js'
@@ -462,7 +469,7 @@ $config['codemirror_languages'] = array(
 		) ,
 	) ,
 	'verilog' => array(
-		'mode' => 'mysql',
+		'mode' => 'text/x-verilog',
 		'js' => array(
 			array(
 				'codemirror/mode/verilog/verilog.js'
@@ -480,7 +487,7 @@ $config['codemirror_languages'] = array(
 	'xorg_conf' => 'xorg.conf',
 	'xpp' => 'Axapta/Dynamics Ax X++',
 	'yaml' => array(
-		'mode' => 'mysql',
+		'mode' => 'text/x-yaml',
 		'js' => array(
 			array(
 				'codemirror/mode/yaml/yaml.js'
