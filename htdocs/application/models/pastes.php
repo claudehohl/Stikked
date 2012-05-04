@@ -8,6 +8,7 @@
  * - createPaste()
  * - checkPaste()
  * - getPaste()
+ * - getReplies()
  * - getLists()
  * - cron()
  * Classes list:
@@ -293,6 +294,40 @@ class Pastes extends CI_Model
 			else
 			{
 				$replies = false;
+			}
+		}
+		return $data;
+	}
+	
+	function getReplies($seg = 3) 
+	{
+		$amount = $this->config->item('per_page');
+		
+		if ($this->uri->segment($seg) == '') 
+		{
+			redirect('');
+		}
+		else
+		{
+			$pid = $this->uri->segment($seg);
+		}
+		$this->db->select('title, name, created, pid, paste');
+		$this->db->where('replyto', $pid);
+		$this->db->order_by('id', 'desc');
+		$this->db->limit($amount);
+		$query = $this->db->get('pastes', $amount);
+		
+		if ($query->num_rows() > 0) 
+		{
+			$n = 0;
+			foreach ($query->result_array() as $row) 
+			{
+				$data['replies'][$n]['title'] = $row['title'];
+				$data['replies'][$n]['name'] = $row['name'];
+				$data['replies'][$n]['created'] = $row['created'];
+				$data['replies'][$n]['pid'] = $row['pid'];
+				$data['replies'][$n]['paste'] = $row['paste'];
+				$n++;
 			}
 		}
 		return $data;

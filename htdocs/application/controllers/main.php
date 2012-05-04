@@ -6,6 +6,7 @@
  * - _form_prep()
  * - index()
  * - raw()
+ * - rss()
  * - embed()
  * - download()
  * - lists()
@@ -300,8 +301,11 @@ class Main extends CI_Controller
 		
 		if ($check) 
 		{
-			$data = $this->pastes->getPaste(3, true);
-            print_r($data);
+			$data = $this->pastes->getReplies(3);
+			$data['feed_url'] = '';
+			$data['page_description'] = '';
+			$data['page_language'] = '';
+			$data['creator_email'] = '';
 			$this->load->view('view/rss', $data);
 		}
 		else
