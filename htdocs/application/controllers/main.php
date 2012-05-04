@@ -301,11 +301,10 @@ class Main extends CI_Controller
 		
 		if ($check) 
 		{
+			$paste = $this->pastes->getPaste(3);
 			$data = $this->pastes->getReplies(3);
-			$data['feed_url'] = '';
-			$data['page_description'] = '';
-			$data['page_language'] = '';
-			$data['creator_email'] = '';
+			$data['page_title'] = $paste['title'] . ' - ' . $this->config->item('site_name');
+			$data['feed_url'] = site_url('view/rss/' . $this->uri->segment(3));
 			$this->load->view('view/rss', $data);
 		}
 		else
