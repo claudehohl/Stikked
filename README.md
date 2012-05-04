@@ -27,7 +27,7 @@ Changelog
 
 * Added backup function (yoursite.com/backup; set credentials in stikked.php config)
 * Added pagination to the replies table
-* Added RSS-Feeds to the replies table
+* Added RSS-Feeds to recent pastes and paste replies
 * Embeddable pastes
 * GeSHi updated to version 1.0.8.10
 * Codemirror turned off by default
