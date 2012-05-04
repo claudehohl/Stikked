@@ -3,7 +3,7 @@ html {
 }
 
 body {
-    background-image:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAFeCAIAAAAzOBm/AAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAHFJREFUeNrs1rsNwCAMBUATZf9VEU1aMgFUIIR1bq8C+fNKbV+M64lpYYzz8tt9C17VTNGzPmz6MuOPsdVjxjA+MQZpkwe+La9Z9ybUwsYmVCNjyWNpI7uhWPJwYjEWa2wHvDevmTGMLU33G+NB/QIMABQpHqmw63taAAAAAElFTkSuQmCC);
+	background-image: url('../images/bg-x.png');
 	background-repeat: repeat-x;
 	background-color: #E3E8F2;
 	color: #222;
