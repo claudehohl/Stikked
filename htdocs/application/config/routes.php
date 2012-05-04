@@ -50,6 +50,7 @@ $route['view/options'] = 'main/view_options';
 $route['view/download/:any'] = 'main/download';
 $route['view/:any'] = 'main/view';
 $route['lists'] = 'main/lists';
+$route['lists/rss'] = 'main/lists/rss';
 $route['lists/:num'] = 'main/lists/$1';
 $route['about'] = 'main/about';
 
