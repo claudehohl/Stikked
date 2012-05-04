@@ -1,28 +1,22 @@
-<?php  echo '<?xml version="1.0" encoding="UTF-8"?>' . "\n"; ?>
-    <rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:sy="http://purl.org/rss/1.0/modules/syndication/" xmlns:admin="http://webns.net/mvcb/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:content="http://purl.org/rss/1.0/modules/content/">
-
-        <channel>
-        <title>Stikked</title>
-        <link><?php echo $feed_url; ?>
-        <description><?php echo $page_description; ?></description>
-        <dc:language><?php echo $page_language; ?></dc:language>
-        <dc:creator><?php echo $creator_email; ?></dc:creator>
-
-        <dc:rights>Copyright <?php echo gmdate("Y", time()); ?></dc:rights>
-        <admin:generatoragent rdf:resource="http://www.codeigniter.com/">
-
-        <?php foreach($replies as $paste): ?>
-
-            <item>
-<link><?php echo site_url('view/' . $paste['pid']) ?>
-              <guid><?php echo site_url('view/' . $paste['pid']) ?></guid>
-
-                <description><[CDATA[ <?php echo $paste['paste']; ?> ]]></description>
-<pubdate><?php echo $paste['created']; ?></pubdate>
-            </item>
-
-        <?php endforeach; ?>
-
-        </admin:generatoragent></channel>
-    </rss>
-
+<?php
+header('Content-Type:text/xml; charset=UTF-8'); ?><?xml version="1.0" encoding="UTF-8"?> <rss version="2.0"
+xmlns:content="http://purl.org/rss/1.0/modules/content/"
+xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+xmlns:dc="http://purl.org/dc/elements/1.1/"
+xmlns:atom="http://www.w3.org/2005/Atom"
+xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+><channel><title>Stikked</title> <atom:link href="<?php echo $feed_url; ?>" rel="self" type="application/rss+xml" /><link><?php echo $feed_url; ?></link> <language>en</language> <sy:updatePeriod>hourly</sy:updatePeriod> <sy:updateFrequency>1</sy:updateFrequency>
+<?php foreach($replies as $paste): ?>
+<item>
+    <title><?php echo $paste['title']; ?></title>
+    <link><?php echo site_url('view/' . $paste['pid']) ?></link>
+    <pubDate><?php echo date('c', $paste['created']); ?></pubDate>
+    <dc:creator><?php echo $paste['name']; ?></dc:creator>
+    <guid isPermaLink="false"><?php echo site_url('view/' . $paste['pid']) ?></guid>
+    <description><![CDATA[<?php echo $paste['paste']; ?>]]></description>
+    <content:encoded><![CDATA[<?php echo $paste['paste']; ?>]]></content:encoded>
+</item>
+<?php endforeach; ?>
+</channel>
+</rss>
