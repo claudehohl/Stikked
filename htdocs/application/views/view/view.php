@@ -49,7 +49,7 @@
 		if(isset($replies) and !empty($replies)){		
 			$n = 1;
 		?>
-			<h1>Replies to <?php echo $title; ?></h1>
+			<h1>Replies to <?php echo $title; ?> <a href="<?php echo site_url('view/rss/' . $pid); ?>"><img src="<?php echo base_url(); ?>static/images/feed-icon-14x14.png" alt="rss" title="RSS" /></a></h1>
 			
 			<table class="recent">
 				<tbody>
