@@ -60,7 +60,7 @@
 					<?php
 						$set = array('name' => 'snipurl', 'id' => 'snipurl', 'value' => '1', 'tabindex' => '5', 'checked' => $snipurl_set);
 						echo form_checkbox($set);
-					?><p>Create a bit.ly url</p>
+					?>
 				</div>
 			</div>
 		
@@ -72,7 +72,7 @@
 					<?php
 						$set = array('name' => 'private', 'id' => 'private', 'tabindex' => '6', 'value' => '1', 'checked' => $private_set);
 						echo form_checkbox($set);
-					?><p>Make Private</p>
+					?>
 				</div>
 			</div>						
 		
@@ -96,11 +96,7 @@
 			</div>
 		</div>
 		
-		<div class="item advanced">
-			<p>Feeling clever? Set some <a href="#" class="show control">advanced</a> options.</p>
-		</div>					
-		
-		<div class="advanced_options hidden item_group">																
+		<div class="item_group">
 			<div class="item">
 				<label for="acopy">Auto Copy Link
 					<span class="instruction">Auto-copy the link to your clipboard?</span>
@@ -110,7 +106,6 @@
 						$set = array('name' => 'acopy', 'id' => 'acopy', 'tabindex' => '8', 'value' => '1', 'checked' => $acopy_set);
 						echo form_checkbox($set);
 					?>
-					<p>Auto copy link</p>										
 				</div>				
 			</div>
 			
@@ -123,7 +118,6 @@
 						$set = array('name' => 'remember', 'id' => 'remember', 'tabindex' => '9', 'value' => '1', 'checked' => $remember_set);
 						echo form_checkbox($set);
 					?>
-					<p>Remember me</p>
 				</div>
 			</div>
 		</div>
