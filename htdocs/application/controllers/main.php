@@ -301,6 +301,7 @@ class Main extends CI_Controller
 		
 		if ($check) 
 		{
+			$this->load->helper('text');
 			$paste = $this->pastes->getPaste(3);
 			$data = $this->pastes->getReplies(3);
 			$data['page_title'] = $paste['title'] . ' - ' . $this->config->item('site_name');
@@ -352,6 +353,7 @@ class Main extends CI_Controller
 		
 		if ($this->uri->segment(2) == 'rss') 
 		{
+			$this->load->helper('text');
 			$data['page_title'] = $this->config->item('site_name');
 			$data['feed_url'] = site_url('lists/rss');
 			$data['replies'] = $data['pastes'];

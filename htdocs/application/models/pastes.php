@@ -311,7 +311,7 @@ class Pastes extends CI_Model
 		{
 			$pid = $this->uri->segment($seg);
 		}
-		$this->db->select('title, name, created, pid, paste');
+		$this->db->select('title, name, created, pid, paste, raw');
 		$this->db->where('replyto', $pid);
 		$this->db->order_by('id', 'desc');
 		$this->db->limit($amount);
@@ -327,6 +327,7 @@ class Pastes extends CI_Model
 				$data['replies'][$n]['created'] = $row['created'];
 				$data['replies'][$n]['pid'] = $row['pid'];
 				$data['replies'][$n]['paste'] = $row['paste'];
+				$data['replies'][$n]['raw'] = $row['raw'];
 				$n++;
 			}
 		}
