@@ -8,8 +8,12 @@ Stikked allows you to easily share code with anyone you wish. Stikked was create
 * Pastebins were messy and not thought through.
 * Stikked rethought code collaboration, by making it easy to paste code.
 
-I copied the original Stikked (http://code.google.com/p/stikked/) and fixed several bugs.
-Try it out: http://paste.scratchbook.ch/
+Based on the original Stikked (http://code.google.com/p/stikked/) with lots of bugfixes and improvements.
+
+
+Try it out
+----------
+http://paste.scratchbook.ch/
 
 
 Installation
@@ -17,7 +21,11 @@ Installation
 
 1.  Download stikked from https://github.com/claudehohl/Stikked/downloads
 2.  Create a user and database for Stikked
-3.  Edit configuration settings in application/config/stikked.php (view on Github: https://github.com/claudehohl/Stikked/blob/master/htdocs/application/config/stikked.php)
+3.  Edit configuration settings in application/config/stikked.php - everything is described there
+4.  You're done!
+
+* The database structure will be created automatically if it doesn't exist.
+* No special file permissions are needed by default. Optional: If you want to have the JavaScript- and CSS-files minified, the static/asset/ folder has to be writable.
 
 
 Changelog

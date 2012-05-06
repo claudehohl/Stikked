@@ -12,6 +12,7 @@ $config['site_name'] = 'Stikked';
  * Database connection
  * 
  * Credentials for your database
+ * The database structure will be created automatically
  *
 */
 $config['db_hostname'] = '127.0.0.1';
@@ -31,7 +32,7 @@ $config['combine_assets'] = false;
  * Bit.ly config
  *
  * The username & API-Key for bit.ly
- * (go to: http://bitly.com/a/your_api_key)
+ * (get one at: http://bitly.com/a/your_api_key)
  *
 **/
 $config['bitly_username'] = '';
