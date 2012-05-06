@@ -2,7 +2,6 @@ var ST = window.ST || {}
 
 ST.init = function() {
 	ST.change();
-	ST.show();
 	ST.expand();
 	ST.show_embed();
 };
@@ -11,14 +10,6 @@ ST.change = function() {
 	$('.change').oneTime(3000,
 	function() {
 		$(this).fadeOut(2000);
-	});
-};
-
-ST.show = function() {
-	$('.show').click(function() {
-		$('.advanced').hide();
-		$('.advanced_options').show();
-		return false;
 	});
 };
 
