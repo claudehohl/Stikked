@@ -57,7 +57,7 @@ $route['about'] = 'main/about';
 $route['iphone/:num'] = 'iphone';
 $route['iphone/view/:any'] = 'iphone/view';
 
-$route['404_override'] = 'errors/error_404';
+$route['404_override'] = 'main/error_404';
 
 /* End of file routes.php */
 /* Location: ./application/config/routes.php */

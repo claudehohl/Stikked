@@ -17,6 +17,7 @@
  * - about()
  * - _valid_lang()
  * - get_cm_js()
+ * - error_404()
  * Classes list:
  * - Main extends CI_Controller
  */
@@ -501,5 +502,10 @@ class Main extends CI_Controller
 			}
 		}
 		exit;
+	}
+	
+	function error_404() 
+	{
+		show_404();
 	}
 }
