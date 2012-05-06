@@ -243,6 +243,7 @@ h4 {
 	font-weight: bold;
 	padding: 0;
 	background-image: url("../images/button.png");
+    cursor: pointer;
 	margin-top: 20px;
 }
 
