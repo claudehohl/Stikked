@@ -204,6 +204,7 @@ class Main extends CI_Controller
 	
 	function index() 
 	{
+		$this->load->helper('json');
 		
 		if (!$this->input->post('submit')) 
 		{
@@ -369,6 +370,7 @@ class Main extends CI_Controller
 	
 	function view() 
 	{
+		$this->load->helper('json');
 		$this->load->model('pastes');
 		$check = $this->pastes->checkPaste(2);
 		
