@@ -53,7 +53,7 @@
 		
 		<div class="item_group">
 			<div class="item">
-				<label for="snipurl">Create a bit.ly url
+				<label for="snipurl">Create Shorturl
 					<span class="instruction">Create a shorter url that redirects to your paste?</span>
 				</label>
 				<div class="text_beside">

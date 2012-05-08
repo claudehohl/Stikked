@@ -29,16 +29,6 @@ $config['db_password'] = 'stikked';
 $config['combine_assets'] = false;
 
 /**
- * Bit.ly config
- *
- * The username & API-Key for bit.ly
- * (get one at: http://bitly.com/a/your_api_key)
- *
-**/
-$config['bitly_username'] = '';
-$config['bitly_apikey'] = '';
-
-/**
  * Key for Cron
  *
  * The password required to run the cron job
@@ -46,6 +36,15 @@ $config['bitly_apikey'] = '';
  *
 **/
 $config['cron_key'] = '';
+
+/**
+ * gw.gd config
+ *
+ * Your own instance of the gw.gd URL-shortener (Download: https://github.com/neofutur/gwgd)
+ * Default: http://gw.gd/
+ *
+**/
+$config['gwgd_url'] = '';
 
 /**
  * Credentials for the backup URL

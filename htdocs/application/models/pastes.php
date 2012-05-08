@@ -135,16 +135,15 @@ class Pastes extends CI_Model
 		{
 			$url = site_url('view/' . $data['pid']);
 			$url = urlencode($url);
-			$bitly_username = $this->config->item('bitly_username');
-			$bitly_apikey = $this->config->item('bitly_apikey');
-			$target = 'http://api.bitly.com/v3/shorten?login=' . $bitly_username . '&apiKey=' . $bitly_apikey . '&longUrl=' . $url;
+			$config_gwgd_url = $this->config->item('gwgd_url');
+			$gwgd_url = ($config_gwgd_url ? $config_gwgd_url : 'http://gw.gd/');
+			$target = $gwgd_url . 'api.php?long=' . $url;
 			$ch = curl_init();
 			curl_setopt($ch, CURLOPT_URL, $target);
 			curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 			$resp = curl_exec($ch);
 			curl_close($ch);
-			$resp = json_decode($resp);
-			$data['snipurl'] = $resp->data->url;
+			$data['snipurl'] = $resp;
 			
 			if (empty($data['snipurl'])) 
 			{
