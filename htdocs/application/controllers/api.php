@@ -33,9 +33,7 @@ class Api extends Main
 		
 		if (!$this->input->post('text')) 
 		{
-			$data['data'] = array(
-				'error' => 'missing paste text',
-			);
+			$data['msg'] = 'Error: Missing paste text';
 			$this->load->view('view/api', $data);
 		}
 		else
@@ -47,9 +45,7 @@ class Api extends Main
 			}
 			$_POST['code'] = $this->input->post('text');
 			$paste_url = $this->pastes->createPaste();
-			$data['data'] = array(
-				'url' => base_url() . $paste_url,
-			);
+			$data['msg'] = base_url() . $paste_url;
 			$this->load->view('view/api', $data);
 		}
 	}

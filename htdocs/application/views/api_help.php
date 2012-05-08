@@ -9,8 +9,8 @@
 
 	<h2>Return values</h2>
     <p class="explain">
-        On success, the API returns the paste URL in JSON format: <code>{"url":"<?php echo site_url('view/[pasteid]'); ?>"}</code><br />
-        On error, the API returns the error message in JSON format: <code>{"error":"missing paste text"}</code>
+        On success, the API returns the paste URL: <code><?php echo site_url('view/[pasteid]'); ?></code><br />
+        On error, the API returns the error message: <code>Error: Missing paste text</code>
     </p>
 
 	<h2>POST parameters</h2>
