@@ -31,6 +31,15 @@ Installation
 Changelog
 ---------
 
+### Version 0.8.1:
+
+* Cleaner options
+* Valid RSS feed
+* Simpler API response (non-JSON)
+* Favicon
+* gw.gd URL shortener (replaces bit.ly)
+* minor fixes
+
 ### Version 0.8:
 
 * Added backup function (yoursite.com/backup; set credentials in stikked.php config)
