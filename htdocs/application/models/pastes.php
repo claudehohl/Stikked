@@ -309,7 +309,7 @@ class Pastes extends CI_Model
 		{
 			$pid = $this->uri->segment($seg);
 		}
-		$this->db->select('title, name, created, pid, paste, raw');
+		$this->db->select('title, name, created, pid, raw, lang');
 		$this->db->where('replyto', $pid);
 		$this->db->order_by('id', 'desc');
 		$this->db->limit($amount);
@@ -324,7 +324,7 @@ class Pastes extends CI_Model
 				$data['replies'][$n]['name'] = $row['name'];
 				$data['replies'][$n]['created'] = $row['created'];
 				$data['replies'][$n]['pid'] = $row['pid'];
-				$data['replies'][$n]['paste'] = $row['paste'];
+				$data['replies'][$n]['paste'] = $this->process->syntax(htmlspecialchars_decode($row['raw']) , $row['lang']);
 				$data['replies'][$n]['raw'] = $row['raw'];
 				$n++;
 			}
@@ -335,6 +335,7 @@ class Pastes extends CI_Model
 	function getLists($root = 'lists/', $seg = 2) 
 	{
 		$this->load->library('pagination');
+		$this->load->library('process');
 		$amount = $this->config->item('per_page');
 		
 		if (!$this->uri->segment(2)) 
@@ -348,7 +349,21 @@ class Pastes extends CI_Model
 		$this->db->where('private', 0);
 		$this->db->order_by('created', 'desc');
 		$query = $this->db->get('pastes', $amount, $page);
-		$data['pastes'] = $query->result_array();
+		
+		if ($query->num_rows() > 0) 
+		{
+			$n = 0;
+			foreach ($query->result_array() as $row) 
+			{
+				$data['pastes'][$n]['title'] = $row['title'];
+				$data['pastes'][$n]['name'] = $row['name'];
+				$data['pastes'][$n]['created'] = $row['created'];
+				$data['pastes'][$n]['pid'] = $row['pid'];
+				$data['pastes'][$n]['paste'] = $this->process->syntax(htmlspecialchars_decode($row['raw']) , $row['lang']);
+				$data['pastes'][$n]['raw'] = $row['raw'];
+				$n++;
+			}
+		}
 		$config['base_url'] = site_url($root);
 		$config['total_rows'] = $this->countPastes();
 		$config['per_page'] = $amount;
