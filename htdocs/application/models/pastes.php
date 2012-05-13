@@ -39,7 +39,6 @@ class Pastes extends CI_Model
 	
 	function createPaste() 
 	{
-		$this->load->library('process');
 		$data['id'] = NULL;
 		$data['created'] = time();
 
@@ -150,7 +149,6 @@ class Pastes extends CI_Model
 				$data['snipurl'] = false;
 			}
 		}
-		$data['paste'] = $this->process->syntax($this->input->post('code') , $this->input->post('lang'));
 		$this->db->insert('pastes', $data);
 		return 'view/' . $data['pid'];
 	}
@@ -190,6 +188,7 @@ class Pastes extends CI_Model
 			$pid = $this->uri->segment($seg);
 			$data['script'] = 'jquery.js';
 		}
+		$this->load->library('process');
 		$this->db->where('pid', $pid);
 		$query = $this->db->get('pastes');
 		foreach ($query->result_array() as $row) 
@@ -199,7 +198,7 @@ class Pastes extends CI_Model
 			$data['name'] = $row['name'];
 			$data['lang_code'] = $row['lang'];
 			$data['lang'] = $this->languages->code_to_description($row['lang']);
-			$data['paste'] = $row['paste'];
+			$data['paste'] = $this->process->syntax(htmlspecialchars_decode($row['raw']) , $row['lang']);
 			$data['created'] = $row['created'];
 			$data['url'] = site_url('view/' . $row['pid']);
 			$data['raw'] = $row['raw'];
