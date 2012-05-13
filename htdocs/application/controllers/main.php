@@ -92,9 +92,6 @@ class Main extends CI_Controller
 					'type' => 'TINYINT',
 					'constraint' => 1,
 				) ,
-				'paste' => array(
-					'type' => 'LONGTEXT',
-				) ,
 				'raw' => array(
 					'type' => 'LONGTEXT',
 				) ,
