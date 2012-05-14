@@ -324,7 +324,11 @@ class Pastes extends CI_Model
 				$data['replies'][$n]['name'] = $row['name'];
 				$data['replies'][$n]['created'] = $row['created'];
 				$data['replies'][$n]['pid'] = $row['pid'];
-				$data['replies'][$n]['paste'] = $this->process->syntax(htmlspecialchars_decode($row['raw']) , $row['lang']);
+				
+				if ($this->uri->segment(2) == 'rss') 
+				{
+					$data['replies'][$n]['paste'] = $this->process->syntax(htmlspecialchars_decode($row['raw']) , $row['lang']);
+				}
 				$data['replies'][$n]['raw'] = $row['raw'];
 				$n++;
 			}
