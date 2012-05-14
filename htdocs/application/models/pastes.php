@@ -346,7 +346,7 @@ class Pastes extends CI_Model
 		{
 			$page = $this->uri->segment(2);
 		}
-		$this->db->select('title, name, created, pid, lang, raw');
+		$this->db->select('id, title, name, created, pid, lang, raw');
 		$this->db->where('private', 0);
 		$this->db->order_by('created', 'desc');
 		$query = $this->db->get('pastes', $amount, $page);
@@ -356,6 +356,7 @@ class Pastes extends CI_Model
 			$n = 0;
 			foreach ($query->result_array() as $row) 
 			{
+				$data['pastes'][$n]['id'] = $row['id'];
 				$data['pastes'][$n]['title'] = $row['title'];
 				$data['pastes'][$n]['name'] = $row['name'];
 				$data['pastes'][$n]['created'] = $row['created'];
