@@ -346,6 +346,7 @@ class Pastes extends CI_Model
 		{
 			$page = $this->uri->segment(2);
 		}
+		$this->db->select('title, name, created, pid, lang, raw');
 		$this->db->where('private', 0);
 		$this->db->order_by('created', 'desc');
 		$query = $this->db->get('pastes', $amount, $page);
@@ -360,7 +361,11 @@ class Pastes extends CI_Model
 				$data['pastes'][$n]['created'] = $row['created'];
 				$data['pastes'][$n]['lang'] = $row['lang'];
 				$data['pastes'][$n]['pid'] = $row['pid'];
-				$data['pastes'][$n]['paste'] = $this->process->syntax(htmlspecialchars_decode($row['raw']) , $row['lang']);
+				
+				if ($this->uri->segment(2) == 'rss') 
+				{
+					$data['pastes'][$n]['paste'] = $this->process->syntax(htmlspecialchars_decode($row['raw']) , $row['lang']);
+				}
 				$data['pastes'][$n]['raw'] = $row['raw'];
 				$n++;
 			}
