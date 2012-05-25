@@ -227,27 +227,6 @@ class Pastes extends CI_Model
 			}
 		}
 		
-		if ($this->db_session->flashdata('acopy') == 'true') 
-		{
-			
-			if ($data['snipurl']) 
-			{
-				$url = $data['snipurl'];
-			}
-			else
-			{
-				$url = $data['url'];
-			}
-			$data['status_message'] = 'URL copied to clipboard';
-			$data['insert'] = '
-			<script type="text/javascript" charset="utf-8">
-				$.clipboardReady(function(){
-					$.clipboard("' . $url . '");
-					return false;
-				}, { swfpath: "' . base_url() . 'static/flash/jquery.clipboard.swf"} );
-			</script>';
-		}
-		
 		if ($replies) 
 		{
 			$amount = $this->config->item('per_page');

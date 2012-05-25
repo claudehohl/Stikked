@@ -96,32 +96,6 @@
 			</div>
 		</div>
 		
-		<div class="item_group">
-			<div class="item">
-				<label for="acopy">Auto Copy Link
-					<span class="instruction">Auto-copy the link to your clipboard?</span>
-				</label>
-				<div class="text_beside">					
-					<?php
-						$set = array('name' => 'acopy', 'id' => 'acopy', 'tabindex' => '8', 'value' => '1', 'checked' => $acopy_set);
-						echo form_checkbox($set);
-					?>
-				</div>				
-			</div>
-			
-			<div class="item last">
-				<label for="remember">Remember You
-					<span class="instruction">Remember your settings for next time?</span>
-				</label>
-				<div class="text_beside">
-					<?php
-						$set = array('name' => 'remember', 'id' => 'remember', 'tabindex' => '9', 'value' => '1', 'checked' => $remember_set);
-						echo form_checkbox($set);
-					?>
-				</div>
-			</div>
-		</div>
-		
 		<?php if($reply){?>
 		<input type="hidden" value="<?php echo $reply; ?>" name="reply" />
 		<?php }?>

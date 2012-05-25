@@ -161,10 +161,8 @@ class Main extends CI_Controller
 			}
 			$data['name_set'] = $this->db_session->userdata('name');
 			$data['expire_set'] = $this->db_session->userdata('expire');
-			$data['acopy_set'] = $this->db_session->userdata('acopy');
 			$data['private_set'] = $this->db_session->userdata('private');
 			$data['snipurl_set'] = $this->db_session->userdata('snipurl');
-			$data['remember_set'] = $this->db_session->userdata('remember');
 			$data['paste_set'] = $paste;
 			$data['title_set'] = $title;
 			$data['reply'] = $reply;
@@ -187,10 +185,8 @@ class Main extends CI_Controller
 		{
 			$data['name_set'] = $this->input->post('name');
 			$data['expire_set'] = $this->input->post('expire');
-			$data['acopy_set'] = $this->input->post('acopy');
 			$data['private_set'] = $this->input->post('private');
 			$data['snipurl_set'] = $this->input->post('snipurl');
-			$data['remember_set'] = $this->input->post('remember');
 			$data['paste_set'] = $this->input->post('paste');
 			$data['title_set'] = $this->input->post('title');
 			$data['reply'] = $this->input->post('reply');
@@ -240,37 +236,16 @@ class Main extends CI_Controller
 			else
 			{
 				
-				if ($this->input->post('acopy')) 
-				{
-					$this->db_session->set_flashdata('acopy', 'true');
-				}
-				
-				if ($this->input->post('remember') and $this->input->post('reply') == false) 
+				if ($this->input->post('reply') == false) 
 				{
 					$user_data = array(
 						'name' => $this->input->post('name') ,
 						'lang' => $this->input->post('lang') ,
 						'expire' => $this->input->post('expire') ,
-						'acopy' => $this->input->post('acopy') ,
 						'snipurl' => $this->input->post('snipurl') ,
 						'private' => $this->input->post('private') ,
-						'remember' => $this->input->post('remember')
 					);
 					$this->db_session->set_userdata($user_data);
-				}
-				
-				if ($this->input->post('remember') == false and $this->db_session->userdata("remember") == 1) 
-				{
-					$user_data = array(
-						'name' => '',
-						'lang' => 'php',
-						'expire' => '0',
-						'acopy' => '0',
-						'snipurl' => '0',
-						'private' => '0',
-						'remember' => '0'
-					);
-					$this->db_session->unset_userdata($user_data);
 				}
 				redirect($this->pastes->createPaste());
 			}
@@ -376,7 +351,6 @@ class Main extends CI_Controller
 			
 			if ($this->db_session->userdata('view_raw')) 
 			{
-				$this->db_session->keep_flashdata('acopy');
 				redirect('view/raw/' . $this->uri->segment(2));
 			}
 			$data = $this->pastes->getPaste(2, true);
