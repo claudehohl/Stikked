@@ -169,15 +169,7 @@ class Main extends CI_Controller
 			{
 				$lang = $this->config->item('default_language');
 			}
-			
-			if ($this->db_session->userdata('lang') == false) 
-			{
-				$data['lang_set'] = $lang;
-			}
-			elseif ($this->db_session->userdata('lang')) 
-			{
-				$data['lang_set'] = $this->db_session->userdata('lang');
-			}
+			$data['lang_set'] = $lang;
 		}
 		else
 		{
