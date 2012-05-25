@@ -64,6 +64,14 @@ $config['backup_pass'] = '';
 $config['per_page'] = 10;
 
 /**
+ * Disable public pastes
+ *
+ * No recent pastes will be displayed.
+ *
+**/
+$config['private_only'] = false;
+
+/**
  * Default language
  *
  * Preselected language. See application/config/geshi_languages.php for valid values (array keys)

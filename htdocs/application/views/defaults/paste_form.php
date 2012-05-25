@@ -65,6 +65,7 @@
 			</div>
 		
 			<div class="item">
+<?php if (!$this->config->item('private_only')){ ?>
 				<label for="private">Private
 					<span class="instruction">Private paste aren't shown in recent listings.</span>
 				</label>
@@ -74,7 +75,8 @@
 						echo form_checkbox($set);
 					?>
 				</div>
-			</div>						
+<?php } ?>
+			</div>
 		
 			<div class="item">
 				<label for="expire">Delete After

@@ -23,6 +23,7 @@ header("HTTP/1.1 404 Not Found");
 						<ul>
 							<li><a href="<?php echo site_url(''); ?>">Paste</a></li>
 							<li><a href="<?php echo site_url('lists'); ?>">Recent</a></li>
+							<li><a href="<?php echo site_url('api'); ?>">API</a></li>
 							<li><a href="<?php echo site_url('about'); ?>">About</a></li>
 						</ul>
 					</div>

@@ -48,7 +48,9 @@ $this->carabiner->display('css');
 					<ul class="tabs">
 						<?php $l = $this->uri->segment(1)?>
 						<li><a <?php if($l == ""){ echo 'class="active"'; }?> href="<?php echo base_url()?>" title="Create A New Paste">Create</a></li>
+<?php if(!$this->config->item('private_only')){ ?>
 						<li><a <?php if($l == "lists" || $l == "view" and $this->uri->segment(2) != "options"){ echo 'class="active"'; }?> href="<?php echo site_url('lists'); ?>" title="Recent Pastes">Recent</a></li>
+<?php } ?>
 						<li><a  <?php if($l == "api"){ echo 'class="active"'; }?> href="<?php echo site_url('api'); ?>" title="API">API</a></li>
 						<li><a  <?php if($l == "about"){ echo 'class="active"'; }?> href="<?php echo site_url('about'); ?>" title="About">About</a></li>
 					</ul>
