@@ -11,8 +11,6 @@
  * - download()
  * - lists()
  * - view()
- * - _view_options_prep()
- * - view_options()
  * - cron()
  * - about()
  * - _valid_lang()
@@ -355,80 +353,11 @@ class Main extends CI_Controller
 			}
 			$data = $this->pastes->getPaste(2, true);
 			$data['reply_form'] = $this->_form_prep($data['lang_code'], 'Re: ' . $data['title'], $data['raw'], $data['pid']);
-			
-			if ($this->db_session->userdata('full_width')) 
-			{
-				$data['full_width'] = true;
-			}
-			else
-			{
-				$data['full_width'] = false;
-			}
 			$this->load->view('view/view', $data);
 		}
 		else
 		{
 			show_404();
-		}
-	}
-	
-	function _view_options_prep() 
-	{
-		$this->load->helper('form');
-		
-		if ($this->db_session->userdata('remember_view') > 0) 
-		{
-			$data['full_width_set'] = $this->db_session->userdata('full_width');
-			$data['view_raw_set'] = $this->db_session->userdata('view_raw');
-		}
-		else
-		{
-			$data['full_width_set'] = false;
-			$data['view_raw_set'] = false;
-		}
-		return $data;
-	}
-	
-	function view_options() 
-	{
-		
-		if (!$this->input->post('submit')) 
-		{
-			$data = $this->_view_options_prep();
-			$this->load->view('view/view_options', $data);
-		}
-		else
-		{
-			$this->load->library('form_validation');
-			$rules = array(
-				array(
-					'field' => 'full_width',
-					'label' => 'full_width',
-					'rules' => 'max_length[1]',
-				) ,
-				array(
-					'field' => 'view_raw',
-					'label' => 'view_raw',
-					'rules' => 'max_length[1]',
-				) ,
-			);
-			$this->form_validation->set_rules($rules);
-			
-			if ($this->form_validation->run() == false) 
-			{
-				exit('Ugh, stupid skiddie.');
-			}
-			else
-			{
-				$user_data = array(
-					'full_width' => $this->input->post('full_width') ,
-					'view_raw' => $this->input->post('view_raw') ,
-					'remember_view' => true
-				);
-				$this->db_session->set_userdata($user_data);
-				$this->db_session->set_flashdata('settings_changed', 'true');
-				redirect();
-			}
 		}
 	}
 	

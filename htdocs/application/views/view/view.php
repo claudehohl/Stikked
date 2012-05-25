@@ -18,7 +18,7 @@
 			<span class="detail"><span class="item">Embed </span><input id="embed_field" type="text" value="<?php echo htmlspecialchars('<iframe src="' . site_url('view/embed/' . $pid) . '" style="border:none;width:100%"></iframe>'); ?>" /></span>
 			<div class="spacer"></div>
 			
-			<span class="detail"><a class="control" href="<?php echo site_url("view/download/".$pid); ?>">Download Paste</a> or <a class="control" href="<?php echo site_url("view/raw/".$pid); ?>">View Raw</a> &mdash; <a href="#" class="expand control">Expand paste</a> to full width of browser | <a href="<?php echo site_url('view/options'); ?>">Change Viewing Options</a></span>
+			<span class="detail"><a class="control" href="<?php echo site_url("view/download/".$pid); ?>">Download Paste</a> or <a class="control" href="<?php echo site_url("view/raw/".$pid); ?>">View Raw</a> &mdash; <a href="#" class="expand control">Expand paste</a> to full width of browser</span>
 		</div>
 	</div>
 </div>
@@ -27,8 +27,8 @@
 </div>
 </div>
 
-<div class="paste <?php if($full_width){ echo "full"; }?>">
-	<div class="text_formatted <?php if($full_width){ echo "full"; }?>">
+<div class="paste">
+	<div class="text_formatted">
 		<div class="container">
 			<?php echo $paste; ?>
 		</div>

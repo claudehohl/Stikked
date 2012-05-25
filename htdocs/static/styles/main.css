@@ -220,10 +220,6 @@ h4 {
 	float: left;
 }
 
-.form_wrapper.full .text_beside {
-	width: 250px;
-}
-
 .form_wrapper textarea {
 	width: 694px;
 }
@@ -372,10 +368,6 @@ h4 {
 	font-size: 100%;
 }
 
-.paste.full {
-	width: 90%;
-}
-
 .paste .text_formatted {
 	clear: both;
 	float: left;
@@ -385,11 +377,6 @@ h4 {
 	margin-left: 10px;
 	background: #ebf4fb;
     position: relative;
-}
-
-.paste .text_formatted.full {
-	width: 100%;
-	margin-left: 10px;
 }
 
 .text_formatted ol {
