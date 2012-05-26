@@ -54,6 +54,7 @@ class Main extends CI_Controller
 				) ,
 				'session_data' => array(
 					'type' => 'TEXT',
+					'null' => TRUE,
 				) ,
 			);
 			$this->dbforge->add_field($fields);
@@ -106,6 +107,7 @@ class Main extends CI_Controller
 					'type' => 'TINYINT',
 					'constraint' => 1,
 					'unsigned' => TRUE,
+					'default' => 0,
 				) ,
 				'snipurl' => array(
 					'type' => 'VARCHAR',

@@ -39,7 +39,6 @@ class Pastes extends CI_Model
 	
 	function createPaste() 
 	{
-		$data['id'] = NULL;
 		$data['created'] = time();
 
 		//this is SO evil… saving the «raw» data with htmlspecialchars :-( (but I have to leave this, because of backwards-compatibility)
@@ -94,7 +93,7 @@ class Pastes extends CI_Model
 		
 		if ($this->input->post('expire') == 0) 
 		{
-			$data['expire'] = '0000-00-00 00:00:00';
+			$data['expire'] = 0;
 		}
 		else
 		{
