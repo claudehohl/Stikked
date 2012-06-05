@@ -230,6 +230,9 @@ class Main extends CI_Controller
 				
 				if ($this->input->post('reply') == false) 
 				{
+					if (!isset($_POST['private']))
+						$_POST['private'] = TRUE;
+				
 					$user_data = array(
 						'name' => $this->input->post('name') ,
 						'lang' => $this->input->post('lang') ,

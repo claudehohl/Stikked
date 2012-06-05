@@ -10,6 +10,7 @@ FileETag MTime Size
     ErrorDocument 404 /index.php
 </IfModule> 
 
+<IfModule mod_expires.c>
 ExpiresActive On
 ExpiresByType text/javascript "access plus 1 year"
 ExpiresByType application/x-javascript "access plus 1 year"
@@ -20,6 +21,7 @@ ExpiresByType image/jpg "access plus 1 year"
 ExpiresByType image/gif "access plus 1 year"
 ExpiresByType image/png "access plus 1 year"
 ExpiresByType image/x-icon "access plus 1 year"
+</IfModule> 
 
 #AuthType Basic
 #AuthName "Backend"
