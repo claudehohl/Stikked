@@ -101,7 +101,20 @@
 		<?php if($reply){?>
 		<input type="hidden" value="<?php echo $reply; ?>" name="reply" />
 		<?php }?>
-		
+<?php
+$this->load->helper('captcha');
+$vals = array(
+    'img_path'	 => './static/asset/',
+    'img_url'	 => site_url('static/asset') . '/',
+//    'font_path'	 => './path/to/fonts/texb.ttf',
+    'img_width'	 => '150',
+    'img_height' => 30,
+    'expiration' => 7200
+    );
+
+$cap = create_captcha($vals);
+echo $cap['image'];
+?>
 		<div><button type="submit" value="submit" name="submit">Create</button></div>
 		<div class="spacer"></div>
 	</form>
