@@ -384,6 +384,11 @@ class Main extends CI_Controller
 		$this->load->view('about');
 	}
 	
+	function captcha() 
+	{
+		$this->load->view('captcha');
+	}
+	
 	function _valid_lang($lang) 
 	{
 		$this->load->model('languages');
