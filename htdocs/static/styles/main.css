@@ -138,6 +138,8 @@ h4 {
 
 .form_wrapper .item_group .captcha {
     margin-left: 10px;
+    padding-left: 10px;
+    display: block;
 }
 
 .form_wrapper .item_group .item input, .form_wrapper .item_group .item select {

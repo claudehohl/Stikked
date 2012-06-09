@@ -104,7 +104,7 @@
 
 		<div class="item_group">
 			<div class="item item_captcha">
-				<label for="captcha">Captcha
+				<label for="captcha">Spam Protection
 					<span class="instruction">Type in the characters displayed in the picture.</span>
 				</label>
                 <img class="captcha" src="<?php echo site_url('view/captcha'); ?>" alt="captcha" />
