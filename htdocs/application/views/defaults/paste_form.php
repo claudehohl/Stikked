@@ -107,10 +107,8 @@
 				<label for="captcha">Captcha
 					<span class="instruction">Type in the characters displayed in the picture.</span>
 				</label>
-                <div class="line">
-                    <input value="<?php if(isset($title_set)){ echo $title_set; }?>" type="text" id="title" name="title" tabindex="2" maxlength="32" />
-                    <img class="captcha" src="<?php echo site_url('view/captcha'); ?>" alt="captcha" />
-                </div>
+                <img class="captcha" src="<?php echo site_url('view/captcha'); ?>" alt="captcha" />
+                <input value="<?php if(isset($title_set)){ echo $title_set; }?>" type="text" id="title" name="title" tabindex="2" maxlength="32" />
 			</div>
 		</div>
 
