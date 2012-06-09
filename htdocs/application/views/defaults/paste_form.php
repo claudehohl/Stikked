@@ -101,7 +101,9 @@
 		<?php if($reply){?>
 		<input type="hidden" value="<?php echo $reply; ?>" name="reply" />
 		<?php }?>
-		
+
+<img src="<?php echo site_url('view/captcha'); ?>" alt="" />
+
 		<div><button type="submit" value="submit" name="submit">Create</button></div>
 		<div class="spacer"></div>
 	</form>

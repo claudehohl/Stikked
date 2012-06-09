@@ -13,6 +13,7 @@
  * - view()
  * - cron()
  * - about()
+ * - captcha()
  * - _valid_lang()
  * - get_cm_js()
  * - error_404()
@@ -386,7 +387,8 @@ class Main extends CI_Controller
 	
 	function captcha() 
 	{
-		$this->load->view('captcha');
+		$this->load->helper('captcha');
+		$this->load->view('view/captcha');
 	}
 	
 	function _valid_lang($lang) 

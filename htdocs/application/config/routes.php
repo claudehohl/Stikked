@@ -47,6 +47,7 @@ $route['view/raw/:any'] = 'main/raw';
 $route['view/rss/:any'] = 'main/rss';
 $route['view/embed/:any'] = 'main/embed';
 $route['view/download/:any'] = 'main/download';
+$route['view/captcha'] = 'main/captcha';
 $route['view/:any'] = 'main/view';
 $route['lists'] = 'main/lists';
 $route['lists/rss'] = 'main/lists/rss';

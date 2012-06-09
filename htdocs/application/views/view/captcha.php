@@ -1,4 +1,3 @@
 <?php
-header('Content-type: text/plain');
-header('Content-disposition: attachment');
+header('Content-type: image/jpeg');
 display_captcha();
