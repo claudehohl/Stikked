@@ -132,6 +132,14 @@ h4 {
 	clear: none;
 }
 
+.form_wrapper .item_group .item_captcha {
+	width: 450px;
+}
+
+.form_wrapper .item_group .captcha {
+    margin-left: 10px;
+}
+
 .form_wrapper .item_group .item input, .form_wrapper .item_group .item select {
 	width: 104px;
 	float: left;

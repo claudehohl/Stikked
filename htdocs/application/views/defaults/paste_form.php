@@ -102,7 +102,17 @@
 		<input type="hidden" value="<?php echo $reply; ?>" name="reply" />
 		<?php }?>
 
-<img src="<?php echo site_url('view/captcha'); ?>" alt="" />
+		<div class="item_group">
+			<div class="item item_captcha">
+				<label for="captcha">Captcha
+					<span class="instruction">Type in the characters displayed in the picture.</span>
+				</label>
+                <div class="line">
+                    <input value="<?php if(isset($title_set)){ echo $title_set; }?>" type="text" id="title" name="title" tabindex="2" maxlength="32" />
+                    <img class="captcha" src="<?php echo site_url('view/captcha'); ?>" alt="captcha" />
+                </div>
+			</div>
+		</div>
 
 		<div><button type="submit" value="submit" name="submit">Create</button></div>
 		<div class="spacer"></div>
