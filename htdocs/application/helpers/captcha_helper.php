@@ -322,7 +322,7 @@ if (!function_exists('display_captcha'))
 		{
 			$pool = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
 			$str = '';
-			for ($i = 0;$i < 8;$i++) 
+			for ($i = 0;$i < 4;$i++) 
 			{
 				$str.= substr($pool, mt_rand(0, strlen($pool) - 1) , 1);
 			}
@@ -335,9 +335,9 @@ if (!function_exists('display_captcha'))
 		// -----------------------------------
 
 		$length = strlen($word);
-		$angle = ($length >= 6) ? rand(-($length - 6) , ($length - 6)) : 0;
-		$x_axis = rand(6, (360 / $length) - 16);
-		$y_axis = ($angle >= 0) ? rand($img_height, $img_width) : rand(6, $img_height);
+		$angle = ($length >= 6) ? mt_rand(-($length - 6) , ($length - 6)) : 0;
+		$x_axis = mt_rand(6, (360 / $length) - 16);
+		$y_axis = ($angle >= 0) ? mt_rand($img_height, $img_width) : mt_rand(6, $img_height);
 
 		// -----------------------------------
 		// Create image
@@ -408,13 +408,13 @@ if (!function_exists('display_captcha'))
 		if ($use_font == FALSE) 
 		{
 			$font_size = 5;
-			$x = rand(0, $img_width / ($length / 3));
+			$x = mt_rand(0, $img_width / ($length / 3));
 			$y = 0;
 		}
 		else
 		{
 			$font_size = 16;
-			$x = rand(0, $img_width / ($length / 1.5));
+			$x = mt_rand(0, $img_width / ($length / 1.5));
 			$y = $font_size + 2;
 		}
 		for ($i = 0;$i < strlen($word);$i++) 
@@ -422,13 +422,13 @@ if (!function_exists('display_captcha'))
 			
 			if ($use_font == FALSE) 
 			{
-				$y = rand(0, $img_height / 2);
+				$y = mt_rand(0, $img_height / 2);
 				imagestring($im, $font_size, $x, $y, substr($word, $i, 1) , $text_color);
 				$x+= ($font_size * 2);
 			}
 			else
 			{
-				$y = rand($img_height / 2, $img_height - 3);
+				$y = mt_rand($img_height / 2, $img_height - 3);
 				imagettftext($im, $font_size, $angle, $x, $y, $text_color, $font_path, substr($word, $i, 1));
 				$x+= $font_size;
 			}

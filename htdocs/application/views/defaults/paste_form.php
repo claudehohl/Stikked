@@ -107,8 +107,8 @@
 				<label for="captcha">Spam Protection
 					<span class="instruction">Type in the characters displayed in the picture.</span>
 				</label>
-                <img class="captcha" src="<?php echo site_url('view/captcha'); ?>" alt="captcha" />
-                <input value="<?php if(isset($title_set)){ echo $title_set; }?>" type="text" id="title" name="title" tabindex="2" maxlength="32" />
+                <img class="captcha" src="<?php echo site_url('view/captcha'); ?>?<?php echo date('U', mktime()); ?>" alt="captcha" width="110" height="25" />
+                <input value="<?php if(isset($captcha_set)){ echo $captcha_set; }?>" type="text" id="captcha" name="captcha" tabindex="2" maxlength="32" />
 			</div>
 		</div>
 
