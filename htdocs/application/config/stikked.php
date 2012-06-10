@@ -64,12 +64,14 @@ $config['backup_pass'] = '';
 $config['per_page'] = 10;
 
 /**
- * Disable public pastes
+ * Anti spam
  *
- * No recent pastes will be displayed.
+ * private_only: No recent pastes will be displayed.
+ * enable_captcha: Users must enter a captcha to post.
  *
 **/
 $config['private_only'] = false;
+$config['enable_captcha'] = false;
 
 /**
  * Default language

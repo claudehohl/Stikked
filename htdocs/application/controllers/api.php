@@ -44,6 +44,11 @@ class Api extends Main
 				$_POST['lang'] = 'text';
 			}
 			$_POST['code'] = $this->input->post('text');
+			
+			if ($this->config->item('private_only')) 
+			{
+				$_POST['private'] = 1;
+			}
 			$paste_url = $this->pastes->createPaste();
 			$data['msg'] = base_url() . $paste_url;
 			$this->load->view('view/api', $data);

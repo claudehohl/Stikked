@@ -13,7 +13,9 @@
  * - view()
  * - cron()
  * - about()
+ * - captcha()
  * - _valid_lang()
+ * - _valid_captcha()
  * - get_cm_js()
  * - error_404()
  * Classes list:
@@ -179,7 +181,7 @@ class Main extends CI_Controller
 			$data['expire_set'] = $this->input->post('expire');
 			$data['private_set'] = $this->input->post('private');
 			$data['snipurl_set'] = $this->input->post('snipurl');
-			$data['paste_set'] = $this->input->post('paste');
+			$data['paste_set'] = $this->input->post('code');
 			$data['title_set'] = $this->input->post('title');
 			$data['reply'] = $this->input->post('reply');
 			$data['lang_set'] = $this->input->post('lang');
@@ -213,6 +215,11 @@ class Main extends CI_Controller
 					'label' => 'Language',
 					'rules' => 'min_length[1]|required|callback__valid_lang',
 				) ,
+				array(
+					'field' => 'captcha',
+					'label' => 'Captcha',
+					'rules' => 'callback__valid_captcha',
+				) ,
 			);
 
 			//form validation
@@ -227,6 +234,11 @@ class Main extends CI_Controller
 			}
 			else
 			{
+				
+				if ($this->config->item('private_only')) 
+				{
+					$_POST['private'] = 1;
+				}
 				
 				if ($this->input->post('reply') == false) 
 				{
@@ -384,11 +396,49 @@ class Main extends CI_Controller
 		$this->load->view('about');
 	}
 	
+	function captcha() 
+	{
+		$this->load->helper('captcha');
+
+		//get "word"
+		$pool = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+		$str = '';
+		for ($i = 0;$i < 4;$i++) 
+		{
+			$str.= substr($pool, mt_rand(0, strlen($pool) - 1) , 1);
+		}
+		$word = $str;
+
+		//save
+		$this->db_session->set_userdata(array(
+			'captcha' => $word
+		));
+
+		//view
+		$this->load->view('view/captcha', array(
+			'word' => $word
+		));
+	}
+	
 	function _valid_lang($lang) 
 	{
 		$this->load->model('languages');
 		$this->form_validation->set_message('_valid_lang', 'Please select your language');
 		return $this->languages->valid_language($lang);
+	}
+	
+	function _valid_captcha($text) 
+	{
+		
+		if ($this->config->item('enable_captcha')) 
+		{
+			$this->form_validation->set_message('_valid_captcha', 'The Captcha is incorrect.');
+			return $text == $this->db_session->userdata('captcha');
+		}
+		else
+		{
+			return true;
+		}
 	}
 	
 	function get_cm_js() 
