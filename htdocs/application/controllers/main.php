@@ -388,7 +388,25 @@ class Main extends CI_Controller
 	function captcha() 
 	{
 		$this->load->helper('captcha');
-		$this->load->view('view/captcha');
+
+		//get "word"
+		$pool = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+		$str = '';
+		for ($i = 0;$i < 4;$i++) 
+		{
+			$str.= substr($pool, mt_rand(0, strlen($pool) - 1) , 1);
+		}
+		$word = $str;
+
+		//save
+		$this->db_session->set_userdata(array(
+			'captcha' => $word
+		));
+
+		//view
+		$this->load->view('view/captcha', array(
+			'word' => $word
+		));
 	}
 	
 	function _valid_lang($lang) 
