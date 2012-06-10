@@ -65,17 +65,19 @@
 			</div>
 		
 			<div class="item">
-<?php if (!$this->config->item('private_only')){ ?>
 				<label for="private">Private
 					<span class="instruction">Private paste aren't shown in recent listings.</span>
 				</label>
 				<div class="text_beside">
 					<?php
 						$set = array('name' => 'private', 'id' => 'private', 'tabindex' => '6', 'value' => '1', 'checked' => $private_set);
+                        if ($this->config->item('private_only')){
+                            $set['checked'] = 1;
+                            $set['disabled'] = 'disabled';
+                        }
 						echo form_checkbox($set);
 					?>
 				</div>
-<?php } ?>
 			</div>
 		
 			<div class="item">
