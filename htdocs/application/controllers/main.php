@@ -15,6 +15,7 @@
  * - about()
  * - captcha()
  * - _valid_lang()
+ * - _valid_captcha()
  * - get_cm_js()
  * - error_404()
  * Classes list:
@@ -213,6 +214,11 @@ class Main extends CI_Controller
 					'field' => 'lang',
 					'label' => 'Language',
 					'rules' => 'min_length[1]|required|callback__valid_lang',
+				) ,
+				array(
+					'field' => 'captcha',
+					'label' => 'Captcha',
+					'rules' => 'callback__valid_captcha',
 				) ,
 			);
 
@@ -414,6 +420,12 @@ class Main extends CI_Controller
 		$this->load->model('languages');
 		$this->form_validation->set_message('_valid_lang', 'Please select your language');
 		return $this->languages->valid_language($lang);
+	}
+	
+	function _valid_captcha($text) 
+	{
+		$this->form_validation->set_message('_valid_captcha', 'Captcha is incorrect');
+		return $text == $this->db_session->userdata('captcha');
 	}
 	
 	function get_cm_js() 
