@@ -31,6 +31,13 @@ Installation
 Changelog
 ---------
 
+### Version 0.8.2:
+
+* Database optimizations: Pastes use less space (if you upgrade from a previous version, execute this SQL statement: "ALTER TABLE pastes DROP paste;"
+* Anti spam features:
+  * Option to disable recent pastes
+  * Option to require the user to enter a captcha
+
 ### Version 0.8.1:
 
 * Cleaner options
