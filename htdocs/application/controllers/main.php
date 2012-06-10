@@ -235,6 +235,11 @@ class Main extends CI_Controller
 			else
 			{
 				
+				if ($this->config->item('private_only')) 
+				{
+					$_POST['private'] = 1;
+				}
+				
 				if ($this->input->post('reply') == false) 
 				{
 					$user_data = array(
