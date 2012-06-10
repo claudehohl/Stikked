@@ -98,10 +98,11 @@
 			</div>
 		</div>
 		
-		<?php if($reply){?>
+<?php if($reply){ ?>
 		<input type="hidden" value="<?php echo $reply; ?>" name="reply" />
-		<?php }?>
+<?php } ?>
 
+<?php if($this->config->item('enable_captcha')){ ?>
 		<div class="item_group">
 			<div class="item item_captcha">
 				<label for="captcha">Spam Protection
@@ -111,6 +112,7 @@
                 <input value="<?php if(isset($captcha_set)){ echo $captcha_set; }?>" type="text" id="captcha" name="captcha" tabindex="2" maxlength="32" />
 			</div>
 		</div>
+<?php } ?>
 
 		<div><button type="submit" value="submit" name="submit">Create</button></div>
 		<div class="spacer"></div>

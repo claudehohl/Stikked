@@ -424,8 +424,16 @@ class Main extends CI_Controller
 	
 	function _valid_captcha($text) 
 	{
-		$this->form_validation->set_message('_valid_captcha', 'The Captcha is incorrect');
-		return $text == $this->db_session->userdata('captcha');
+		
+		if ($this->config->item('enable_captcha')) 
+		{
+			$this->form_validation->set_message('_valid_captcha', 'The Captcha is incorrect.');
+			return $text == $this->db_session->userdata('captcha');
+		}
+		else
+		{
+			return true;
+		}
 	}
 	
 	function get_cm_js() 
