@@ -181,7 +181,7 @@ class Main extends CI_Controller
 			$data['expire_set'] = $this->input->post('expire');
 			$data['private_set'] = $this->input->post('private');
 			$data['snipurl_set'] = $this->input->post('snipurl');
-			$data['paste_set'] = $this->input->post('paste');
+			$data['paste_set'] = $this->input->post('code');
 			$data['title_set'] = $this->input->post('title');
 			$data['reply'] = $this->input->post('reply');
 			$data['lang_set'] = $this->input->post('lang');
@@ -424,7 +424,7 @@ class Main extends CI_Controller
 	
 	function _valid_captcha($text) 
 	{
-		$this->form_validation->set_message('_valid_captcha', 'Captcha is incorrect');
+		$this->form_validation->set_message('_valid_captcha', 'The Captcha is incorrect');
 		return $text == $this->db_session->userdata('captcha');
 	}
 	
