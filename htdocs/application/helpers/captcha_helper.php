@@ -4,6 +4,7 @@
  * Function list:
  * - create_captcha()
  * - display_captcha()
+ * - b()
  * Classes list:
  */
 
@@ -362,7 +363,12 @@ if (!function_exists('display_captcha'))
 
 		// -----------------------------------
 
-		$bg_color = imagecolorallocate($im, 255, 255, 255);
+		
+		function b() 
+		{
+			return mt_rand(240, 255);
+		}
+		$bg_color = imagecolorallocate($im, b() , b() , b());
 		$border_color = imagecolorallocate($im, 153, 102, 102);
 		$text_color = imagecolorallocate($im, 204, 153, 153);
 		$grid_color = imagecolorallocate($im, 255, 182, 182);

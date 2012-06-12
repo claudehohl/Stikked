@@ -401,7 +401,7 @@ class Main extends CI_Controller
 		$this->load->helper('captcha');
 
 		//get "word"
-		$pool = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+		$pool = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ@';
 		$str = '';
 		for ($i = 0;$i < 4;$i++) 
 		{
