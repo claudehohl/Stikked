@@ -286,7 +286,7 @@ if (!function_exists('display_captcha'))
 			'img_path' => '',
 			'img_url' => '',
 			'img_width' => '110',
-			'img_height' => '25',
+			'img_height' => '40',
 			'font_path' => '',
 			'expiration' => 7200
 		);
@@ -336,6 +336,7 @@ if (!function_exists('display_captcha'))
 
 		$length = strlen($word);
 		$angle = ($length >= 6) ? mt_rand(-($length - 6) , ($length - 6)) : 0;
+		$angle = 10;
 		$x_axis = mt_rand(6, (360 / $length) - 16);
 		$y_axis = ($angle >= 0) ? mt_rand($img_height, $img_width) : mt_rand(6, $img_height);
 
@@ -403,6 +404,11 @@ if (!function_exists('display_captcha'))
 
 		// -----------------------------------
 
+		//get random font
+
+		$fn = explode(',', '2,4,5,6,8,13,14,16,17,19,24,26,33');
+		$f = mt_rand(0, count($fn) - 1);
+		$font_path = './static/fonts/font' . $fn[$f] . '.ttf';
 		$use_font = ($font_path != '' AND file_exists($font_path) AND function_exists('imagettftext')) ? TRUE : FALSE;
 		
 		if ($use_font == FALSE) 
