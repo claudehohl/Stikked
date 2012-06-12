@@ -401,7 +401,7 @@ class Main extends CI_Controller
 		$this->load->helper('captcha');
 
 		//get "word"
-		$pool = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ@';
+		$pool = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ@';
 		$str = '';
 		for ($i = 0;$i < 4;$i++) 
 		{
@@ -433,7 +433,7 @@ class Main extends CI_Controller
 		if ($this->config->item('enable_captcha')) 
 		{
 			$this->form_validation->set_message('_valid_captcha', 'The Captcha is incorrect.');
-			return $text == $this->db_session->userdata('captcha');
+			return strtolower($text) == strtolower($this->db_session->userdata('captcha'));
 		}
 		else
 		{
