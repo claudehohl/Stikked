@@ -412,7 +412,7 @@ if (!function_exists('display_captcha'))
 
 		//get random font
 
-		$fn = explode(',', '2,4,5,6,8,13,14,16,17,19,24,26,33');
+		$fn = explode(',', '4,5,6,8,16,17,19,24,26');
 		$f = mt_rand(0, count($fn) - 1);
 		$font_path = './static/fonts/font' . $fn[$f] . '.ttf';
 		$use_font = ($font_path != '' AND file_exists($font_path) AND function_exists('imagettftext')) ? TRUE : FALSE;
