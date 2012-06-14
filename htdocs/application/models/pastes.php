@@ -10,6 +10,7 @@
  * - getPaste()
  * - getReplies()
  * - getLists()
+ * - getSpamLists()
  * - cron()
  * Classes list:
  * - Pastes extends CI_Model
@@ -351,6 +352,52 @@ class Pastes extends CI_Model
 					$data['pastes'][$n]['paste'] = $this->process->syntax(htmlspecialchars_decode($row['raw']) , $row['lang']);
 				}
 				$data['pastes'][$n]['raw'] = $row['raw'];
+				$n++;
+			}
+		}
+		$config['base_url'] = site_url($root);
+		$config['total_rows'] = $this->countPastes();
+		$config['per_page'] = $amount;
+		$config['num_links'] = 9;
+		$config['full_tag_open'] = '<div class="pages">';
+		$config['full_tag_close'] = '</div>';
+		$config['uri_segment'] = $seg;
+		$this->pagination->initialize($config);
+		$data['pages'] = $this->pagination->create_links();
+		return $data;
+	}
+	
+	function getSpamLists($root = 'spamadmin/', $seg = 2) 
+	{
+		$this->load->library('pagination');
+		$this->load->library('process');
+		$amount = $this->config->item('per_page');
+		
+		if (!$this->uri->segment(2)) 
+		{
+			$page = 0;
+		}
+		else
+		{
+			$page = $this->uri->segment(2);
+		}
+		$this->db->select('id, title, name, created, pid, lang, session_id');
+		$this->db->where('private', 0);
+		$this->db->order_by('created', 'desc');
+		$query = $this->db->get('pastes', $amount, $page);
+		
+		if ($query->num_rows() > 0) 
+		{
+			$n = 0;
+			foreach ($query->result_array() as $row) 
+			{
+				$data['pastes'][$n]['id'] = $row['id'];
+				$data['pastes'][$n]['title'] = $row['title'];
+				$data['pastes'][$n]['name'] = $row['name'];
+				$data['pastes'][$n]['created'] = $row['created'];
+				$data['pastes'][$n]['lang'] = $row['lang'];
+				$data['pastes'][$n]['pid'] = $row['pid'];
+				$data['pastes'][$n]['session_id'] = $row['session_id'];
 				$n++;
 			}
 		}
