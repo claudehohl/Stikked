@@ -120,6 +120,11 @@ class Main extends CI_Controller
 					'type' => 'VARCHAR',
 					'constraint' => 8,
 				) ,
+				'session_id' => array(
+					'type' => 'VARCHAR',
+					'constraint' => 40,
+					'null' => TRUE,
+				) ,
 			);
 			$this->dbforge->add_field($fields);
 			$this->dbforge->add_key('id', true);
@@ -127,8 +132,14 @@ class Main extends CI_Controller
 			$this->dbforge->add_key('private');
 			$this->dbforge->add_key('replyto');
 			$this->dbforge->add_key('created');
+			$this->dbforge->add_key('session_id');
 			$this->dbforge->create_table('pastes', true);
 		}
+
+		//check if field session_id exists
+		//todo
+
+		
 	}
 	
 	function _form_prep($lang = false, $title = '', $paste = '', $reply = false) 

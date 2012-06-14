@@ -6,7 +6,7 @@
  * - index()
  * - lists()
  * Classes list:
- * - Main extends CI_Controller
+ * - Spamadmin extends CI_Controller
  */
 
 class Spamadmin extends CI_Controller
@@ -15,32 +15,6 @@ class Spamadmin extends CI_Controller
 	function __construct() 
 	{
 		parent::__construct();
-		$this->load->model('languages');
-		
-		if (!$this->db->table_exists('pid_ip')) 
-		{
-			$this->load->dbforge();
-			$fields = array(
-				'id' => array(
-					'type' => 'INT',
-					'constraint' => 10,
-					'auto_increment' => TRUE,
-				) ,
-				'pid' => array(
-					'type' => 'VARCHAR',
-					'constraint' => 8,
-				) ,
-				'ip' => array(
-					'type' => 'VARCHAR',
-					'constraint' => 15,
-				) ,
-			);
-			$this->dbforge->add_field($fields);
-			$this->dbforge->add_key('id', true);
-			$this->dbforge->add_key('pid');
-			$this->dbforge->add_key('ip');
-			$this->dbforge->create_table('pid_ip', true);
-		}
 	}
 	
 	function index() 
