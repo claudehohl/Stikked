@@ -16,6 +16,7 @@
  * - captcha()
  * - _valid_lang()
  * - _valid_captcha()
+ * - _valid_ip()
  * - get_cm_js()
  * - error_404()
  * Classes list:
@@ -255,6 +256,11 @@ class Main extends CI_Controller
 					'label' => 'Captcha',
 					'rules' => 'callback__valid_captcha',
 				) ,
+				array(
+					'field' => 'valid_ip',
+					'label' => 'Valid IP',
+					'rules' => 'callback__valid_ip',
+				) ,
 			);
 
 			//form validation
@@ -474,6 +480,15 @@ class Main extends CI_Controller
 		{
 			return true;
 		}
+	}
+	
+	function _valid_ip() 
+	{
+		$this->form_validation->set_message('_valid_ip', 'You are not allowed to paste.');
+		$query = $this->db->get_where('blocked_ips', array(
+			'ip_address' => $this->input->ip_address()
+		) , 1);
+		return count($query->result_array()) == 0;
 	}
 	
 	function get_cm_js() 
