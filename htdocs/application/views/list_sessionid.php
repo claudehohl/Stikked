@@ -1,5 +1,5 @@
 <?php $this->load->view('defaults/header');?>
-<h1>Spamadmin</h1>
+<h1>Spamadmin - Pastes for sessionid <?php echo $session_id; ?></h1>
 
 		<?php 
 		function checkNum($num){
@@ -14,7 +14,6 @@
 						<th class="name">Name</th>
 						<th class="lang">Language</th>
 						<th class="time">When</th>
-						<th class="time">Session</th>
 					</tr>
 		<?php	foreach($pastes as $paste) {
 				if(checkNum($n) == TRUE) {
@@ -30,7 +29,6 @@
 			<td><?php echo $paste['name']; ?></td>
 			<td><?php echo $paste['lang']; ?></td>
 			<td><?php $p = explode(",", timespan($paste['created'], time())); echo $p[0]; ?> ago.</td>
-			<td><a href="<?php echo site_url('spamadmin/session/' . $paste['session_id']) ?>">[<?php echo substr($paste['session_id'], 0, 8); ?>...]</a></td>
 		</tr>
 
 		<?php }?>

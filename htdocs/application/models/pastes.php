@@ -24,9 +24,14 @@ class Pastes extends CI_Model
 		parent::__construct();
 	}
 	
-	function countPastes() 
+	function countPastes($session_id = false) 
 	{
 		$this->db->where('private', 0);
+		
+		if ($session_id) 
+		{
+			$this->db->where('session_id', $session_id);
+		}
 		$query = $this->db->get('pastes');
 		return $query->num_rows();
 	}
@@ -367,22 +372,27 @@ class Pastes extends CI_Model
 		return $data;
 	}
 	
-	function getSpamLists($root = 'spamadmin/', $seg = 2) 
+	function getSpamLists($root = 'spamadmin/', $seg = 2, $session_id = false) 
 	{
 		$this->load->library('pagination');
 		$this->load->library('process');
 		$amount = $this->config->item('per_page');
 		
-		if (!$this->uri->segment(2)) 
+		if (!$this->uri->segment($seg)) 
 		{
 			$page = 0;
 		}
 		else
 		{
-			$page = $this->uri->segment(2);
+			$page = $this->uri->segment($seg);
 		}
 		$this->db->select('id, title, name, created, pid, lang, session_id');
 		$this->db->where('private', 0);
+		
+		if ($session_id) 
+		{
+			$this->db->where('session_id', $session_id);
+		}
 		$this->db->order_by('created', 'desc');
 		$query = $this->db->get('pastes', $amount, $page);
 		
@@ -402,7 +412,7 @@ class Pastes extends CI_Model
 			}
 		}
 		$config['base_url'] = site_url($root);
-		$config['total_rows'] = $this->countPastes();
+		$config['total_rows'] = $this->countPastes($session_id);
 		$config['per_page'] = $amount;
 		$config['num_links'] = 9;
 		$config['full_tag_open'] = '<div class="pages">';

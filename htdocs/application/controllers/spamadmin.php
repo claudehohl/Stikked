@@ -27,8 +27,9 @@ class Spamadmin extends CI_Controller
 	function session() 
 	{
 		$this->load->model('pastes');
-		$session_id = 'sdf';
-		$data = $this->pastes->getSpamLists($session_id);
+		$session_id = $this->uri->segment(3);
+		$data = $this->pastes->getSpamLists('spamadmin/session/' . $session_id, $seg = 4, $session_id);
+		$data['session_id'] = $session_id;
 		$this->load->view('list_sessionid', $data);
 	}
 }
