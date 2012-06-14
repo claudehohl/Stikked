@@ -1,5 +1,18 @@
 <?php $this->load->view('defaults/header');?>
-<h1>Spamadmin - Pastes for sessionid <?php echo $session_id; ?></h1>
+<h1><a href="<?php echo site_url('spamadmin'); ?>">Spamadmin</a> - Pastes for sessionid <?php echo $session_id; ?></h1>
+
+<form action="" method="post">
+    <label for="private">Block IP (<?php echo $ip_address; ?>)</label>
+    <div class="text_beside">
+        <input type="checkbox" name="private" value="1" id="private" tabindex="6" />
+    </div>
+
+    <div class="text_beside">
+        <input type="submit" name="confirm_remove" value="Confirm removal of all pastes below" />
+    </div>
+</form>
+
+<div class="space"></div>
 
 		<?php 
 		function checkNum($num){
