@@ -39,7 +39,7 @@ class Spamadmin extends CI_Controller
 			$this->dbforge->add_key('id', true);
 			$this->dbforge->add_key('pid');
 			$this->dbforge->add_key('ip');
-			$this->dbforge->create_table('pastes', true);
+			$this->dbforge->create_table('pid_ip', true);
 		}
 	}
 	
