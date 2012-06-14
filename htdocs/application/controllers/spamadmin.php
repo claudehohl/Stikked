@@ -4,6 +4,7 @@
  * Function list:
  * - __construct()
  * - index()
+ * - session()
  * Classes list:
  * - Spamadmin extends CI_Controller
  */
@@ -21,5 +22,13 @@ class Spamadmin extends CI_Controller
 		$this->load->model('pastes');
 		$data = $this->pastes->getSpamLists();
 		$this->load->view('spamlist', $data);
+	}
+	
+	function session() 
+	{
+		$this->load->model('pastes');
+		$session_id = 'sdf';
+		$data = $this->pastes->getSpamLists($session_id);
+		$this->load->view('list_sessionid', $data);
 	}
 }
