@@ -148,6 +148,7 @@ class Pastes extends CI_Model
 				$data['snipurl'] = false;
 			}
 		}
+		$data['session_id'] = $this->input->cookie('ci_session');
 		$this->db->insert('pastes', $data);
 		return 'view/' . $data['pid'];
 	}
