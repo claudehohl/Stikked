@@ -15,6 +15,17 @@ class Spamadmin extends CI_Controller
 	function __construct() 
 	{
 		parent::__construct();
+
+		//protection
+		$user = $this->config->item('spamadmin_user');
+		$pass = $this->config->item('spamadmin_pass');
+		
+		if ($user == '' || $pass == '' || !isset($_SERVER['PHP_AUTH_USER']) || $_SERVER['PHP_AUTH_USER'] != $user || $_SERVER['PHP_AUTH_PW'] != $pass) 
+		{
+			header('WWW-Authenticate: Basic realm="Backup"');
+			header('HTTP/1.0 401 Unauthorized');
+			exit;
+		}
 	}
 	
 	function index() 
