@@ -152,9 +152,18 @@ class Main extends CI_Controller
 		}
 
 		//check if field session_id exists
-		//todo
-
 		
+		if (!$this->db->field_exists('session_id', 'pastes')) 
+		{
+			$fields = array(
+				'session_id' => array(
+					'type' => 'VARCHAR',
+					'constraint' => 40,
+					'null' => TRUE,
+				) ,
+			);
+			$this->dbforge->add_column('pastes', $fields);
+		}
 	}
 	
 	function _form_prep($lang = false, $title = '', $paste = '', $reply = false) 
