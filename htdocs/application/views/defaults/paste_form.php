@@ -93,7 +93,7 @@
 									"360" => "6 Hours",
 									"720" => "12 Hours",
 									"1440" => "1 Day",
-									"100080" => "1 Week",
+									"10080" => "1 Week",
 									"40320" => "4 Weeks"
 								);
 				echo form_dropdown('expire', $options, $expire_set, $expire_extra); ?>
