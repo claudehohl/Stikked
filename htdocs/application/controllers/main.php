@@ -151,8 +151,6 @@ class Main extends CI_Controller
 			$this->dbforge->add_key('ip_address', true);
 			$this->dbforge->create_table('blocked_ips', true);
 		}
-
-		//check if field session_id exists
 		
 		if (!$this->db->field_exists('ip_address', 'pastes')) 
 		{

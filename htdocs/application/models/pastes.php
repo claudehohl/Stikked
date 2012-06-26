@@ -24,13 +24,13 @@ class Pastes extends CI_Model
 		parent::__construct();
 	}
 	
-	function countPastes($session_id = false) 
+	function countPastes($ip_address = false) 
 	{
 		$this->db->where('private', 0);
 		
-		if ($session_id) 
+		if ($ip_address) 
 		{
-			$this->db->where('session_id', $session_id);
+			$this->db->where('ip_address', $ip_address);
 		}
 		$query = $this->db->get('pastes');
 		return $query->num_rows();
@@ -372,7 +372,7 @@ class Pastes extends CI_Model
 		return $data;
 	}
 	
-	function getSpamLists($root = 'spamadmin/', $seg = 2, $session_id = false) 
+	function getSpamLists($root = 'spamadmin/', $seg = 2, $ip_address = false) 
 	{
 		$this->load->library('pagination');
 		$this->load->library('process');
@@ -386,12 +386,12 @@ class Pastes extends CI_Model
 		{
 			$page = $this->uri->segment($seg);
 		}
-		$this->db->select('id, title, name, created, pid, lang, session_id');
+		$this->db->select('id, title, name, created, pid, lang, ip_address');
 		$this->db->where('private', 0);
 		
-		if ($session_id) 
+		if ($ip_address) 
 		{
-			$this->db->where('session_id', $session_id);
+			$this->db->where('ip_address', $ip_address);
 		}
 		$this->db->order_by('created', 'desc');
 		$query = $this->db->get('pastes', $amount, $page);
@@ -407,12 +407,12 @@ class Pastes extends CI_Model
 				$data['pastes'][$n]['created'] = $row['created'];
 				$data['pastes'][$n]['lang'] = $row['lang'];
 				$data['pastes'][$n]['pid'] = $row['pid'];
-				$data['pastes'][$n]['session_id'] = $row['session_id'];
+				$data['pastes'][$n]['ip_address'] = $row['ip_address'];
 				$n++;
 			}
 		}
 		$config['base_url'] = site_url($root);
-		$config['total_rows'] = $this->countPastes($session_id);
+		$config['total_rows'] = $this->countPastes($ip_address);
 		$config['per_page'] = $amount;
 		$config['num_links'] = 9;
 		$config['full_tag_open'] = '<div class="pages">';
