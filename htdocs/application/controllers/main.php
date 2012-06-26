@@ -121,9 +121,9 @@ class Main extends CI_Controller
 					'type' => 'VARCHAR',
 					'constraint' => 8,
 				) ,
-				'session_id' => array(
+				'ip_address' => array(
 					'type' => 'VARCHAR',
-					'constraint' => 40,
+					'constraint' => 16,
 					'null' => TRUE,
 				) ,
 			);
@@ -133,7 +133,7 @@ class Main extends CI_Controller
 			$this->dbforge->add_key('private');
 			$this->dbforge->add_key('replyto');
 			$this->dbforge->add_key('created');
-			$this->dbforge->add_key('session_id');
+			$this->dbforge->add_key('ip_address');
 			$this->dbforge->create_table('pastes', true);
 		}
 		
@@ -154,12 +154,13 @@ class Main extends CI_Controller
 
 		//check if field session_id exists
 		
-		if (!$this->db->field_exists('session_id', 'pastes')) 
+		if (!$this->db->field_exists('ip_address', 'pastes')) 
 		{
+			$this->load->dbforge();
 			$fields = array(
-				'session_id' => array(
+				'ip_address' => array(
 					'type' => 'VARCHAR',
-					'constraint' => 40,
+					'constraint' => 16,
 					'null' => TRUE,
 				) ,
 			);
