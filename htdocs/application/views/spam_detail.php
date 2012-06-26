@@ -4,7 +4,7 @@
 <form action="" method="post">
     <label for="private">Block IP (<?php echo $ip_address; ?>)</label>
     <div class="text_beside">
-        <input type="checkbox" name="block_ip" value="1" />
+        <input type="checkbox" name="block_ip" value="1" checked="checked" />
     </div>
 
     <div class="text_beside">
