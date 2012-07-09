@@ -1,4 +1,3 @@
-
 <?php echo validation_errors(); ?>
 
 <div class="form_wrapper margin">
@@ -94,7 +93,7 @@
 									"720" => "12 Hours",
 									"1440" => "1 Day",
 									"10080" => "1 Week",
-									"40320" => "4 Weeks"
+									"400320" => "4 Weeks"
 								);
 				echo form_dropdown('expire', $options, $expire_set, $expire_extra); ?>
 			</div>
