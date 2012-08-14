@@ -483,10 +483,21 @@ class Main extends CI_Controller
 	
 	function _valid_ip() 
 	{
+
+		//get ip
+		$ip = $this->input->ip_address();
+		$ip = explode('.', $ip);
+		$ip_firstpart = $ip[0] . '.' . $ip[1] . '.';
+
+		//setup message
 		$this->form_validation->set_message('_valid_ip', 'You are not allowed to paste.');
-		$query = $this->db->get_where('blocked_ips', array(
-			'ip_address' => $this->input->ip_address()
-		) , 1);
+
+		//lookup
+		$this->db->select('ip_address');
+		$this->db->like('ip_address', $ip_firstpart, 'after');
+		$query = $this->db->get('blocked_ips');
+
+		//return
 		return count($query->result_array()) == 0;
 	}
 	
