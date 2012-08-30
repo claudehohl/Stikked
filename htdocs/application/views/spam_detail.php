@@ -5,18 +5,19 @@
 
 <div class="form_wrapper">
     <form action="" method="post">
+<?php if($this->uri->segment(3) == 'confirm') { ?>
+        <input class="dangerbutton" type="submit" name="confirm_remove" value="Confirm removal of all pastes below" />
+<?php } else { ?>
+        <div class="text_beside_wide">
+            <a href="<?php echo site_url('spamadmin/' . $ip_address . '/confirm'); ?>">Remove all pastes below</a>
+        </div>
+<?php } ?>
         <label for="block_ip">Block IP 
             <span class="instruction">(<?php echo $ip_address; ?>)</span>
         </label>
         <div class="text_beside">
             <input type="checkbox" id="block_ip" name="block_ip" value="1" checked="checked" />
         </div>
-
-<?php if($this->uri->segment(3) == 'confirm') { ?>
-        <input class="dangerbutton" type="submit" name="confirm_remove" value="Confirm removal of all pastes below" />
-<?php } else { ?>
-        <p><a href="<?php echo site_url('spamadmin/' . $ip_address . '/confirm'); ?>">Remove all pastes below</a></p>
-<?php } ?>
     </form>
 </div>
 
