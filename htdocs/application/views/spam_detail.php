@@ -12,8 +12,8 @@
             <a href="<?php echo site_url('spamadmin/' . $ip_address . '/confirm'); ?>">Remove all pastes below</a>
         </div>
 <?php } ?>
-        <label for="block_ip">Block IP 
-            <span class="instruction">(<?php echo $ip_address; ?>)</span>
+        <label for="block_ip">Block IP range
+            <span class="instruction">(<?php echo $ip_range; ?>)</span>
         </label>
         <div class="text_beside">
             <input type="checkbox" id="block_ip" name="block_ip" value="1" checked="checked" />

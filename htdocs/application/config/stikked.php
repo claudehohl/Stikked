@@ -72,6 +72,7 @@ $config['per_page'] = 10;
 **/
 $config['private_only'] = false;
 $config['enable_captcha'] = false;
+//spamadmin: accessible via /spamadmin (only active when user + pass is set)
 $config['spamadmin_user'] = 'a';
 $config['spamadmin_pass'] = 'a';
 

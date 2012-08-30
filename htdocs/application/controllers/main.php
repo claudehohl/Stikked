@@ -146,6 +146,11 @@ class Main extends CI_Controller
 					'constraint' => 16,
 					'default' => 0,
 				) ,
+				'spam_attempts' => array(
+					'type' => 'INT',
+					'constraint' => 6,
+					'default' => 0,
+				) ,
 			);
 			$this->dbforge->add_field($fields);
 			$this->dbforge->add_key('ip_address', true);
