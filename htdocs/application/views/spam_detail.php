@@ -1,16 +1,20 @@
 <?php $this->load->view('defaults/header');?>
 <h1><a href="<?php echo site_url('spamadmin'); ?>">Spamadmin</a> - Pastes for ip <?php echo $ip_address; ?></h1>
 
-<form action="" method="post">
-    <label for="private">Block IP (<?php echo $ip_address; ?>)</label>
-    <div class="text_beside">
-        <input type="checkbox" name="block_ip" value="1" checked="checked" />
-    </div>
+<div class="space">&nbsp;</div>
 
-    <div class="text_beside">
-        <input type="submit" name="confirm_remove" value="Confirm removal of all pastes below" />
-    </div>
-</form>
+<div class="form_wrapper">
+    <form action="" method="post">
+        <label for="block_ip">Block IP 
+            <span class="instruction">(<?php echo $ip_address; ?>)</span>
+        </label>
+        <div class="text_beside">
+            <input type="checkbox" id="block_ip" name="block_ip" value="1" checked="checked" />
+        </div>
+
+        <input class="dangerbutton" type="submit" name="confirm_remove" value="Confirm removal of all pastes below" />
+    </form>
+</div>
 
 <div class="space"></div>
 

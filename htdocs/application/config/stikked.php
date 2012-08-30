@@ -72,8 +72,8 @@ $config['per_page'] = 10;
 **/
 $config['private_only'] = false;
 $config['enable_captcha'] = false;
-$config['spamadmin_user'] = '';
-$config['spamadmin_pass'] = '';
+$config['spamadmin_user'] = 'a';
+$config['spamadmin_pass'] = 'a';
 
 /**
  * Default language
