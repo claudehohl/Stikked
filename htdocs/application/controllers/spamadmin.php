@@ -4,7 +4,7 @@
  * Function list:
  * - __construct()
  * - index()
- * - session()
+ * - spam_detail()
  * Classes list:
  * - Spamadmin extends CI_Controller
  */
@@ -44,6 +44,8 @@ class Spamadmin extends CI_Controller
 		{
 			$this->db->where('ip_address', $ip_address);
 			$this->db->delete('pastes');
+
+			//todo: catch duplicate error
 			
 			if ($this->input->post('block_ip')) 
 			{
