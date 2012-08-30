@@ -52,7 +52,7 @@
 				</tbody>
 			</table>
 		<?php } else { ?>
-			<p>There have been no pastes :(</p>
+			<p class="clear">There have been no pastes :(</p>
 		<?php }?>
 <?php echo $pages; ?>
 <div class="spacer"></div>
