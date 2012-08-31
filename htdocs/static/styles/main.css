@@ -220,11 +220,6 @@ h4 {
 	float: left;
 }
 
-.form_wrapper .text_beside_wide {
-	width: 223px;
-	float: left;
-}
-
 .form_wrapper .text_beside input, .form_wrapper .item_group .item .text_beside input {
 	margin-right: 5px;
 	float: left;

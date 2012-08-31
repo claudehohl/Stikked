@@ -5,13 +5,7 @@
 
 <div class="form_wrapper">
     <form action="" method="post">
-<?php if($this->uri->segment(3) == 'confirm') { ?>
-        <input class="dangerbutton" type="submit" name="confirm_remove" value="Confirm removal of all pastes below" />
-<?php } else { ?>
-        <div class="text_beside_wide">
-            <a href="<?php echo site_url('spamadmin/' . $ip_address . '/confirm'); ?>">Remove all pastes below</a>
-        </div>
-<?php } ?>
+        <input class="dangerbutton" type="submit" name="confirm_remove" value="Remove of all pastes below" />
         <label for="block_ip">Block IP range
             <span class="instruction">(<?php echo $ip_range; ?>)</span>
         </label>
