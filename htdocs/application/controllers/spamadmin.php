@@ -76,7 +76,7 @@ class Spamadmin extends CI_Controller
 	function blacklist() 
 	{
 		$this->db->select('ip_address, blocked_at, spam_attempts');
-		$this->db->order_by('blocked_at', 'desc');
+		$this->db->order_by('blocked_at desc, ip_address asc');
 		$query = $this->db->get('blocked_ips');
 		$data['blocked_ips'] = $query->result_array();
 
