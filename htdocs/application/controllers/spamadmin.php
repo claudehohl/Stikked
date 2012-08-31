@@ -45,6 +45,7 @@ class Spamadmin extends CI_Controller
 		{
 			$this->db->where('ip_address', $ip_address);
 			$this->db->delete('pastes');
+			$paste_count = $this->db->affected_rows();
 			
 			if ($this->input->post('block_ip')) 
 			{
@@ -57,6 +58,7 @@ class Spamadmin extends CI_Controller
 					$this->db->insert('blocked_ips', array(
 						'ip_address' => $ip_address,
 						'blocked_at' => mktime() ,
+						'spam_attempts' => $paste_count,
 					));
 				}
 			}
