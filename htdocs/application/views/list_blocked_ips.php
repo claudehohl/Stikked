@@ -1,5 +1,5 @@
 <?php $this->load->view('defaults/header');?>
-<h1><a href="<?php echo site_url('spamadmin'); ?>">Spamadmin</a> - blocked IPs</h1>
+<h1><a href="<?php echo site_url('spamadmin'); ?>">Spamadmin</a> - blocked IP ranges</h1>
 
 		<?php
 		function checkNum($num){
@@ -10,25 +10,28 @@
 			<table class="recent">
 				<tbody>
 					<tr>
-						<th class="title">IP address</th>
+						<th class="title">IP range</th>
 						<th class="time">When</th>
 						<th class="time">Spam attempts</th>
 						<th class="name">Unblock IP</th>
 					</tr>
-		<?php foreach($blocked_ips as $ip){
+		<?php foreach($blocked_ips as $ip_address){
 				if(checkNum($n) == TRUE) {
 					$eo = "even";
 				} else {
 					$eo = "odd";
 				}
 				$n++;
+                $ip = explode('.', $ip_address['ip_address']);
+                $ip_firstpart = $ip[0] . '.' . $ip[1] . '.';
+                $ip_range = $ip_firstpart . '*.*';
 		?>
 
 		<tr class="<?php echo $eo; ?>">
-			<td class="first"><?php echo $ip['ip_address']; ?></td>
-			<td><?php $p = explode(",", timespan($ip['blocked_at'], time())); echo $p[0]; ?> ago.</td>
+			<td class="first"><?php echo $ip_range; ?></td>
+			<td><?php $p = explode(",", timespan($ip_address['blocked_at'], time())); echo $p[0]; ?> ago.</td>
 			<td><?php echo '43'; ?></td>
-			<td><a href="<?php echo site_url('spamadmin/blocked_ips/unblock/' . $ip['ip_address']) ?>">Unblock</a></td>
+			<td><a href="<?php echo site_url('spamadmin/blocked_ips/unblock/' . $ip_address['ip_address']) ?>">Unblock</a></td>
 		</tr>
 
 		<?php }?>
