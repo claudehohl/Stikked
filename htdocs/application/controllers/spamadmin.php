@@ -5,7 +5,7 @@
  * - __construct()
  * - index()
  * - spam_detail()
- * - blocked_ips()
+ * - blacklist()
  * Classes list:
  * - Spamadmin extends CI_Controller
  */
@@ -55,7 +55,8 @@ class Spamadmin extends CI_Controller
 				if ($query->num_rows() == 0) 
 				{
 					$this->db->insert('blocked_ips', array(
-						'ip_address' => $ip_address
+						'ip_address' => $ip_address,
+						'blocked_at' => mktime() ,
 					));
 				}
 			}
@@ -74,10 +75,12 @@ class Spamadmin extends CI_Controller
 	
 	function blacklist() 
 	{
-		$this->db->select('ip_address');
-		$this->db->order_by('blocked_at');
+		$this->db->select('ip_address, blocked_at, spam_attempts');
+		$this->db->order_by('blocked_at', 'desc');
 		$query = $this->db->get('blocked_ips');
 		$data['blocked_ips'] = $query->result_array();
+
+		//view
 		$this->load->view('list_blocked_ips', $data);
 	}
 }

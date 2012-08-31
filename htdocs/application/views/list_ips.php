@@ -1,6 +1,6 @@
 <?php $this->load->view('defaults/header');?>
 <h1>Spamadmin</h1>
-<p>51 spam-pastes eaten so far. <a href="<?php echo site_url('spamadmin/blocked_ips'); ?>">View blocked IPs</a>.</p>
+<p>51 spam-pastes eaten so far. <a href="<?php echo site_url('spamadmin/blacklist'); ?>">View blocked IPs</a>.</p>
 
 		<?php
 		function checkNum($num){

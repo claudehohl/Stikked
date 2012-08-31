@@ -30,7 +30,7 @@
 		<tr class="<?php echo $eo; ?>">
 			<td class="first"><?php echo $ip_range; ?></td>
 			<td><?php $p = explode(",", timespan($ip_address['blocked_at'], time())); echo $p[0]; ?> ago.</td>
-			<td><?php echo '43'; ?></td>
+			<td><?php echo $ip_address['spam_attempts']; ?></td>
 			<td><a href="<?php echo site_url('spamadmin/blacklist/unblock/' . $ip_address['ip_address']) ?>">Unblock</a></td>
 		</tr>
 
@@ -38,7 +38,7 @@
 				</tbody>
 			</table>
 		<?php } else { ?>
-			<p>There have been no pastes :(</p>
+			<p>No IP ranges blocked.</p>
 		<?php }?>
 <?php echo $pages; ?>
 <div class="spacer"></div>
