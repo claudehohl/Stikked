@@ -411,6 +411,8 @@ class Pastes extends CI_Model
 				$n++;
 			}
 		}
+
+		//pagination
 		$config['base_url'] = site_url($root);
 		$config['total_rows'] = $this->countPastes($ip_address);
 		$config['per_page'] = $amount;
@@ -420,6 +422,14 @@ class Pastes extends CI_Model
 		$config['uri_segment'] = $seg;
 		$this->pagination->initialize($config);
 		$data['pages'] = $this->pagination->create_links();
+
+		//total spam attempts
+		$this->db->select('SUM(spam_attempts) as sum');
+		$query = $this->db->get('blocked_ips');
+		$q = $query->result_array();
+		$data['total_spam_attempts'] = $q[0]['sum'];
+
+		//return
 		return $data;
 	}
 	
