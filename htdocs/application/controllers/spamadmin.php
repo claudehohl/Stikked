@@ -44,14 +44,19 @@ class Spamadmin extends CI_Controller
 		{
 			$this->db->where('ip_address', $ip_address);
 			$this->db->delete('pastes');
-
-			//todo: catch duplicate error
 			
 			if ($this->input->post('block_ip')) 
 			{
-				$this->db->insert('blocked_ips', array(
+				$query = $this->db->get_where('blocked_ips', array(
 					'ip_address' => $ip_address
 				));
+				
+				if ($query->num_rows() == 0) 
+				{
+					$this->db->insert('blocked_ips', array(
+						'ip_address' => $ip_address
+					));
+				}
 			}
 		}
 
