@@ -524,20 +524,38 @@ class Main extends CI_Controller
 	{
 
 		//get ip
-		$ip = $this->input->ip_address();
-		$ip = explode('.', $ip);
+		$ip_address = $this->input->ip_address();
+		$ip = explode('.', $ip_address);
 		$ip_firstpart = $ip[0] . '.' . $ip[1] . '.';
 
 		//setup message
 		$this->form_validation->set_message('_valid_ip', 'You are not allowed to paste.');
 
 		//lookup
-		$this->db->select('ip_address');
+		$this->db->select('ip_address, spam_attempts');
 		$this->db->like('ip_address', $ip_firstpart, 'after');
 		$query = $this->db->get('blocked_ips');
 
-		//return
-		return count($query->result_array()) == 0;
+		//check
+		
+		if ($query->num_rows() > 0) 
+		{
+
+			//update spamcount
+			$blocked_ips = $query->result_array();
+			$spam_attempts = $blocked_ips[0]['spam_attempts'];
+			$this->db->where('ip_address', $ip_address);
+			$this->db->update('blocked_ips', array(
+				'spam_attempts' => $spam_attempts + 1,
+			));
+
+			//return for the validation
+			return false;
+		}
+		else
+		{
+			return true;
+		}
 	}
 	
 	function get_cm_js() 
