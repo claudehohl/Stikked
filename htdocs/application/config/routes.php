@@ -53,6 +53,7 @@ $route['lists'] = 'main/lists';
 $route['lists/rss'] = 'main/lists/rss';
 $route['lists/:num'] = 'main/lists/$1';
 $route['spamadmin/:num'] = 'spamadmin/index';
+$route['spamadmin/blocked_ips'] = 'spamadmin/blocked_ips';
 $route['spamadmin/:any'] = 'spamadmin/spam_detail';
 $route['about'] = 'main/about';
 

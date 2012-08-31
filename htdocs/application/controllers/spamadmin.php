@@ -5,6 +5,7 @@
  * - __construct()
  * - index()
  * - spam_detail()
+ * - blocked_ips()
  * Classes list:
  * - Spamadmin extends CI_Controller
  */
@@ -69,5 +70,12 @@ class Spamadmin extends CI_Controller
 
 		//view
 		$this->load->view('spam_detail', $data);
+	}
+	
+	function blocked_ips() 
+	{
+		$this->load->model('pastes');
+		$data = $this->pastes->getSpamLists();
+		$this->load->view('list_ips', $data);
 	}
 }
