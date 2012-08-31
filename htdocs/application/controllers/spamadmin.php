@@ -6,6 +6,7 @@
  * - index()
  * - spam_detail()
  * - blacklist()
+ * - unblock_ip()
  * Classes list:
  * - Spamadmin extends CI_Controller
  */
@@ -84,5 +85,13 @@ class Spamadmin extends CI_Controller
 
 		//view
 		$this->load->view('list_blocked_ips', $data);
+	}
+	
+	function unblock_ip() 
+	{
+		$ip_address = $this->uri->segment(4);
+		$this->db->where('ip_address', $ip_address);
+		$this->db->delete('blocked_ips');
+		redirect('spamadmin/blacklist');
 	}
 }
