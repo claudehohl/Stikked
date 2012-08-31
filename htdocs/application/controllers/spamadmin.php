@@ -74,8 +74,10 @@ class Spamadmin extends CI_Controller
 	
 	function blocked_ips() 
 	{
-		$this->load->model('pastes');
-		$data = $this->pastes->getSpamLists();
-		$this->load->view('list_ips', $data);
+		$this->db->select('ip_address');
+		$this->db->order_by('blocked_at');
+		$query = $this->db->get('blocked_ips');
+		$data['blocked_ips'] = $query->result_array();
+		$this->load->view('list_blocked_ips', $data);
 	}
 }

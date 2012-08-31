@@ -146,7 +146,10 @@ class Main extends CI_Controller
 					'constraint' => 16,
 					'default' => 0,
 				) ,
-                //todo
+				'blocked_at' => array(
+					'type' => 'INT',
+					'constraint' => 10,
+				) ,
 				'spam_attempts' => array(
 					'type' => 'INT',
 					'constraint' => 6,
