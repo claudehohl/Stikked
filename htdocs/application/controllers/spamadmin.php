@@ -72,7 +72,7 @@ class Spamadmin extends CI_Controller
 		$this->load->view('spam_detail', $data);
 	}
 	
-	function blocked_ips() 
+	function blacklist() 
 	{
 		$this->db->select('ip_address');
 		$this->db->order_by('blocked_at');

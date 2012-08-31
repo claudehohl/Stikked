@@ -31,7 +31,7 @@
 			<td class="first"><?php echo $ip_range; ?></td>
 			<td><?php $p = explode(",", timespan($ip_address['blocked_at'], time())); echo $p[0]; ?> ago.</td>
 			<td><?php echo '43'; ?></td>
-			<td><a href="<?php echo site_url('spamadmin/blocked_ips/unblock/' . $ip_address['ip_address']) ?>">Unblock</a></td>
+			<td><a href="<?php echo site_url('spamadmin/blacklist/unblock/' . $ip_address['ip_address']) ?>">Unblock</a></td>
 		</tr>
 
 		<?php }?>
