@@ -427,7 +427,16 @@ class Pastes extends CI_Model
 		$this->db->select('SUM(spam_attempts) as sum');
 		$query = $this->db->get('blocked_ips');
 		$q = $query->result_array();
-		$data['total_spam_attempts'] = $q[0]['sum'];
+		
+		if ($q[0]['sum'] != '') 
+		{
+			$total_spam_attempts = $q[0]['sum'];
+		}
+		else
+		{
+			$total_spam_attempts = 0;
+		}
+		$data['total_spam_attempts'] = $total_spam_attempts;
 
 		//return
 		return $data;
