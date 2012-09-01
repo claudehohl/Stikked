@@ -10,6 +10,7 @@
  * - getPaste()
  * - getReplies()
  * - getLists()
+ * - getSpamLists()
  * - cron()
  * Classes list:
  * - Pastes extends CI_Model
@@ -23,9 +24,14 @@ class Pastes extends CI_Model
 		parent::__construct();
 	}
 	
-	function countPastes() 
+	function countPastes($ip_address = false) 
 	{
 		$this->db->where('private', 0);
+		
+		if ($ip_address) 
+		{
+			$this->db->where('ip_address', $ip_address);
+		}
 		$query = $this->db->get('pastes');
 		return $query->num_rows();
 	}
@@ -148,6 +154,7 @@ class Pastes extends CI_Model
 				$data['snipurl'] = false;
 			}
 		}
+		$data['ip_address'] = $this->input->ip_address();
 		$this->db->insert('pastes', $data);
 		return 'view/' . $data['pid'];
 	}
@@ -362,6 +369,67 @@ class Pastes extends CI_Model
 		$config['uri_segment'] = $seg;
 		$this->pagination->initialize($config);
 		$data['pages'] = $this->pagination->create_links();
+		return $data;
+	}
+	
+	function getSpamLists($root = 'spamadmin/', $seg = 2, $ip_address = false) 
+	{
+		$this->load->library('pagination');
+		$this->load->library('process');
+		$amount = $this->config->item('per_page');
+		
+		if (!$this->uri->segment($seg)) 
+		{
+			$page = 0;
+		}
+		else
+		{
+			$page = $this->uri->segment($seg);
+		}
+		$this->db->select('id, title, name, created, pid, lang, ip_address');
+		$this->db->where('private', 0);
+		
+		if ($ip_address) 
+		{
+			$this->db->where('ip_address', $ip_address);
+		}
+		$this->db->order_by('created', 'desc');
+		$query = $this->db->get('pastes', $amount, $page);
+		
+		if ($query->num_rows() > 0) 
+		{
+			$n = 0;
+			foreach ($query->result_array() as $row) 
+			{
+				$data['pastes'][$n]['id'] = $row['id'];
+				$data['pastes'][$n]['title'] = $row['title'];
+				$data['pastes'][$n]['name'] = $row['name'];
+				$data['pastes'][$n]['created'] = $row['created'];
+				$data['pastes'][$n]['lang'] = $row['lang'];
+				$data['pastes'][$n]['pid'] = $row['pid'];
+				$data['pastes'][$n]['ip_address'] = $row['ip_address'];
+				$n++;
+			}
+		}
+
+		//pagination
+		$config['base_url'] = site_url($root);
+		$config['total_rows'] = $this->countPastes($ip_address);
+		$config['per_page'] = $amount;
+		$config['num_links'] = 9;
+		$config['full_tag_open'] = '<div class="pages">';
+		$config['full_tag_close'] = '</div>';
+		$config['uri_segment'] = $seg;
+		$this->pagination->initialize($config);
+		$data['pages'] = $this->pagination->create_links();
+
+		//total spam attempts
+		$this->db->select('SUM(spam_attempts) as sum');
+		$query = $this->db->get('blocked_ips');
+		$q = $query->result_array();
+		$data['total_spam_attempts'] = ($q[0]['sum'] != '' ? $q[0]['sum'] : 0);
+
+		//return
 		return $data;
 	}
 	

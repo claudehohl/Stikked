@@ -16,6 +16,7 @@
  * - captcha()
  * - _valid_lang()
  * - _valid_captcha()
+ * - _valid_ip()
  * - get_cm_js()
  * - error_404()
  * Classes list:
@@ -120,6 +121,11 @@ class Main extends CI_Controller
 					'type' => 'VARCHAR',
 					'constraint' => 8,
 				) ,
+				'ip_address' => array(
+					'type' => 'VARCHAR',
+					'constraint' => 16,
+					'null' => TRUE,
+				) ,
 			);
 			$this->dbforge->add_field($fields);
 			$this->dbforge->add_key('id', true);
@@ -127,8 +133,76 @@ class Main extends CI_Controller
 			$this->dbforge->add_key('private');
 			$this->dbforge->add_key('replyto');
 			$this->dbforge->add_key('created');
+			$this->dbforge->add_key('ip_address');
 			$this->dbforge->create_table('pastes', true);
 		}
+		
+		if (!$this->db->table_exists('blocked_ips')) 
+		{
+			$this->load->dbforge();
+			$fields = array(
+				'ip_address' => array(
+					'type' => 'VARCHAR',
+					'constraint' => 16,
+					'default' => 0,
+				) ,
+				'blocked_at' => array(
+					'type' => 'INT',
+					'constraint' => 10,
+				) ,
+				'spam_attempts' => array(
+					'type' => 'INT',
+					'constraint' => 6,
+					'default' => 0,
+				) ,
+			);
+			$this->dbforge->add_field($fields);
+			$this->dbforge->add_key('ip_address', true);
+			$this->dbforge->create_table('blocked_ips', true);
+		}
+		
+		if (!$this->db->field_exists('ip_address', 'pastes')) 
+		{
+			$this->load->dbforge();
+			$fields = array(
+				'ip_address' => array(
+					'type' => 'VARCHAR',
+					'constraint' => 16,
+					'null' => TRUE,
+				) ,
+			);
+			$this->dbforge->add_column('pastes', $fields);
+		}
+
+		//todo: remove that after migration
+		
+		if (!$this->db->field_exists('blocked_at', 'blocked_ips')) 
+		{
+			$this->load->dbforge();
+			$fields = array(
+				'blocked_at' => array(
+					'type' => 'INT',
+					'constraint' => 10,
+				) ,
+			);
+			$this->dbforge->add_column('blocked_ips', $fields);
+		}
+		
+		if (!$this->db->field_exists('spam_attempts', 'blocked_ips')) 
+		{
+			$this->load->dbforge();
+			$fields = array(
+				'spam_attempts' => array(
+					'type' => 'INT',
+					'constraint' => 6,
+					'default' => 0,
+				) ,
+			);
+			$this->dbforge->add_column('blocked_ips', $fields);
+		}
+
+		//end todo
+		
 	}
 	
 	function _form_prep($lang = false, $title = '', $paste = '', $reply = false) 
@@ -219,6 +293,11 @@ class Main extends CI_Controller
 					'field' => 'captcha',
 					'label' => 'Captcha',
 					'rules' => 'callback__valid_captcha',
+				) ,
+				array(
+					'field' => 'valid_ip',
+					'label' => 'Valid IP',
+					'rules' => 'callback__valid_ip',
 				) ,
 			);
 
@@ -434,6 +513,44 @@ class Main extends CI_Controller
 		{
 			$this->form_validation->set_message('_valid_captcha', 'The Captcha is incorrect.');
 			return strtolower($text) == strtolower($this->db_session->userdata('captcha'));
+		}
+		else
+		{
+			return true;
+		}
+	}
+	
+	function _valid_ip() 
+	{
+
+		//get ip
+		$ip_address = $this->input->ip_address();
+		$ip = explode('.', $ip_address);
+		$ip_firstpart = $ip[0] . '.' . $ip[1] . '.';
+
+		//setup message
+		$this->form_validation->set_message('_valid_ip', 'You are not allowed to paste.');
+
+		//lookup
+		$this->db->select('ip_address, spam_attempts');
+		$this->db->like('ip_address', $ip_firstpart, 'after');
+		$query = $this->db->get('blocked_ips');
+
+		//check
+		
+		if ($query->num_rows() > 0) 
+		{
+
+			//update spamcount
+			$blocked_ips = $query->result_array();
+			$spam_attempts = $blocked_ips[0]['spam_attempts'];
+			$this->db->where('ip_address', $ip_address);
+			$this->db->update('blocked_ips', array(
+				'spam_attempts' => $spam_attempts + 1,
+			));
+
+			//return for the validation
+			return false;
 		}
 		else
 		{
