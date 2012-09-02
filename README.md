@@ -31,6 +31,15 @@ Installation
 Changelog
 ---------
 
+### Version 0.8.3:
+
+* From now on, IPs get logged in the DB
+* Added spamadmin:
+  * Enter credentials in config/stikked.php
+  * Visit /spamadmin, login
+  * Click on an IP to list all pastes belonging to it
+  * You can remove all the pastes listed, and optionally block the IP range
+
 ### Version 0.8.2:
 
 * Database optimizations: Pastes use less space (if you upgrade from a previous version, execute this SQL statement: "ALTER TABLE pastes DROP paste;"
@@ -45,7 +54,7 @@ Changelog
 * Simpler API response (non-JSON)
 * Favicon
 * gw.gd URL shortener (replaces bit.ly)
-* minor fixes
+* Minor fixes
 
 ### Version 0.8:
 
