@@ -5,7 +5,7 @@
 
 <div class="form_wrapper">
     <form action="" method="post">
-        <input class="dangerbutton" type="submit" name="confirm_remove" value="Remove of all pastes below" />
+        <input class="dangerbutton" type="submit" name="confirm_remove" value="Remove all pastes below" />
         <label for="block_ip">Block IP range
             <span class="instruction">(<?php echo $ip_range; ?>)</span>
         </label>

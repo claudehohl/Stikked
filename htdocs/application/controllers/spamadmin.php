@@ -78,10 +78,29 @@ class Spamadmin extends CI_Controller
 	
 	function blacklist() 
 	{
+
+		//pagination
+		$amount = $this->config->item('per_page');
+		$page = ($this->uri->segment(3) ? $this->uri->segment(3) : 0);
+
+		//get
 		$this->db->select('ip_address, blocked_at, spam_attempts');
 		$this->db->order_by('blocked_at desc, ip_address asc');
-		$query = $this->db->get('blocked_ips');
+		$query = $this->db->get('blocked_ips', $amount, $page);
 		$data['blocked_ips'] = $query->result_array();
+
+		//pagination
+		$config['base_url'] = site_url('spamadmin/blacklist');
+		$query = $this->db->get('blocked_ips');
+		$config['total_rows'] = $query->num_rows();
+		$config['per_page'] = $amount;
+		$config['num_links'] = 9;
+		$config['full_tag_open'] = '<div class="pages">';
+		$config['full_tag_close'] = '</div>';
+		$config['uri_segment'] = 3;
+		$this->load->library('pagination');
+		$this->pagination->initialize($config);
+		$data['pages'] = $this->pagination->create_links();
 
 		//view
 		$this->load->view('list_blocked_ips', $data);
