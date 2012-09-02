@@ -173,36 +173,6 @@ class Main extends CI_Controller
 			);
 			$this->dbforge->add_column('pastes', $fields);
 		}
-
-		//todo: remove that after migration
-		
-		if (!$this->db->field_exists('blocked_at', 'blocked_ips')) 
-		{
-			$this->load->dbforge();
-			$fields = array(
-				'blocked_at' => array(
-					'type' => 'INT',
-					'constraint' => 10,
-				) ,
-			);
-			$this->dbforge->add_column('blocked_ips', $fields);
-		}
-		
-		if (!$this->db->field_exists('spam_attempts', 'blocked_ips')) 
-		{
-			$this->load->dbforge();
-			$fields = array(
-				'spam_attempts' => array(
-					'type' => 'INT',
-					'constraint' => 6,
-					'default' => 0,
-				) ,
-			);
-			$this->dbforge->add_column('blocked_ips', $fields);
-		}
-
-		//end todo
-		
 	}
 	
 	function _form_prep($lang = false, $title = '', $paste = '', $reply = false) 
