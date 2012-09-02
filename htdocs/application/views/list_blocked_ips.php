@@ -11,7 +11,7 @@
 				<tbody>
 					<tr>
 						<th class="title">IP range</th>
-						<th class="time">When</th>
+						<th class="time">Blocked</th>
 						<th class="time">Spam attempts</th>
 						<th class="name">Unblock IP</th>
 					</tr>
