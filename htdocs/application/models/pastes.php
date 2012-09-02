@@ -236,15 +236,7 @@ class Pastes extends CI_Model
 		if ($replies) 
 		{
 			$amount = $this->config->item('per_page');
-			
-			if (!$this->uri->segment(3)) 
-			{
-				$page = 0;
-			}
-			else
-			{
-				$page = $this->uri->segment(3);
-			}
+			$page = ($this->uri->segment(3) ? $this->uri->segment(3) : 0);
 			$this->db->select('title, name, created, pid, snipurl');
 			$this->db->where('replyto', $data['pid']);
 			$this->db->order_by('id', 'desc');
@@ -326,15 +318,7 @@ class Pastes extends CI_Model
 		$this->load->library('pagination');
 		$this->load->library('process');
 		$amount = $this->config->item('per_page');
-		
-		if (!$this->uri->segment(2)) 
-		{
-			$page = 0;
-		}
-		else
-		{
-			$page = $this->uri->segment(2);
-		}
+		$page = ($this->uri->segment(2) ? $this->uri->segment(2) : 0);
 		$this->db->select('id, title, name, created, pid, lang, raw');
 		$this->db->where('private', 0);
 		$this->db->order_by('created', 'desc');
@@ -377,15 +361,7 @@ class Pastes extends CI_Model
 		$this->load->library('pagination');
 		$this->load->library('process');
 		$amount = $this->config->item('per_page');
-		
-		if (!$this->uri->segment($seg)) 
-		{
-			$page = 0;
-		}
-		else
-		{
-			$page = $this->uri->segment($seg);
-		}
+		$page = ($this->uri->segment($seg) ? $this->uri->segment($seg) : 0);
 		$this->db->select('id, title, name, created, pid, lang, ip_address');
 		$this->db->where('private', 0);
 		
