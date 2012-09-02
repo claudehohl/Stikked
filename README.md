@@ -39,6 +39,7 @@ Changelog
   * Visit /spamadmin, login
   * Click on an IP to list all pastes belonging to it
   * You can remove all the pastes listed, and optionally block the IP range
+* Updated to CodeIgniter version 2.1.2
 
 ### Version 0.8.2:
 
