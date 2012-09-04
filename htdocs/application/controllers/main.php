@@ -42,7 +42,7 @@ class Main extends CI_Controller
 				) ,
 				'ip_address' => array(
 					'type' => 'VARCHAR',
-					'constraint' => 16,
+					'constraint' => 45,
 					'default' => 0,
 				) ,
 				'user_agent' => array(
