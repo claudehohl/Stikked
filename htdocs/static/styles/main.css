@@ -483,3 +483,8 @@ h4 {
 	color: inherit;
 	text-decoration: underline;
 }
+
+.login {
+    margin-left: 35%;
+    margin-right: auto;
+}

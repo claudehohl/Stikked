@@ -17,6 +17,7 @@
  * - _valid_lang()
  * - _valid_captcha()
  * - _valid_ip()
+ * - _valid_authentication()
  * - get_cm_js()
  * - error_404()
  * Classes list:
@@ -30,6 +31,7 @@ class Main extends CI_Controller
 	{
 		parent::__construct();
 		$this->load->model('languages');
+		$this->load->library('auth_ldap');
 		
 		if (!$this->db->table_exists('ci_sessions')) 
 		{
@@ -235,6 +237,7 @@ class Main extends CI_Controller
 	
 	function index() 
 	{
+		$this->_valid_authentication();
 		$this->load->helper('json');
 		
 		if (!$this->input->post('submit')) 
@@ -307,6 +310,7 @@ class Main extends CI_Controller
 	
 	function raw() 
 	{
+		$this->_valid_authentication();
 		$this->load->model('pastes');
 		$check = $this->pastes->checkPaste(3);
 		
@@ -323,6 +327,7 @@ class Main extends CI_Controller
 	
 	function rss() 
 	{
+		$this->_valid_authentication();
 		$this->load->model('pastes');
 		$check = $this->pastes->checkPaste(3);
 		
@@ -343,6 +348,7 @@ class Main extends CI_Controller
 	
 	function embed() 
 	{
+		$this->_valid_authentication();
 		$this->load->model('pastes');
 		$check = $this->pastes->checkPaste(3);
 		
@@ -359,6 +365,7 @@ class Main extends CI_Controller
 	
 	function download() 
 	{
+		$this->_valid_authentication();
 		$this->load->model('pastes');
 		$check = $this->pastes->checkPaste(3);
 		
@@ -375,7 +382,7 @@ class Main extends CI_Controller
 	
 	function lists() 
 	{
-		
+		$this->_valid_authentication();
 		if ($this->config->item('private_only')) 
 		{
 			show_404();
@@ -403,6 +410,7 @@ class Main extends CI_Controller
 	
 	function view() 
 	{
+		$this->_valid_authentication();
 		$this->load->helper('json');
 		$this->load->model('pastes');
 		$check = $this->pastes->checkPaste(2);
@@ -525,6 +533,16 @@ class Main extends CI_Controller
 		else
 		{
 			return true;
+		}
+	}
+	
+	function _valid_authentication()
+	{
+		if ($this->config->item('require_auth') ){
+			if (!$this->auth_ldap->is_authenticated()){
+				$this->db_session->set_flashdata('tried_to', "/" . $this->uri->uri_string());
+				redirect('/auth');
+			}
 		}
 	}
 	
