@@ -31,7 +31,9 @@ class Main extends CI_Controller
 	{
 		parent::__construct();
 		$this->load->model('languages');
-		$this->load->library('auth_ldap');
+		if ($this->config->item('require_auth') ){
+			$this->load->library('auth_ldap');
+		}
 		
 		if (!$this->db->table_exists('ci_sessions')) 
 		{
