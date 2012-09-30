@@ -78,7 +78,7 @@ class Auth extends CI_Controller {
         } else {
             $data['logged_in'] = FALSE;
         }
-            $this->load->view('auth/logout_view', $data);
+        redirect('/');
     }
 }
 

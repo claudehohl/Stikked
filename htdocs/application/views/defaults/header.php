@@ -53,6 +53,13 @@ $this->carabiner->display('css');
 <?php } ?>
 						<li><a  <?php if($l == "api"){ echo 'class="active"'; }?> href="<?php echo site_url('api'); ?>" title="API">API</a></li>
 						<li><a  <?php if($l == "about"){ echo 'class="active"'; }?> href="<?php echo site_url('about'); ?>" title="About">About</a></li>
+                        <?php
+                            if ($this->config->item('require_auth') ){
+                                if ($this->auth_ldap->is_authenticated()){
+                                    echo "<li><a href=" . site_url('auth/logout') . ' title="Logout">Logout</a></li>';
+                                }
+                            }
+                        ?>
 					</ul>
 				</div>
 

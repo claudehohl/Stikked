@@ -124,8 +124,8 @@ class Auth_Ldap {
      */
     function logout() {
         // Just set logged_in to FALSE and then destroy everything for good measure
-        $this->ci->session->set_userdata(array('logged_in' => FALSE));
-        $this->ci->session->sess_destroy();
+        $this->ci->db_session->set_userdata(array('logged_in' => FALSE));
+        $this->ci->db_session->sess_destroy();
     }
 
     /**
