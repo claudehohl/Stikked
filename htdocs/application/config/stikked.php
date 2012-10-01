@@ -105,6 +105,15 @@ $config['unknown_poster'] = 'random';
 $config['unknown_title'] = 'Untitled';
 
 /**
+ * To require LDAP authentication or not.
+ *
+ * Weather to require LDAP authenticaiton or not.
+ * Set to either 'true' to require authentication or 'false' not to.
+ * NOTE: if changed, set LDAP settings in auth_ldap.php
+**/ 
+$config['require_auth'] = false;
+ 
+/**
  *
  *
  *  Words used for when unknown_poster is set to random
