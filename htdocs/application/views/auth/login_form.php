@@ -1,4 +1,12 @@
 <?php $this->load->view('defaults/header'); ?>
+    <?php
+        $message = $this->db_session->flashdata('login_error');
+        if ($message){
+            echo '<div class="login_error">';
+            echo $message;
+            echo '</div>';
+        }
+    ?>
     <div class="login">
       <?php echo form_fieldset(); ?>
       <?php echo validation_errors();?>

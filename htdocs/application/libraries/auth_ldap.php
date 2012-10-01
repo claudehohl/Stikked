@@ -92,7 +92,8 @@ class Auth_Ldap {
         $user_info = $this->_authenticate($username,$password);
         if(empty($user_info['role'])) {
             log_message('info', $username." has no role to play.");
-            show_error($username.' succssfully authenticated, but is not allowed because the username was not found in an allowed access group.');
+            //show_error($username.' succssfully authenticated, but is not allowed because the username was not found in an allowed access group.');
+            return FALSE;
         }
         // Record the login
         $this->_audit("Successful login: ".$user_info['cn']."(".$username.") from ".$this->ci->input->ip_address());
@@ -190,6 +191,13 @@ class Auth_Ldap {
         $search = ldap_search($this->ldapconn, $this->basedn, $filter, 
                 array('dn', $this->login_attribute, 'cn'));
         $entries = ldap_get_entries($this->ldapconn, $search);
+        
+        if(!isset($entries[0])){
+            //User either does not exist or has no permissions
+            $this->_audit("Failed login attempt: ".$username." from ".$_SERVER['REMOTE_ADDR']);
+            return FALSE;
+        }
+        
         $binddn = $entries[0]['dn'];
             
         // Now actually try to bind as the user

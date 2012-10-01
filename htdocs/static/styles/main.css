@@ -488,3 +488,13 @@ h4 {
     margin-left: 35%;
     margin-right: auto;
 }
+
+.login_error {
+    border: 1px solid;
+    margin-left: 25%;
+    margin-right: 30%;
+    padding:15px 10px 15px 50px;
+    text-align: center;
+    background-color: #FFBABA;
+    color: #D8000C;
+}

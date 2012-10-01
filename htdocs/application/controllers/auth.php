@@ -60,8 +60,8 @@ class Auth extends CI_Controller {
                 }
             }else {
                 // Login FAIL
-                $this->load->view('auth/login_form', array('login_fail_msg'
-                                        => 'Error with LDAP authentication.'));
+                $this->db_session->set_flashdata('login_error', 'Incorrect username or password.');
+                $this->load->view('auth/login_form');
             }
         }else {
                 // Already logged in...
