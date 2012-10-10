@@ -105,30 +105,7 @@ class Pastes extends CI_Model
 		{
 			$format = 'Y-m-d H:i:s';
 			$data['toexpire'] = 1;
-			switch ($this->input->post('expire')) 
-			{
-			case '30':
-				$data['expire'] = mktime(date("H") , (date("i") + 30) , date("s") , date("m") , date("d") , date("Y"));
-			break;
-			case '60':
-				$data['expire'] = mktime((date("H") + 1) , date("i") , date("s") , date("m") , date("d") , date("Y"));
-			break;
-			case '360':
-				$data['expire'] = mktime((date("H") + 6) , date("i") , date("s") , date("m") , date("d") , date("Y"));
-			break;
-			case '720':
-				$data['expire'] = mktime((date("H") + 12) , date("i") , date("s") , date("m") , date("d") , date("Y"));
-			break;
-			case '1440':
-				$data['expire'] = mktime((date("H") + 24) , date("i") , date("s") , date("m") , date("d") , date("Y"));
-			break;
-			case '10080':
-				$data['expire'] = mktime(date("H") , date("i") , date("s") , date("m") , (date("d") + 7) , date("Y"));
-			break;
-			case '40320':
-				$data['expire'] = mktime(date("H") , date("i") , date("s") , date("m") , (date("d") + 24) , date("Y"));
-			break;
-			}
+			$data['expire'] = mktime() + (60 * $this->input->post('expire'));
 		}
 		
 		if ($this->input->post('snipurl') == false) 
