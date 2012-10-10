@@ -2,3 +2,4 @@
 * Claude Hohl https://github.com/claudehohl (Fixed some bugs, added some features; revived the project)
 * Daniel https://github.com/lightswitch05 (Added LDAP authentication)
 * Jens Willmer https://github.com/jwillmer (Bugfixing)
+* Florian Bruhin http://twitter.com/the_compiler (Maintaining Arch Package: http://aur.archlinux.org/packages.php?ID=60575)
