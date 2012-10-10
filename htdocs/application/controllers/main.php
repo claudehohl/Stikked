@@ -621,11 +621,13 @@ class Main extends CI_Controller
 		}
 	}
 	
-	function _blockwords_check($raw) 
+	function _blockwords_check() 
 	{
+
 		//setup message
 		$this->form_validation->set_message('_blockwords_check', 'Your paste contains blocked words.');
-        //check
+
+		//check
 		$blocked_words = $this->config->item('blocked_words');
 		$post = $this->input->post();
 		$raw = $post['code'];
