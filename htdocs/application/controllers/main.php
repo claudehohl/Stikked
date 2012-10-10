@@ -10,6 +10,7 @@
  * - embed()
  * - download()
  * - lists()
+ * - trends()
  * - view()
  * - cron()
  * - about()
@@ -467,6 +468,22 @@ class Main extends CI_Controller
 			{
 				$this->load->view('list', $data);
 			}
+		}
+	}
+	
+	function trends() 
+	{
+		$this->_valid_authentication();
+		
+		if ($this->config->item('private_only')) 
+		{
+			show_404();
+		}
+		else
+		{
+			$this->load->model('pastes');
+			$data = $this->pastes->getTrends();
+			$this->load->view('list', $data);
 		}
 	}
 	
