@@ -314,7 +314,7 @@ h4 {
 }
 
 .recent .name {
-	width: 250px;
+	width: 180px;
 }
 
 .recent .lang {
@@ -323,6 +323,10 @@ h4 {
 
 .recent .time {
 	width: 100px;
+}
+
+.recent .hits {
+	width: 70px;
 }
 
 .recent tr {

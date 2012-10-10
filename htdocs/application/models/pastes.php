@@ -8,8 +8,10 @@
  * - createPaste()
  * - checkPaste()
  * - getPaste()
+ * - calculate_hits()
  * - getReplies()
  * - getLists()
+ * - getTrends()
  * - getSpamLists()
  * - cron()
  * Classes list:
@@ -185,6 +187,8 @@ class Pastes extends CI_Model
 			$data['created'] = $row['created'];
 			$data['url'] = site_url('view/' . $row['pid']);
 			$data['raw'] = $row['raw'];
+			$data['hits'] = $row['hits'];
+			$data['hits_updated'] = $row['hits_updated'];
 			$data['snipurl'] = $row['snipurl'];
 			$inreply = $row['replyto'];
 		}
@@ -247,8 +251,43 @@ class Pastes extends CI_Model
 			{
 				$replies = false;
 			}
+
+			// hits
+			$hits_data = array(
+				'paste_id' => $pid,
+				'ip_address' => $this->input->ip_address() ,
+				'created' => mktime() ,
+			);
+			$insert_query = $this->db->insert_string('trending', $hits_data);
+			$insert_query = str_replace('INSERT INTO', 'INSERT IGNORE INTO', $insert_query);
+			$this->db->query($insert_query);
+			
+			if (mktime() > (60 + $data['hits_updated'])) 
+			{
+				$this->calculate_hits($pid, $data['hits']);
+			}
 		}
 		return $data;
+	}
+	
+	function calculate_hits($pid, $current_hits) 
+	{
+		$this->db->select('count(paste_id) as count');
+		$this->db->where('paste_id', $pid);
+		$query = $this->db->get('trending');
+		$hits_count = $query->result_array();
+		$hits_count = $hits_count[0]['count'];
+		
+		if ($hits_count != $current_hits) 
+		{
+
+			//update
+			$this->db->where('pid', $pid);
+			$this->db->update('pastes', array(
+				'hits' => $hits_count,
+				'hits_updated' => mktime() ,
+			));
+		}
 	}
 	
 	function getReplies($seg = 3) 
@@ -333,14 +372,14 @@ class Pastes extends CI_Model
 		return $data;
 	}
 	
-	function getTrends($root = 'lists/', $seg = 2) 
+	function getTrends($root = 'trends/', $seg = 2) 
 	{
 		$this->load->library('pagination');
-		$this->load->library('process');
 		$amount = $this->config->item('per_page');
 		$page = ($this->uri->segment(2) ? $this->uri->segment(2) : 0);
-		$this->db->select('id, title, name, created, pid, lang, raw');
+		$this->db->select('id, title, name, created, pid, lang, raw, hits');
 		$this->db->where('private', 0);
+		$this->db->order_by('hits', 'desc');
 		$this->db->order_by('created', 'desc');
 		$query = $this->db->get('pastes', $amount, $page);
 		
@@ -355,12 +394,8 @@ class Pastes extends CI_Model
 				$data['pastes'][$n]['created'] = $row['created'];
 				$data['pastes'][$n]['lang'] = $row['lang'];
 				$data['pastes'][$n]['pid'] = $row['pid'];
-				
-				if ($this->uri->segment(2) == 'rss') 
-				{
-					$data['pastes'][$n]['paste'] = $this->process->syntax(htmlspecialchars_decode($row['raw']) , $row['lang']);
-				}
 				$data['pastes'][$n]['raw'] = $row['raw'];
+				$data['pastes'][$n]['hits'] = $row['hits'];
 				$n++;
 			}
 		}

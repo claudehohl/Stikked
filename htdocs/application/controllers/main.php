@@ -185,8 +185,8 @@ class Main extends CI_Controller
 			$this->load->dbforge();
 			$fields = array(
 				'paste_id' => array(
-					'type' => 'INT',
-					'constraint' => 10,
+					'type' => 'VARCHAR',
+					'constraint' => 8,
 				) ,
 				'ip_address' => array(
 					'type' => 'VARCHAR',
@@ -483,7 +483,7 @@ class Main extends CI_Controller
 		{
 			$this->load->model('pastes');
 			$data = $this->pastes->getTrends();
-			$this->load->view('list', $data);
+			$this->load->view('trends', $data);
 		}
 	}
 	
