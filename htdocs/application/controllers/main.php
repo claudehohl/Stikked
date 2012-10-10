@@ -31,7 +31,9 @@ class Main extends CI_Controller
 	{
 		parent::__construct();
 		$this->load->model('languages');
-		if ($this->config->item('require_auth') ){
+		
+		if ($this->config->item('require_auth')) 
+		{
 			$this->load->library('auth_ldap');
 		}
 		
@@ -130,6 +132,16 @@ class Main extends CI_Controller
 					'constraint' => 16,
 					'null' => TRUE,
 				) ,
+				'hits' => array(
+					'type' => 'INT',
+					'constraint' => 10,
+					'default' => 0,
+				) ,
+				'hits_updated' => array(
+					'type' => 'INT',
+					'constraint' => 10,
+					'default' => 0,
+				) ,
 			);
 			$this->dbforge->add_field($fields);
 			$this->dbforge->add_key('id', true);
@@ -138,6 +150,8 @@ class Main extends CI_Controller
 			$this->dbforge->add_key('replyto');
 			$this->dbforge->add_key('created');
 			$this->dbforge->add_key('ip_address');
+			$this->dbforge->add_key('hits');
+			$this->dbforge->add_key('hits_updated');
 			$this->dbforge->create_table('pastes', true);
 		}
 		
@@ -165,6 +179,31 @@ class Main extends CI_Controller
 			$this->dbforge->create_table('blocked_ips', true);
 		}
 		
+		if (!$this->db->table_exists('trending')) 
+		{
+			$this->load->dbforge();
+			$fields = array(
+				'paste_id' => array(
+					'type' => 'INT',
+					'constraint' => 10,
+				) ,
+				'ip_address' => array(
+					'type' => 'VARCHAR',
+					'constraint' => 16,
+					'default' => 0,
+				) ,
+				'created' => array(
+					'type' => 'INT',
+					'constraint' => 10,
+				) ,
+			);
+			$this->dbforge->add_field($fields);
+			$this->dbforge->add_key('paste_id', true);
+			$this->dbforge->add_key('ip_address', true);
+			$this->dbforge->add_key('created');
+			$this->dbforge->create_table('trending', true);
+		}
+		
 		if (!$this->db->field_exists('ip_address', 'pastes')) 
 		{
 			$this->load->dbforge();
@@ -175,6 +214,26 @@ class Main extends CI_Controller
 					'null' => TRUE,
 				) ,
 			);
+			$this->dbforge->add_column('pastes', $fields);
+		}
+		
+		if (!$this->db->field_exists('hits', 'pastes')) 
+		{
+			$this->load->dbforge();
+			$fields = array(
+				'hits' => array(
+					'type' => 'INT',
+					'constraint' => 10,
+					'default' => 0,
+				) ,
+				'hits_updated' => array(
+					'type' => 'INT',
+					'constraint' => 10,
+					'default' => 0,
+				) ,
+			);
+			$this->dbforge->add_key('hits');
+			$this->dbforge->add_key('hits_updated');
 			$this->dbforge->add_column('pastes', $fields);
 		}
 	}
@@ -385,6 +444,7 @@ class Main extends CI_Controller
 	function lists() 
 	{
 		$this->_valid_authentication();
+		
 		if ($this->config->item('private_only')) 
 		{
 			show_404();
@@ -538,10 +598,14 @@ class Main extends CI_Controller
 		}
 	}
 	
-	function _valid_authentication()
+	function _valid_authentication() 
 	{
-		if ($this->config->item('require_auth') ){
-			if (!$this->auth_ldap->is_authenticated()){
+		
+		if ($this->config->item('require_auth')) 
+		{
+			
+			if (!$this->auth_ldap->is_authenticated()) 
+			{
 				$this->db_session->set_flashdata('tried_to', "/" . $this->uri->uri_string());
 				redirect('/auth');
 			}
