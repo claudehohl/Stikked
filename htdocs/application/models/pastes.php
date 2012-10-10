@@ -251,21 +251,21 @@ class Pastes extends CI_Model
 			{
 				$replies = false;
 			}
+		}
 
-			// hits
-			$hits_data = array(
-				'paste_id' => $pid,
-				'ip_address' => $this->input->ip_address() ,
-				'created' => mktime() ,
-			);
-			$insert_query = $this->db->insert_string('trending', $hits_data);
-			$insert_query = str_replace('INSERT INTO', 'INSERT IGNORE INTO', $insert_query);
-			$this->db->query($insert_query);
-			
-			if (mktime() > (60 + $data['hits_updated'])) 
-			{
-				$this->calculate_hits($pid, $data['hits']);
-			}
+		// hits
+		$hits_data = array(
+			'paste_id' => $pid,
+			'ip_address' => $this->input->ip_address() ,
+			'created' => mktime() ,
+		);
+		$insert_query = $this->db->insert_string('trending', $hits_data);
+		$insert_query = str_replace('INSERT INTO', 'INSERT IGNORE INTO', $insert_query);
+		$this->db->query($insert_query);
+		
+		if (mktime() > (60 + $data['hits_updated'])) 
+		{
+			$this->calculate_hits($pid, $data['hits']);
 		}
 		return $data;
 	}
