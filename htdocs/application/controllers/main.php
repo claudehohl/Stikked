@@ -18,6 +18,7 @@
  * - _valid_lang()
  * - _valid_captcha()
  * - _valid_ip()
+ * - _blockwords_check()
  * - _valid_authentication()
  * - get_cm_js()
  * - error_404()
@@ -334,6 +335,11 @@ class Main extends CI_Controller
 					'label' => 'Valid IP',
 					'rules' => 'callback__valid_ip',
 				) ,
+				array(
+					'field' => 'blockwords_check',
+					'label' => 'No blocked words',
+					'rules' => 'callback__blockwords_check',
+				) ,
 			);
 
 			//form validation
@@ -613,6 +619,26 @@ class Main extends CI_Controller
 		{
 			return true;
 		}
+	}
+	
+	function _blockwords_check($raw) 
+	{
+		//setup message
+		$this->form_validation->set_message('_blockwords_check', 'Your paste contains blocked words.');
+        //check
+		$blocked_words = $this->config->item('blocked_words');
+		$post = $this->input->post();
+		$raw = $post['code'];
+		foreach (explode(',', $blocked_words) as $word) 
+		{
+			$word = trim($word);
+			
+			if (stristr($raw, $word)) 
+			{
+				return false;
+			}
+		}
+		return true;
 	}
 	
 	function _valid_authentication() 

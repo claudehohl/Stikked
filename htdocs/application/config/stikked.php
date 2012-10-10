@@ -72,6 +72,7 @@ $config['per_page'] = 10;
 **/
 $config['private_only'] = false;
 $config['enable_captcha'] = false;
+$config['blocked_words'] = '.es.tl, mycraft.com, strom';
 //spamadmin: accessible via /spamadmin (only active when user + pass is set)
 $config['spamadmin_user'] = '';
 $config['spamadmin_pass'] = '';
