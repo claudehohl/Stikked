@@ -489,16 +489,25 @@ h4 {
 }
 
 .login {
-    margin-left: 35%;
+    margin-left: 30%;
     margin-right: auto;
 }
 
 .login_error {
     border: 1px solid;
-    margin-left: 25%;
-    margin-right: 30%;
+    margin: 0 30% 10px 25%;
     padding:15px 10px 15px 50px;
     text-align: center;
     background-color: #FFBABA;
     color: #D8000C;
 }
+
+.login .form_wrapper input {
+    margin: 1px 0 0 5px;
+    width: 130px;
+}
+
+.login .form_wrapper label {
+    width: 104px;
+}
+

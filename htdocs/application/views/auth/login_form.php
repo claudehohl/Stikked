@@ -11,7 +11,7 @@
       <?php echo form_fieldset(); ?>
       <?php echo validation_errors();?>
 
-      <?php echo form_open('auth/login', array('id' => 'loginform')); ?>
+      <?php echo form_open('auth/login', array('id' => 'loginform', 'class' => 'form_wrapper')); ?>
       <?php
       
       $table = array(array('', ''),
@@ -23,6 +23,7 @@
                      'class' => 'formfield'))));
           echo $this->table->generate($table);
       ?>
+      <?php echo form_label('&nbsp;', 'Login'); ?>
       <?php echo form_submit('login', 'Login'); ?>
       <?php echo form_close(); ?>
       <?php echo form_fieldset_close(); ?>
