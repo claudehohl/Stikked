@@ -31,6 +31,14 @@ Installation
 Changelog
 ---------
 
+### Version 0.8.4:
+
+* Trending pastes: http://paste.scratchbook.ch/trends
+* LDAP authentication (thanks to Daniel, https://github.com/lightswitch05)
+* Blocked words; maintain a comma separated list in your config, e.g. '.es.tl, mycraft.com, yourbadword' - pastes with this words will never get pasted
+* TODO: Spam trap for bots (thanks to the\_compiler, http://www.the-compiler.org/)
+* Bugfix: Remove\_invisible\_characters removing legitimate paste content (https://github.com/claudehohl/Stikked/issues/28)
+
 ### Version 0.8.3:
 
 * From now on, IPs get logged in the DB
