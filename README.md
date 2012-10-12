@@ -38,6 +38,7 @@ Changelog
 * Blocked words; maintain a comma separated list in your config, e.g. '.es.tl, mycraft.com, yourbadword' - pastes with this words will never get pasted
 * TODO: Spam trap for bots (thanks to the\_compiler, http://www.the-compiler.org/)
 * Bugfix: Remove\_invisible\_characters removing legitimate paste content (https://github.com/claudehohl/Stikked/issues/28)
+* Possibility to manually set the paste's displayed URL (used with mod\_rewrite configurations)
 * TODO: Print layout for pastes
 * TODO: Updated to CodeIgniter version 2.1.3
 

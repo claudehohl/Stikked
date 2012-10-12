@@ -68,12 +68,11 @@ $config['per_page'] = 10;
  *
  * private_only: No recent pastes will be displayed.
  * enable_captcha: Users must enter a captcha to post.
+ * blocked_words: Comma separated list, e.g. '.es.tl, mycraft.com, yourbadword'
  *
 **/
 $config['private_only'] = false;
 $config['enable_captcha'] = false;
-
-//blocked words; comma separated list, e.g. '.es.tl, mycraft.com, yourbadword'
 $config['blocked_words'] = '';
 
 //spamadmin: accessible via /spamadmin (only active when user + pass is set)
@@ -118,13 +117,22 @@ $config['unknown_title'] = 'Untitled';
 $config['require_auth'] = false;
  
 /**
+ * Override the displayed URL
+ *
+ * Display this URL in a paste's detail view instead of the main URL - e.g. if you use mod_rewrite
+ * Variable $id: the paste_id
+ * Example: 'http://example.com/$id'
+ *
+**/
+$config['displayurl_override'] = '';
+
+/**
  *
  *
  *  Words used for when unknown_poster is set to random
  *
  *
 **/
-
 $config['nouns'] = array('Hornbill', 'Elephant', 'Bison', 'Lion', 'Camel', 'Sheep',
 'Monkey', 'Prairie Dog', 'Plover', 'Tapir', 'Capybara', 'Cheetah', 'Flamingo', 'Peccary', 'Eider',	'Porcupine', 'Pelican', 'Dove', 'Crane', 'Tortoise', 'Agouti',
 'Tamarin', 'Pheasant', 'Owl', 'Gibbon', 'Goose', 'Baboon', 'Hamerkop', 'Zebra',

@@ -6,6 +6,7 @@
  * - countPastes()
  * - countReplies()
  * - createPaste()
+ * - _get_url()
  * - checkPaste()
  * - getPaste()
  * - calculate_hits()
@@ -116,7 +117,7 @@ class Pastes extends CI_Model
 		}
 		else
 		{
-			$url = site_url('view/' . $data['pid']);
+			$url = $this->_get_url($data['pid']);
 			$url = urlencode($url);
 			$config_gwgd_url = $this->config->item('gwgd_url');
 			$gwgd_url = ($config_gwgd_url ? $config_gwgd_url : 'http://gw.gd/');
@@ -136,6 +137,12 @@ class Pastes extends CI_Model
 		$data['ip_address'] = $this->input->ip_address();
 		$this->db->insert('pastes', $data);
 		return 'view/' . $data['pid'];
+	}
+	private 
+	function _get_url($pid) 
+	{
+		$override_url = $this->config->item('displayurl_override');
+		return ($override_url ? str_replace('$id', $pid, $override_url) : site_url('view/' . $pid));
 	}
 	
 	function checkPaste($seg = 2) 
@@ -185,7 +192,7 @@ class Pastes extends CI_Model
 			$data['lang'] = $this->languages->code_to_description($row['lang']);
 			$data['paste'] = $this->process->syntax(htmlspecialchars_decode($row['raw']) , $row['lang']);
 			$data['created'] = $row['created'];
-			$data['url'] = site_url('view/' . $row['pid']);
+			$data['url'] = $this->_get_url($row['pid']);
 			$data['raw'] = $row['raw'];
 			$data['hits'] = $row['hits'];
 			$data['hits_updated'] = $row['hits_updated'];
