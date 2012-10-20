@@ -39,7 +39,7 @@ Changelog
 * Spam trap for bots
 * Bugfix: Remove\_invisible\_characters removing legitimate paste content (https://github.com/claudehohl/Stikked/issues/28)
 * Possibility to manually set the paste's displayed URL (used with mod\_rewrite configurations)
-* TODO: Print layout for pastes
+* Print layout for pastes
 * Updated to CodeIgniter version 2.1.3
 
 ### Version 0.8.3:
