@@ -116,6 +116,11 @@
 		</div>
 <?php } ?>
 
+<?php
+    $set = array('name' => 'email', 'hidden' => 'hidden');
+    echo form_input($set);
+?>
+
 		<div><button type="submit" value="submit" name="submit">Create</button></div>
 		<div class="spacer"></div>
 	</form>

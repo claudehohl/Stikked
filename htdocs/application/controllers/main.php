@@ -19,6 +19,7 @@
  * - _valid_captcha()
  * - _valid_ip()
  * - _blockwords_check()
+ * - _autofill_check()
  * - _valid_authentication()
  * - get_cm_js()
  * - error_404()
@@ -340,6 +341,11 @@ class Main extends CI_Controller
 					'label' => 'No blocked words',
 					'rules' => 'callback__blockwords_check',
 				) ,
+				array(
+					'field' => 'email',
+					'label' => 'Field must remain empty',
+					'rules' => 'callback__autofill_check',
+				) ,
 			);
 
 			//form validation
@@ -641,6 +647,16 @@ class Main extends CI_Controller
 			}
 		}
 		return true;
+	}
+	
+	function _autofill_check() 
+	{
+
+		//setup message
+		$this->form_validation->set_message('_autofill_check', 'Go away, robot!');
+
+		//check
+		return !$this->input->post('email');
 	}
 	
 	function _valid_authentication() 
