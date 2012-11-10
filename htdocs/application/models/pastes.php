@@ -488,4 +488,57 @@ class Pastes extends CI_Model
 		}
 		return;
 	}
+
+	function random_paste()
+	{
+		$this->load->library('process');
+
+		$paste_id = rand(1, $this->countPastes());
+		$this->db->where('id', $paste_id);
+		$query = $this->db->get('pastes');
+
+		if ($query->num_rows() > 0)
+		{
+			foreach ($query->result_array() as $row)
+			{
+				$data['title'] = $row['title'];
+				$data['pid'] = $row['pid'];
+				$data['name'] = $row['name'];
+				$data['lang_code'] = $row['lang'];
+				$data['lang'] = $this->languages->code_to_description($row['lang']);
+				$data['paste'] = $this->process->syntax(htmlspecialchars_decode($row['raw']) , $row['lang']);
+				$data['created'] = $row['created'];
+				$data['url'] = $this->_get_url($row['pid']);
+				$data['raw'] = $row['raw'];
+				$data['hits'] = $row['hits'];
+				$data['hits_updated'] = $row['hits_updated'];
+				$data['snipurl'] = $row['snipurl'];
+				$inreply = $row['replyto'];
+			}
+
+			if ($inreply)
+			{
+				$this->db->select('name, title');
+				$this->db->where('pid', $inreply);
+				$query = $this->db->get('pastes');
+
+				if ($query->num_rows() > 0)
+				{
+					foreach ($query->result_array() as $row)
+					{
+						$data['inreply']['title'] = $row['title'];
+						$data['inreply']['name'] = $row['name'];
+						$data['inreply']['url'] = site_url('view/' . $inreply);
+					}
+				}
+				else
+				{
+					$data['inreply'] = false;
+				}
+			}
+			return $data;
+		}
+
+		return false;
+	}
 }
