@@ -54,4 +54,36 @@ class Api extends Main
 			$this->load->view('view/api', $data);
 		}
 	}
+
+	function paste()
+	{
+		$this->load->model('pastes');
+		$check = $this->pastes->checkPaste(3);
+
+		if ($check)
+		{
+			$data = $this->pastes->getPaste(3);
+		}
+		else
+		{
+			$data = array(
+				'message' => 'Not found',
+			);
+		}
+		echo stripslashes(json_encode($data));
+	}
+
+	function random_paste()
+	{
+		$this->load->model('pastes');
+		$data = $this->pastes->random_paste();
+
+		if (!$data)
+		{
+			$data = array(
+				'message' => 'Please try again',
+			);
+		}
+		echo stripslashes(json_encode($data));
+	}
 }
