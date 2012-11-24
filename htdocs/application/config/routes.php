@@ -56,12 +56,8 @@ $route['trends'] = 'main/trends';
 $route['trends/:any'] = 'main/trends/$1';
 $route['spamadmin/:num'] = 'spamadmin/index';
 $route['spamadmin/blacklist/unblock/(:any)'] = 'spamadmin/unblock_ip';
-$route['spamadmin/blacklist/(:num)'] = 'spamadmin/blacklist';
-$route['spamadmin/blacklist'] = 'spamadmin/blacklist';
 $route['spamadmin/:any'] = 'spamadmin/spam_detail';
 $route['about'] = 'main/about';
-$route['api/paste/:any'] = 'api/paste';
-$route['api/random'] = 'api/random_paste';
 
 $route['iphone/:num'] = 'iphone';
 $route['iphone/view/:any'] = 'iphone/view';

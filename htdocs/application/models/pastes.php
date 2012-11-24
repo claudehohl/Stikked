@@ -15,6 +15,7 @@
  * - getTrends()
  * - getSpamLists()
  * - cron()
+ * - random_paste()
  * Classes list:
  * - Pastes extends CI_Model
  */
@@ -488,18 +489,17 @@ class Pastes extends CI_Model
 		}
 		return;
 	}
-
-	function random_paste()
+	
+	function random_paste() 
 	{
 		$this->load->library('process');
-
 		$paste_id = rand(1, $this->countPastes());
 		$this->db->where('id', $paste_id);
 		$query = $this->db->get('pastes');
-
-		if ($query->num_rows() > 0)
+		
+		if ($query->num_rows() > 0) 
 		{
-			foreach ($query->result_array() as $row)
+			foreach ($query->result_array() as $row) 
 			{
 				$data['title'] = $row['title'];
 				$data['pid'] = $row['pid'];
@@ -515,16 +515,16 @@ class Pastes extends CI_Model
 				$data['snipurl'] = $row['snipurl'];
 				$inreply = $row['replyto'];
 			}
-
-			if ($inreply)
+			
+			if ($inreply) 
 			{
 				$this->db->select('name, title');
 				$this->db->where('pid', $inreply);
 				$query = $this->db->get('pastes');
-
-				if ($query->num_rows() > 0)
+				
+				if ($query->num_rows() > 0) 
 				{
-					foreach ($query->result_array() as $row)
+					foreach ($query->result_array() as $row) 
 					{
 						$data['inreply']['title'] = $row['title'];
 						$data['inreply']['name'] = $row['name'];
@@ -538,7 +538,6 @@ class Pastes extends CI_Model
 			}
 			return $data;
 		}
-
 		return false;
 	}
 }

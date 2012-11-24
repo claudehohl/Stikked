@@ -5,6 +5,8 @@
  * - __construct()
  * - index()
  * - create()
+ * - paste()
+ * - random()
  * Classes list:
  * - Api extends Main
  */
@@ -54,13 +56,13 @@ class Api extends Main
 			$this->load->view('view/api', $data);
 		}
 	}
-
-	function paste()
+	
+	function paste() 
 	{
 		$this->load->model('pastes');
 		$check = $this->pastes->checkPaste(3);
-
-		if ($check)
+		
+		if ($check) 
 		{
 			$data = $this->pastes->getPaste(3);
 		}
@@ -72,13 +74,13 @@ class Api extends Main
 		}
 		echo stripslashes(json_encode($data));
 	}
-
-	function random_paste()
+	
+	function random() 
 	{
 		$this->load->model('pastes');
 		$data = $this->pastes->random_paste();
-
-		if (!$data)
+		
+		if (!$data) 
 		{
 			$data = array(
 				'message' => 'Please try again',
