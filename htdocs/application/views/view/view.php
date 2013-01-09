@@ -8,7 +8,7 @@
 	<div class="info">
 		<h1 class="pagetitle right"><?php echo $title; ?></h1>
 		<div class="meta">
-			<span class="detail by">By <?php echo $name; ?>, <?php $p = explode(',', timespan($created, time())); echo $p[0]?> ago, written in <?php echo $lang; ?>, viewed <?php echo $hits; ?> times.</span>
+			<span class="detail by">By <?php echo $name; ?>, <?php $p = explode(',', timespan($created, time())); echo $p[0]?> ago, written in <?php echo $lang; ?>, viewed <?php echo number_format($hits, 0, '.', "'"); ?> times.</span>
 			<?php if(isset($inreply)){?><span class="detail by">This paste is a reply to <a href="<?php echo $inreply['url']?>"><?php echo $inreply['title']; ?></a> by <?php echo $inreply['name']; ?></span><?php }?>
 			<div class="spacer"></div>
 			<span class="detail"><span class="item">URL </span><a href="<?php echo $url; ?>"><?php echo $url; ?></a></span>
