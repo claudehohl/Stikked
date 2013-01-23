@@ -30,7 +30,7 @@
 					<span class="instruction">Give your paste a title.</span>
 				</label>
 				
-				<input value="<?php if(isset($title_set)){ echo $title_set; }?>" type="text" id="title" name="title" tabindex="2" maxlength="32" />
+				<input value="<?php if(isset($title_set)){ echo $title_set; }?>" type="text" id="title" name="title" tabindex="2" maxlength="50" />
 			</div>
 																		
 			<div class="item last">

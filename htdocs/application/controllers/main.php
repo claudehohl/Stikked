@@ -89,7 +89,7 @@ class Main extends CI_Controller
 				) ,
 				'title' => array(
 					'type' => 'VARCHAR',
-					'constraint' => 32,
+					'constraint' => 50,
 				) ,
 				'name' => array(
 					'type' => 'VARCHAR',
