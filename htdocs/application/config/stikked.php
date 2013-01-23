@@ -61,7 +61,7 @@ $config['backup_pass'] = '';
  * Number of pastes per page, on the recent pastes listings.
  *
 **/
-$config['per_page'] = 10;
+$config['per_page'] = 15;
 
 /**
  * Anti spam
