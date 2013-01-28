@@ -9,6 +9,7 @@ Stikked allows you to easily share code with anyone you wish. Stikked was create
 * Stikked rethought code collaboration, by making it easy to paste code.
 
 Based on the original Stikked (http://code.google.com/p/stikked/) with lots of bugfixes and improvements.
+Thanks to Rebecca Chapnik for this great review: http://maketecheasier.com/run-your-own-pastebin-with-stikked/2013/01/11
 
 
 Try it out
@@ -19,7 +20,7 @@ http://paste.scratchbook.ch/
 Installation
 ------------
 
-1.  Download stikked from https://github.com/claudehohl/Stikked/downloads
+1.  Download stikked from https://github.com/claudehohl/Stikked/tags
 2.  Create a user and database for Stikked
 3.  Edit configuration settings in application/config/stikked.php - everything is described there
 4.  You're done!
@@ -30,6 +31,10 @@ Installation
 
 Changelog
 ---------
+
+### Version 0.8.5:
+
+Todo. Planned: Refactoring of pastes model, unit tests, easier spamadmin, documentation, and more
 
 ### Version 0.8.4:
 

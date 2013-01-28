@@ -4,3 +4,4 @@
 * Jens Willmer https://github.com/jwillmer (Bugfixing)
 * Florian Bruhin http://www.the-compiler.org/ (Maintaining Arch Package: http://aur.archlinux.org/packages.php?ID=60575)
 * Alexander https://github.com/sanek (Adding JSON-API)
+* abma https://github.com/abma (.htaccess improvement)
