@@ -9,6 +9,7 @@ Stikked allows you to easily share code with anyone you wish. Stikked was create
 * Stikked rethought code collaboration, by making it easy to paste code.
 
 Based on the original Stikked (http://code.google.com/p/stikked/) with lots of bugfixes and improvements.
+
 Thanks to Rebecca Chapnik for this great review: http://maketecheasier.com/run-your-own-pastebin-with-stikked/2013/01/11
 
 
