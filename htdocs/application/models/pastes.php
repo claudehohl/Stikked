@@ -15,6 +15,7 @@
  * - getTrends()
  * - getSpamLists()
  * - cron()
+ * - delete_paste()
  * - random_paste()
  * Classes list:
  * - Pastes extends CI_Model
@@ -487,6 +488,13 @@ class Pastes extends CI_Model
 				$this->db->delete('pastes');
 			}
 		}
+		return;
+	}
+	
+	function delete_paste($pid) 
+	{
+		$this->db->where('pid', $pid);
+		$this->db->delete('pastes');
 		return;
 	}
 	
