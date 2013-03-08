@@ -80,6 +80,21 @@ $config['spamadmin_user'] = '';
 $config['spamadmin_pass'] = '';
 
 /**
+ * Default paste expiration time (minutes)
+ *
+ * Possible values:
+ *  0 (keep forever)
+ *  30 (30 minutes)
+ *  60 (1 hour)
+ *  360 (6 hours)
+ *  720 (12 hours)
+ *  1440 (1 day)
+ *  10080 (1 week)
+ *  40320 (4 weeks)
+**/
+$config['default_expiration'] = 0;
+
+/**
  * Default language
  *
  * Preselected language. See application/config/geshi_languages.php for valid values (array keys)

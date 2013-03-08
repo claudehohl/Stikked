@@ -267,6 +267,12 @@ class Main extends CI_Controller
 		if (!$this->input->post('submit')) 
 		{
 			
+			if (!$this->db_session->userdata('expire')) 
+			{
+				$default_expiration = $this->config->item('default_expiration');
+				$this->db_session->set_userdata('expire', $default_expiration);
+			}
+			
 			if ($this->db_session->flashdata('settings_changed')) 
 			{
 				$data['status_message'] = 'Settings successfully changed';
