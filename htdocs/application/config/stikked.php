@@ -31,10 +31,10 @@ $config['combine_assets'] = false;
 /**
  * Key for Cron
  *
- * The password required to run the cron job
- * Example cron: 00, 30 * * * * curl --silent --compressed http://yoursite.com/cron/key &> /dev/null
- *
-**/
+ * The password required to run the cron job */
+// Example cron: */5 * * * * curl --silent http://yoursite.com/cron/[key]
+//
+//
 $config['cron_key'] = '';
 
 /**

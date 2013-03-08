@@ -28,6 +28,8 @@ Installation
 
 * The database structure will be created automatically if it doesn't exist.
 * No special file permissions are needed by default. Optional: If you want to have the JavaScript- and CSS-files minified, the static/asset/ folder has to be writable.
+* To ensure that pastes with an expiration set get cleaned up, define the cron key in the config and set up a cronjob, for example:
+  * */5 * * * * curl --silent http://yoursite.com/cron/[key]
 
 
 Changelog
@@ -35,7 +37,7 @@ Changelog
 
 ### Version 0.8.5:
 
-Todo. Planned: Refactoring of pastes model, unit tests, easier spamadmin, documentation, and more
+Todo. Planned: Refactoring of pastes model, unit tests, diff-view, easier spamadmin, documentation, and more
 
 ### Version 0.8.4:
 
