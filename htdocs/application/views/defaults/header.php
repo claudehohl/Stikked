@@ -12,6 +12,7 @@ $page_title .= $this->config->item('site_name');
 	<head>
 		<meta http-equiv="Content-type" content="text/html; charset=utf-8" />
 		<title><?php echo $page_title; ?></title>
+		<link rel="shortcut icon" href="<?php echo base_url() . 'favicon.ico'; ?>" />
 <?php
 
 //Carabiner
