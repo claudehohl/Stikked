@@ -5,4 +5,4 @@
 * Florian Bruhin http://www.the-compiler.org/ (Maintaining Arch Package: http://aur.archlinux.org/packages.php?ID=60575)
 * Alexander https://github.com/sanek (Adding JSON-API)
 * abma https://github.com/abma (.htaccess improvement)
-* ch0wnag3 https://github.com/ch0wnag3 (favicon URL improvement)
+* Chris https://github.com/ch0wnag3 (favicon URL improvement)
