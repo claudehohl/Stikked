@@ -7,3 +7,4 @@
 * abma https://github.com/abma (.htaccess improvement)
 * Chris https://github.com/ch0wnag3 (favicon URL improvement)
 * Gabriel Wanzek https://github.com/GabrielWanzek (gabdark & gabdark3 themes)
+* Luc https://github.com/ltribolet (Bootstrap theme)
