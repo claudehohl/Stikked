@@ -4,6 +4,7 @@
  * Function list:
  * - __construct()
  * - css()
+ * - images()
  * Classes list:
  * - Theme_assets extends CI_Controller
  */
@@ -19,22 +20,40 @@ class Theme_assets extends CI_Controller
 	function css() 
 	{
 		$theme = config_item('theme');
-		$css_file = $this->uri->segment(5);
-		$css_file = str_replace('.css', '', $css_file);
+		$css_file = $this->uri->segment(4);
 
 		//file path
-		$file_path = 'application/themes/' . $theme . '/css/' . $css_file . '.css';
+		$file_path = 'themes/' . $theme . '/css/' . $css_file;
 
 		//fallback to default css if view in theme not found
 		
 		if (!file_exists($file_path)) 
 		{
-			$file_path = 'application/themes/default/css/' . $css_file . '.css';
+			$file_path = 'themes/default/css/' . $css_file;
 		}
 
-		//get and send
-		$contents = file_get_contents($file_path);
+		//send
 		header('Content-type: text/css');
-		echo $contents;
+		readfile($file_path);
+	}
+	
+	function images() 
+	{
+		$theme = config_item('theme');
+		$image_file = $this->uri->segment(4);
+
+		//file path
+		$file_path = 'themes/' . $theme . '/images/' . $image_file;
+
+		//fallback to default css if view in theme not found
+		
+		if (!file_exists($file_path)) 
+		{
+			$file_path = 'themes/default/images/' . $image_file;
+		}
+
+		//send
+		header('Content-type: ' . mime_content_type($file_path));
+		readfile($file_path);
 	}
 }

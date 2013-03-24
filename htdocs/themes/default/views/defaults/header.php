@@ -19,7 +19,7 @@ $theme = $this->config->item('theme');
 //Carabiner
 $this->carabiner->config(array(
     'script_dir' => 'static/js/', 
-    'style_dir'  => 'application/themes/' . $theme . '/css/',
+    'style_dir'  => 'themes/' . $theme . '/css/',
     'cache_dir'  => 'static/asset/',
     'base_uri'	 => base_url(),
     'combine'	 => true,

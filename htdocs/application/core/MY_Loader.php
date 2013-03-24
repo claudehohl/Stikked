@@ -30,14 +30,14 @@ class MY_Loader extends CI_Loader
 
 		//fallback to default view if view in theme not found
 		
-		if (!file_exists('application/' . $view_path)) 
+		if (!file_exists($view_path)) 
 		{
 			$view_path = 'themes/default/views/' . $view . '.php';
 		}
 
 		//return
 		return $this->_ci_load(array(
-			'_ci_view' => '../' . $view_path,
+			'_ci_view' => '../../' . $view_path,
 			'_ci_vars' => $this->_ci_object_to_array($vars) ,
 			'_ci_return' => $return
 		));
