@@ -2,7 +2,7 @@
 
 /**
  * Site Name
- * 
+ *
  * The name of your site
  *
 */
@@ -10,7 +10,7 @@ $config['site_name'] = 'Stikked';
 
 /**
  * Database connection
- * 
+ *
  * Credentials for your database
  * The database structure will be created automatically
  *
@@ -21,8 +21,17 @@ $config['db_username'] = 'stikked';
 $config['db_password'] = 'stikked';
 
 /**
- * Combine JS & CSS files
- * 
+ * Theme
+ *
+ * Which theme to use
+ * Folder name in htdocs/application/themes/
+ *
+*/
+$config['theme'] = 'classic';
+
+/**
+ * Combine JS & CSS files (recommended)
+ *
  * htdocs/static/asset/ folder must be writeable
  *
 */
