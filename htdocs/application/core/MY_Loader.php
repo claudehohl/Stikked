@@ -25,12 +25,15 @@ class MY_Loader extends CI_Loader
 		//theme name
 		$theme = config_item('theme');
 
+		//view path
+		$view_path = 'themes/' . $theme . '/views/' . $view . '.php';
+
 		//inform (todo: fallback, error if not found)
-		log_message('debug', 'Using view "themes/' . $theme . '/views/' . $view . '.php"');
+		log_message('debug', 'Using view "' . $view_path . '"');
 
 		//return
 		return $this->_ci_load(array(
-			'_ci_view' => '../themes/' . $theme . '/views/' . $view . '.php',
+			'_ci_view' => '../' . $view_path,
 			'_ci_vars' => $this->_ci_object_to_array($vars) ,
 			'_ci_return' => $return
 		));
