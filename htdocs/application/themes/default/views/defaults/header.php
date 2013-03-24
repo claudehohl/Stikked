@@ -7,6 +7,7 @@ if(isset($title))
     $page_title .= $title . ' - ';
 }
 $page_title .= $this->config->item('site_name');
+$theme = $this->config->item('theme');
 ?>
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 	<head>
@@ -18,7 +19,7 @@ $page_title .= $this->config->item('site_name');
 //Carabiner
 $this->carabiner->config(array(
     'script_dir' => 'static/js/', 
-    'style_dir'  => 'static/styles/',
+    'style_dir'  => 'application/themes/' . $theme . '/css/',
     'cache_dir'  => 'static/asset/',
     'base_uri'	 => base_url(),
     'combine'	 => true,

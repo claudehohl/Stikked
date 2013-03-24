@@ -64,5 +64,7 @@ $route['iphone/view/:any'] = 'iphone/view';
 
 $route['404_override'] = 'main/error_404';
 
+$route['application/themes/:any'] = 'theme_assets/css';
+
 /* End of file routes.php */
 /* Location: ./application/config/routes.php */

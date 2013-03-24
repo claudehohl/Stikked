@@ -6,3 +6,4 @@
 * Alexander https://github.com/sanek (Adding JSON-API)
 * abma https://github.com/abma (.htaccess improvement)
 * Chris https://github.com/ch0wnag3 (favicon URL improvement)
+* Gabriel Wanzek https://github.com/GabrielWanzek (gabdark & gabdark3 themes)
