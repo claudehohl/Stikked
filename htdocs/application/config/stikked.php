@@ -24,7 +24,7 @@ $config['db_password'] = 'stikked';
  * Theme
  *
  * Which theme to use
- * Folder name in htdocs/application/themes/
+ * Folder name in htdocs/themes/
  *
 */
 $config['theme'] = 'default';
