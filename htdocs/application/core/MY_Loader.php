@@ -28,8 +28,12 @@ class MY_Loader extends CI_Loader
 		//view path
 		$view_path = 'themes/' . $theme . '/views/' . $view . '.php';
 
-		//inform (todo: fallback, error if not found)
-		log_message('debug', 'Using view "' . $view_path . '"');
+		//fallback to default view if view in theme not found
+		
+		if (!file_exists('application/' . $view_path)) 
+		{
+			$view_path = 'themes/default/views/' . $view . '.php';
+		}
 
 		//return
 		return $this->_ci_load(array(

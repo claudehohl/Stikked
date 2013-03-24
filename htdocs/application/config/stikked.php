@@ -27,7 +27,7 @@ $config['db_password'] = 'stikked';
  * Folder name in htdocs/application/themes/
  *
 */
-$config['theme'] = 'classic';
+$config['theme'] = 'default';
 
 /**
  * Combine JS & CSS files (recommended)
