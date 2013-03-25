@@ -86,7 +86,7 @@ class MY_Loader extends CI_Loader
 				/* *** modification for stikked themes ***
 				 *
 				 * we are by default in the htdocs/application/views folder, which is bad.
-                 * for security reasons, themes folder should be outside the application dir.
+				 * for security reasons, themes folder should be outside the application dir.
 				 * but file_exists() doesn't work with ../../ in filenames :-(
 				 * so, applying the full FrontControllerPATH here, making ../../ superfluous.
 				 *
