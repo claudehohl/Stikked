@@ -66,6 +66,7 @@ $route['404_override'] = 'main/error_404';
 
 $route['themes/:any/css/:any'] = 'theme_assets/css';
 $route['themes/:any/images/:any'] = 'theme_assets/images';
+$route['themes/:any/js/:any'] = 'theme_assets/js';
 
 /* End of file routes.php */
 /* Location: ./application/config/routes.php */
