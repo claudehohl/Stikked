@@ -50,6 +50,7 @@ ST.show_embed = function() {
 };*/
 
 /* Set the defaults for DataTables initialisation */
+/*
 $.extend( true, $.fn.dataTable.defaults, {
 	"sDom": "<'row-fluid'<'span6'l><'span6'f>r>t<'row-fluid'<'span6'i><'span6'p>>",
 	"sPaginationType": "bootstrap",
@@ -59,13 +60,13 @@ $.extend( true, $.fn.dataTable.defaults, {
 } );
 
 
-/* Default class modification */
+// Default class modification
 $.extend( $.fn.dataTableExt.oStdClasses, {
 	"sWrapper": "dataTables_wrapper form-inline"
 } );
 
 
-/* API method to get paging information */
+// API method to get paging information
 $.fn.dataTableExt.oApi.fnPagingInfo = function ( oSettings )
 {
 	return {
@@ -79,8 +80,7 @@ $.fn.dataTableExt.oApi.fnPagingInfo = function ( oSettings )
 	};
 };
 
-
-/* Bootstrap style pagination control */
+// Bootstrap style pagination control
 $.extend( $.fn.dataTableExt.oPagination, {
 	"bootstrap": {
 		"fnInit": function( oSettings, nPaging, fnDraw ) {
@@ -158,10 +158,10 @@ $.extend( $.fn.dataTableExt.oPagination, {
 } );
 
 
-/*
- * TableTools Bootstrap compatibility
- * Required TableTools 2.1+
- */
+// 
+// TableTools Bootstrap compatibility
+// Required TableTools 2.1+
+// 
 if ( $.fn.DataTable.TableTools ) {
 	// Set the classes that TableTools uses to something suitable for Bootstrap
 	$.extend( true, $.fn.DataTable.TableTools.classes, {
@@ -194,6 +194,7 @@ if ( $.fn.DataTable.TableTools ) {
 		}
 	} );
 }
+*/
 
 var CM = {
 	init: function () {
@@ -243,6 +244,7 @@ var CM = {
 $(document).ready(function() {
 	ST.init();
 	CM.init();
+    /*
 	if($('.table').length > 0)
 	{
 		$('.table').dataTable( {
@@ -261,4 +263,5 @@ $(document).ready(function() {
 			]
 		} );
 	}
+    */
 });
