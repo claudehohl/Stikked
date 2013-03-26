@@ -17,15 +17,15 @@ class Theme_assets extends CI_Controller
 	function __construct() 
 	{
 		parent::__construct();
+		$this->theme = config_item('theme');
 	}
 	
 	function css() 
 	{
-		$theme = config_item('theme');
 		$css_file = $this->uri->segment(4);
 
 		//file path
-		$file_path = 'themes/' . $theme . '/css/' . $css_file;
+		$file_path = 'themes/' . $this->theme . '/css/' . $css_file;
 
 		//fallback to default css if view in theme not found
 		
@@ -42,11 +42,10 @@ class Theme_assets extends CI_Controller
 	
 	function images() 
 	{
-		$theme = config_item('theme');
 		$image_file = $this->uri->segment(4);
 
 		//file path
-		$file_path = 'themes/' . $theme . '/images/' . $image_file;
+		$file_path = 'themes/' . $this->theme . '/images/' . $image_file;
 
 		//fallback to default css if view in theme not found
 		
@@ -63,7 +62,6 @@ class Theme_assets extends CI_Controller
 	
 	function js() 
 	{
-		$theme = config_item('theme');
 
 		//get js
 		$segments = $this->uri->segment_array();
@@ -74,7 +72,7 @@ class Theme_assets extends CI_Controller
 		$js_file = str_replace('../', '', $js_file);
 
 		//file path
-		$file_path = 'themes/' . $theme . '/js/' . $js_file;
+		$file_path = 'themes/' . $this->theme . '/js/' . $js_file;
 
 		//send
 		header('Content-type: application/x-javascript');
