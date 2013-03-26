@@ -6,6 +6,7 @@
  * - css()
  * - images()
  * - js()
+ * - _expires_header()
  * Classes list:
  * - Theme_assets extends CI_Controller
  */
@@ -35,6 +36,7 @@ class Theme_assets extends CI_Controller
 
 		//send
 		header('Content-type: text/css');
+		$this->_expires_header(1);
 		readfile($file_path);
 	}
 	
@@ -55,6 +57,7 @@ class Theme_assets extends CI_Controller
 
 		//send
 		header('Content-type: ' . mime_content_type($file_path));
+		$this->_expires_header(30);
 		readfile($file_path);
 	}
 	
@@ -75,6 +78,12 @@ class Theme_assets extends CI_Controller
 
 		//send
 		header('Content-type: application/x-javascript');
+		$this->_expires_header(30);
 		readfile($file_path);
+	}
+	private 
+	function _expires_header($days) 
+	{
+		header('Expires: ' . gmdate('D, d M Y H:i:s \G\M\T', time() + 60 * 60 * 24 * $days));
 	}
 }
