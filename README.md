@@ -38,7 +38,7 @@ Changelog
 ### Version 0.8.5:
 
 Todo. Planned: Refactoring of pastes model, unit tests, diff-view, easier spamadmin, documentation, and more
-* Themes! TODO: Make JS also part of the theme. Fix Bootstrap theme (but it's awesome!)
+* Themes! Configure a different theme in config/stikked.php - or create your own
 
 ### Version 0.8.4:
 
