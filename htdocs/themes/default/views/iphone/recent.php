@@ -1,4 +1,4 @@
-<?php $this->load->view('iphone/header.php'); ?>
+<?php $this->load->view('iphone/header'); ?>
 				<?php if(!empty($pastes)){
 					function checkNum($num){
 						return ($num%2) ? TRUE : FALSE;
@@ -25,4 +25,4 @@
 				<?php }?>	
 					
 				
-<?php $this->load->view('iphone/footer.php'); ?>
+<?php $this->load->view('iphone/footer'); ?>
