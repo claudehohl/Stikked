@@ -239,7 +239,7 @@ class Pastes extends CI_Model
 						include_once ('./application/libraries/finediff.php');
 						$from_text = $row['raw'];
 						$to_text = $data['raw'];
-						$opcodes = FineDiff::getDiffOpcodes($from_text, $to_text);
+						$opcodes = FineDiff::getDiffOpcodes($from_text, $to_text, FineDiff::$wordGranularity);
 						$to_text = FineDiff::renderToTextFromOpcodes($from_text, $opcodes);
 						$data['paste'] = $this->_format_diff(nl2br(FineDiff::renderDiffToHTMLFromOpcodes($from_text, $opcodes)));
 					}
@@ -579,8 +579,8 @@ class Pastes extends CI_Model
 	private 
 	function _format_diff($text) 
 	{
-        $text = explode("\n", $text);
-        $text = '<ol><li>' . implode('</li><li>', $text) . '</li></ol>';
+		$text = explode("\n", $text);
+		$text = '<ol><li>' . implode('</li><li>', $text) . '</li></ol>';
 		$text = '<div class="text" style="font-family:monospace;">' . $text . '</div>';
 		return $text;
 	}
