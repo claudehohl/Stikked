@@ -410,6 +410,17 @@ h4 {
 	list-style: decimal outside;
 }
 
+.text_formatted ins {
+    color: green;
+    background: #dfd;
+    text-decoration: none;
+}
+
+.text_formatted del {
+    color: red;
+    background: #fdd;
+}
+
 /* !Messages */
 .message {
 	width: 100%;
