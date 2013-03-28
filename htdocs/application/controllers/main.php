@@ -519,7 +519,7 @@ class Main extends CI_Controller
 			{
 				redirect('view/raw/' . $this->uri->segment(2));
 			}
-			$data = $this->pastes->getPaste(2, true);
+			$data = $this->pastes->getPaste(2, true, $this->uri->segment(3) == 'diff');
 			$data['reply_form'] = $this->_form_prep($data['lang_code'], 'Re: ' . $data['title'], $data['raw'], $data['pid']);
 			$this->load->view('view/view', $data);
 		}
