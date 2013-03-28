@@ -579,9 +579,7 @@ class Pastes extends CI_Model
 	private 
 	function _format_diff($text) 
 	{
-		$text = explode("\n", $text);
-		$text = '<ol><li>' . implode('</li><li>', $text) . '</li></ol>';
-		$text = '<div class="text" style="font-family:monospace;">' . $text . '</div>';
+		$text = '<div class="text" style="font-family:monospace; font: normal normal 1em/1.2em monospace;">' . $text . '</div>';
 		return $text;
 	}
 }

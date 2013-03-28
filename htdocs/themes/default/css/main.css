@@ -408,7 +408,6 @@ h4 {
 
 .text_formatted ol li {
 	list-style: decimal outside;
-    font: normal normal 1em/1.2em monospace
 }
 
 .text_formatted ins {
