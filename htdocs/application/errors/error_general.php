@@ -1,51 +1,62 @@
-<?php
-$CI =& get_instance();
-header("HTTP/1.1 404 Not Found");
-?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
-	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>Error</title>
+<style type="text/css">
 
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+::selection{ background-color: #E13300; color: white; }
+::moz-selection{ background-color: #E13300; color: white; }
+::webkit-selection{ background-color: #E13300; color: white; }
 
-	<head>
-		<meta http-equiv="Content-type" content="text/html; charset=utf-8" />
-		<title>Stikked</title>
-				<link rel="stylesheet" href="<?php echo base_url(); ?>static/styles/reset.css" type="text/css" />
-		<link rel="stylesheet" href="<?php echo base_url(); ?>static/styles/fonts.css" type="text/css" />
-		<link rel="stylesheet" href="<?php echo base_url(); ?>static/styles/main.css" type="text/css" media="screen" title="main" charset="utf-8" />
-	</head>
+body {
+	background-color: #fff;
+	margin: 40px;
+	font: 13px/20px normal Helvetica, Arial, sans-serif;
+	color: #4F5155;
+}
 
-	<body>
-		<div id="container">
-			<div class="container">
-				<div class="header">
-					<h1><a href="<?php echo base_url(); ?>" class="title"><?php echo $CI->config->item('site_name'); ?></a></h1>
-					<div class="tabs">
-						<ul>
-							<li><a href="<?php echo site_url(''); ?>">Paste</a></li>
-							<li><a href="<?php echo site_url('lists'); ?>">Recent</a></li>
-							<li><a href="<?php echo site_url('api'); ?>">API</a></li>
-							<li><a href="<?php echo site_url('about'); ?>">About</a></li>
-						</ul>
-					</div>
-				</div>
-				
-				<div class="page">
-					<div class="content">
-						<div class="container">
-							<h1><?php echo $heading; ?></h1>
-							<div class="about">
-								<?php echo $message; ?>
-								<p><a href="<?php echo base_url(); ?>">Go Home</a></p>
-							</div>
-						</div>
-					</div>
-				</div>
-			
-			<div class="footer">
-				<?php $CI->load->view('defaults/footer_message'); ?>
-				<?php $CI->load->view('defaults/stats'); ?>
-			</div>
-			</div>
-		</div>
-	</body>
+a {
+	color: #003399;
+	background-color: transparent;
+	font-weight: normal;
+}
+
+h1 {
+	color: #444;
+	background-color: transparent;
+	border-bottom: 1px solid #D0D0D0;
+	font-size: 19px;
+	font-weight: normal;
+	margin: 0 0 14px 0;
+	padding: 14px 15px 10px 15px;
+}
+
+code {
+	font-family: Consolas, Monaco, Courier New, Courier, monospace;
+	font-size: 12px;
+	background-color: #f9f9f9;
+	border: 1px solid #D0D0D0;
+	color: #002166;
+	display: block;
+	margin: 14px 0 14px 0;
+	padding: 12px 10px 12px 10px;
+}
+
+#container {
+	margin: 10px;
+	border: 1px solid #D0D0D0;
+	-webkit-box-shadow: 0 0 8px #D0D0D0;
+}
+
+p {
+	margin: 12px 15px 12px 15px;
+}
+</style>
+</head>
+<body>
+	<div id="container">
+		<h1><?php echo $heading; ?></h1>
+		<?php echo $message; ?>
+	</div>
+</body>
 </html>

@@ -37,7 +37,17 @@ Changelog
 
 ### Version 0.8.5:
 
-Todo. Planned: Refactoring of pastes model, unit tests, diff-view, easier spamadmin, documentation, and more
+* Themes! Configure a different theme in config/stikked.php - or create your own
+
+#### Upgrade instructions
+
+The following line must be present config/stikked.php
+
+```php
+$config['theme'] = 'default';
+```
+
+You can choose between default, bootstrap, gabdark and gabdark3.
 
 ### Version 0.8.4:
 

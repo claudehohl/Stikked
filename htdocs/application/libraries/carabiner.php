@@ -896,6 +896,12 @@ class Carabiner {
 		$path = ($flag == 'css') ? $this->style_path : $this->script_path;
 		$ref  = ( $this->isURL($file_ref) ) ? $file_ref : realpath($path.$file_ref);
 
+        //hack for stikked themes
+        if(!file_exists($ref)){
+            $path = ($flag == 'css') ? 'themes/default/css/' : $this->script_path;
+            $ref  = ( $this->isURL($file_ref) ) ? $file_ref : realpath($path.$file_ref);
+        }
+
 		switch($flag){
 			
 			case 'js':

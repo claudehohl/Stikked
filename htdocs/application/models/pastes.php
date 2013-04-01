@@ -127,6 +127,7 @@ class Pastes extends CI_Model
 			$ch = curl_init();
 			curl_setopt($ch, CURLOPT_URL, $target);
 			curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+			curl_setopt($ch, CURLOPT_ENCODING, 'identity');
 			$resp = curl_exec($ch);
 			curl_close($ch);
 			$data['snipurl'] = $resp;

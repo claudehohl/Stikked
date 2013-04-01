@@ -1,0 +1,24 @@
+/*
+   raw.css
+   Stikked
+   
+   Created by Ben McRedmond on 2008-03-20.
+   Copyright 2008 Stikked. Some rights reserved.
+*/
+
+body {
+	font-family: "Lucida Grande", "Lucida Sans", "Lucida Sans Unicode", Verdana,  "Helvetica Neue", Helvetica, sans-serif;
+	font-size: 14px;
+}
+
+#container {
+	width: 95%;
+	margin: 20px auto;	
+}
+
+pre {
+	background-color: #eee;
+	padding: 5px;
+	font-family: monospace;
+	overflow: auto;
+}
