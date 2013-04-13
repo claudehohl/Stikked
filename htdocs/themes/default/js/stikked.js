@@ -1,11 +1,5 @@
 var ST = window.ST || {}
 
-ST.init = function() {
-	ST.change();
-	ST.expand();
-	ST.show_embed();
-};
-
 ST.change = function() {
 	$('.change').oneTime(3000,
 	function() {
@@ -44,6 +38,28 @@ ST.expand = function() {
 		200);
 		return false;
 	});
+};
+
+ST.spamadmin = function() {
+	if ($('.content h1').text() == 'Spamadmin') {
+        $('.content .hidden').show();
+        $('.content .quick_remove').live('click', function(ev) {
+            var ip = $(ev.target).data('ip');
+            if (confirm('Delete all pastes belonging to ' + ip + '?')) {
+                $.post(base_url + 'spamadmin/' + ip, { 'confirm_remove': 'yes', 'block_ip': 1 }, function() {
+                    window.location.reload();
+                });
+            }
+            return false;
+        });
+    }
+};
+
+ST.init = function() {
+	ST.change();
+	ST.expand();
+	ST.show_embed();
+	ST.spamadmin();
 };
 
 $(document).ready(function() {

@@ -13,9 +13,9 @@
 					<tr>
 						<th class="title">Title</th>
 						<th class="name">Name</th>
-						<th class="lang">Language</th>
 						<th class="time">When</th>
 						<th class="time">IP</th>
+						<th title="Quick remove" class="qr hidden">X</th>
 					</tr>
 		<?php	foreach($pastes as $paste) {
 				if(checkNum($n) == TRUE) {
@@ -29,9 +29,9 @@
 		<tr class="<?php echo $eo; ?>">
 			<td class="first"><a href="<?php echo site_url("view/".$paste['pid']); ?>"><?php echo $paste['title']; ?></a></td>
 			<td><?php echo $paste['name']; ?></td>
-			<td><?php echo $paste['lang']; ?></td>
 			<td><?php $p = explode(",", timespan($paste['created'], time())); echo $p[0]; ?> ago.</td>
 			<td><a href="<?php echo site_url('spamadmin/' . $paste['ip_address']) ?>"><?php echo $paste['ip_address']; ?></a></td>
+			<td class="hidden"><a class="quick_remove" title="Quickly remove all entries with this IP" data-ip="<?php echo $paste['ip_address']; ?>" href="">X</a></td>
 		</tr>
 
 		<?php }?>
