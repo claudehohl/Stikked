@@ -684,13 +684,22 @@ class Main extends CI_Controller
 		$lang = $this->uri->segment(3);
 		$this->load->config('codemirror_languages');
 		$cml = $this->config->item('codemirror_languages');
+
+		//file path
+		$file_path = 'themes/' . config_item('theme') . '/js/';
+		
+		if (!file_exists($file_path)) 
+		{
+			$file_path = 'themes/default/js/';
+		}
 		
 		if (isset($cml[$lang]) && gettype($cml[$lang]) == 'array') 
 		{
 			header('Content-Type: application/x-javascript; charset=utf-8');
+			header('Expires: ' . gmdate('D, d M Y H:i:s \G\M\T', time() + 60 * 60 * 24 * 30));
 			foreach ($cml[$lang]['js'] as $js) 
 			{
-				echo file_get_contents('./static/js/' . $js[0]);
+				echo file_get_contents($file_path . $js[0]);
 			}
 		}
 		exit;
