@@ -581,6 +581,7 @@ class Pastes extends CI_Model
 	private 
 	function _format_diff($text) 
 	{
+		$text = str_replace("\t", '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;', $text);
 		$text = '<div class="text" style="font-family:monospace; font: normal normal 1em/1.2em monospace;">' . $text . '</div>';
 		return $text;
 	}
