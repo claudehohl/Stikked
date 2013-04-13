@@ -1,6 +1,14 @@
-<?php $this->load->view('defaults/header'); ?>
+<?php $this->load->view('defaults/header');
 
-<?php if(isset($insert)){
+$seg3 = $this->uri->segment(3);
+
+if($seg3 != 'diff'){
+    $page_url = $url;
+}else{
+    $page_url = $url . '/diff';
+}
+
+if(isset($insert)){
 	echo $insert;
 }?>
 
@@ -11,22 +19,28 @@
 			<span class="detail by">By <?php echo $name; ?>, <?php $p = explode(',', timespan($created, time())); echo $p[0]?> ago, written in <?php echo $lang; ?>, viewed <?php echo number_format($hits, 0, '.', "'"); ?> times.</span>
 			<?php if(isset($inreply)){?><span class="detail by">This paste is a reply to <a href="<?php echo $inreply['url']?>"><?php echo $inreply['title']; ?></a> by <?php echo $inreply['name']; ?>
 
-<?php if($this->uri->segment(3) != 'diff'){ ?>
-- <a href="<?php echo $url . '/diff'; ?>">view diff</a>
+<?php if($seg3 != 'diff'){ ?>
+            - <a href="<?php echo $url . '/diff'; ?>">view diff</a>
 <?php }else{ ?>
-- <a href="<?php echo $url; ?>">go back</a>
+            - <a href="<?php echo $url; ?>">go back</a>
 <?php } ?>
 
 </span><?php }?>
 			<div class="spacer"></div>
-			<span class="detail"><span class="item">URL </span><a href="<?php echo $url; ?>"><?php echo $url; ?></a></span>
+			<span class="detail"><span class="item">URL </span><a href="<?php echo $page_url; ?>"><?php echo $page_url; ?></a></span>
 			<?php if(!empty($snipurl)){?>
 				<span class="detail"><span class="item">Shorturl </span><a href="<?php echo $snipurl; ?>"><?php echo htmlspecialchars($snipurl) ?></a></span>
 			<?php }?>
-			<span class="detail"><span class="item">Embed </span><input id="embed_field" type="text" value="<?php echo htmlspecialchars('<iframe src="' . site_url('view/embed/' . $pid) . '" style="border:none;width:100%"></iframe>'); ?>" /></span>
+			<span class="detail"><span class="item">Embed </span><input id="embed_field" type="text" value="<?php echo htmlspecialchars('<iframe src="' . site_url('view/embed/' . $pid . '/' . $seg3) . '" style="border:none;width:100%"></iframe>'); ?>" /></span>
 			<div class="spacer"></div>
 			
-			<span class="detail"><a class="control" href="<?php echo site_url("view/download/".$pid); ?>">Download Paste</a> or <a class="control" href="<?php echo site_url("view/raw/".$pid); ?>">View Raw</a> &mdash; <a href="#" class="expand control">Expand paste</a> to full width of browser</span>
+			<span class="detail">
+<?php if($seg3 != 'diff'){ ?>
+            <a class="control" href="<?php echo site_url("view/download/".$pid); ?>">Download Paste</a> or <a class="control" href="<?php echo site_url("view/raw/".$pid); ?>">View Raw</a>
+<?php }else{ ?>
+            Viewing differences between <a href="<?php echo $inreply['url']?>"><?php echo $inreply['title']; ?></a> and <a href="<?php echo $url; ?>"><?php echo $title; ?></a>
+<?php } ?>
+            &mdash; <a href="#" class="expand control">Expand paste</a> to full width of browser</span>
 		</div>
 	</div>
 </div>
