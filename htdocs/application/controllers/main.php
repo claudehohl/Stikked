@@ -434,7 +434,7 @@ class Main extends CI_Controller
 		
 		if ($check) 
 		{
-			$data = $this->pastes->getPaste(3);
+			$data = $this->pastes->getPaste(3, true, $this->uri->segment(4) == 'diff');
 			$this->load->view('view/embed', $data);
 		}
 		else
