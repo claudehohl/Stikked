@@ -10,11 +10,11 @@
 			<table class="recent">
 				<tbody>
 					<tr>
-						<th class="title">Title</th>
-						<th class="name">Name</th>
-						<th class="lang">Language</th>
-						<th class="hits">Hits</th>
-						<th class="time">When</th>
+						<th class="title"><?php echo lang('table_title'); ?></th>
+						<th class="name"><?php echo lang('table_name'); ?></th>
+						<th class="lang"><?php echo lang('table_lang'); ?></th>
+						<th class="hits"><?php echo lang('table_hits'); ?></th>
+						<th class="time"><?php echo lang('table_time'); ?></th>
 					</tr>
 		<?php	foreach($pastes as $paste) {
 				if(checkNum($n) == TRUE) {
