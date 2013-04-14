@@ -39,17 +39,17 @@
  */
 if ( ! function_exists('lang'))
 {
-	function lang($line, $id = '')
+	function lang($index, $id = '')
 	{
 		$CI =& get_instance();
-		$line = $CI->lang->line($line);
+		$line = $CI->lang->line($index);
 
 		if ($id != '')
 		{
 			$line = '<label for="'.$id.'">'.$line."</label>";
 		}
 
-		return $line;
+        return ($line != '' ? $line : '[' . $index . ']');
 	}
 }
 

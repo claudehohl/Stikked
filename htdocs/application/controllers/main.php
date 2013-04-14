@@ -239,6 +239,7 @@ class Main extends CI_Controller
 			$this->dbforge->add_key('hits_updated');
 			$this->dbforge->add_column('pastes', $fields);
 		}
+		$this->lang->load('stikked', 'english');
 	}
 	
 	function _form_prep($lang = false, $title = '', $paste = '', $reply = false) 

@@ -5,7 +5,7 @@
 	<form action="<?php echo base_url(); ?>" method="post">
 
 		<h1><?php if(!isset($page['title'])){ ?>
-			Create a new paste
+			<?php echo lang('paste_create_new'); ?>
 		<?php } else { ?>
 			<?php echo $page['title']; ?>
 		<?php } ?></h1>
