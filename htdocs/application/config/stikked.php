@@ -25,9 +25,20 @@ $config['db_password'] = 'stikked';
  *
  * Which theme to use
  * Folder name in htdocs/themes/
+ * Currently: default, bootstrap, gabdark, gabdark3
  *
 */
 $config['theme'] = 'default';
+
+/**
+ * Language
+ *
+ * Which language to use
+ * Translate Stikked to your own language, see htdocs/application/language files
+ * Currently: english, swissgerman
+ *
+*/
+$config['language'] = 'english';
 
 /**
  * Combine JS & CSS files (recommended)

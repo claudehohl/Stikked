@@ -69,7 +69,7 @@ $config['url_suffix'] = '';
 | than english.
 |
 */
-$config['language']	= 'swissgerman';
+#$config['language']	= 'english';    #this is configured in config/stikked.php
 
 /*
 |--------------------------------------------------------------------------

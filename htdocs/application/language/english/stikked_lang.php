@@ -39,6 +39,7 @@ $lang['paste_fullwidth'] = 'to full width of browser';
 $lang['paste_replies'] = 'Replies to';
 $lang['paste_replyto'] = 'Reply to';
 $lang['paste_replyto_desc'] = 'Here you can reply to the paste above';
+$lang['paste_missing'] = 'There have been no Pastes';
 $lang['exp_forever'] = 'Keep Forever';
 $lang['exp_30min'] = '30 Minutes';
 $lang['exp_1h'] = '1 Hour';
