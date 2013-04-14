@@ -26,4 +26,12 @@ $lang['exp_1d'] = '1 Day';
 $lang['exp_1w'] = '1 Week';
 $lang['exp_4w'] = '4 Weeks';
 $lang['paste_create'] = 'Create';
+$lang['menu_create'] = 'Create';
+$lang['menu_create_title'] = 'Create A New Paste';
+$lang['menu_recent'] = 'Recent';
+$lang['menu_recent_title'] = 'Recent Pastes';
+$lang['menu_trending'] = 'Trending';
+$lang['menu_trending_title'] = 'Trending Pastes';
+$lang['menu_api'] = 'API';
+$lang['menu_about'] = 'About';
 
