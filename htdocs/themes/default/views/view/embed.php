@@ -57,9 +57,6 @@ $this->carabiner->display('css');
 
 <?php
 
-//stats
-$this->load->view('defaults/stats');
-
 ?>
 <script>
 </script>

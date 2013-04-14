@@ -51,7 +51,7 @@
 				</tbody>
 			</table>
 		<?php } else { ?>
-			<p class="clear">There have been no pastes :(</p>
+			<p class="clear"><?php echo lang('paste_missing'); ?> :(</p>
 		<?php }?>
 <?php echo $pages; ?>
 <div class="spacer"></div>

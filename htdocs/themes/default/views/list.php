@@ -28,14 +28,14 @@
 			<td class="first"><a href="<?php echo site_url("view/".$paste['pid']); ?>"><?php echo $paste['title']; ?></a></td>
 			<td><?php echo $paste['name']; ?></td>
 			<td><?php echo $paste['lang']; ?></td>
-			<td><?php $p = explode(",", timespan($paste['created'], time())); echo $p[0]; ?> ago.</td>
+			<td><?php $p = explode(",", timespan($paste['created'], time())); echo $p[0]; ?> <?php echo lang('paste_ago'); ?>.</td>
 		</tr>
 
 		<?php }?>
 				</tbody>
 			</table> 
 		<?php } else { ?>
-			<p>There have been no pastes :(</p>
+			<p><?php echo lang('paste_missing'); ?> :(</p>
 		<?php }?>
 <?php echo $pages; ?>
 <div class="spacer"></div>

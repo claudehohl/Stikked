@@ -96,7 +96,7 @@ $autoload['config'] = array('stikked');
 |
 */
 
-$autoload['language'] = array();
+$autoload['language'] = array('stikked');
 
 
 /*
