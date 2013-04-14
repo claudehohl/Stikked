@@ -10,15 +10,15 @@
 			<?php echo $page['title']; ?>
 		<?php } ?></h1>
 		<p class="explain border"><?php if(!isset($page['instructions'])){ ?>
-			Here you can create a new paste
+			<?php echo lang('paste_create_new_desc'); ?>
 		<?php } else { ?>
 			<?php echo $page['instructions']; ?>
 		<?php } ?></p>								
 		
 		<div class="item_group">								
 			<div class="item">
-				<label for="name">Author
-					<span class="instruction">What's your name?</span>
+				<label for="name"><?php echo lang('paste_author'); ?>
+					<span class="instruction"><?php echo lang('paste_author_desc'); ?></span>
 				</label>
 				
 				<?php $set = array('name' => 'name', 'id' => 'name', 'value' => $name_set, 'maxlength' => '32', 'tabindex' => '1');
@@ -26,16 +26,16 @@
 			</div>
 			
 			<div class="item">
-				<label for="title">Title
-					<span class="instruction">Give your paste a title.</span>
+				<label for="title"><?php echo lang('paste_title'); ?>
+					<span class="instruction"><?php echo lang('paste_title_desc'); ?></span>
 				</label>
 				
 				<input value="<?php if(isset($title_set)){ echo $title_set; }?>" type="text" id="title" name="title" tabindex="2" maxlength="50" />
 			</div>
 																		
 			<div class="item last">
-				<label for="lang">Language
-					<span class="instruction">What language is your paste written in?</span>
+				<label for="lang"><?php echo lang('paste_lang'); ?>
+					<span class="instruction"><?php echo lang('paste_lang_desc'); ?></span>
 				</label>
 				
 				<?php $lang_extra = 'id="lang" class="select" tabindex="3"'; echo form_dropdown('lang', $languages, $lang_set, $lang_extra); ?>
@@ -43,9 +43,9 @@
 		</div>							
 		
 		<div class="item">
-			<label for="paste">Your paste
-				<span class="instruction">Paste your paste here</span>
-                <span class="instruction"><a href="#" id="enable_codemirror">Enable syntax highlighting</a></span>
+			<label for="paste"><?php echo lang('paste_yourpaste'); ?>
+				<span class="instruction"><?php echo lang('paste_yourpaste_desc'); ?></span>
+                <span class="instruction"><a href="#" id="enable_codemirror"><?php echo lang('paste_syntaxhl'); ?></a></span>
 			</label>
 			
 			<textarea id="code" name="code" cols="40" rows="20" tabindex="4"><?php if(isset($paste_set)){ echo $paste_set; }?></textarea>
@@ -53,8 +53,8 @@
 		
 		<div class="item_group">
 			<div class="item">
-				<label for="snipurl">Create Shorturl
-					<span class="instruction">Create a shorter url that redirects to your paste?</span>
+				<label for="snipurl"><?php echo lang('paste_shorturl'); ?>
+					<span class="instruction"><?php echo lang('paste_shorturl_desc'); ?></span>
 				</label>
 				<div class="text_beside">
 					<?php
@@ -65,8 +65,8 @@
 			</div>
 		
 			<div class="item">
-				<label for="private">Private
-					<span class="instruction">Private paste aren't shown in recent listings.</span>
+				<label for="private"><?php echo lang('paste_private'); ?>
+					<span class="instruction"><?php echo lang('paste_private_desc'); ?></span>
 				</label>
 				<div class="text_beside">
 					<?php
@@ -81,20 +81,20 @@
 			</div>
 		
 			<div class="item">
-				<label for="expire">Delete After
-					<span class="instruction">When should we delete your paste?</span>
+				<label for="expire"><?php echo lang('paste_delete'); ?>
+					<span class="instruction"><?php echo lang('paste_delete_desc'); ?></span>
 				</label>
 				<?php 
 					$expire_extra = 'id="expire" class="select" tabindex="7"';
 					$options = array(
-									"0" => "Keep Forever",
-									"30" => "30 Minutes",
-									"60" => "1 hour",
-									"360" => "6 Hours",
-									"720" => "12 Hours",
-									"1440" => "1 Day",
-									"10080" => "1 Week",
-									"40320" => "4 Weeks"
+									"0" => lang('exp_forever'),
+									"30" => lang('exp_30min'),
+									"60" => lang('exp_1h'),
+									"360" => lang('exp_6h'),
+									"720" => lang('exp_12h'),
+									"1440" => lang('exp_1d'),
+									"10080" => lang('exp_1w'),
+									"40320" => lang('exp_4w'),
 								);
 				echo form_dropdown('expire', $options, $expire_set, $expire_extra); ?>
 			</div>
@@ -107,8 +107,8 @@
 <?php if($this->config->item('enable_captcha')){ ?>
 		<div class="item_group">
 			<div class="item item_captcha">
-				<label for="captcha">Spam Protection
-					<span class="instruction">Type in the characters displayed in the picture.</span>
+				<label for="captcha"><?php echo lang('paste_spam'); ?>
+					<span class="instruction"><?php echo lang('paste_spam_desc'); ?></span>
 				</label>
                 <img class="captcha" src="<?php echo site_url('view/captcha'); ?>?<?php echo date('U', mktime()); ?>" alt="captcha" width="110" height="40" />
                 <input value="<?php if(isset($captcha_set)){ echo $captcha_set; }?>" type="text" id="captcha" name="captcha" tabindex="2" maxlength="32" />
@@ -121,7 +121,7 @@
     echo form_input($set);
 ?>
 
-		<div><button type="submit" value="submit" name="submit">Create</button></div>
+		<div><button type="submit" value="submit" name="submit"><?php echo lang('paste_create'); ?></button></div>
 		<div class="spacer"></div>
 	</form>
 </div>
