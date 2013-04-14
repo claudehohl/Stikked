@@ -38,16 +38,30 @@ Changelog
 ### Version 0.8.5:
 
 * Themes! Configure a different theme in config/stikked.php - or create your own
+* Multilanguage support. Configure a different language in config/stikked.php
+* Diff view for paste replies! View differences between the original paste and its reply
+* Possibility to set default expiration time
+* Lots of minor fixes and improvements
 
 #### Upgrade instructions
 
-The following line must be present config/stikked.php
+The following lines must be present config/stikked.php
 
 ```php
 $config['theme'] = 'default';
 ```
 
 You can choose between default, bootstrap, gabdark and gabdark3.
+
+Create you own theme. See doc/CREATING_THEMES.md
+
+```php
+$config['language'] = 'english';
+```
+
+You can choose between english and swissgerman ;)
+
+Help translating Stikked into your language! See doc/TRANSLATING_STIKKED.md
 
 ### Version 0.8.4:
 
