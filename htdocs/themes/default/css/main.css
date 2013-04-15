@@ -143,6 +143,11 @@ h4 {
     display: block;
 }
 
+#captcha {
+    position: relative;
+    left: 140px;
+}
+
 .form_wrapper .item_group .item input, .form_wrapper .item_group .item select {
 	width: 104px;
 	float: left;
