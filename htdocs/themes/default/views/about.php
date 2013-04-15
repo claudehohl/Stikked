@@ -15,7 +15,7 @@
         <li>Anti-Spam features</li>
         <li>Themes support</li>
         <li>Multilanguage support</li>
-        <li>And many more. View <a href="http://maketecheasier.com/run-your-own-pastebin-with-stikked/2013/01/11">this review</a> or visit the Repo on GitHub: <a href="https://github.com/claudehohl/Stikked">https://github.com/claudehohl/Stikked</a></li>
+        <li>And many more. View <a href="http://maketecheasier.com/run-your-own-pastebin-with-stikked/2013/01/11">this review</a> or visit the <a href="https://github.com/claudehohl/Stikked">Repo on GitHub</a></li>
     </ul>
 
 </div>
