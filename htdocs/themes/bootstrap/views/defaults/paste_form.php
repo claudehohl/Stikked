@@ -44,7 +44,7 @@
 			<div class="row">
 				<div class="span12">
 					<label for="paste"><?php echo lang('paste_yourpaste'); ?>
-						<span class="instruction"><?php echo lang('paste_shorturl_desc'); ?></span>
+						<span class="instruction"><?php echo lang('paste_yourpaste_desc'); ?></span>
 					</label>
 				</div>
 			</div>
