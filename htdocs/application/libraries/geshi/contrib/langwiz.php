@@ -8,7 +8,7 @@
  *This script
  *
  * @author  Nigel McNie, Benny Baumann (BenBE@geshi.org), Andreas 'Segaja' Schleifer (webmaster at segaja dot de)
- * @version $Id: langwiz.php 2285 2010-04-10 18:55:11Z segaja $
+ * @version $Id: langwiz.php 2510 2012-06-27 15:57:55Z reedy_boy $
  */
 header('Content-Type: text/html; charset=utf-8');
 
@@ -81,16 +81,6 @@ function report_error($type, $message) {
     }
 }
 
-function extvar($name, $default){
-    if(isset($_POST[$name])) {
-        return $_POST[$name];
-    }
-    if(isset($_GET[$name])) {
-        return $_GET[$name];
-    }
-    return $default;
-}
-
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
      "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
@@ -146,15 +136,15 @@ function extvar($name, $default){
         margin-left: .5em;
     }
     fieldset {
-    	border: 1px dotted gray;
-    	background-color: #f0f0f0;
-    	margin-bottom: .5em;
+        border: 1px dotted gray;
+        background-color: #f0f0f0;
+        margin-bottom: .5em;
     }
     legend {
-    	font-weight: bold;
-    	background-color: #f9f9f9;
-    	border: 1px solid #a0a0a0;
-    	border-width: 1px 2px 2px 1px;
+        font-weight: bold;
+        background-color: #f9f9f9;
+        border: 1px solid #a0a0a0;
+        border-width: 1px 2px 2px 1px;
     }
     fieldset table > tbody > tr > td {
         width: 20%;
@@ -202,9 +192,9 @@ if(!$error_abort) {
 if(!$error_abort) {
     if(!defined('GESHI_LANG_ROOT')) {
         report_error(TYPE_ERROR, 'There\'s no information present on where to find the language files!');
-    } else if(!is_dir(GESHI_LANG_ROOT)) {
+    } elseif(!is_dir(GESHI_LANG_ROOT)) {
         report_error(TYPE_ERROR, 'The path "'.GESHI_LANG_ROOT.'" given, does not ressemble a directory!');
-    } else if(!is_readable(GESHI_LANG_ROOT)) {
+    } elseif(!is_readable(GESHI_LANG_ROOT)) {
         report_error(TYPE_ERROR, 'The path "'.GESHI_LANG_ROOT.'" is not readable to this script!');
     }
 }
@@ -341,8 +331,6 @@ $kw_cases_sel = array(
 
 echo "<pre>";
 //var_dump($languages);
-var_dump($_GET);
-var_dump($_POST);
 
 foreach($post_var_names as $varName) { // export wanted variables of $_POST array...
     if(array_key_exists($varName, $_POST)) {
@@ -709,7 +697,7 @@ echo "</pre>";
             </fieldset>
         </fieldset>
     </fieldset>
- 
+
     <fieldset>
         <legend>Keywords</legend>
 
@@ -901,7 +889,7 @@ function validate_lang(){
             'str' => array(
                 'qm' => array(),
                 'ec' => array(
-                    'char' => ''  
+                    'char' => ''
                     ),
                 'erx' => array()
                 ),
