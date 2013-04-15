@@ -1,12 +1,12 @@
 <?php
 
-$lang['required']			= "S %s Fäld isch Pflicht.";
-$lang['not_allowed']		= "Du dörfsch nümme paste. Ganz eifach.";
-$lang['captcha']		    = "S Käptscha isch nid korräkt.";
-$lang['blocked_words']	    = "Di Paste beinhaltet gsperrti Wörter.";
-$lang['robot']	            = "Figg di, du Scheissbot!";
-$lang['empty']				= "S %s Fäld dörf nid leer syy.";
-$lang['valid_lang']			= "Bitte wähl dini Sprooch us.";
+$lang['required']			= "The %s field is required.";
+$lang['not_allowed']		= "You are not allowed to paste.";
+$lang['captcha']	    	= "The captcha is incorrect.";
+$lang['blocked_words']    	= "Your Paste contains blocked words.";
+$lang['robot']             	= "Go away, robot!";
+$lang['empty']				= "The %s field can not be empty.";
+$lang['valid_lang']			= "Please select your language.";
 $lang['isset']				= "The %s field must have a value.";
 $lang['valid_email']		= "The %s field must contain a valid email address.";
 $lang['valid_emails']		= "The %s field must contain all valid email addresses.";

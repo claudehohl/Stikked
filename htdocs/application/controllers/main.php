@@ -356,7 +356,7 @@ class Main extends CI_Controller
 
 			//form validation
 			$this->form_validation->set_rules($rules);
-			$this->form_validation->set_message('min_length', 'The %s field can not be empty');
+			$this->form_validation->set_message('min_length', lang('empty'));
 			$this->form_validation->set_error_delimiters('<div class="message error"><div class="container">', '</div></div>');
 			
 			if ($this->form_validation->run() == FALSE) 
@@ -577,7 +577,7 @@ class Main extends CI_Controller
 	function _valid_lang($lang) 
 	{
 		$this->load->model('languages');
-		$this->form_validation->set_message('_valid_lang', 'Please select your language');
+		$this->form_validation->set_message('_valid_lang', lang('valid_lang'));
 		return $this->languages->valid_language($lang);
 	}
 	
@@ -586,7 +586,7 @@ class Main extends CI_Controller
 		
 		if ($this->config->item('enable_captcha')) 
 		{
-			$this->form_validation->set_message('_valid_captcha', 'The Captcha is incorrect.');
+			$this->form_validation->set_message('_valid_captcha', lang('captcha'));
 			return strtolower($text) == strtolower($this->db_session->userdata('captcha'));
 		}
 		else
@@ -637,7 +637,7 @@ class Main extends CI_Controller
 	{
 
 		//setup message
-		$this->form_validation->set_message('_blockwords_check', 'Your paste contains blocked words.');
+		$this->form_validation->set_message('_blockwords_check', lang('blocked_words'));
 
 		//check
 		$blocked_words = $this->config->item('blocked_words');
@@ -659,7 +659,7 @@ class Main extends CI_Controller
 	{
 
 		//setup message
-		$this->form_validation->set_message('_autofill_check', 'Go away, robot!');
+		$this->form_validation->set_message('_autofill_check', lang('robot'));
 
 		//check
 		return !$this->input->post('email');
