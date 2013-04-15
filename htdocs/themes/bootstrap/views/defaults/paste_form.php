@@ -44,7 +44,7 @@
 			<div class="row">
 				<div class="span12">
 					<label for="paste"><?php echo lang('paste_yourpaste'); ?>
-						<span class="instruction"><?php echo lang('paste_yourpaste_desc'); ?></span>
+						<span class="instruction"> - <?php echo lang('paste_yourpaste_desc'); ?></span>
 					</label>
 				</div>
 			</div>
@@ -57,14 +57,14 @@
 			<div class="row">
 				<div class="span8">
 					<div class="control-group">
-						<label class="control-label" for="optionsCheckbox"><?php echo long('paste_shorturl'); ?></label>
+						<label class="control-label" for="optionsCheckbox"><?php echo lang('paste_shorturl'); ?></label>
 						<div class="controls">
 							<label class="checkbox">
 								<?php
 									$set = array('name' => 'snipurl', 'id' => 'snipurl', 'value' => '1', 'tabindex' => '5', 'checked' => $snipurl_set);
 									echo form_checkbox($set);
 								?>
-								<?php echo long('paste_shorturl_desc'); ?>
+								<?php echo lang('paste_shorturl_desc'); ?>
 							</label>
 						</div>
 					</div>
@@ -86,20 +86,20 @@
 					</div>
 					<div class="item">
 						<label for="expire"><?php echo lang('paste_delete'); ?>
-							<span class="instruction"><?php echo lang('paste_delete_desc'); ?></span>
+							<span class="instruction">- <?php echo lang('paste_delete_desc'); ?></span>
 						</label>
 						<?php 
 							$expire_extra = 'id="expire" class="select" tabindex="7"';
 							$options = array(
-											"0" => "Keep Forever",
-											"30" => "30 Minutes",
-											"60" => "1 hour",
-											"360" => "6 Hours",
-											"720" => "12 Hours",
-											"1440" => "1 Day",
-											"10080" => "1 Week",
-											"40320" => "4 Weeks"
-										);
+											"0" => lang('exp_forever'),
+											"30" => lang('exp_30min'),
+											"60" => lang('exp_1h'),
+											"360" => lang('exp_6h'),
+											"720" => lang('exp_12h'),
+											"1440" => lang('exp_1d'),
+											"10080" => lang('exp_1w'),
+											"40320" => lang('exp_4w'),
+									);
 						echo form_dropdown('expire', $options, $expire_set, $expire_extra); ?>
 					</div>
 				</div>
