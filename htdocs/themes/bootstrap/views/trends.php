@@ -1,6 +1,6 @@
 <?php $this->load->view('defaults/header');?>
 	<div class="page-header">
-		<h1>Trending Pastes</h1>
+		<h1><?php echo lang('paste_trending'); ?></h1>
 	</div>
 
 		<?php
@@ -8,12 +8,12 @@
 			<table class="recent table table-striped table-bordered">
 				<thead>
 					<tr>
-						<th class="title">Title</th>
-						<th class="name">Name</th>
-						<th class="lang">Language</th>
-						<th class="hits">Hits</th>
+						<th class="title"><?php echo lang('table_title'); ?></th>
+						<th class="name"><?php echo lang('table_name'); ?></th>
+						<th class="lang"><?php echo lang('table_lang'); ?></th>
+						<th class="hits"><?php echo lang('table_hits'); ?></th>
 						<th class="hidden">UNIX</th>
-						<th class="time">When</th>
+						<th class="time"><?php echo lang('table_time'); ?></th>
 					</tr>
 				</thead>
 				<tbody>
@@ -25,14 +25,14 @@
 			<td><?php echo $paste['lang']; ?></td>
 			<td class="hidden"><?php echo $paste['created']; ?></td>
 			<td><?php echo number_format($paste['hits'], 0, '.', "'"); ?></td>
-			<td><?php $p = explode(",", timespan($paste['created'], time())); echo $p[0]; ?> ago.</td>
+			<td><?php $p = explode(",", timespan($paste['created'], time())); echo $p[0]; ?> <?php echo lang('paste_ago'); ?>.</td>
 		</tr>
 
 		<?php }?>
 				</tbody>
 			</table>
 		<?php } else { ?>
-			<p>There have been no pastes :(</p>
+			<p><?php echo lang('paste_missing'); ?> :(</p>
 		<?php }?>
 <?php echo $pages; ?>
 <div class="spacer"></div>

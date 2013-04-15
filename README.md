@@ -59,7 +59,7 @@ Create you own theme. See doc/CREATING_THEMES.md
 $config['language'] = 'english';
 ```
 
-You can choose between english and swissgerman ;)
+You can choose between english, german and swissgerman ;)
 
 Help translating Stikked into your language! See doc/TRANSLATING_STIKKED.md
 
