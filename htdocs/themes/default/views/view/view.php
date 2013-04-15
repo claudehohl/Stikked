@@ -31,7 +31,7 @@ if(isset($insert)){
 			<?php if(!empty($snipurl)){?>
 				<span class="detail"><span class="item"><?php echo lang('paste_shorturl'); ?> </span><a href="<?php echo $snipurl; ?>"><?php echo htmlspecialchars($snipurl) ?></a></span>
 			<?php }?>
-			<span class="detail"><span class="item"><?php echo lang('paste_embed'); ?> </span><input id="embed_field" type="text" value="<?php echo htmlspecialchars('<iframe src="' . site_url('view/embed/' . $pid . '/' . $seg3) . '" style="border:none;width:100%"></iframe>'); ?>" /></span>
+			<span class="detail"><span class="item"><?php echo lang('paste_embed'); ?> </span><input data-lang-showcode="<?php echo lang('paste_showcode'); ?>" id="embed_field" type="text" value="<?php echo htmlspecialchars('<iframe src="' . site_url('view/embed/' . $pid . '/' . $seg3) . '" style="border:none;width:100%"></iframe>'); ?>" /></span>
 			<div class="spacer"></div>
 			
 			<span class="detail">
@@ -40,7 +40,8 @@ if(isset($insert)){
 <?php }else{ ?>
             <?php echo lang('paste_viewdiffs'); ?> <a href="<?php echo $inreply['url']?>"><?php echo $inreply['title']; ?></a> <?php echo lang('paste_and'); ?> <a href="<?php echo $url; ?>"><?php echo $title; ?></a>
 <?php } ?>
-            &mdash; <a href="#" class="expand control"><?php echo lang('paste_expand'); ?></a> <?php echo lang('paste_fullwidth'); ?></span>
+            <span class="expander hidden">&mdash; <a href="#" class="expand control"><?php echo lang('paste_expand'); ?></a> <?php echo lang('paste_fullwidth'); ?></span>
+            </span>
 		</div>
 	</div>
 </div>

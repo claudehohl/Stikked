@@ -9,8 +9,9 @@ ST.change = function() {
 
 ST.show_embed = function() {
 	$embed_field = $('#embed_field');
+    var lang_showcode = $embed_field.data('lang-showcode');
 	$embed_field.hide();
-	$embed_field.after('<a id="show_code" href="#">Show code</a>');
+	$embed_field.after('<a id="show_code" href="#">' + lang_showcode + '</a>');
 	$('#show_code').live('click',
 	function() {
 		$(this).hide();
@@ -20,6 +21,7 @@ ST.show_embed = function() {
 };
 
 ST.expand = function() {
+    $('.expander').show();
 	$('.expand').click(function() {
 		if ($('.paste').hasClass('full')) {
 			return false;
