@@ -1,4 +1,5 @@
-		<?php $this->load->view('defaults/footer_message'); ?>
+			<?php $this->load->view('defaults/footer_message'); ?>
+		</div>
 <?php
 
 //codemirror modes
