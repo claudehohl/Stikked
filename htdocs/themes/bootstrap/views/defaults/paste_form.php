@@ -43,7 +43,7 @@
 			
 			<div class="row">
 				<div class="span12">
-					<label for="paste"><?php echo lang('paste_yourpaste'); ?>
+					<label for="code"><?php echo lang('paste_yourpaste'); ?>
 						<span class="instruction"> - <?php echo lang('paste_yourpaste_desc'); ?></span>
 					</label>
 				</div>
@@ -57,7 +57,7 @@
 			<div class="row">
 				<div class="span8">
 					<div class="control-group">
-						<label class="control-label" for="optionsCheckbox"><?php echo lang('paste_shorturl'); ?></label>
+						<label class="control-label" for="snipurl"><?php echo lang('paste_shorturl'); ?></label>
 						<div class="controls">
 							<label class="checkbox">
 								<?php
@@ -69,7 +69,7 @@
 						</div>
 					</div>
 					<div class="control-group">
-						<label class="control-label" for="optionsCheckbox"><?php echo lang('paste_private'); ?></label>
+						<label class="control-label" for="private"><?php echo lang('paste_private'); ?></label>
 						<div class="controls">
 							<label class="checkbox">
 								<?php
