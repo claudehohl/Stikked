@@ -1,35 +1,51 @@
 Stikked is an Open-Source PHP Pastebin, with the aim of keeping a simple and easy to use user interface.
 
-Stikked allows you to easily share code with anyone you wish. Stikked was created for the following reasons:
+Stikked allows you to easily share code with anyone you wish. Based on the [original Stikked](http://code.google.com/p/stikked/) with lots of bugfixes and improvements.
 
-* IRC and Private Chats were spammed.
-* Pastebins were ugly.
-* Pastebins were confusing.
-* Pastebins were messy and not thought through.
-* Stikked rethought code collaboration, by making it easy to paste code.
+Here are some features:
 
-Based on the original Stikked (http://code.google.com/p/stikked/) with lots of bugfixes and improvements.
-
-Thanks to Rebecca Chapnik for this great review: http://maketecheasier.com/run-your-own-pastebin-with-stikked/2013/01/11
+* Easy setup
+* Syntaxhighlighting for many languages, including live syntaxhighlighting with CodeMirror
+* Paste replies
+* Diff view between the original paste and the reply
+* An API
+* Trending pastes
+* Anti-Spam features
+* Themes support
+* Multilanguage support
+* And many more. View [this review](http://maketecheasier.com/run-your-own-pastebin-with-stikked/2013/01/11) 
 
 
 Try it out
 ----------
+
 http://paste.scratchbook.ch/
 
 
 Installation
 ------------
 
-1.  Download stikked from https://github.com/claudehohl/Stikked/tags
-2.  Create a user and database for Stikked
-3.  Edit configuration settings in application/config/stikked.php - everything is described there
-4.  You're done!
+1. Download stikked from https://github.com/claudehohl/Stikked/tags
+2. Create a user and database for Stikked
+3. Edit configuration settings in application/config/stikked.php - everything is described there
+4. You're done!
 
 * The database structure will be created automatically if it doesn't exist.
 * No special file permissions are needed by default. Optional: If you want to have the JavaScript- and CSS-files minified, the static/asset/ folder has to be writable.
 * To ensure that pastes with an expiration set get cleaned up, define the cron key in the config and set up a cronjob, for example:
   * */5 * * * * curl --silent http://yoursite.com/cron/[key]
+
+
+Documentation
+-------------
+
+In the folder doc/, you will find:
+
+* Webserver example configurations for Apache, Nginx, Lighttpd, Cherokee
+* A troubleshooting guide
+* How to create your own theme
+* How to translate Stikked into your language
+* How to contribute and improve Stikked
 
 
 Changelog
@@ -141,4 +157,3 @@ Help translating Stikked into your language! See doc/TRANSLATING_STIKKED.md
 * Fully standards compliant css and xhtml.
 * Random generating names for anonymous users
 * Paste downloading
-
