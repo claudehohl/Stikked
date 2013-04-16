@@ -11,7 +11,7 @@ Rewrite rules must be enabled in httpd.conf.
 
 #### 502 Bad Gateway
 
-PHP FastCGI must be running. Here's my /etc/init.d/php-fgci config:
+PHP FastCGI must be running. Here's my /etc/init.d/php-fcgi config:
 
 ```bash
 #!/bin/bash
@@ -30,6 +30,10 @@ PHP5=/usr/bin/php5-cgi
 You can adapt that to your system.
 
 ### Lighttpd
+
+#### 503 - Service Not Available
+
+PHP FastCGI must be running. See the php-fcgi section under Nginx.
 
 ### Cherokee
 
