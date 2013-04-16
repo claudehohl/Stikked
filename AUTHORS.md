@@ -8,4 +8,4 @@
 * Chris https://github.com/ch0wnag3 (favicon URL improvement)
 * Gabriel Wanzek https://github.com/GabrielWanzek (gabdark & gabdark3 themes)
 * Luc https://github.com/ltribolet (Bootstrap theme)
-* Stephan Bergemann https://github.com/oberling (German translation)
+* Stephan Bergemann https://github.com/oberling (German translation, Bootstrap multilang support + making bootstrap theme HTML5 valid)
