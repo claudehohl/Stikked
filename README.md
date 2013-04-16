@@ -44,7 +44,7 @@ Changelog
 * Updated GeSHi to version 1.0.8.11
 * Updated CodeMirror to version 3.11
 * Lots of minor fixes and improvements
-* Added guides for troubleshooting, development and translation
+* Added guides for troubleshooting, development, translation and creating themes
 * Added webserver example configurations
 
 #### Upgrade instructions
