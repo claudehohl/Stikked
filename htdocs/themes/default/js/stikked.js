@@ -1,12 +1,5 @@
 var ST = window.ST || {}
 
-ST.change = function() {
-	$('.change').oneTime(3000,
-	function() {
-		$(this).fadeOut(2000);
-	});
-};
-
 ST.show_embed = function() {
 	$embed_field = $('#embed_field');
     var lang_showcode = $embed_field.data('lang-showcode');
@@ -58,7 +51,6 @@ ST.spamadmin = function() {
 };
 
 ST.init = function() {
-	ST.change();
 	ST.expand();
 	ST.show_embed();
 	ST.spamadmin();
