@@ -353,7 +353,12 @@ h4 {
 }
 
 .recent .even {
+    color: #000;
 	background-color: #F1F5FA;
+}
+
+.recent .even a {
+    color: #000;
 }
 
 /* !Pastes */
