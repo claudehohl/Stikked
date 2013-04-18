@@ -75,6 +75,13 @@ class Theme_assets extends CI_Controller
 		//file path
 		$file_path = 'themes/' . $this->theme . '/js/' . $js_file;
 
+		//fallback to default js if js in theme not found
+		
+		if (!file_exists($file_path)) 
+		{
+			$file_path = 'themes/default/js/' . $js_file;
+		}
+
 		//send
 		header('Content-Type: application/x-javascript; charset=utf-8');
 		$this->_expires_header(30);
