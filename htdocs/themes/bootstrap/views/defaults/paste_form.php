@@ -57,19 +57,17 @@
 			<div class="row">
 				<div class="span8">
 					<div class="control-group">
-						<label class="control-label" for="snipurl"><?php echo lang('paste_shorturl'); ?></label>
 						<div class="controls">
 							<label class="checkbox">
 								<?php
 									$set = array('name' => 'snipurl', 'id' => 'snipurl', 'value' => '1', 'tabindex' => '5', 'checked' => $snipurl_set);
 									echo form_checkbox($set);
 								?>
-								<?php echo lang('paste_shorturl_desc'); ?>
+								<?php echo lang('paste_shorturl') . ' - ' . lang('paste_shorturl_desc'); ?>
 							</label>
 						</div>
 					</div>
 					<div class="control-group">
-						<label class="control-label" for="private"><?php echo lang('paste_private'); ?></label>
 						<div class="controls">
 							<label class="checkbox">
 								<?php
@@ -80,7 +78,7 @@
 											}
 								echo form_checkbox($set);
 							?>
-								<?php echo lang('paste_private_desc'); ?>
+								<?php echo lang('paste_private') . ' - ' . lang('paste_private_desc'); ?>
 							</label>
 						</div>
 					</div>
@@ -113,7 +111,7 @@
 			<div class="item_group">
 				<div class="item item_captcha">
 					<label for="captcha"><?php echo lang('paste_spam'); ?>
-						<span class="instruction"><?php echo lang('paste_spam_desc'); ?></span>
+						<span class="instruction">- <?php echo lang('paste_spam_desc'); ?></span>
 					</label>
 						<img class="captcha" src="<?php echo site_url('view/captcha'); ?>?<?php echo date('U', mktime()); ?>" alt="captcha" width="110" height="40" />
 						<input value="<?php if(isset($captcha_set)){ echo $captcha_set; }?>" type="text" id="captcha" name="captcha" tabindex="2" maxlength="32" />

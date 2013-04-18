@@ -80,3 +80,28 @@ table.table thead .sorting_desc_disabled { background: url('../images/sort_desc_
     background: #fdd;
 }
 
+/* Messages
+-------------------------------------------------- */
+.message {
+	width: 100%;
+	font-size: 85%;
+	margin-top: 15px;
+	color: #fff;
+}
+
+.message.success {
+	background-color: green;
+}
+
+.message.status {
+	background: #DB9330;
+}
+
+.message.error {
+	background: red;
+}
+
+.message .container {
+	padding: 5px;
+}
+
