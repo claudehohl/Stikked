@@ -1,6 +1,14 @@
-<?php $this->load->view('defaults/header'); ?>
+<?php $this->load->view('defaults/header');
 
-<?php if(isset($insert)){
+$seg3 = $this->uri->segment(3);
+
+if($seg3 != 'diff'){
+    $page_url = $url;
+}else{
+    $page_url = $url . '/diff';
+}
+
+if(isset($insert)){
 	echo $insert;
 }?>
 
@@ -13,13 +21,27 @@
 			<div class="row">
 				<div class="span12">
 					<div class="detail by"><?php echo lang('paste_from'); ?> <?php echo $name; ?>, <?php $p = explode(',', timespan($created, time())); echo $p[0]?> <?php echo lang('paste_ago'); ?>, <?php echo lang('paste_writtenin'); ?> <?php echo $lang; ?>.</div>
-					<?php if(isset($inreply)){?><div class="detail by"><?php echo lang('paste_isareply'); ?> <a href="<?php echo $inreply['url']?>"><?php echo $inreply['title']; ?></a> <?php echo strtolower(lang('paste_from')); ?> <?php echo $inreply['name']; ?></div><?php }?>
+					<?php if(isset($inreply)){?><div class="detail by"><?php echo lang('paste_isareply'); ?> <a href="<?php echo $inreply['url']?>"><?php echo $inreply['title']; ?></a> <?php echo strtolower(lang('paste_from')); ?> <?php echo $inreply['name']; ?>
+
+<?php if($seg3 != 'diff'){ ?>
+            - <a href="<?php echo $url . '/diff'; ?>"><?php echo lang('paste_viewdiff'); ?></a>
+<?php }else{ ?>
+            - <a href="<?php echo $url; ?>"><?php echo lang('paste_goback'); ?></a>
+<?php } ?>
+
+</div><?php }?>
 					<div class="detail"><span class="item"><?php echo lang('paste_url'); ?> </span><a href="<?php echo $url; ?>"><?php echo $url; ?></a></div>
 					<?php if(!empty($snipurl)){?>
 						<div class="detail"><div class="item"><?php echo lang('paste_shorturl');?> </div><a href="<?php echo $snipurl; ?>"><?php echo htmlspecialchars($snipurl) ?></a></div>
 					<?php }?>
 					<div class="detail"><span class="item"><?php echo lang('paste_embed'); ?> </span><input data-lang-showcode="<?php echo lang('paste_showcode'); ?>" id="embed_field" type="text" value="<?php echo htmlspecialchars('<iframe src="' . site_url('view/embed/' . $pid) . '" style="border:none;width:100%"></iframe>'); ?>" /></div>
-					<div class="detail"><a class="control" href="<?php echo site_url("view/download/".$pid); ?>"><?php echo lang('paste_download'); ?></a> <?php echo lang('paste_or'); ?> <a class="control" href="<?php echo site_url("view/raw/".$pid); ?>"><?php echo lang('paste_viewraw'); ?></a> &mdash; <a href="#" class="expand control"><?php echo lang('paste_expand'); ?></a> <?php echo lang('paste_fullwidth'); ?></div>
+
+					<div class="detail">
+<?php if($seg3 != 'diff'){ ?>
+                    <a class="control" href="<?php echo site_url("view/download/".$pid); ?>"><?php echo lang('paste_download'); ?></a> <?php echo lang('paste_or'); ?> <a class="control" href="<?php echo site_url("view/raw/".$pid); ?>"><?php echo lang('paste_viewraw'); ?></a></div>
+<?php }else{ ?>
+                    <?php echo lang('paste_viewdiffs'); ?> <a href="<?php echo $inreply['url']?>"><?php echo $inreply['title']; ?></a> <?php echo lang('paste_and'); ?> <a href="<?php echo $url; ?>"><?php echo $title; ?></a>
+<?php } ?>
 				</div>
 			</div>
 		</div>
