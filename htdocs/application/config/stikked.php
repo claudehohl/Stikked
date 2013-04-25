@@ -25,10 +25,10 @@ $config['db_password'] = 'stikked';
  *
  * Which theme to use
  * Folder name in htdocs/themes/
- * Currently: default, bootstrap, gabdark, gabdark3
+ * Currently: default, bootstrap, gabdark, gabdark3, geocities
  *
 */
-$config['theme'] = 'default';
+$config['theme'] = 'geocities';
 
 /**
  * Language
@@ -38,7 +38,7 @@ $config['theme'] = 'default';
  * Currently: english, swissgerman, german
  *
 */
-$config['language'] = 'english';
+$config['language'] = 'swissgerman';
 
 /**
  * Combine JS & CSS files (recommended)
