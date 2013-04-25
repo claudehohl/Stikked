@@ -5,7 +5,7 @@
 	<div class="span12">
 		<div class="page-header">
 			<h1><?php if(!isset($page['title'])){ ?>
-			<?php echo lang('paste_create_new'); ?>
+			<img src="<?php echo base_url(); ?>themes/geocities/images/drudgesiren.gif" alt="" />&nbsp;<?php echo lang('paste_create_new'); ?>
 			<?php } else { ?>
 				<?php echo $page['title']; ?>
 			<?php } ?>

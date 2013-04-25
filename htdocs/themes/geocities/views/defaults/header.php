@@ -48,7 +48,7 @@ $this->carabiner->display('css');
 							<span class="icon-bar"></span>
 							<span class="icon-bar"></span>
 						</a>
-						<a class="brand title" href="<?php echo base_url(); ?>"><?php echo $this->config->item('site_name'); ?></a>
+						<a class="brand title" href="<?php echo base_url(); ?>"><img src="<?php echo base_url(); ?>themes/bootstrap/images/7upspot.gif" alt="" /><?php echo $this->config->item('site_name'); ?></a>
 						<div class="nav-collapse">
 							<ul class="nav">
 								<?php $l = $this->uri->segment(1)?>
