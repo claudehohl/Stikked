@@ -9,6 +9,9 @@
             <img src="<?php echo base_url(); ?>themes/bootstrap/images/webtrips.gif">
           </td>
           <td>
+            <img src="<?php echo base_url(); ?>themes/bootstrap/images/geocities.jpg">
+          </td>
+          <td>
             <img src="<?php echo base_url(); ?>themes/bootstrap/images/notepad.gif">
           </td>
           <td>
