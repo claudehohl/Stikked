@@ -28,7 +28,7 @@ $config['db_password'] = 'stikked';
  * Currently: default, bootstrap, gabdark, gabdark3, geocities
  *
 */
-$config['theme'] = 'geocities';
+$config['theme'] = 'default';
 
 /**
  * Language
@@ -38,7 +38,7 @@ $config['theme'] = 'geocities';
  * Currently: english, swissgerman, german
  *
 */
-$config['language'] = 'swissgerman';
+$config['language'] = 'english';
 
 /**
  * Combine JS & CSS files (recommended)
