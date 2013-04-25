@@ -105,3 +105,8 @@ table.table thead .sorting_desc_disabled { background: url('../images/sort_desc_
 	padding: 5px;
 }
 
+/* backfixes */
+
+blockquote.CodeMirror {
+        background-color: #000;
+}
