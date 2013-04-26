@@ -37,6 +37,8 @@ class Api extends Main
 	function create() 
 	{
 		$this->load->model('pastes');
+		$this->load->library('form_validation'); //needed by parent class
+
 		
 		if (!$this->input->post('text')) 
 		{
@@ -56,6 +58,20 @@ class Api extends Main
 			{
 				$_POST['private'] = 1;
 			}
+
+			//validations
+			
+			if (!$this->_valid_ip()) 
+			{
+				die("You are not allowed to paste\n");
+			}
+			
+			if (!$this->_blockwords_check()) 
+			{
+				die("Your paste contains blocked words\n");
+			}
+
+			//create paste
 			$paste_url = $this->pastes->createPaste();
 			$data['msg'] = base_url() . $paste_url;
 			$this->load->view('view/api', $data);
