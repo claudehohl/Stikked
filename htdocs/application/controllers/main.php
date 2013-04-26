@@ -17,6 +17,7 @@
  * - captcha()
  * - _valid_lang()
  * - _valid_captcha()
+ * - _valid_recaptcha()
  * - _valid_ip()
  * - _blockwords_check()
  * - _autofill_check()
@@ -35,10 +36,15 @@ class Main extends CI_Controller
 		parent::__construct();
 		$this->load->model('languages');
 		
-		if ($this->config->item('require_auth')) 
+		if (config_item('require_auth')) 
 		{
 			$this->load->library('auth_ldap');
 		}
+
+		//recaptcha
+		$this->recaptcha_publickey = config_item('recaptcha_publickey');
+		$this->recaptcha_privatekey = config_item('recaptcha_privatekey');
+		$this->use_recaptcha = ($this->recaptcha_publickey != '' && $this->recaptcha_privatekey != '' ? true : false);
 		
 		if (!$this->db->table_exists('ci_sessions')) 
 		{
@@ -249,7 +255,7 @@ class Main extends CI_Controller
 
 		//codemirror languages
 		$this->load->config('codemirror_languages');
-		$codemirror_languages = $this->config->item('codemirror_languages');
+		$codemirror_languages = config_item('codemirror_languages');
 		$data['codemirror_languages'] = $codemirror_languages;
 
 		//codemirror modes
@@ -269,7 +275,7 @@ class Main extends CI_Controller
 			
 			if (!$this->db_session->userdata('expire')) 
 			{
-				$default_expiration = $this->config->item('default_expiration');
+				$default_expiration = config_item('default_expiration');
 				$this->db_session->set_userdata('expire', $default_expiration);
 			}
 			
@@ -287,7 +293,7 @@ class Main extends CI_Controller
 			
 			if (!$lang) 
 			{
-				$lang = $this->config->item('default_language');
+				$lang = config_item('default_language');
 			}
 			$data['lang_set'] = $lang;
 		}
@@ -367,7 +373,7 @@ class Main extends CI_Controller
 			else
 			{
 				
-				if ($this->config->item('private_only')) 
+				if (config_item('private_only')) 
 				{
 					$_POST['private'] = 1;
 				}
@@ -416,7 +422,7 @@ class Main extends CI_Controller
 			$this->load->helper('text');
 			$paste = $this->pastes->getPaste(3);
 			$data = $this->pastes->getReplies(3);
-			$data['page_title'] = $paste['title'] . ' - ' . $this->config->item('site_name');
+			$data['page_title'] = $paste['title'] . ' - ' . config_item('site_name');
 			$data['feed_url'] = site_url('view/rss/' . $this->uri->segment(3));
 			$this->load->view('view/rss', $data);
 		}
@@ -464,7 +470,7 @@ class Main extends CI_Controller
 	{
 		$this->_valid_authentication();
 		
-		if ($this->config->item('private_only')) 
+		if (config_item('private_only')) 
 		{
 			show_404();
 		}
@@ -476,7 +482,7 @@ class Main extends CI_Controller
 			if ($this->uri->segment(2) == 'rss') 
 			{
 				$this->load->helper('text');
-				$data['page_title'] = $this->config->item('site_name');
+				$data['page_title'] = config_item('site_name');
 				$data['feed_url'] = site_url('lists/rss');
 				$data['replies'] = $data['pastes'];
 				unset($data['pastes']);
@@ -493,7 +499,7 @@ class Main extends CI_Controller
 	{
 		$this->_valid_authentication();
 		
-		if ($this->config->item('private_only')) 
+		if (config_item('private_only')) 
 		{
 			show_404();
 		}
@@ -534,7 +540,7 @@ class Main extends CI_Controller
 		$this->load->model('pastes');
 		$key = $this->uri->segment(2);
 		
-		if ($key != $this->config->item('cron_key')) 
+		if ($key != config_item('cron_key')) 
 		{
 			show_404();
 		}
@@ -584,14 +590,52 @@ class Main extends CI_Controller
 	function _valid_captcha($text) 
 	{
 		
-		if ($this->config->item('enable_captcha')) 
+		if (config_item('enable_captcha')) 
 		{
 			$this->form_validation->set_message('_valid_captcha', lang('captcha'));
-			return strtolower($text) == strtolower($this->db_session->userdata('captcha'));
+			
+			if ($this->use_recaptcha) 
+			{
+				return $this->_valid_recaptcha();
+			}
+			else
+			{
+				return strtolower($text) == strtolower($this->db_session->userdata('captcha'));
+			}
 		}
 		else
 		{
 			return true;
+		}
+	}
+	
+	function _valid_recaptcha() 
+	{
+		$this->load->helper('recaptcha');
+		
+		if ($this->input->post('recaptcha_response_field')) 
+		{
+			$pk = $this->recaptcha_privatekey;
+			$ra = $_SERVER['REMOTE_ADDR'];
+			$cf = $this->input->post('recaptcha_challenge_field');
+			$rf = $this->input->post('recaptcha_response_field');
+
+			//check
+			$resp = recaptcha_check_answer($pk, $ra, $cf, $rf);
+			
+			if ($resp->is_valid) 
+			{
+				return true;
+			}
+			else
+			{
+				$this->form_validation->set_message('_valid_captcha', $resp->error);
+				return false;
+			}
+		}
+		else
+		{
+			return false;
 		}
 	}
 	
@@ -640,9 +684,16 @@ class Main extends CI_Controller
 		$this->form_validation->set_message('_blockwords_check', lang('blocked_words'));
 
 		//check
-		$blocked_words = $this->config->item('blocked_words');
+		$blocked_words = config_item('blocked_words');
 		$post = $this->input->post();
 		$raw = $post['code'];
+		
+		if (!$blocked_words) 
+		{
+			return true;
+		}
+
+		//we have blocked words
 		foreach (explode(',', $blocked_words) as $word) 
 		{
 			$word = trim($word);
@@ -668,7 +719,7 @@ class Main extends CI_Controller
 	function _valid_authentication() 
 	{
 		
-		if ($this->config->item('require_auth')) 
+		if (config_item('require_auth')) 
 		{
 			
 			if (!$this->auth_ldap->is_authenticated()) 
@@ -683,7 +734,7 @@ class Main extends CI_Controller
 	{
 		$lang = $this->uri->segment(3);
 		$this->load->config('codemirror_languages');
-		$cml = $this->config->item('codemirror_languages');
+		$cml = config_item('codemirror_languages');
 
 		//file path
 		$file_path = 'themes/' . config_item('theme') . '/js/';

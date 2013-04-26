@@ -88,11 +88,16 @@ $config['per_page'] = 15;
  *
  * private_only: No recent pastes will be displayed.
  * enable_captcha: Users must enter a captcha to post.
+ * recaptcha_publickey & recaptcha_privatekey: If filled in correctly, reCaptcha will be used
  * blocked_words: Comma separated list, e.g. '.es.tl, mycraft.com, yourbadword'
+ * disable_api: Don't allow pasting via API (because we can't use a captcha there...)
  *
 **/
 $config['private_only'] = false;
-$config['enable_captcha'] = false;
+$config['enable_captcha'] = true;
+$config['recaptcha_publickey'] = '6LcNfOASAAAAAAP8AlckZgKxxvgzhHqFtfqnALG-';
+$config['recaptcha_privatekey'] = '6LcNfOASAAAAAMsddBL8WIQI-oc7Sh6vtJRYN9FK';
+$config['disable_api'] = false;
 $config['blocked_words'] = '';
 
 //spamadmin: accessible via /spamadmin (only active when user + pass is set)
