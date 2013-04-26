@@ -18,6 +18,11 @@ class Api extends Main
 	function __construct() 
 	{
 		parent::__construct();
+		
+		if (config_item('disable_api')) 
+		{
+			die("The API has been disabled\n");
+		}
 	}
 	
 	function index() 
