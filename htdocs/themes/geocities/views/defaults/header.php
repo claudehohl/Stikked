@@ -15,7 +15,7 @@ $page_title .= $this->config->item('site_name');
 
 //Carabiner
 $this->carabiner->config(array(
-    'script_dir' => 'themes/geocities/js/', 
+    'script_dir' => 'themes/geocities/js/',
     'style_dir'  => 'themes/geocities/css/',
     'cache_dir'  => 'static/asset/',
     'base_uri'	 => base_url(),
