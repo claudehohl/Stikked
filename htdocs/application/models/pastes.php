@@ -257,7 +257,7 @@ class Pastes extends CI_Model
 		{
 			$amount = $this->config->item('per_page');
 			$page = ($this->uri->segment(3) ? $this->uri->segment(3) : 0);
-			$this->db->select('title, name, created, pid, snipurl');
+			$this->db->select('title, name, created, pid, lang');
 			$this->db->where('replyto', $data['pid']);
 			$this->db->order_by('id', 'desc');
 			$this->db->limit($amount);
@@ -270,9 +270,9 @@ class Pastes extends CI_Model
 				{
 					$data['replies'][$n]['title'] = $row['title'];
 					$data['replies'][$n]['name'] = $row['name'];
+					$data['replies'][$n]['lang'] = $row['lang'];
 					$data['replies'][$n]['created'] = $row['created'];
 					$data['replies'][$n]['pid'] = $row['pid'];
-					$data['replies'][$n]['snipurl'] = $row['snipurl'];
 					$n++;
 				}
 				$config['base_url'] = site_url('view/' . $data['pid']);
@@ -354,14 +354,15 @@ class Pastes extends CI_Model
 			{
 				$data['replies'][$n]['title'] = $row['title'];
 				$data['replies'][$n]['name'] = $row['name'];
+				$data['replies'][$n]['lang'] = $row['lang'];
 				$data['replies'][$n]['created'] = $row['created'];
 				$data['replies'][$n]['pid'] = $row['pid'];
 				
 				if ($this->uri->segment(2) == 'rss') 
 				{
 					$data['replies'][$n]['paste'] = $this->process->syntax(htmlspecialchars_decode($row['raw']) , $row['lang']);
+					$data['replies'][$n]['raw'] = $row['raw'];
 				}
-				$data['replies'][$n]['raw'] = $row['raw'];
 				$n++;
 			}
 		}

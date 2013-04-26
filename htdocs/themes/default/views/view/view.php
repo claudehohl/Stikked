@@ -79,6 +79,7 @@ if(isset($insert)){
 					<tr>
 						<th class="title"><?php echo lang('table_title'); ?></th>
 						<th class="name"><?php echo lang('table_name'); ?></th>
+						<th class="name"><?php echo lang('table_lang'); ?></th>
 						<th class="time"><?php echo lang('table_time'); ?></th>
 					</tr>
 
@@ -94,6 +95,7 @@ if(isset($insert)){
 				<tr class="<?php echo $eo; ?>">
 					<td class="first"><a href="<?php echo site_url("view/".$reply['pid']); ?>"><?php echo $reply['title']; ?></a></td>
 					<td><?php echo $reply['name']; ?></td>
+					<td><?php echo $reply['lang']; ?></td>
 					<td><?php $p = explode(",", timespan($reply['created'], time())); echo $p[0];?> <?php echo lang('paste_ago'); ?>.</td>
 				</tr>
 		
