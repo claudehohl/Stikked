@@ -6,19 +6,19 @@
       <tbody>
         <tr>
           <td>
-            <img src="<?php echo base_url(); ?>themes/bootstrap/images/webtrips.gif">
+            <img src="<?php echo base_url(); ?>themes/geocities/images/webtrips.gif">
           </td>
           <td>
-            <img src="<?php echo base_url(); ?>themes/bootstrap/images/geocities.jpg">
+            <img src="<?php echo base_url(); ?>themes/geocities/images/geocities.jpg">
           </td>
           <td>
-            <img src="<?php echo base_url(); ?>themes/bootstrap/images/notepad.gif">
+            <img src="<?php echo base_url(); ?>themes/geocities/images/notepad.gif">
           </td>
           <td>
-            <img src="<?php echo base_url(); ?>themes/bootstrap/images/ie_logo.gif">
+            <img src="<?php echo base_url(); ?>themes/geocities/images/ie_logo.gif">
           </td>
           <td>
-            <img src="<?php echo base_url(); ?>themes/bootstrap/images/ns_logo.gif">
+            <img src="<?php echo base_url(); ?>themes/geocities/images/ns_logo.gif">
           </td>
         </tr>
       </tbody>

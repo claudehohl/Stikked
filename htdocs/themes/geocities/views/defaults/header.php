@@ -15,8 +15,8 @@ $page_title .= $this->config->item('site_name');
 
 //Carabiner
 $this->carabiner->config(array(
-    'script_dir' => 'themes/bootstrap/js/', 
-    'style_dir'  => 'themes/bootstrap/css/',
+    'script_dir' => 'themes/geocities/js/', 
+    'style_dir'  => 'themes/geocities/css/',
     'cache_dir'  => 'static/asset/',
     'base_uri'	 => base_url(),
     'combine'	 => true,
@@ -48,7 +48,7 @@ $this->carabiner->display('css');
 							<span class="icon-bar"></span>
 							<span class="icon-bar"></span>
 						</a>
-						<a class="brand title" href="<?php echo base_url(); ?>"><img style="padding-right: 5px;" src="<?php echo base_url(); ?>themes/bootstrap/images/7upspot.gif" alt="" /><?php echo $this->config->item('site_name'); ?></a>
+						<a class="brand title" href="<?php echo base_url(); ?>"><img style="padding-right: 5px;" src="<?php echo base_url(); ?>themes/geocities/images/7upspot.gif" alt="" /><?php echo $this->config->item('site_name'); ?></a>
 						<div class="nav-collapse">
 							<ul style="margin-top: 5px;" class="nav">
 								<?php $l = $this->uri->segment(1)?>
