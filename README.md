@@ -62,6 +62,7 @@ Changelog
 * Lots of minor fixes and improvements
 * Added guides for troubleshooting, development, translation and creating themes
 * Added webserver example configurations
+* Added reCaptcha integration for better antispam
 
 #### Upgrade instructions
 
@@ -71,7 +72,7 @@ The following lines must be present config/stikked.php
 $config['theme'] = 'default';
 ```
 
-You can choose between default, bootstrap, gabdark and gabdark3.
+You can choose between default, bootstrap, gabdark, gabdark3 and a fancy geocities theme ;)
 
 Create you own theme. See doc/CREATING_THEMES.md
 
@@ -82,6 +83,16 @@ $config['language'] = 'english';
 You can choose between english, german and swissgerman ;)
 
 Help translating Stikked into your language! See doc/TRANSLATING_STIKKED.md
+
+##### reCaptcha
+
+```php
+$config['recaptcha_publickey'] = '';
+$config['recaptcha_privatekey'] = '';
+```
+
+If these lines are filled, reCaptcha will be used.
+Get a key from https://www.google.com/recaptcha/admin/create
 
 ### Version 0.8.4:
 
