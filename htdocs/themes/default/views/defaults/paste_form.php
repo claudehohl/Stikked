@@ -110,8 +110,12 @@
 				<label for="captcha"><?php echo lang('paste_spam'); ?>
 					<span class="instruction"><?php echo lang('paste_spam_desc'); ?></span>
 				</label>
+<?php if($use_recaptcha){
+    echo recaptcha_get_html($recaptcha_publickey);
+} else { ?>
                 <img class="captcha" src="<?php echo site_url('view/captcha'); ?>?<?php echo date('U', mktime()); ?>" alt="captcha" width="110" height="40" />
-                <input value="<?php if(isset($captcha_set)){ echo $captcha_set; }?>" type="text" id="captcha" name="captcha" tabindex="2" maxlength="32" />
+                <input value="" type="text" id="captcha" name="captcha" tabindex="2" maxlength="32" />
+<?php } ?>
 			</div>
 		</div>
 <?php } ?>

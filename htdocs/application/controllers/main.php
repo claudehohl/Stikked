@@ -44,7 +44,12 @@ class Main extends CI_Controller
 		//recaptcha
 		$this->recaptcha_publickey = config_item('recaptcha_publickey');
 		$this->recaptcha_privatekey = config_item('recaptcha_privatekey');
-		$this->use_recaptcha = ($this->recaptcha_publickey != '' && $this->recaptcha_privatekey != '' ? true : false);
+		
+		if ($this->recaptcha_publickey != '' && $this->recaptcha_privatekey != '') 
+		{
+			$this->load->helper('recaptcha');
+			$this->use_recaptcha = true;
+		}
 		
 		if (!$this->db->table_exists('ci_sessions')) 
 		{
@@ -269,6 +274,10 @@ class Main extends CI_Controller
 			}
 		}
 		$data['codemirror_modes'] = $cmm;
+
+		//recaptcha
+		$data['use_recaptcha'] = $this->use_recaptcha;
+		$data['recaptcha_publickey'] = $this->recaptcha_publickey;
 		
 		if (!$this->input->post('submit')) 
 		{
@@ -611,7 +620,6 @@ class Main extends CI_Controller
 	
 	function _valid_recaptcha() 
 	{
-		$this->load->helper('recaptcha');
 		
 		if ($this->input->post('recaptcha_response_field')) 
 		{
@@ -622,16 +630,7 @@ class Main extends CI_Controller
 
 			//check
 			$resp = recaptcha_check_answer($pk, $ra, $cf, $rf);
-			
-			if ($resp->is_valid) 
-			{
-				return true;
-			}
-			else
-			{
-				$this->form_validation->set_message('_valid_captcha', $resp->error);
-				return false;
-			}
+			return $resp->is_valid;
 		}
 		else
 		{
