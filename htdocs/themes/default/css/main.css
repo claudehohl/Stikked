@@ -164,7 +164,7 @@ h4 {
 	margin-bottom: 10px;
 }
 
-.hidden {
+.hidden, .email, .url {
 	display: none;
 }
 

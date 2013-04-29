@@ -56,6 +56,7 @@ Changelog
 * Themes! Configure a different theme in config/stikked.php - or create your own
 * Multilanguage support. Configure a different language in config/stikked.php
 * Diff view for paste replies! View differences between the original paste and its reply
+ * see it in action: http://paste.scratchbook.ch/view/de81a093/diff
 * Possibility to set default expiration time
 * Updated GeSHi to version 1.0.8.11
 * Updated CodeMirror to version 3.11

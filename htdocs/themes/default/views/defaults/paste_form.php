@@ -121,7 +121,9 @@
 <?php } ?>
 
 <?php
-    $set = array('name' => 'email', 'hidden' => 'hidden');
+    $set = array('name' => 'email', 'class' => 'email');
+    echo form_input($set);
+    $set = array('name' => 'url', 'class' => 'url');
     echo form_input($set);
 ?>
 

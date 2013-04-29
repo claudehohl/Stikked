@@ -712,7 +712,7 @@ class Main extends CI_Controller
 		$this->form_validation->set_message('_autofill_check', lang('robot'));
 
 		//check
-		return !$this->input->post('email');
+		return (!$this->input->post('email') && !$this->input->post('url'));
 	}
 	
 	function _valid_authentication() 
