@@ -35,7 +35,7 @@ $config['theme'] = 'default';
  *
  * Which language to use
  * Translate Stikked to your own language, see htdocs/application/language files
- * Currently: english, swissgerman, german
+ * Currently: english, german, swissgerman, spanish
  *
 */
 $config['language'] = 'english';
