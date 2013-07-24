@@ -1,19 +1,19 @@
 <?php
 
-$lang['date_year'] = "Johr";
-$lang['date_years'] = "Johr";
-$lang['date_month'] = "Monet";
-$lang['date_months'] = "Mönet";
-$lang['date_week'] = "Wuchä";
-$lang['date_weeks'] = "Wuchä";
-$lang['date_day'] = "Daag";
-$lang['date_days'] = "Dääg";
-$lang['date_hour'] = "Stündli";
-$lang['date_hours'] = "Stundä";
-$lang['date_minute'] = "Minuttä";
-$lang['date_minutes'] = "Minuttä";
-$lang['date_second'] = "Sekundä";
-$lang['date_seconds'] = "Sekundä";
+$lang['date_year'] = "an";
+$lang['date_years'] = "ans";
+$lang['date_month'] = "mois";
+$lang['date_months'] = "mois";
+$lang['date_week'] = "semaine";
+$lang['date_weeks'] = "semaines";
+$lang['date_day'] = "jour";
+$lang['date_days'] = "jours";
+$lang['date_hour'] = "heure";
+$lang['date_hours'] = "heures";
+$lang['date_minute'] = "minute";
+$lang['date_minutes'] = "minutes";
+$lang['date_second'] = "seconde";
+$lang['date_seconds'] = "secondes";
 
 $lang['UM12']	= '(UTC -12:00) Baker/Howland Island';
 $lang['UM11']	= '(UTC -11:00) Samoa Time Zone, Niue';
