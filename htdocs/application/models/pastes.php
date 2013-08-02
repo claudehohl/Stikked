@@ -17,6 +17,7 @@
  * - cron()
  * - delete_paste()
  * - random_paste()
+ * - _format_diff()
  * Classes list:
  * - Pastes extends CI_Model
  */
@@ -171,7 +172,7 @@ class Pastes extends CI_Model
 		}
 	}
 	
-	function getPaste($seg = 2, $replies = false) 
+	function getPaste($seg = 2, $replies = false, $diff = false) 
 	{
 		
 		if ($this->uri->segment($seg) == '') 
@@ -222,13 +223,41 @@ class Pastes extends CI_Model
 			{
 				$data['inreply'] = false;
 			}
+			
+			if ($diff) 
+			{
+				$this->db->select('raw');
+				$this->db->where('pid', $inreply);
+				$query = $this->db->get('pastes');
+				
+				if ($query->num_rows() > 0) 
+				{
+					foreach ($query->result_array() as $row) 
+					{
+
+						//diff
+						//yes, I'm aware, two times htmlspecialchars_decode(). Needs to be, since it's saved that way in the DB from the original stikked author ages ago ;)
+
+						include_once ('./application/libraries/finediff.php');
+						$from_text = htmlspecialchars_decode(utf8_decode($row['raw']));
+						$to_text = htmlspecialchars_decode(utf8_decode($data['raw']));
+						$opcodes = FineDiff::getDiffOpcodes($from_text, $to_text, FineDiff::$wordGranularity);
+						$to_text = FineDiff::renderToTextFromOpcodes($from_text, $opcodes);
+						$data['paste'] = htmlspecialchars_decode($this->_format_diff(nl2br(FineDiff::renderDiffToHTMLFromOpcodes($from_text, $opcodes))));
+					}
+				}
+				else
+				{
+					$data['inreply'] = false;
+				}
+			}
 		}
 		
 		if ($replies) 
 		{
 			$amount = $this->config->item('per_page');
 			$page = ($this->uri->segment(3) ? $this->uri->segment(3) : 0);
-			$this->db->select('title, name, created, pid, snipurl');
+			$this->db->select('title, name, created, pid, lang');
 			$this->db->where('replyto', $data['pid']);
 			$this->db->order_by('id', 'desc');
 			$this->db->limit($amount);
@@ -241,9 +270,9 @@ class Pastes extends CI_Model
 				{
 					$data['replies'][$n]['title'] = $row['title'];
 					$data['replies'][$n]['name'] = $row['name'];
+					$data['replies'][$n]['lang'] = $row['lang'];
 					$data['replies'][$n]['created'] = $row['created'];
 					$data['replies'][$n]['pid'] = $row['pid'];
-					$data['replies'][$n]['snipurl'] = $row['snipurl'];
 					$n++;
 				}
 				$config['base_url'] = site_url('view/' . $data['pid']);
@@ -325,14 +354,15 @@ class Pastes extends CI_Model
 			{
 				$data['replies'][$n]['title'] = $row['title'];
 				$data['replies'][$n]['name'] = $row['name'];
+				$data['replies'][$n]['lang'] = $row['lang'];
 				$data['replies'][$n]['created'] = $row['created'];
 				$data['replies'][$n]['pid'] = $row['pid'];
 				
 				if ($this->uri->segment(2) == 'rss') 
 				{
 					$data['replies'][$n]['paste'] = $this->process->syntax(htmlspecialchars_decode($row['raw']) , $row['lang']);
+					$data['replies'][$n]['raw'] = $row['raw'];
 				}
-				$data['replies'][$n]['raw'] = $row['raw'];
 				$n++;
 			}
 		}
@@ -548,5 +578,12 @@ class Pastes extends CI_Model
 			return $data;
 		}
 		return false;
+	}
+	private 
+	function _format_diff($text) 
+	{
+		$text = str_replace("\t", '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;', $text);
+		$text = '<div class="text" style="font-family:monospace; font: normal normal 1em/1.2em monospace;">' . $text . '</div>';
+		return $text;
 	}
 }

@@ -66,3 +66,42 @@ table.table thead .sorting_desc { background: url('../images/sort_desc.png') no-
 
 table.table thead .sorting_asc_disabled { background: url('../images/sort_asc_disabled.png') no-repeat center right; }
 table.table thead .sorting_desc_disabled { background: url('../images/sort_desc_disabled.png') no-repeat center right; }
+
+/* Diff style
+-------------------------------------------------- */
+.text ins {
+    color: green;
+    background: #dfd;
+    text-decoration: none;
+}
+
+.text del {
+    color: red;
+    background: #fdd;
+}
+
+/* Messages
+-------------------------------------------------- */
+.message {
+	width: 100%;
+	font-size: 85%;
+	margin-top: 15px;
+	color: #fff;
+}
+
+.message.success {
+	background-color: green;
+}
+
+.message.status {
+	background: #DB9330;
+}
+
+.message.error {
+	background: red;
+}
+
+.message .container {
+	padding: 5px;
+}
+

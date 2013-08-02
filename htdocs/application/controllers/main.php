@@ -17,6 +17,7 @@
  * - captcha()
  * - _valid_lang()
  * - _valid_captcha()
+ * - _valid_recaptcha()
  * - _valid_ip()
  * - _blockwords_check()
  * - _autofill_check()
@@ -35,9 +36,19 @@ class Main extends CI_Controller
 		parent::__construct();
 		$this->load->model('languages');
 		
-		if ($this->config->item('require_auth')) 
+		if (config_item('require_auth')) 
 		{
 			$this->load->library('auth_ldap');
+		}
+
+		//recaptcha
+		$this->recaptcha_publickey = config_item('recaptcha_publickey');
+		$this->recaptcha_privatekey = config_item('recaptcha_privatekey');
+		
+		if ($this->recaptcha_publickey != '' && $this->recaptcha_privatekey != '') 
+		{
+			$this->load->helper('recaptcha');
+			$this->use_recaptcha = true;
 		}
 		
 		if (!$this->db->table_exists('ci_sessions')) 
@@ -249,7 +260,7 @@ class Main extends CI_Controller
 
 		//codemirror languages
 		$this->load->config('codemirror_languages');
-		$codemirror_languages = $this->config->item('codemirror_languages');
+		$codemirror_languages = config_item('codemirror_languages');
 		$data['codemirror_languages'] = $codemirror_languages;
 
 		//codemirror modes
@@ -263,13 +274,17 @@ class Main extends CI_Controller
 			}
 		}
 		$data['codemirror_modes'] = $cmm;
+
+		//recaptcha
+		$data['use_recaptcha'] = $this->use_recaptcha;
+		$data['recaptcha_publickey'] = $this->recaptcha_publickey;
 		
 		if (!$this->input->post('submit')) 
 		{
 			
 			if (!$this->db_session->userdata('expire')) 
 			{
-				$default_expiration = $this->config->item('default_expiration');
+				$default_expiration = config_item('default_expiration');
 				$this->db_session->set_userdata('expire', $default_expiration);
 			}
 			
@@ -287,7 +302,7 @@ class Main extends CI_Controller
 			
 			if (!$lang) 
 			{
-				$lang = $this->config->item('default_language');
+				$lang = config_item('default_language');
 			}
 			$data['lang_set'] = $lang;
 		}
@@ -356,7 +371,7 @@ class Main extends CI_Controller
 
 			//form validation
 			$this->form_validation->set_rules($rules);
-			$this->form_validation->set_message('min_length', 'The %s field can not be empty');
+			$this->form_validation->set_message('min_length', lang('empty'));
 			$this->form_validation->set_error_delimiters('<div class="message error"><div class="container">', '</div></div>');
 			
 			if ($this->form_validation->run() == FALSE) 
@@ -367,7 +382,7 @@ class Main extends CI_Controller
 			else
 			{
 				
-				if ($this->config->item('private_only')) 
+				if (config_item('private_only')) 
 				{
 					$_POST['private'] = 1;
 				}
@@ -416,7 +431,7 @@ class Main extends CI_Controller
 			$this->load->helper('text');
 			$paste = $this->pastes->getPaste(3);
 			$data = $this->pastes->getReplies(3);
-			$data['page_title'] = $paste['title'] . ' - ' . $this->config->item('site_name');
+			$data['page_title'] = $paste['title'] . ' - ' . config_item('site_name');
 			$data['feed_url'] = site_url('view/rss/' . $this->uri->segment(3));
 			$this->load->view('view/rss', $data);
 		}
@@ -434,7 +449,7 @@ class Main extends CI_Controller
 		
 		if ($check) 
 		{
-			$data = $this->pastes->getPaste(3);
+			$data = $this->pastes->getPaste(3, true, $this->uri->segment(4) == 'diff');
 			$this->load->view('view/embed', $data);
 		}
 		else
@@ -464,7 +479,7 @@ class Main extends CI_Controller
 	{
 		$this->_valid_authentication();
 		
-		if ($this->config->item('private_only')) 
+		if (config_item('private_only')) 
 		{
 			show_404();
 		}
@@ -476,7 +491,7 @@ class Main extends CI_Controller
 			if ($this->uri->segment(2) == 'rss') 
 			{
 				$this->load->helper('text');
-				$data['page_title'] = $this->config->item('site_name');
+				$data['page_title'] = config_item('site_name');
 				$data['feed_url'] = site_url('lists/rss');
 				$data['replies'] = $data['pastes'];
 				unset($data['pastes']);
@@ -493,7 +508,7 @@ class Main extends CI_Controller
 	{
 		$this->_valid_authentication();
 		
-		if ($this->config->item('private_only')) 
+		if (config_item('private_only')) 
 		{
 			show_404();
 		}
@@ -519,7 +534,7 @@ class Main extends CI_Controller
 			{
 				redirect('view/raw/' . $this->uri->segment(2));
 			}
-			$data = $this->pastes->getPaste(2, true);
+			$data = $this->pastes->getPaste(2, true, $this->uri->segment(3) == 'diff');
 			$data['reply_form'] = $this->_form_prep($data['lang_code'], 'Re: ' . $data['title'], $data['raw'], $data['pid']);
 			$this->load->view('view/view', $data);
 		}
@@ -534,7 +549,7 @@ class Main extends CI_Controller
 		$this->load->model('pastes');
 		$key = $this->uri->segment(2);
 		
-		if ($key != $this->config->item('cron_key')) 
+		if ($key != config_item('cron_key')) 
 		{
 			show_404();
 		}
@@ -577,21 +592,49 @@ class Main extends CI_Controller
 	function _valid_lang($lang) 
 	{
 		$this->load->model('languages');
-		$this->form_validation->set_message('_valid_lang', 'Please select your language');
+		$this->form_validation->set_message('_valid_lang', lang('valid_lang'));
 		return $this->languages->valid_language($lang);
 	}
 	
 	function _valid_captcha($text) 
 	{
 		
-		if ($this->config->item('enable_captcha')) 
+		if (config_item('enable_captcha')) 
 		{
-			$this->form_validation->set_message('_valid_captcha', 'The Captcha is incorrect.');
-			return strtolower($text) == strtolower($this->db_session->userdata('captcha'));
+			$this->form_validation->set_message('_valid_captcha', lang('captcha'));
+			
+			if ($this->use_recaptcha) 
+			{
+				return $this->_valid_recaptcha();
+			}
+			else
+			{
+				return strtolower($text) == strtolower($this->db_session->userdata('captcha'));
+			}
 		}
 		else
 		{
 			return true;
+		}
+	}
+	
+	function _valid_recaptcha() 
+	{
+		
+		if ($this->input->post('recaptcha_response_field')) 
+		{
+			$pk = $this->recaptcha_privatekey;
+			$ra = $_SERVER['REMOTE_ADDR'];
+			$cf = $this->input->post('recaptcha_challenge_field');
+			$rf = $this->input->post('recaptcha_response_field');
+
+			//check
+			$resp = recaptcha_check_answer($pk, $ra, $cf, $rf);
+			return $resp->is_valid;
+		}
+		else
+		{
+			return false;
 		}
 	}
 	
@@ -604,7 +647,7 @@ class Main extends CI_Controller
 		$ip_firstpart = $ip[0] . '.' . $ip[1] . '.';
 
 		//setup message
-		$this->form_validation->set_message('_valid_ip', 'You are not allowed to paste.');
+		$this->form_validation->set_message('_valid_ip', lang('not_allowed'));
 
 		//lookup
 		$this->db->select('ip_address, spam_attempts');
@@ -637,12 +680,19 @@ class Main extends CI_Controller
 	{
 
 		//setup message
-		$this->form_validation->set_message('_blockwords_check', 'Your paste contains blocked words.');
+		$this->form_validation->set_message('_blockwords_check', lang('blocked_words'));
 
 		//check
-		$blocked_words = $this->config->item('blocked_words');
+		$blocked_words = config_item('blocked_words');
 		$post = $this->input->post();
 		$raw = $post['code'];
+		
+		if (!$blocked_words) 
+		{
+			return true;
+		}
+
+		//we have blocked words
 		foreach (explode(',', $blocked_words) as $word) 
 		{
 			$word = trim($word);
@@ -659,16 +709,16 @@ class Main extends CI_Controller
 	{
 
 		//setup message
-		$this->form_validation->set_message('_autofill_check', 'Go away, robot!');
+		$this->form_validation->set_message('_autofill_check', lang('robot'));
 
 		//check
-		return !$this->input->post('email');
+		return (!$this->input->post('email') && !$this->input->post('url'));
 	}
 	
 	function _valid_authentication() 
 	{
 		
-		if ($this->config->item('require_auth')) 
+		if (config_item('require_auth')) 
 		{
 			
 			if (!$this->auth_ldap->is_authenticated()) 
@@ -683,14 +733,23 @@ class Main extends CI_Controller
 	{
 		$lang = $this->uri->segment(3);
 		$this->load->config('codemirror_languages');
-		$cml = $this->config->item('codemirror_languages');
+		$cml = config_item('codemirror_languages');
+
+		//file path
+		$file_path = 'themes/' . config_item('theme') . '/js/';
+		
+		if (!file_exists($file_path)) 
+		{
+			$file_path = 'themes/default/js/';
+		}
 		
 		if (isset($cml[$lang]) && gettype($cml[$lang]) == 'array') 
 		{
 			header('Content-Type: application/x-javascript; charset=utf-8');
+			header('Expires: ' . gmdate('D, d M Y H:i:s \G\M\T', time() + 60 * 60 * 24 * 30));
 			foreach ($cml[$lang]['js'] as $js) 
 			{
-				echo file_get_contents('./static/js/' . $js[0]);
+				echo file_get_contents($file_path . $js[0]);
 			}
 		}
 		exit;

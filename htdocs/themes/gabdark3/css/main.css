@@ -163,6 +163,12 @@ h4 {
     display: block;
 }
 
+#captcha {
+    position: relative;
+    left: 140px;
+}
+
+
 .form_wrapper .item_group .item input, .form_wrapper .item_group .item select {
 	width: 104px;
 	float: left;
@@ -180,7 +186,7 @@ h4 {
 	margin-bottom: 10px;
 }
 
-.form_wrapper .hidden {
+.hidden, .email, .url {
 	display: none;
 }
 
@@ -358,6 +364,10 @@ h4 {
 	width: 100px;
 }
 
+.recent .qr {
+	width: 20px;
+}
+
 .recent .hits {
 	width: 70px;
 }
@@ -380,7 +390,12 @@ h4 {
 }
 
 .recent .even {
+    color: #000;
 	background-color: #F1F5FA;
+}
+
+.recent .even a {
+    color: #000;
 }
 
 /* !Pastes */
@@ -408,7 +423,7 @@ h4 {
 
 .detail .item {
 	color: #ccc;
-	width: 50px;
+	width: 60px;
 	display: block;
 	float: left;
 }
@@ -433,7 +448,7 @@ h4 {
 	margin-left: 10px;
 	background: #fff;
     position: relative;
-    color: #aaa;
+    color: #000;
 }
 
 .text_formatted ol {
@@ -443,6 +458,18 @@ h4 {
 .text_formatted ol li {
 	list-style: decimal outside;
 }
+
+.text_formatted ins {
+    color: green;
+    background: #dfd;
+    text-decoration: none;
+}
+
+.text_formatted del {
+    color: red;
+    background: #fdd;
+}
+
 
 /* !Messages */
 .message {

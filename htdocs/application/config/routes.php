@@ -55,6 +55,8 @@ $route['lists/:num'] = 'main/lists/$1';
 $route['trends'] = 'main/trends';
 $route['trends/:any'] = 'main/trends/$1';
 $route['spamadmin/:num'] = 'spamadmin/index';
+$route['spamadmin/blacklist'] = 'spamadmin/blacklist';
+$route['spamadmin/blacklist/(:num)'] = 'spamadmin/blacklist';
 $route['spamadmin/blacklist/unblock/(:any)'] = 'spamadmin/unblock_ip';
 $route['spamadmin/:any'] = 'spamadmin/spam_detail';
 $route['about'] = 'main/about';
@@ -66,6 +68,7 @@ $route['404_override'] = 'main/error_404';
 
 $route['themes/:any/css/:any'] = 'theme_assets/css';
 $route['themes/:any/images/:any'] = 'theme_assets/images';
+$route['themes/:any/img/:any'] = 'theme_assets/images';
 $route['themes/:any/js/:any'] = 'theme_assets/js';
 
 /* End of file routes.php */

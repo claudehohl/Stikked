@@ -3,8 +3,11 @@ var CM = window.CM || {}
 CM.enabled = false;
 
 CM.init = function() {
+    var $enable_codemirror = $('#enable_codemirror');
+    var lang_enablesynhl = $enable_codemirror.data('lang-enablesynhl');
+    $enable_codemirror.text(lang_enablesynhl);
 	CM.modes = $.parseJSON($('#codemirror_modes').text());
-	$('#enable_codemirror').click(function() {
+	$enable_codemirror.click(function() {
 		$('#lang').change(function() {
 			CM.set_language();
 		});
@@ -15,11 +18,14 @@ CM.init = function() {
 };
 
 CM.toggle = function() {
+    var $enable_codemirror = $('#enable_codemirror');
+    var lang_enablesynhl = $enable_codemirror.data('lang-enablesynhl');
+    var lang_disablesynhl = $enable_codemirror.data('lang-disablesynhl');
 	if (CM.enabled) {
 		CM.editor.toTextArea();
 		CM.editor = undefined;
 		$('#lang').unbind();
-		$('#enable_codemirror').text('Enable syntax highlighting');
+		$enable_codemirror.text(lang_enablesynhl);
 		CM.enabled = false;
 	} else {
 		if (typeof CM.editor == 'undefined') {
@@ -28,7 +34,7 @@ CM.toggle = function() {
 				lineWrapping: true,
 			});
 		}
-		$('#enable_codemirror').text('Disable syntax highlighting');
+		$enable_codemirror.text(lang_disablesynhl);
 		CM.enabled = true;
 	}
 };

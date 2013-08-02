@@ -292,6 +292,15 @@ class DB_Session {
 		$this->userdata['last_activity'] = $this->now;
 		// format query array to update database
 		$ud = $this->userdata;
+
+        //fix for https://github.com/claudehohl/Stikked/issues/52
+        if(!isset($ud['user_agent'])
+        || !isset($ud['ip_address'])
+        || !isset($ud['session_id']))
+        {
+            return false;
+        }
+
 		$query_array = array( 	'last_activity' => $ud['last_activity'],
 					'user_agent'    => $ud['user_agent'],
 					'ip_address'    => $ud['ip_address'] );

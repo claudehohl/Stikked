@@ -25,9 +25,20 @@ $config['db_password'] = 'stikked';
  *
  * Which theme to use
  * Folder name in htdocs/themes/
+ * Currently: default, bootstrap, gabdark, gabdark3, geocities
  *
 */
 $config['theme'] = 'default';
+
+/**
+ * Language
+ *
+ * Which language to use
+ * Translate Stikked to your own language, see htdocs/application/language files
+ * Currently: english, german, swissgerman, spanish
+ *
+*/
+$config['language'] = 'english';
 
 /**
  * Combine JS & CSS files (recommended)
@@ -77,11 +88,16 @@ $config['per_page'] = 15;
  *
  * private_only: No recent pastes will be displayed.
  * enable_captcha: Users must enter a captcha to post.
+ * recaptcha_publickey & recaptcha_privatekey: If filled, reCaptcha will be used (get a key from https://www.google.com/recaptcha/admin/create)
  * blocked_words: Comma separated list, e.g. '.es.tl, mycraft.com, yourbadword'
+ * disable_api: Don't allow pasting via API (because we can't use a captcha there...)
  *
 **/
 $config['private_only'] = false;
 $config['enable_captcha'] = false;
+$config['recaptcha_publickey'] = '';
+$config['recaptcha_privatekey'] = '';
+$config['disable_api'] = false;
 $config['blocked_words'] = '';
 
 //spamadmin: accessible via /spamadmin (only active when user + pass is set)

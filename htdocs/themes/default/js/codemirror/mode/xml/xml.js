@@ -1,12 +1,46 @@
 CodeMirror.defineMode("xml", function(config, parserConfig) {
   var indentUnit = config.indentUnit;
+  var multilineTagIndentFactor = parserConfig.multilineTagIndentFactor || 1;
+
   var Kludges = parserConfig.htmlMode ? {
-    autoSelfClosers: {"br": true, "img": true, "hr": true, "link": true, "input": true,
-                      "meta": true, "col": true, "frame": true, "base": true, "area": true},
+    autoSelfClosers: {'area': true, 'base': true, 'br': true, 'col': true, 'command': true,
+                      'embed': true, 'frame': true, 'hr': true, 'img': true, 'input': true,
+                      'keygen': true, 'link': true, 'meta': true, 'param': true, 'source': true,
+                      'track': true, 'wbr': true},
+    implicitlyClosed: {'dd': true, 'li': true, 'optgroup': true, 'option': true, 'p': true,
+                       'rp': true, 'rt': true, 'tbody': true, 'td': true, 'tfoot': true,
+                       'th': true, 'tr': true},
+    contextGrabbers: {
+      'dd': {'dd': true, 'dt': true},
+      'dt': {'dd': true, 'dt': true},
+      'li': {'li': true},
+      'option': {'option': true, 'optgroup': true},
+      'optgroup': {'optgroup': true},
+      'p': {'address': true, 'article': true, 'aside': true, 'blockquote': true, 'dir': true,
+            'div': true, 'dl': true, 'fieldset': true, 'footer': true, 'form': true,
+            'h1': true, 'h2': true, 'h3': true, 'h4': true, 'h5': true, 'h6': true,
+            'header': true, 'hgroup': true, 'hr': true, 'menu': true, 'nav': true, 'ol': true,
+            'p': true, 'pre': true, 'section': true, 'table': true, 'ul': true},
+      'rp': {'rp': true, 'rt': true},
+      'rt': {'rp': true, 'rt': true},
+      'tbody': {'tbody': true, 'tfoot': true},
+      'td': {'td': true, 'th': true},
+      'tfoot': {'tbody': true},
+      'th': {'td': true, 'th': true},
+      'thead': {'tbody': true, 'tfoot': true},
+      'tr': {'tr': true}
+    },
     doNotIndent: {"pre": true},
     allowUnquoted: true,
+    allowMissing: true
+  } : {
+    autoSelfClosers: {},
+    implicitlyClosed: {},
+    contextGrabbers: {},
+    doNotIndent: {},
+    allowUnquoted: false,
     allowMissing: false
-  } : {autoSelfClosers: {}, doNotIndent: {}, allowUnquoted: false, allowMissing: false};
+  };
   var alignCDATA = parserConfig.alignCDATA;
 
   // Return variables for tokenizers
@@ -38,11 +72,12 @@ CodeMirror.defineMode("xml", function(config, parserConfig) {
         return "meta";
       }
       else {
-        type = stream.eat("/") ? "closeTag" : "openTag";
-        stream.eatSpace();
+        var isClose = stream.eat("/");
         tagName = "";
         var c;
         while ((c = stream.eat(/[^\s\u00a0=<>\"\'\/?]/))) tagName += c;
+        if (!tagName) return "error";
+        type = isClose ? "closeTag" : "openTag";
         state.tokenize = inTag;
         return "tag";
       }
@@ -82,7 +117,7 @@ CodeMirror.defineMode("xml", function(config, parserConfig) {
       return state.tokenize(stream, state);
     }
     else {
-      stream.eatWhile(/[^\s\u00a0=<>\"\'\/?]/);
+      stream.eatWhile(/[^\s\u00a0=<>\"\']/);
       return "word";
     }
   }
@@ -132,7 +167,7 @@ CodeMirror.defineMode("xml", function(config, parserConfig) {
     };
   }
 
-  var curState, setStyle;
+  var curState, curStream, setStyle;
   function pass() {
     for (var i = arguments.length - 1; i >= 0; i--) curState.cc.push(arguments[i]);
   }
@@ -158,11 +193,17 @@ CodeMirror.defineMode("xml", function(config, parserConfig) {
   function element(type) {
     if (type == "openTag") {
       curState.tagName = tagName;
+      curState.tagStart = curStream.column();
       return cont(attributes, endtag(curState.startOfLine));
     } else if (type == "closeTag") {
       var err = false;
       if (curState.context) {
-        err = curState.context.tagName != tagName;
+        if (curState.context.tagName != tagName) {
+          if (Kludges.implicitlyClosed.hasOwnProperty(curState.context.tagName.toLowerCase())) {
+            popContext();
+          }
+          err = !curState.context || curState.context.tagName != tagName;
+        }
       } else {
         err = true;
       }
@@ -173,10 +214,18 @@ CodeMirror.defineMode("xml", function(config, parserConfig) {
   }
   function endtag(startOfLine) {
     return function(type) {
+      var tagName = curState.tagName;
+      curState.tagName = curState.tagStart = null;
       if (type == "selfcloseTag" ||
-          (type == "endTag" && Kludges.autoSelfClosers.hasOwnProperty(curState.tagName.toLowerCase())))
+          (type == "endTag" && Kludges.autoSelfClosers.hasOwnProperty(tagName.toLowerCase()))) {
+        maybePopContext(tagName.toLowerCase());
         return cont();
-      if (type == "endTag") {pushContext(curState.tagName, startOfLine); return cont();}
+      }
+      if (type == "endTag") {
+        maybePopContext(tagName.toLowerCase());
+        pushContext(tagName, startOfLine);
+        return cont();
+      }
       return cont();
     };
   }
@@ -186,6 +235,20 @@ CodeMirror.defineMode("xml", function(config, parserConfig) {
       if (type == "endTag") { popContext(); return cont(); }
       setStyle = "error";
       return cont(arguments.callee);
+    };
+  }
+  function maybePopContext(nextTagName) {
+    var parentTagName;
+    while (true) {
+      if (!curState.context) {
+        return;
+      }
+      parentTagName = curState.context.tagName.toLowerCase();
+      if (!Kludges.contextGrabbers.hasOwnProperty(parentTagName) ||
+          !Kludges.contextGrabbers[parentTagName].hasOwnProperty(nextTagName)) {
+        return;
+      }
+      popContext();
     }
   }
 
@@ -198,6 +261,7 @@ CodeMirror.defineMode("xml", function(config, parserConfig) {
   function attribute(type) {
     if (type == "equals") return cont(attvalue, attributes);
     if (!Kludges.allowMissing) setStyle = "error";
+    else if (type == "word") setStyle = "attribute";
     return (type == "endTag" || type == "selfcloseTag") ? pass() : cont();
   }
   function attvalue(type) {
@@ -213,11 +277,11 @@ CodeMirror.defineMode("xml", function(config, parserConfig) {
 
   return {
     startState: function() {
-      return {tokenize: inText, cc: [], indented: 0, startOfLine: true, tagName: null, context: null};
+      return {tokenize: inText, cc: [], indented: 0, startOfLine: true, tagName: null, tagStart: null, context: null};
     },
 
     token: function(stream, state) {
-      if (stream.sol()) {
+      if (!state.tagName && stream.sol()) {
         state.startOfLine = true;
         state.indented = stream.indentation();
       }
@@ -227,7 +291,7 @@ CodeMirror.defineMode("xml", function(config, parserConfig) {
       var style = state.tokenize(stream, state);
       state.type = type;
       if ((style || type) && style != "comment") {
-        curState = state;
+        curState = state; curStream = stream;
         while (true) {
           var comb = state.cc.pop() || element;
           if (comb(type || style)) break;
@@ -242,6 +306,7 @@ CodeMirror.defineMode("xml", function(config, parserConfig) {
       if ((state.tokenize != inTag && state.tokenize != inText) ||
           context && context.noIndent)
         return fullLine ? fullLine.match(/^(\s*)/)[0].length : 0;
+      if (state.tagName) return state.tagStart + indentUnit * multilineTagIndentFactor;
       if (alignCDATA && /<!\[CDATA\[/.test(textAfter)) return 0;
       if (context && /^<\//.test(textAfter))
         context = context.prev;
@@ -251,18 +316,13 @@ CodeMirror.defineMode("xml", function(config, parserConfig) {
       else return 0;
     },
 
-    compareStates: function(a, b) {
-      if (a.indented != b.indented || a.tokenize != b.tokenize) return false;
-      for (var ca = a.context, cb = b.context; ; ca = ca.prev, cb = cb.prev) {
-        if (!ca || !cb) return ca == cb;
-        if (ca.tagName != cb.tagName) return false;
-      }
-    },
+    electricChars: "/",
 
-    electricChars: "/"
+    configuration: parserConfig.htmlMode ? "html" : "xml"
   };
 });
 
+CodeMirror.defineMIME("text/xml", "xml");
 CodeMirror.defineMIME("application/xml", "xml");
 if (!CodeMirror.mimeModes.hasOwnProperty("text/html"))
   CodeMirror.defineMIME("text/html", {name: "xml", htmlMode: true});

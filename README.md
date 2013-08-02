@@ -1,35 +1,51 @@
 Stikked is an Open-Source PHP Pastebin, with the aim of keeping a simple and easy to use user interface.
 
-Stikked allows you to easily share code with anyone you wish. Stikked was created for the following reasons:
+Stikked allows you to easily share code with anyone you wish. Based on the [original Stikked](http://code.google.com/p/stikked/) with lots of bugfixes and improvements.
 
-* IRC and Private Chats were spammed.
-* Pastebins were ugly.
-* Pastebins were confusing.
-* Pastebins were messy and not thought through.
-* Stikked rethought code collaboration, by making it easy to paste code.
+Here are some features:
 
-Based on the original Stikked (http://code.google.com/p/stikked/) with lots of bugfixes and improvements.
-
-Thanks to Rebecca Chapnik for this great review: http://maketecheasier.com/run-your-own-pastebin-with-stikked/2013/01/11
+* Easy setup
+* Syntaxhighlighting for many languages, including live syntaxhighlighting with CodeMirror
+* Paste replies
+* Diff view between the original paste and the reply
+* An API
+* Trending pastes
+* Anti-Spam features
+* Themes support
+* Multilanguage support
+* And many more. View [this review](http://maketecheasier.com/run-your-own-pastebin-with-stikked/2013/01/11) 
 
 
 Try it out
 ----------
+
 http://paste.scratchbook.ch/
 
 
 Installation
 ------------
 
-1.  Download stikked from https://github.com/claudehohl/Stikked/tags
-2.  Create a user and database for Stikked
-3.  Edit configuration settings in application/config/stikked.php - everything is described there
-4.  You're done!
+1. Download stikked from https://github.com/claudehohl/Stikked/tags
+2. Create a user and database for Stikked
+3. Edit configuration settings in application/config/stikked.php - everything is described there
+4. You're done!
 
 * The database structure will be created automatically if it doesn't exist.
 * No special file permissions are needed by default. Optional: If you want to have the JavaScript- and CSS-files minified, the static/asset/ folder has to be writable.
 * To ensure that pastes with an expiration set get cleaned up, define the cron key in the config and set up a cronjob, for example:
   * */5 * * * * curl --silent http://yoursite.com/cron/[key]
+
+
+Documentation
+-------------
+
+In the folder doc/, you will find:
+
+* Webserver example configurations for Apache, Nginx, Lighttpd, Cherokee
+* A troubleshooting guide
+* How to create your own theme
+* How to translate Stikked into your language
+* How to contribute and improve Stikked
 
 
 Changelog
@@ -38,16 +54,46 @@ Changelog
 ### Version 0.8.5:
 
 * Themes! Configure a different theme in config/stikked.php - or create your own
+* Multilanguage support. Configure a different language in config/stikked.php
+* Diff view for paste replies! View differences between the original paste and its reply
+ * see it in action: http://paste.scratchbook.ch/view/de81a093/diff
+* Possibility to set default expiration time
+* Updated GeSHi to version 1.0.8.11
+* Updated CodeMirror to version 3.11
+* Lots of minor fixes and improvements
+* Added guides for troubleshooting, development, translation and creating themes
+* Added webserver example configurations
+* Added reCaptcha integration for better antispam
 
 #### Upgrade instructions
 
-The following line must be present config/stikked.php
+The following lines must be present config/stikked.php
 
 ```php
 $config['theme'] = 'default';
 ```
 
-You can choose between default, bootstrap, gabdark and gabdark3.
+You can choose between default, bootstrap, gabdark, gabdark3 and a fancy geocities theme ;)
+
+Create you own theme. See doc/CREATING_THEMES.md
+
+```php
+$config['language'] = 'english';
+```
+
+You can choose between english, german and swissgerman ;)
+
+Help translating Stikked into your language! See doc/TRANSLATING_STIKKED.md
+
+##### reCaptcha
+
+```php
+$config['recaptcha_publickey'] = '';
+$config['recaptcha_privatekey'] = '';
+```
+
+If these lines are filled, reCaptcha will be used.
+Get a key from https://www.google.com/recaptcha/admin/create
 
 ### Version 0.8.4:
 
@@ -123,4 +169,3 @@ You can choose between default, bootstrap, gabdark and gabdark3.
 * Fully standards compliant css and xhtml.
 * Random generating names for anonymous users
 * Paste downloading
-

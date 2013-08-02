@@ -55,7 +55,8 @@ class Theme_assets extends CI_Controller
 		}
 
 		//send
-		header('Content-type: ' . mime_content_type($file_path));
+		$size = getimagesize($file_path);
+		header('Content-type: ' . $size['mime']);
 		$this->_expires_header(30);
 		readfile($file_path);
 	}
@@ -74,8 +75,15 @@ class Theme_assets extends CI_Controller
 		//file path
 		$file_path = 'themes/' . $this->theme . '/js/' . $js_file;
 
+		//fallback to default js if js in theme not found
+		
+		if (!file_exists($file_path)) 
+		{
+			$file_path = 'themes/default/js/' . $js_file;
+		}
+
 		//send
-		header('Content-type: application/x-javascript');
+		header('Content-Type: application/x-javascript; charset=utf-8');
 		$this->_expires_header(30);
 		readfile($file_path);
 	}
