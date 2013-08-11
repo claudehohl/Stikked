@@ -68,4 +68,3 @@ $lang['table_lang'] = 'Language';
 $lang['table_hits'] = 'Hits';
 $lang['table_time'] = 'When';
 $lang['powered_by'] = 'Powered by';
-
