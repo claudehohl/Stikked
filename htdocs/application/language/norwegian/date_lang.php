@@ -1,18 +1,18 @@
 <?php
 
-$lang['date_year'] = "År";
-$lang['date_years'] = "År";
-$lang['date_month'] = "Måned";
-$lang['date_months'] = "Måneder";
-$lang['date_week'] = "Uke";
-$lang['date_weeks'] = "Uker";
-$lang['date_day'] = "Dag";
-$lang['date_days'] = "Dager";
-$lang['date_hour'] = "Time";
-$lang['date_hours'] = "Timer";
-$lang['date_minute'] = "Minutt";
+$lang['date_year'] = 	"Ã…r";
+$lang['date_years'] = 	"Ã…r";
+$lang['date_month'] = 	"MÃ¥ned";
+$lang['date_months'] = 	"MÃ¥neder";
+$lang['date_week'] = 	"Uke";
+$lang['date_weeks'] = 	"Uker";
+$lang['date_day'] = 	"Dag";
+$lang['date_days'] = 	"Dager";
+$lang['date_hour'] = 	"Time";
+$lang['date_hours'] = 	"Timer";
+$lang['date_minute'] = 	"Minutt";
 $lang['date_minutes'] = "Minutter";
-$lang['date_second'] = "Sekund";
+$lang['date_second'] = 	"Sekund";
 $lang['date_seconds'] = "Sekunder";
 
 $lang['UM12']	= '(UTC -12:00) Baker/Howland Island';
