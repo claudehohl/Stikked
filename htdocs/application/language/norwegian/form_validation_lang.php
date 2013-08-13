@@ -1,7 +1,7 @@
 <?php
 
 $lang['required']		= "Feltet %s er obligatorisk.";
-$lang['not_allowed']		= "Du er ikke tillatt til å poste.";
+$lang['not_allowed']		= "Du har ikke tillatelse til å poste.";
 $lang['captcha']	    	= "Captcha er feil.";
 $lang['blocked_words']    	= "Din post inneholder blokkerte ord.";
 $lang['robot']             	= "Robot, stikk av!";
@@ -18,18 +18,18 @@ $lang['exact_length']		= "Feltet %s må være akkurat %s tegn.";
 $lang['alpha']			= "Feltet %s kan bare inneholde alfabetiske tegn.";
 $lang['alpha_numeric']		= "Feltet %s kan bare inneholde alfanumeriske tegn.";
 $lang['alpha_dash']		= "Feltet %s kan bare inneholde alfanumeriske tegn, understrek og bindestrek.";
-$lang['numeric']		= "Feltet %s field must contain only numbers.";
-$lang['is_numeric']		= "Feltet %s field must contain only numeric characters.";
-$lang['integer']		= "Feltet %s field must contain an integer.";
-$lang['regex_match']		= "Feltet %s field is not in the correct format.";
-$lang['matches']		= "Feltet %s field does not match the %s field.";
-$lang['is_unique'] 		= "Feltet %s field must contain a unique value.";
-$lang['is_natural']		= "Feltet %s field must contain only positive numbers.";
-$lang['is_natural_no_zero']	= "Feltet %s field must contain a number greater than zero.";
-$lang['decimal']		= "Feltet %s field must contain a decimal number.";
-$lang['less_than']		= "Feltet %s field must contain a number less than %s.";
-$lang['greater_than']		= "Feltet %s field must contain a number greater than %s.";
+$lang['numeric']		= "Feltet %s må kun inneholde tall.";
+$lang['is_numeric']		= "Feltet %s må kun inneholde numeriske tegn.";
+$lang['integer']		= "Feltet %s må inneholde et heltall.";
+$lang['regex_match']		= "Feltet %s er ikke i korrekt format.";
+$lang['matches']		= "Feltet %s er ikke lik feltet %s.";
+$lang['is_unique'] 		= "Feltet %s må inneholde en unik verdi.";
+$lang['is_natural']		= "Feltet %s må inneholde positive nummer.";
+$lang['is_natural_no_zero']	= "Feltet %s må inneholde et tall større enn null.";
+$lang['decimal']		= "Feltet %s må inneholde et desimalnummer.";
+$lang['less_than']		= "Feltet %s må inneholde et nummer mindre enn %s.";
+$lang['greater_than']		= "Feltet %s må inneholde et nummer større enn %s.";
 
 
 /* End of file form_validation_lang.php */
-/* Location: ./system/language/norwegian/form_validation_lang.php */
+/* Location: ./application/language/norwegian/form_validation_lang.php */
