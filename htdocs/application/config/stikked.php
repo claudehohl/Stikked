@@ -48,7 +48,7 @@ $config['theme'] = 'default';
  * Currently: english, german, swissgerman, spanish, norwegian
  *
 */
-$config['language'] = 'norwegian';
+$config['language'] = 'english';
 
 /**
  * Combine JS & CSS files (recommended)
