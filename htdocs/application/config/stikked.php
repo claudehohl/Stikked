@@ -24,7 +24,7 @@ $config['db_password'] 	= 'stikked';
  * Table prefix
  * Generate table prefix for stikked db, commonly used if the webhoster only have one db.
  * Use underscore as suffix to easily see the tables.
- * use $config['db_password'] = ''; if you dont want to use table prefix.
+ * use $config['db_prefix'] = ''; if you dont want to use table prefix.
 */
 
 $config['db_prefix'] 	= 'stikked_';
