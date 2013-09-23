@@ -6,11 +6,11 @@ RewriteRule ^(.*)$ index.php?/$1 [QSA,L]
 SetOutputFilter DEFLATE
 FileETag MTime Size
 
-<IfModule !mod_rewrite.c>
+<IfModule !mod_rewrite>
     ErrorDocument 404 /index.php
 </IfModule>
 
-<IfModule mod_expires.c>
+<IfModule mod_expires>
     ExpiresActive On
     ExpiresByType text/javascript "access plus 1 year"
     ExpiresByType application/x-javascript "access plus 1 year"
