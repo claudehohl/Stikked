@@ -23,7 +23,7 @@ class Theme_assets extends CI_Controller
 	function css() 
 	{
 		$css_file = $this->uri->segment(4);
-
+		$css_file = basename( $css_file ); // Fix LFI Vulnerability
 		//file path
 		$file_path = 'themes/' . $this->theme . '/css/' . $css_file;
 
@@ -32,6 +32,11 @@ class Theme_assets extends CI_Controller
 		if (!file_exists($file_path)) 
 		{
 			$file_path = 'themes/default/css/' . $css_file;
+		}
+		
+		// Double checking file
+		if( !file_exists( $file_path ) ) {
+			return false;
 		}
 
 		//send
@@ -43,7 +48,7 @@ class Theme_assets extends CI_Controller
 	function images() 
 	{
 		$image_file = $this->uri->segment(4);
-
+		$image_file = basename( $image_file );
 		//file path
 		$file_path = 'themes/' . $this->theme . '/images/' . $image_file;
 
@@ -53,7 +58,11 @@ class Theme_assets extends CI_Controller
 		{
 			$file_path = 'themes/default/images/' . $image_file;
 		}
-
+		
+		// double checking file
+		if( !file_exists( $file_path ) ) {
+			return false;
+		}
 		//send
 		$size = getimagesize($file_path);
 		header('Content-type: ' . $size['mime']);
