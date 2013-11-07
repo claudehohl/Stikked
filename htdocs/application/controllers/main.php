@@ -44,6 +44,7 @@ class Main extends CI_Controller
 		//recaptcha
 		$this->recaptcha_publickey = config_item('recaptcha_publickey');
 		$this->recaptcha_privatekey = config_item('recaptcha_privatekey');
+		$this->use_recaptcha = false;
 		
 		if ($this->recaptcha_publickey != '' && $this->recaptcha_privatekey != '') 
 		{
