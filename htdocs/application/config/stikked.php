@@ -15,10 +15,20 @@ $config['site_name'] = 'Stikked';
  * The database structure will be created automatically
  *
 */
-$config['db_hostname'] = '127.0.0.1';
-$config['db_database'] = 'stikked';
-$config['db_username'] = 'stikked';
-$config['db_password'] = 'stikked';
+$config['db_hostname'] 	= '127.0.0.1';
+$config['db_database'] 	= 'stikked';
+$config['db_username'] 	= 'stikked';
+$config['db_password'] 	= 'stikked';
+
+/**
+ * Table prefix
+ * Generate table prefix for stikked db, commonly used if the webhoster only have one db.
+ * Use underscore as suffix to easily see the tables.
+ * use $config['db_prefix'] = ''; if you dont want to use table prefix.
+*/
+
+$config['db_prefix'] 	= 'stikked_';
+
 
 /**
  * Theme
@@ -35,7 +45,7 @@ $config['theme'] = 'default';
  *
  * Which language to use
  * Translate Stikked to your own language, see htdocs/application/language files
- * Currently: english, german, swissgerman, spanish
+ * Currently: english, german, swissgerman, spanish, norwegian
  *
 */
 $config['language'] = 'english';
