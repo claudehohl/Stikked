@@ -146,6 +146,7 @@ h4 {
 #captcha {
     position: relative;
     left: 140px;
+    width: 174px;
 }
 
 .form_wrapper .item_group .item input, .form_wrapper .item_group .item select {

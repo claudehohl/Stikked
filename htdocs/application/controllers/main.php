@@ -573,7 +573,7 @@ class Main extends CI_Controller
 		//get "word"
 		$pool = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ@';
 		$str = '';
-		for ($i = 0;$i < 4;$i++) 
+		for ($i = 0;$i < 8;$i++) 
 		{
 			$str.= substr($pool, mt_rand(0, strlen($pool) - 1) , 1);
 		}
@@ -600,17 +600,35 @@ class Main extends CI_Controller
 	function _valid_captcha($text) 
 	{
 		
-		if (config_item('enable_captcha')) 
+		if (config_item('enable_captcha') && $this->db_session->userdata('is_human') === false) 
 		{
 			$this->form_validation->set_message('_valid_captcha', lang('captcha'));
 			
 			if ($this->use_recaptcha) 
 			{
-				return $this->_valid_recaptcha();
+				
+				if ($this->_valid_recaptcha()) 
+				{
+					$this->db_session->set_userdata('is_human', true);
+					return true;
+				}
+				else
+				{
+					return false;
+				}
 			}
 			else
 			{
-				return strtolower($text) == strtolower($this->db_session->userdata('captcha'));
+				
+				if (strtolower($text) == strtolower($this->db_session->userdata('captcha'))) 
+				{
+					$this->db_session->set_userdata('is_human', true);
+					return true;
+				}
+				else
+				{
+					return false;
+				}
 			}
 		}
 		else
