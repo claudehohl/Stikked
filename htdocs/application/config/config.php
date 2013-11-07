@@ -24,7 +24,7 @@ $config['base_url']	= '';
 | So that we can track your version.
 |
 */
-$config['stikked_version'] = '0.8.5';
+$config['stikked_version'] = '0.8.6';
 
 /*
 |--------------------------------------------------------------------------
