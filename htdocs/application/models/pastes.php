@@ -298,9 +298,20 @@ class Pastes extends CI_Model
 			'ip_address' => $this->input->ip_address() ,
 			'created' => mktime() ,
 		);
-		$insert_query = $this->db->insert_string('trending', $hits_data);
-		$insert_query = str_replace('INSERT INTO', 'INSERT IGNORE INTO', $insert_query);
-		$this->db->query($insert_query);
+		
+		$hits_where = array (
+			'paste_id' => $pid,
+			'ip_address' => $this->input->ip_address(),
+		);
+		
+		// First check if record already exists.  If it does, do not insert.
+		// INSERT IGNORE INTO does not work for postgres.
+		$query = $this->db->get('trending', $hits_where);
+		if($query->num_rows == 0)
+		{		
+			$this->db->insert('trending', $hits_data);
+		}
+
 		
 		if (mktime() > (60 + $data['hits_updated'])) 
 		{
