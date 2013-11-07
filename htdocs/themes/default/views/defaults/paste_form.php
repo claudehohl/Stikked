@@ -53,7 +53,7 @@
 		
 		<div class="item_group">
 			<div class="item">
-				<label for="snipurl"><?php echo lang('paste_shorturl'); ?>
+				<label for="snipurl"><?php echo lang('paste_create_shorturl'); ?>
 					<span class="instruction"><?php echo lang('paste_shorturl_desc'); ?></span>
 				</label>
 				<div class="text_beside">
