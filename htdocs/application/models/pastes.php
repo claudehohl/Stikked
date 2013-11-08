@@ -292,26 +292,28 @@ class Pastes extends CI_Model
 			}
 		}
 
-		// hits
-		$hits_data = array(
-			'paste_id' => $pid,
-			'ip_address' => $this->input->ip_address() ,
-			'created' => mktime() ,
-		);
-		$hits_where = array(
-			'paste_id' => $pid,
-			'ip_address' => $this->input->ip_address() ,
-		);
-
-		// First check if record already exists.  If it does, do not insert.
-		// INSERT IGNORE INTO does not work for postgres.
-
-		$query = $this->db->get('trending', $hits_where);
+		/*
+		 * Hits
+		 * First check if record already exists.  If it does, do not insert.
+		 * INSERT IGNORE INTO does not work for postgres.
+		*/
+		$this->db->select('count(paste_id) as count');
+		$this->db->where('paste_id', $pid);
+		$this->db->where('ip_address', $this->input->ip_address());
+		$query = $this->db->get('trending');
+		$hits_count = $query->result_array();
+		$hits_count = $hits_count[0]['count'];
 		
-		if ($query->num_rows == 0) 
+		if ($hits_count == 0) 
 		{
-			$this->db->insert('trending', $hits_data);
+			$this->db->insert('trending', array(
+				'paste_id' => $pid,
+				'ip_address' => $this->input->ip_address() ,
+				'created' => mktime() ,
+			));
 		}
+
+		//update hits counter every minute
 		
 		if (mktime() > (60 + $data['hits_updated'])) 
 		{
