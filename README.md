@@ -27,8 +27,9 @@ Installation
 
 1. Download stikked from https://github.com/claudehohl/Stikked/tags
 2. Create a user and database for Stikked
-3. Edit configuration settings in application/config/stikked.php - everything is described there
-4. You're done!
+3. Copy application/config/stikked.php.default to application/config/stikked.php
+4. Edit configuration settings in application/config/stikked.php - everything is described there
+5. You're done!
 
 * The database structure will be created automatically if it doesn't exist.
 * No special file permissions are needed by default. Optional: If you want to have the JavaScript- and CSS-files minified, the static/asset/ folder has to be writable.
