@@ -68,12 +68,24 @@ $config['combine_assets'] = false;
 $config['cron_key'] = '';
 
 /**
- * gw.gd config
+ * url shortener config
  *
- * Your own instance of the gw.gd URL-shortener (Download: https://github.com/neofutur/gwgd)
+ * If yourls_url is set, yourls is used instead of gw.gd
+ *
+ * yourls_url: Your own instance of yourls URL-shortener (Download: http://yourls.org/)
+ * Example: http://example.com/yourls/
+ *
+ * yourls_signature: Your signature, used to authenticate API requests.
+ * You can find your signature under http://your-yourls-installation.com/admin/tools.php
+ *
+ * OR
+ *
+ * gwgd_url: Your own instance of the gw.gd URL-shortener (Download: https://github.com/neofutur/gwgd)
  * Default: http://gw.gd/
  *
 **/
+$config['yourls_url'] = '';
+$config['yourls_signature'] = '';
 $config['gwgd_url'] = '';
 
 /**

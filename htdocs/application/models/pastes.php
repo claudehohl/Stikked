@@ -7,6 +7,7 @@
  * - countReplies()
  * - createPaste()
  * - _get_url()
+ * - _shorten_url()
  * - checkPaste()
  * - getPaste()
  * - calculate_hits()
@@ -121,22 +122,8 @@ class Pastes extends CI_Model
 		else
 		{
 			$url = $this->_get_url($data['pid']);
-			$url = urlencode($url);
-			$config_gwgd_url = $this->config->item('gwgd_url');
-			$gwgd_url = ($config_gwgd_url ? $config_gwgd_url : 'http://gw.gd/');
-			$target = $gwgd_url . 'api.php?long=' . $url;
-			$ch = curl_init();
-			curl_setopt($ch, CURLOPT_URL, $target);
-			curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-			curl_setopt($ch, CURLOPT_ENCODING, 'identity');
-			$resp = curl_exec($ch);
-			curl_close($ch);
-			$data['snipurl'] = $resp;
-			
-			if (empty($data['snipurl'])) 
-			{
-				$data['snipurl'] = false;
-			}
+			$shorturl = $this->_shorten_url($url);
+			$data['snipurl'] = $shorturl;
 		}
 		$data['ip_address'] = $this->input->ip_address();
 		$this->db->insert('pastes', $data);
@@ -147,6 +134,57 @@ class Pastes extends CI_Model
 	{
 		$override_url = $this->config->item('displayurl_override');
 		return ($override_url ? str_replace('$id', $pid, $override_url) : site_url('view/' . $pid));
+	}
+	private 
+	function _shorten_url($url) 
+	{
+		$config_yourls_url = $this->config->item('yourls_url');
+		
+		if ($config_yourls_url) 
+		{
+
+			//use yourls
+			$config_yourls_url = $this->config->item('yourls_url');
+			$config_yourls_signature = $this->config->item('yourls_signature');
+			$timestamp = time();
+			$signature = md5($timestamp . $config_yourls_signature);
+
+			// Init the CURL session
+			$ch = curl_init();
+			curl_setopt($ch, CURLOPT_URL, $config_yourls_url . 'yourls-api.php');
+			curl_setopt($ch, CURLOPT_HEADER, 0);
+			curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+			curl_setopt($ch, CURLOPT_POST, 1);
+			curl_setopt($ch, CURLOPT_POSTFIELDS, array(
+				'url' => $url,
+				'format' => 'simple',
+				'action' => 'shorturl',
+				'signature' => $signature,
+				'timestamp' => $timestamp,
+			));
+			$resp = curl_exec($ch);
+			curl_close($ch);
+			$shorturl = (empty($resp) ? false : $resp);
+		}
+		else
+		{
+
+			//use gdgw
+			$url = urlencode($url);
+			$config_gwgd_url = $this->config->item('gwgd_url');
+			$gwgd_url = ($config_gwgd_url ? $config_gwgd_url : 'http://gw.gd/');
+			$target = $gwgd_url . 'api.php?long=' . $url;
+
+			// Init the CURL session
+			$ch = curl_init();
+			curl_setopt($ch, CURLOPT_URL, $target);
+			curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+			curl_setopt($ch, CURLOPT_ENCODING, 'identity');
+			$resp = curl_exec($ch);
+			curl_close($ch);
+			$shorturl = (empty($resp) ? false : $resp);
+		}
+		return $shorturl;
 	}
 	
 	function checkPaste($seg = 2) 
