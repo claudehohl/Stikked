@@ -5,7 +5,7 @@
 		<meta http-equiv="Content-type" content="text/html; charset=utf-8" />
 		<meta name="viewport" content="width=320; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;"/>
 		<title>Stikked - iPhone</title>
-		<link rel="stylesheet" href="<?php echo base_url(); ?>static/styles/iphone.css" type="text/css" media="screen" title="iphone stylesheet" charset="utf-8" />
+		<link rel="stylesheet" href="<?php echo base_url(); ?>themes/default/css/iphone.css" type="text/css" media="screen" title="iphone stylesheet" charset="utf-8" />
 	</head>
 	<body>
 		<div id="container">
