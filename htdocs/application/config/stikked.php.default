@@ -106,6 +106,15 @@ $config['backup_pass'] = '';
 $config['per_page'] = 15;
 
 /**
+ * API key
+ *
+ * Require a key to interact with the API.
+ * Append to all API requests: ?apikey=[yourkey]
+ *
+**/
+$config['apikey'] = '';
+
+/**
  * Anti spam
  *
  * private_only: No recent pastes will be displayed.

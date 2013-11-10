@@ -25,6 +25,11 @@ class Api extends Main
 		{
 			die("The API has been disabled\n");
 		}
+		
+		if (config_item('apikey') != $this->input->get('apikey')) 
+		{
+			die("Invalid API key\n");
+		}
 	}
 	
 	function index() 
