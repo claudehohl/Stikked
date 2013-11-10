@@ -583,8 +583,8 @@ class Pastes extends CI_Model
 	function random_paste() 
 	{
 		$this->load->library('process');
-		$paste_id = rand(1, $this->countPastes());
-		$this->db->where('id', $paste_id);
+		$this->db->order_by('id', 'RANDOM');
+		$this->db->limit(1);
 		$query = $this->db->get('pastes');
 		
 		if ($query->num_rows() > 0) 

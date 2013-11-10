@@ -100,13 +100,6 @@ class Api extends Main
 	{
 		$this->load->model('pastes');
 		$data = $this->pastes->random_paste();
-		
-		if (!$data) 
-		{
-			$data = array(
-				'message' => 'Please try again',
-			);
-		}
 		echo stripslashes(json_encode($data));
 	}
 }
