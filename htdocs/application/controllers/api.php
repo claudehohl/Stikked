@@ -93,13 +93,13 @@ class Api extends Main
 				'message' => 'Not found',
 			);
 		}
-		echo stripslashes(json_encode($data));
+		echo json_encode($data);
 	}
 	
 	function random() 
 	{
 		$this->load->model('pastes');
 		$data = $this->pastes->random_paste();
-		echo stripslashes(json_encode($data));
+		echo json_encode($data);
 	}
 }
