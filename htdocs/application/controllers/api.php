@@ -7,6 +7,8 @@
  * - create()
  * - paste()
  * - random()
+ * - recent()
+ * - trending()
  * Classes list:
  * - Api extends Main
  */
@@ -100,6 +102,45 @@ class Api extends Main
 	{
 		$this->load->model('pastes');
 		$data = $this->pastes->random_paste();
+		echo json_encode($data);
+	}
+	
+	function recent() 
+	{
+		$this->load->model('pastes');
+		$pastes = $this->pastes->getLists();
+		$pastes = $pastes['pastes'];
+		$data = array();
+		foreach ($pastes as $paste) 
+		{
+			$data[] = array(
+				'pid' => $paste['pid'],
+				'title' => $paste['title'],
+				'name' => $paste['name'],
+				'created' => $paste['created'],
+				'lang' => $paste['lang'],
+			);
+		}
+		echo json_encode($data);
+	}
+	
+	function trending() 
+	{
+		$this->load->model('pastes');
+		$pastes = $this->pastes->getTrends();
+		$pastes = $pastes['pastes'];
+		$data = array();
+		foreach ($pastes as $paste) 
+		{
+			$data[] = array(
+				'pid' => $paste['pid'],
+				'title' => $paste['title'],
+				'name' => $paste['name'],
+				'created' => $paste['created'],
+				'lang' => $paste['lang'],
+				'hits' => $paste['hits'],
+			);
+		}
 		echo json_encode($data);
 	}
 }
