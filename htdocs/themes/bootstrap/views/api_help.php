@@ -9,18 +9,25 @@
 	<div class="span12">
 	    <p class="explain border">Create pastes from the commandline</p>
 
-		<h2>API URL</h2>
-	    <p class="explain"><code><?php echo site_url('api/create'); ?></code></p>
+        <h2>API URL</h2>
+        <p class="explain"><code><?php echo site_url('api'); ?></code></p>
 
-		<h2>Return values</h2>
-	    <p class="explain">
-		On success, the API returns the paste URL: <code><?php echo site_url('view/[pasteid]'); ?></code><br />
-		On error, the API returns the error message: <code>Error: Missing paste text</code>
-	    </p>
+        <h2>Get paste</h2>
+        <p class="explain"><code><?php echo site_url('api/paste/[pasteid]'); ?></code></p>
 
-		<h2>POST parameters</h2>
-	    <p>&nbsp;</p>
+        <h2>Get random paste</h2>
+        <p class="explain"><code><?php echo site_url('api/random'); ?></code></p>
 
+        <h2>Get recent pastes</h2>
+        <p class="explain"><code><?php echo site_url('api/recent'); ?></code></p>
+
+        <h2>Get trending pastes</h2>
+        <p class="explain"><code><?php echo site_url('api/trending'); ?></code></p>
+
+        <h2>Create a paste</h2>
+        <p class="explain"><code><?php echo site_url('api/create'); ?></code></p>
+
+		<h3>POST parameters</h3>
 		<code>text=[your paste text]</code>
 	    <p class="explain">The paste content. Required.</p>
 
@@ -45,9 +52,13 @@
 		<code>reply=[pasteid]</code>
 	    <p class="explain">Reply to existing paste.</p>
 
-		<h2>Examples</h2>
-	    <p>&nbsp;</p>
+		<h3>Return values</h3>
+	    <p class="explain">
+		On success, the API returns the paste URL: <code><?php echo site_url('view/[pasteid]'); ?></code><br />
+		On error, the API returns the error message: <code>Error: Missing paste text</code>
+	    </p>
 
+		<h2>Examples</h2>
 		<h3>Create paste</h3>
 		<code>curl -d text='this is my text' <?php echo site_url('api/create'); ?></code>
 	    <p class="explain">Create a paste with the text 'this is my text'.</p>
