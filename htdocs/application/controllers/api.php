@@ -9,6 +9,7 @@
  * - random()
  * - recent()
  * - trending()
+ * - langs()
  * Classes list:
  * - Api extends Main
  */
@@ -167,5 +168,11 @@ class Api extends Main
 			);
 		}
 		echo json_encode($data);
+	}
+	
+	function langs() 
+	{
+		$languages = $this->languages->get_languages();
+		echo json_encode($languages);
 	}
 }

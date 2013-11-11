@@ -19,6 +19,9 @@
 	<h2>Get trending pastes</h2>
     <p class="explain"><code><?php echo site_url('api/trending'); ?></code></p>
 
+	<h2>List available languages</h2>
+    <p class="explain"><code><?php echo site_url('api/langs'); ?></code></p>
+
 	<h2>Create a paste</h2>
     <p class="explain"><code><?php echo site_url('api/create'); ?></code></p>
 
