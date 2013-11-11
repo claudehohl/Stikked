@@ -168,7 +168,7 @@ class CI_Config {
 			{
 				return FALSE;
 			}
-			show_error('The configuration file '.$file.'.php does not exist.');
+			show_error('The configuration file '.$file.'.php does not exist. Please copy '.$file.'.php.dist to '.$file.'.php and make the changes as needed and refresh the page.');
 		}
 
 		return TRUE;
