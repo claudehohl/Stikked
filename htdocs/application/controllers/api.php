@@ -87,6 +87,11 @@ class Api extends Main
 	
 	function paste() 
 	{
+		
+		if (config_item('private_only')) 
+		{
+			show_404();
+		}
 		$this->load->model('pastes');
 		$check = $this->pastes->checkPaste(3);
 		
@@ -105,6 +110,11 @@ class Api extends Main
 	
 	function random() 
 	{
+		
+		if (config_item('private_only')) 
+		{
+			show_404();
+		}
 		$this->load->model('pastes');
 		$data = $this->pastes->random_paste();
 		echo json_encode($data);
@@ -112,6 +122,11 @@ class Api extends Main
 	
 	function recent() 
 	{
+		
+		if (config_item('private_only')) 
+		{
+			show_404();
+		}
 		$this->load->model('pastes');
 		$pastes = $this->pastes->getLists();
 		$pastes = $pastes['pastes'];
@@ -131,6 +146,11 @@ class Api extends Main
 	
 	function trending() 
 	{
+		
+		if (config_item('private_only')) 
+		{
+			show_404();
+		}
 		$this->load->model('pastes');
 		$pastes = $this->pastes->getTrends();
 		$pastes = $pastes['pastes'];
