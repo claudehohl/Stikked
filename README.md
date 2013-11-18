@@ -52,6 +52,20 @@ In the folder doc/, you will find:
 Changelog
 ---------
 
+### Version 0.8.6:
+
+* New translations: Portuguese, Norwegian, Turkish, French
+* New theme: Snowkat
+* YOURLS support (http://yourls.org/)
+* There is now a stikked.php.dist. You may copy that to config.php and have your own settings
+* The API has more possibilities, see API doc
+* Captcha must be entered only once, no more for further pastes
+* Bugfixes and improvements
+
+#### Upgrade instructions
+
+Copy your htdocs/application/stikked.php config file away. Upload the new version. Copy it back.
+
 ### Version 0.8.5:
 
 * Themes! Configure a different theme in config/stikked.php - or create your own

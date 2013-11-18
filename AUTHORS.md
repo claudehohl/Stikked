@@ -18,3 +18,4 @@
 * esplor https://github.com/esplor (Norwegian translation and support for table prefixes)
 * RamadhanAmizudin https://github.com/RamadhanAmizudin (Fix local file inclusion vulnerability)
 * Felix Wong https://github.com/fawong (created default stikked.php config)
+* Jordy http://snowkat.nl/ (Snowkat theme)
