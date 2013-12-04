@@ -659,6 +659,7 @@ class Main extends CI_Controller
 	
 	function _valid_ip() 
 	{
+        //todo: ipv6
 
 		//get ip
 		$ip_address = $this->input->ip_address();
