@@ -144,7 +144,7 @@ class Main extends CI_Controller
 				) ,
 				'ip_address' => array(
 					'type' => 'VARCHAR',
-					'constraint' => 16,
+					'constraint' => 45,
 					'null' => TRUE,
 				) ,
 				'hits' => array(
@@ -176,7 +176,7 @@ class Main extends CI_Controller
 			$fields = array(
 				'ip_address' => array(
 					'type' => 'VARCHAR',
-					'constraint' => 16,
+					'constraint' => 45,
 					'default' => 0,
 				) ,
 				'blocked_at' => array(
@@ -204,7 +204,7 @@ class Main extends CI_Controller
 				) ,
 				'ip_address' => array(
 					'type' => 'VARCHAR',
-					'constraint' => 16,
+					'constraint' => 45,
 					'default' => 0,
 				) ,
 				'created' => array(
@@ -225,7 +225,7 @@ class Main extends CI_Controller
 			$fields = array(
 				'ip_address' => array(
 					'type' => 'VARCHAR',
-					'constraint' => 16,
+					'constraint' => 45,
 					'null' => TRUE,
 				) ,
 			);
