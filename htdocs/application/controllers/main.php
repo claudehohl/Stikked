@@ -689,7 +689,7 @@ class Main extends CI_Controller
 	function _valid_ipv4($ip_address) 
 	{
 
-		//get ip
+		//get ip range
 		$ip = explode('.', $ip_address);
 		$ip_firstpart = $ip[0] . '.' . $ip[1] . '.';
 
