@@ -253,6 +253,17 @@ class Main extends CI_Controller
 			$this->dbforge->add_key('hits_updated');
 			$this->dbforge->add_column('pastes', $fields);
 		}
+
+		//ipv6 migration
+		$fields = $this->db->field_data('trending');
+		
+		if ($fields[1]->max_length < 45) 
+		{
+			$this->db->query("ALTER TABLE trending CHANGE COLUMN ip_address ip_address VARCHAR(45) NOT NULL DEFAULT '0'");
+			$this->db->query("ALTER TABLE pastes CHANGE COLUMN ip_address ip_address VARCHAR(45) NOT NULL DEFAULT '0'");
+			$this->db->query("ALTER TABLE blocked_ips CHANGE COLUMN ip_address ip_address VARCHAR(45) NOT NULL DEFAULT '0'");
+			$this->db->query("ALTER TABLE ci_sessions CHANGE COLUMN ip_address ip_address VARCHAR(45) NOT NULL DEFAULT '0'");
+		}
 	}
 	
 	function _form_prep($lang = false, $title = '', $paste = '', $reply = false) 
