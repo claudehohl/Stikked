@@ -19,6 +19,8 @@
  * - _valid_captcha()
  * - _valid_recaptcha()
  * - _valid_ip()
+ * - _valid_ipv4()
+ * - _valid_ipv6()
  * - _blockwords_check()
  * - _autofill_check()
  * - _valid_authentication()
@@ -659,10 +661,24 @@ class Main extends CI_Controller
 	
 	function _valid_ip() 
 	{
-        //todo: ipv6
 
 		//get ip
 		$ip_address = $this->input->ip_address();
+		
+		if (stristr($ip_address, ':')) 
+		{
+			return $this->_valid_ipv6($ip_address);
+		}
+		else
+		{
+			return $this->_valid_ipv4($ip_address);
+		}
+	}
+	
+	function _valid_ipv4($ip_address) 
+	{
+
+		//get ip
 		$ip = explode('.', $ip_address);
 		$ip_firstpart = $ip[0] . '.' . $ip[1] . '.';
 
@@ -672,6 +688,39 @@ class Main extends CI_Controller
 		//lookup
 		$this->db->select('ip_address, spam_attempts');
 		$this->db->like('ip_address', $ip_firstpart, 'after');
+		$query = $this->db->get('blocked_ips');
+
+		//check
+		
+		if ($query->num_rows() > 0) 
+		{
+
+			//update spamcount
+			$blocked_ips = $query->result_array();
+			$spam_attempts = $blocked_ips[0]['spam_attempts'];
+			$this->db->where('ip_address', $ip_address);
+			$this->db->update('blocked_ips', array(
+				'spam_attempts' => $spam_attempts + 1,
+			));
+
+			//return for the validation
+			return false;
+		}
+		else
+		{
+			return true;
+		}
+	}
+	
+	function _valid_ipv6($ip_address) 
+	{
+
+		//setup message
+		$this->form_validation->set_message('_valid_ip', lang('not_allowed'));
+
+		//lookup
+		$this->db->select('ip_address, spam_attempts');
+		$this->db->where('ip_address', $ip_address);
 		$query = $this->db->get('blocked_ips');
 
 		//check
