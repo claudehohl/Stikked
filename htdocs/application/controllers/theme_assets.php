@@ -44,6 +44,44 @@ class Theme_assets extends CI_Controller
 		$this->_expires_header(1);
 		readfile($file_path);
 	}
+
+	function fonts() 
+	{
+		$font_file = $this->uri->segment(4);
+		//file path
+		$file_path = 'themes/' . $this->theme . '/fonts/' . $font_file;
+
+		//no fallback to default, since default has no such fonts
+		//since no fallbcack, there is no doucle checking for file
+		if (!file_exists($file_path)) 
+		{
+			return false;
+		}
+
+		//send
+		$path_parts = pathinfo(dirname(dirname(dirname(__FILE__))) . '/' . $file_path );
+		if ( $path_parts['extension'] == "woff" ) {
+			header('Content-type: application/font-woff');
+		}
+		if ( $path_parts['extension'] == "eot" ) {
+			header('Content-type: application/vnd.ms-fontobject');
+		}
+		if ( $path_parts['extension'] == "ttf" || $path_parts['extension'] == "ttc" ) {
+			header('Content-type: application/x-font-ttf');
+		}
+		if ( $path_parts['extension'] == "otf" ) {
+			header('Content-type: font/opentype');
+		}
+		if ( $path_parts['extension'] == "svg" ) {
+			header('Content-type: image/svg+xml');
+		}
+		if ( $path_parts['extension'] == "svgz" ) {
+			header("Content-Encoding: gzip");
+			header('Content-type: image/svg+xml');
+		}
+		$this->_expires_header(1);
+		readfile($file_path);
+	}
 	
 	function images() 
 	{
