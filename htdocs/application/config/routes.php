@@ -70,6 +70,7 @@ $route['themes/:any/css/:any'] = 'theme_assets/css';
 $route['themes/:any/images/:any'] = 'theme_assets/images';
 $route['themes/:any/img/:any'] = 'theme_assets/images';
 $route['themes/:any/js/:any'] = 'theme_assets/js';
+$route['themes/:any/fonts/:any'] = 'theme_assets/fonts';
 
 /* End of file routes.php */
 /* Location: ./application/config/routes.php */

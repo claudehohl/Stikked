@@ -21,6 +21,11 @@ FileETag MTime Size
     ExpiresByType image/gif "access plus 1 year"
     ExpiresByType image/png "access plus 1 year"
     ExpiresByType image/x-icon "access plus 1 year"
+		ExpiresByType application/font-woff "access plus 1 year"
+    ExpiresByType application/vnd.ms-fontobject "access plus 1 year"
+    ExpiresByType application/x-font-ttf "access plus 1 year"
+    ExpiresByType font/opentype "access plus 1 year"
+    ExpiresByType image/svg+xml "access plus 1 year"
 </IfModule>
 
 #AuthType Basic
