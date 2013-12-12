@@ -43,6 +43,9 @@ if(isset($insert)){
             <span class="expander hidden">&mdash; <a href="#" class="expand control"><?php echo lang('paste_expand'); ?></a> <?php echo lang('paste_fullwidth'); ?></span>
             </span>
 		</div>
+		<div class="qr">
+			<img src="<?php echo site_url('static/qr/' . $pid . '.png'); ?>">
+		</div>
 	</div>
 </div>
 </div>

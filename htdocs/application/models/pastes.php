@@ -127,6 +127,16 @@ class Pastes extends CI_Model
 		}
 		$data['ip_address'] = $this->input->ip_address();
 		$this->db->insert('pastes', $data);
+
+		$pngPath = dirname(dirname(dirname(__FILE__))) . '/static/qr/' . $data['pid'] . '.png';
+		if (!file_exists($pngPath)) {
+			require_once(dirname(dirname(__FILE__)) . '/libraries/phpqrcode/qrlib.php');
+			$qrurl = $this->_get_url($data['pid']);
+			if ( $data['snipurl'] !== false ) {
+				$qrurl = $data['snipurl'];
+			}
+			QRcode::png($qrurl, $pngPath);
+		}
 		return 'view/' . $data['pid'];
 	}
 	private 
@@ -240,6 +250,16 @@ class Pastes extends CI_Model
 			$data['hits_updated'] = $row['hits_updated'];
 			$data['snipurl'] = $row['snipurl'];
 			$inreply = $row['replyto'];
+
+			$pngPath = dirname(dirname(dirname(__FILE__))) . '/static/qr/' . $data['pid'] . '.png';
+			if (!file_exists($pngPath)) {
+				require_once(dirname(dirname(__FILE__)) . '/libraries/phpqrcode/qrlib.php');
+				$qrurl = $this->_get_url($data['pid']);
+				if ( $data['snipurl'] != false ) {
+					$qrurl = $data['snipurl'];
+				}
+				QRcode::png($qrurl, $pngPath);
+			}
 		}
 		
 		if ($inreply) 
@@ -577,6 +597,10 @@ class Pastes extends CI_Model
 	{
 		$this->db->where('pid', $pid);
 		$this->db->delete('pastes');
+		$pngPath = dirname(dirname(dirname(__FILE__))) . '/static/qr/' . $pid . '.png';
+		if (file_exists($pngPath)) {
+			unlink($pngPath);
+		}
 		return;
 	}
 	

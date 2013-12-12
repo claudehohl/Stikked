@@ -364,6 +364,13 @@ h4 {
 .meta {
 	font-size: 93%;
 	line-height: 18px;
+	width: 80%;
+	float: left;
+}
+
+.qr {
+	width: 20%;
+	float: right;
 }
 
 .meta .spacer, .spacer.high {
