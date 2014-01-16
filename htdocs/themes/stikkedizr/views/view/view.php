@@ -14,12 +14,12 @@ if(isset($insert)){
 
 <section>
 	<div class="row">
-		<div class="span12">
+		<div class="col-12 col-sm-12 col-lg-12">
 			<div class="page-header">
 				<h1 class="pagetitle right"><?php echo $title; ?></h1>
 			</div>
 			<div class="row">
-				<div class="span12">
+				<div class="col-8 col-sm-12 col-lg-8">
 					<div class="detail by"><?php echo lang('paste_from'); ?> <?php echo $name; ?>, <?php $p = explode(',', timespan($created, time())); echo $p[0]?> <?php echo lang('paste_ago'); ?>, <?php echo lang('paste_writtenin'); ?> <?php echo $lang; ?>.</div>
 					<?php if(isset($inreply)){?><div class="detail by"><?php echo lang('paste_isareply'); ?> <a href="<?php echo $inreply['url']?>"><?php echo $inreply['title']; ?></a> <?php echo strtolower(lang('paste_from')); ?> <?php echo $inreply['name']; ?>
 
@@ -43,6 +43,9 @@ if(isset($insert)){
                     <?php echo lang('paste_viewdiffs'); ?> <a href="<?php echo $inreply['url']?>"><?php echo $inreply['title']; ?></a> <?php echo lang('paste_and'); ?> <a href="<?php echo $url; ?>"><?php echo $title; ?></a>
 <?php } ?>
 				</div>
+				<div class="col-4 col-sm-12 col-lg-4">
+					<img src="<?php echo site_url('static/qr/' . $pid . '.png'); ?>">
+				</div>
 			</div>
 		</div>
 	</div>
@@ -50,7 +53,7 @@ if(isset($insert)){
 
 <section>
 	<div class="row">
-		<div class="span12">
+		<div class="col-12 col-sm-12 col-lg-12">
 			<blockquote class="CodeMirror"><?php echo $paste; ?></blockquote>
 		</div>
 	</div>
