@@ -1,0 +1,16 @@
+
+@media print {
+
+    html, body {
+        background: #fff;
+        color: #222;
+        font-size: 8pt;
+        font-family: "Lucida Grande", Tahoma, Verdana, sans-serif;
+    }
+
+    #container, .replies, .footer {
+        display: none;
+    }
+
+}
+
