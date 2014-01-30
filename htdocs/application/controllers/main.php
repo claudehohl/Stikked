@@ -8,6 +8,7 @@
  * - raw()
  * - rss()
  * - embed()
+ * - qr()
  * - download()
  * - lists()
  * - trends()
@@ -470,6 +471,13 @@ class Main extends CI_Controller
 		{
 			show_404();
 		}
+	}
+	
+	function qr() 
+	{
+		$this->load->model('pastes');
+		$data = $this->pastes->getPaste(3);
+		$this->load->view('view/qr', $data);
 	}
 	
 	function download() 
