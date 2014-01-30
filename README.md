@@ -13,6 +13,7 @@ Here are some features:
 * Anti-Spam features
 * Themes support
 * Multilanguage support
+* The awesome Team BlueRidge made an [Android app](https://play.google.com/store/apps/details?id=org.teamblueridge.paste)
 * And many more. View [this review](http://maketecheasier.com/run-your-own-pastebin-with-stikked/2013/01/11) 
 
 

@@ -19,4 +19,5 @@
 * RamadhanAmizudin https://github.com/RamadhanAmizudin (Fix local file inclusion vulnerability)
 * Felix Wong https://github.com/fawong (created default stikked.php config)
 * Jordy http://snowkat.nl/ (Snowkat theme)
-* Jon Randoem https://github.com/jonrandoem (Stikkedizr theme, webfont support for themes)
+* Jon Randoem https://github.com/jonrandoem (Stikkedizr theme, webfont support for themes, added QR codes in pastes)
+* Team BlueRidge https://teamblueridge.org (Android app)
