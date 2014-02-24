@@ -21,3 +21,4 @@
 * Jordy http://snowkat.nl/ (Snowkat theme)
 * Jon Randoem https://github.com/jonrandoem (Stikkedizr theme, webfont support for themes, added QR codes in pastes)
 * Team BlueRidge https://teamblueridge.org (Android app)
+* Toda Hiroshi https://github.com/hiroshitoda (Japanese translation)
