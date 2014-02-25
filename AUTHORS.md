@@ -22,3 +22,4 @@
 * Jon Randoem https://github.com/jonrandoem (Stikkedizr theme, webfont support for themes, added QR codes in pastes)
 * Team BlueRidge https://teamblueridge.org (Android app)
 * Toda Hiroshi https://github.com/hiroshitoda (Japanese translation)
+* John Maguire https://github.com/JohnMaguire and Michael Lustfield https://github.com/MTecknology (increased security for Nginx)
