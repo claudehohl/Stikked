@@ -23,3 +23,4 @@
 * Team BlueRidge https://teamblueridge.org (Android app)
 * Toda Hiroshi https://github.com/hiroshitoda (Japanese translation)
 * John Maguire https://github.com/JohnMaguire and Michael Lustfield https://github.com/MTecknology (increased security for Nginx)
+* MrC0mmand https://github.com/MrC0mmand (Added correct PostgreSQL queries)
