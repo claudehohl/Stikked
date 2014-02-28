@@ -34,7 +34,6 @@ Installation
 
 * The database structure will be created automatically if it doesn't exist.
 * No special file permissions are needed by default. Optional: If you want to have the JavaScript- and CSS-files minified, the static/asset/ folder has to be writable.
-* You need to have the GD extension for PHP enabled so that the QR codes are rendered.
 * To ensure that pastes with an expiration set get cleaned up, define the cron key in the config and set up a cronjob, for example:
   * */5 * * * * curl --silent http://yoursite.com/cron/[key]
 
