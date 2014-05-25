@@ -14,7 +14,7 @@ Here are some features:
 * Themes support
 * Multilanguage support
 * The awesome Team BlueRidge made an [Android app](https://play.google.com/store/apps/details?id=org.teamblueridge.paste)
-* Command line tool to upload paste to Stikked based pastebins [stikkit](https://github.com/benapetr/stikkit)
+* Command line tool to upload paste to Stikked based pastebins: [Stikkit](https://github.com/benapetr/stikkit)
 * And many more. View [this review](http://maketecheasier.com/run-your-own-pastebin-with-stikked/2013/01/11) 
 
 
