@@ -122,6 +122,7 @@ $config['apikey'] = '';
  * recaptcha_publickey & recaptcha_privatekey: If filled, reCaptcha will be used (get a key from https://www.google.com/recaptcha/admin/create)
  * blocked_words: Comma separated list, e.g. '.es.tl, mycraft.com, yourbadword'
  * disable_api: Don't allow pasting via API (because we can't use a captcha there...)
+ * disable_shorturl: "Create Shorturl" option will be disabled
  *
 **/
 $config['private_only'] = false;
