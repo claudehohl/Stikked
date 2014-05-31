@@ -408,6 +408,11 @@ class Main extends CI_Controller
 				{
 					$_POST['private'] = 1;
 				}
+
+				if (config_item('disable_shorturl'))
+				{
+					$_POST['snipurl'] = 0;
+				}
 				
 				if ($this->input->post('reply') == false) 
 				{
