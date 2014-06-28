@@ -46,6 +46,7 @@ $route['cron/:any'] = "main/cron";
 $route['view/raw/:any'] = 'main/raw';
 $route['view/rss/:any'] = 'main/rss';
 $route['view/embed/:any'] = 'main/embed';
+$route['view/qr/:any'] = 'main/qr';
 $route['view/download/:any'] = 'main/download';
 $route['view/captcha'] = 'main/captcha';
 $route['view/:any'] = 'main/view';

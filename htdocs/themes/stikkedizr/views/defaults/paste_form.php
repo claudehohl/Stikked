@@ -60,6 +60,10 @@
 							<label class="checkbox">
 								<?php
 									$set = array('name' => 'snipurl', 'id' => 'snipurl', 'value' => '1', 'tabindex' => '5', 'checked' => $snipurl_set);
+									if ($this->config->item('disable_shorturl')){
+										$set['checked'] = 0;
+										$set['disabled'] = 'disabled';
+									}
 									echo form_checkbox($set);
 								?>
 								<?php echo lang('paste_create_shorturl') . ' - ' . lang('paste_shorturl_desc'); ?>

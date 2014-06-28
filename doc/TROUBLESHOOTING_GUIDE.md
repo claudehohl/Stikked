@@ -37,6 +37,12 @@ PHP FastCGI must be running. See the php-fcgi section under Nginx.
 
 ### Cherokee
 
+### PHP
+
+#### The QR file isn't created and the image isn't showed
+
+You need to have the GD extension for PHP installed and enabled so that the QR codes are rendered.
+
 Still have a problem?
 ---------------------
 

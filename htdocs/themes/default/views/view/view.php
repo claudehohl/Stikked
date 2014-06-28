@@ -44,7 +44,7 @@ if(isset($insert)){
             </span>
 		</div>
 		<div class="qr">
-			<img src="<?php echo site_url('static/qr/' . $pid . '.png'); ?>">
+			<img src="<?php echo site_url('view/qr/' . $pid); ?>">
 		</div>
 	</div>
 </div>
