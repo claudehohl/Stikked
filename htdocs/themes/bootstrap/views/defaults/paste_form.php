@@ -1,3 +1,8 @@
+ <script type="text/javascript">
+   var RecaptchaOptions = {
+   theme : 'clean'
+   };
+</script>
 
 <?php echo validation_errors(); ?>
 
