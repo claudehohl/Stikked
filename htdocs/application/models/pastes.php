@@ -440,7 +440,7 @@ class Pastes extends CI_Model
 				$data['pastes'][$n]['title'] = $row['title'];
 				$data['pastes'][$n]['name'] = $row['name'];
 				$data['pastes'][$n]['created'] = $row['created'];
-				$data['pastes'][$n]['lang'] = $row['lang'];
+				$data['pastes'][$n]['lang'] = $this->languages->code_to_description($row['lang']);
 				$data['pastes'][$n]['pid'] = $row['pid'];
 				
 				if ($this->uri->segment(2) == 'rss') 
@@ -483,7 +483,7 @@ class Pastes extends CI_Model
 				$data['pastes'][$n]['title'] = $row['title'];
 				$data['pastes'][$n]['name'] = $row['name'];
 				$data['pastes'][$n]['created'] = $row['created'];
-				$data['pastes'][$n]['lang'] = $row['lang'];
+				$data['pastes'][$n]['lang'] = $this->languages->code_to_description($row['lang']);
 				$data['pastes'][$n]['pid'] = $row['pid'];
 				$data['pastes'][$n]['raw'] = $row['raw'];
 				$data['pastes'][$n]['hits'] = $row['hits'];
