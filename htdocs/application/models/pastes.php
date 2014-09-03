@@ -19,6 +19,7 @@
  * - delete_paste()
  * - random_paste()
  * - _format_diff()
+ * - _strip_bad_multibyte_chars()
  * Classes list:
  * - Pastes extends CI_Model
  */
@@ -55,7 +56,7 @@ class Pastes extends CI_Model
 		$data['created'] = time();
 
 		//this is SO evil… saving the «raw» data with htmlspecialchars :-( (but I have to leave this, because of backwards-compatibility)
-		$data['raw'] = htmlspecialchars($this->input->post('code'));
+		$data['raw'] = htmlspecialchars($this->_strip_bad_multibyte_chars($this->input->post('code')));
 		$data['lang'] = htmlspecialchars($this->input->post('lang'));
 		$data['replyto'] = $this->input->post('reply');
 		
@@ -636,5 +637,28 @@ class Pastes extends CI_Model
 		$text = str_replace("\t", '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;', $text);
 		$text = '<div class="text" style="font-family:monospace; font: normal normal 1em/1.2em monospace;">' . $text . '</div>';
 		return $text;
+	}
+	private 
+	function _strip_bad_multibyte_chars($str) 
+	{
+		$result = '';
+		$length = strlen($str);
+		for ($i = 0;$i < $length;$i++) 
+		{
+
+			// Replace four-byte characters (11110www 10zzzzzz 10yyyyyy 10xxxxxx)
+			$ord = ord($str[$i]);
+			
+			if ($ord >= 240 && $ord <= 244) 
+			{
+				$result.= '?';
+				$i+= 3;
+			}
+			else
+			{
+				$result.= $str[$i];
+			}
+		}
+		return $result;
 	}
 }
