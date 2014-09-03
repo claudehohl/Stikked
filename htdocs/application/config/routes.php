@@ -66,6 +66,7 @@ $route['iphone/:num'] = 'iphone';
 $route['iphone/view/:any'] = 'iphone/view';
 
 $route['404_override'] = 'main/error_404';
+$route['robots.txt'] = 'main/robots_txt';
 
 $route['themes/:any/css/:any'] = 'theme_assets/css';
 $route['themes/:any/images/:any'] = 'theme_assets/images';

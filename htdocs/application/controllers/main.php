@@ -27,6 +27,7 @@
  * - _valid_authentication()
  * - get_cm_js()
  * - error_404()
+ * - robots_txt()
  * Classes list:
  * - Main extends CI_Controller
  */
@@ -260,12 +261,16 @@ class Main extends CI_Controller
 		
 		if ($fields[1]->max_length < 45) 
 		{
-			if($this->db->dbdriver == "postgre"){
+			
+			if ($this->db->dbdriver == "postgre") 
+			{
 				$this->db->query("ALTER TABLE trending ALTER COLUMN ip_address TYPE VARCHAR(45), ALTER COLUMN ip_address SET NOT NULL, ALTER COLUMN ip_address SET DEFAULT '0'");
 				$this->db->query("ALTER TABLE pastes ALTER COLUMN ip_address TYPE VARCHAR(45), ALTER COLUMN ip_address SET NOT NULL, ALTER COLUMN ip_address SET DEFAULT '0'");
 				$this->db->query("ALTER TABLE blocked_ips ALTER COLUMN ip_address TYPE VARCHAR(45), ALTER COLUMN ip_address SET NOT NULL, ALTER COLUMN ip_address SET DEFAULT '0'");
 				$this->db->query("ALTER TABLE ci_sessions ALTER COLUMN ip_address TYPE VARCHAR(45), ALTER COLUMN ip_address SET NOT NULL, ALTER COLUMN ip_address SET DEFAULT '0'");
-			} else {
+			}
+			else
+			{
 				$this->db->query("ALTER TABLE trending CHANGE COLUMN ip_address ip_address VARCHAR(45) NOT NULL DEFAULT '0'");
 				$this->db->query("ALTER TABLE pastes CHANGE COLUMN ip_address ip_address VARCHAR(45) NOT NULL DEFAULT '0'");
 				$this->db->query("ALTER TABLE blocked_ips CHANGE COLUMN ip_address ip_address VARCHAR(45) NOT NULL DEFAULT '0'");
@@ -408,8 +413,8 @@ class Main extends CI_Controller
 				{
 					$_POST['private'] = 1;
 				}
-
-				if (config_item('disable_shorturl'))
+				
+				if (config_item('disable_shorturl')) 
 				{
 					$_POST['snipurl'] = 0;
 				}
@@ -858,5 +863,19 @@ class Main extends CI_Controller
 	function error_404() 
 	{
 		show_404();
+	}
+	
+	function robots_txt() 
+	{
+		
+		if (config_item('disallow_search_engines')) 
+		{
+			header('Content-Type: text/plain; charset=utf-8');
+			$this->load->view('robots_txt');
+		}
+		else
+		{
+			echo '';
+		}
 	}
 }

@@ -132,6 +132,7 @@ $config['recaptcha_privatekey'] = '';
 $config['disable_api'] = false;
 $config['blocked_words'] = '';
 $config['disable_shorturl'] = false;
+$config['disallow_search_engines'] = false;
 
 //spamadmin: accessible via /spamadmin (only active when user + pass is set)
 $config['spamadmin_user'] = '';
