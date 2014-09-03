@@ -1,4 +1,18 @@
+// CodeMirror, copyright (c) by Marijn Haverbeke and others
+// Distributed under an MIT license: http://codemirror.net/LICENSE
+
 //tcl mode by Ford_Lawnmower :: Based on Velocity mode by Steve O'Hara
+
+(function(mod) {
+  if (typeof exports == "object" && typeof module == "object") // CommonJS
+    mod(require("../../lib/codemirror"));
+  else if (typeof define == "function" && define.amd) // AMD
+    define(["../../lib/codemirror"], mod);
+  else // Plain browser env
+    mod(CodeMirror);
+})(function(CodeMirror) {
+"use strict";
+
 CodeMirror.defineMode("tcl", function() {
   function parseWords(str) {
     var obj = {}, words = str.split(" ");
@@ -56,7 +70,7 @@ CodeMirror.defineMode("tcl", function() {
       else if (ch == "$") {
         stream.eatWhile(/[$_a-z0-9A-Z\.{:]/);
         stream.eatWhile(/}/);
-        state.beforeParams = true;              
+        state.beforeParams = true;
         return "builtin";
       }
       else if (isOperatorChar.test(ch)) {
@@ -129,3 +143,5 @@ CodeMirror.defineMode("tcl", function() {
     };
 });
 CodeMirror.defineMIME("text/x-tcl", "tcl");
+
+});
