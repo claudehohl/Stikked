@@ -124,6 +124,7 @@ $config['geshi_languages'] = array(
 	'lisp' => 'Generic Lisp',
 	'llvm' => 'LLVM',
 	'locobasic' => 'Locomotive Basic (Amstrad CPC series)',
+	'logcat' => 'Logcat',
 	'logtalk' => 'Logtalk',
 	'lolcode' => 'LOLcode',
 	'lotusformulas' => '@Formula/@Command',
