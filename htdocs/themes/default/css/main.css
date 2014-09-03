@@ -369,8 +369,10 @@ h4 {
 }
 
 .qr {
-	width: 20%;
+	width: 99px;
+	height: 99px;
 	float: right;
+    margin-bottom: 20px;
 }
 
 .meta .spacer, .spacer.high {
