@@ -87,6 +87,7 @@ $config['cron_key'] = '';
 $config['yourls_url'] = '';
 $config['yourls_signature'] = '';
 $config['gwgd_url'] = '';
+$config['shorturl_selected'] = false;
 
 /**
  * Credentials for the backup URL

@@ -315,6 +315,12 @@ class Main extends CI_Controller
 				$this->db_session->set_userdata('expire', $default_expiration);
 			}
 			
+			if (!$this->db_session->userdata('snipurl')) 
+			{
+				$shorturl_selected = config_item('shorturl_selected');
+				$this->db_session->set_userdata('snipurl', $shorturl_selected);
+			}
+			
 			if ($this->db_session->flashdata('settings_changed')) 
 			{
 				$data['status_message'] = 'Settings successfully changed';
