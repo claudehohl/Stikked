@@ -55,11 +55,11 @@ ST.line_highlighter = function() {
     var first_line = false;
     var second_line = false;
 
-    $('.text').on('mousedown', function() {
+    $('.container').on('mousedown', function() {
         window.getSelection().removeAllRanges();
     });
 
-    $('.text').on('click', 'li', function(ev) {
+    $('.container').on('click', 'li', function(ev) {
         var $this = $(this);
         var li_num = ($this.index() + 1);
         if(ev.shiftKey == 1){
@@ -91,18 +91,18 @@ ST.line_highlighter = function() {
 ST.highlight_lines = function() {
     var wloc = window.location.href;
     if(wloc.indexOf('#') > -1) {
-        $('.text li').css('background', 'none');
+        $('.container li').css('background', 'none');
 
         var lines = wloc.split('#')[1];
         if(lines.indexOf('-') > -1) {
             var start_line = parseInt(lines.split('-')[0].replace('L', ''), 10);
             var end_line = parseInt(lines.split('-')[1].replace('L', ''), 10);
             for(var i=start_line; i<=end_line; i++) {
-                $('.text li:nth-child(' + i + ')').css('background', '#F8EEC7');
+                $('.container li:nth-child(' + i + ')').css('background', '#F8EEC7');
             }
         } else {
             var marked_line = lines.replace('L', '');
-            $('.text li:nth-child(' + marked_line + ')').css('background', '#F8EEC7');
+            $('.container li:nth-child(' + marked_line + ')').css('background', '#F8EEC7');
         }
     }
 }
