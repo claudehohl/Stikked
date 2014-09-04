@@ -29,7 +29,6 @@ $config['db_password'] = 'stikked';
 */
 $config['db_prefix'] = '';
 
-
 /**
  * Theme
  *
