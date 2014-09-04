@@ -261,20 +261,21 @@ class Main extends CI_Controller
 		
 		if ($fields[1]->max_length < 45) 
 		{
+			$db_prefix = config_item('db_prefix');
 			
 			if ($this->db->dbdriver == "postgre") 
 			{
-				$this->db->query("ALTER TABLE trending ALTER COLUMN ip_address TYPE VARCHAR(45), ALTER COLUMN ip_address SET NOT NULL, ALTER COLUMN ip_address SET DEFAULT '0'");
-				$this->db->query("ALTER TABLE pastes ALTER COLUMN ip_address TYPE VARCHAR(45), ALTER COLUMN ip_address SET NOT NULL, ALTER COLUMN ip_address SET DEFAULT '0'");
-				$this->db->query("ALTER TABLE blocked_ips ALTER COLUMN ip_address TYPE VARCHAR(45), ALTER COLUMN ip_address SET NOT NULL, ALTER COLUMN ip_address SET DEFAULT '0'");
-				$this->db->query("ALTER TABLE ci_sessions ALTER COLUMN ip_address TYPE VARCHAR(45), ALTER COLUMN ip_address SET NOT NULL, ALTER COLUMN ip_address SET DEFAULT '0'");
+				$this->db->query("ALTER TABLE " . $db_prefix . "trending ALTER COLUMN ip_address TYPE VARCHAR(45), ALTER COLUMN ip_address SET NOT NULL, ALTER COLUMN ip_address SET DEFAULT '0'");
+				$this->db->query("ALTER TABLE " . $db_prefix . "pastes ALTER COLUMN ip_address TYPE VARCHAR(45), ALTER COLUMN ip_address SET NOT NULL, ALTER COLUMN ip_address SET DEFAULT '0'");
+				$this->db->query("ALTER TABLE " . $db_prefix . "blocked_ips ALTER COLUMN ip_address TYPE VARCHAR(45), ALTER COLUMN ip_address SET NOT NULL, ALTER COLUMN ip_address SET DEFAULT '0'");
+				$this->db->query("ALTER TABLE " . $db_prefix . "ci_sessions ALTER COLUMN ip_address TYPE VARCHAR(45), ALTER COLUMN ip_address SET NOT NULL, ALTER COLUMN ip_address SET DEFAULT '0'");
 			}
 			else
 			{
-				$this->db->query("ALTER TABLE trending CHANGE COLUMN ip_address ip_address VARCHAR(45) NOT NULL DEFAULT '0'");
-				$this->db->query("ALTER TABLE pastes CHANGE COLUMN ip_address ip_address VARCHAR(45) NOT NULL DEFAULT '0'");
-				$this->db->query("ALTER TABLE blocked_ips CHANGE COLUMN ip_address ip_address VARCHAR(45) NOT NULL DEFAULT '0'");
-				$this->db->query("ALTER TABLE ci_sessions CHANGE COLUMN ip_address ip_address VARCHAR(45) NOT NULL DEFAULT '0'");
+				$this->db->query("ALTER TABLE " . $db_prefix . "trending CHANGE COLUMN ip_address ip_address VARCHAR(45) NOT NULL DEFAULT '0'");
+				$this->db->query("ALTER TABLE " . $db_prefix . "pastes CHANGE COLUMN ip_address ip_address VARCHAR(45) NOT NULL DEFAULT '0'");
+				$this->db->query("ALTER TABLE " . $db_prefix . "blocked_ips CHANGE COLUMN ip_address ip_address VARCHAR(45) NOT NULL DEFAULT '0'");
+				$this->db->query("ALTER TABLE " . $db_prefix . "ci_sessions CHANGE COLUMN ip_address ip_address VARCHAR(45) NOT NULL DEFAULT '0'");
 			}
 		}
 	}
