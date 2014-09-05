@@ -29,7 +29,6 @@ $config['db_password'] = 'stikked';
 */
 $config['db_prefix'] = '';
 
-
 /**
  * Theme
  *
@@ -87,6 +86,7 @@ $config['cron_key'] = '';
 $config['yourls_url'] = '';
 $config['yourls_signature'] = '';
 $config['gwgd_url'] = '';
+$config['shorturl_selected'] = false;
 
 /**
  * Credentials for the backup URL
@@ -132,6 +132,7 @@ $config['recaptcha_privatekey'] = '';
 $config['disable_api'] = false;
 $config['blocked_words'] = '';
 $config['disable_shorturl'] = false;
+$config['disallow_search_engines'] = false;
 
 //spamadmin: accessible via /spamadmin (only active when user + pass is set)
 $config['spamadmin_user'] = '';

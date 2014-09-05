@@ -25,3 +25,4 @@
 * John Maguire https://github.com/JohnMaguire and Michael Lustfield https://github.com/MTecknology (increased security for Nginx)
 * MrC0mmand https://github.com/MrC0mmand (Added correct PostgreSQL queries)
 * Petr Bena https://github.com/benapetr (stikkit - a command line tool for Stikked)
+* Xiaoxing Ye https://github.com/Yexiaoxing (Chinese-Simplified translations)

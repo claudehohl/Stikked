@@ -115,7 +115,7 @@
 					<span class="instruction"><?php echo lang('paste_spam_desc'); ?></span>
 				</label>
 <?php if($use_recaptcha){
-    echo recaptcha_get_html($recaptcha_publickey);
+    echo recaptcha_get_html($recaptcha_publickey, null, stristr(base_url(), 'https'));
 } else { ?>
                 <img class="captcha" src="<?php echo site_url('view/captcha'); ?>?<?php echo date('U', mktime()); ?>" alt="captcha" width="180" height="40" />
                 <input value="" type="text" id="captcha" name="captcha" tabindex="2" maxlength="32" />
