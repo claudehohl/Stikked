@@ -111,10 +111,26 @@ ST.crypto = function() {
     $('button[name=submit]').after('<button id="create_encrypted">Create encrypted</button>');
     $('#create_encrypted').on('click', function() {
         var $code = $('#code');
+
+        // encrypt the paste
         var key = ST.crypto_generate_key();
         var encrypted = CryptoJS.AES.encrypt($code.val(), key) + '';
+
+        // linebreak after 100 chars
         encrypted = encrypted.replace(/(.{100})/g, "$1\n");
-        $code.val(encrypted + '\n\n' + '#' + key);
+
+        // post request via JS
+        $.post(base_url + '/post_encrypted', {
+            'name': $('#name').val(),
+            'title': $('#title').val(),
+            'code': encrypted,
+            'lang': $('#lang').val(),
+            'expire': $('#expire').val(),
+        },
+        function(redirect_url) {
+            window.location.href = base_url + redirect_url + '#' + key;
+        });
+
         return false;
     });
 }

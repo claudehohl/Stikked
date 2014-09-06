@@ -5,6 +5,7 @@
  * - __construct()
  * - _form_prep()
  * - index()
+ * - post_encrypted()
  * - raw()
  * - rss()
  * - embed()
@@ -440,6 +441,15 @@ class Main extends CI_Controller
 				redirect($this->pastes->createPaste());
 			}
 		}
+	}
+	
+	function post_encrypted() 
+	{
+		$this->load->model('pastes');
+		$_POST['private'] = 1;
+		$_POST['snipurl'] = 0;
+		$ret_url = $this->pastes->createPaste();
+		echo $ret_url;
 	}
 	
 	function raw() 

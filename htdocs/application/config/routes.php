@@ -42,6 +42,7 @@ $route['default_controller'] = "main";
 $route['scaffolding_trigger'] = "";
 
 $route['cron/:any'] = "main/cron";
+$route['post_encrypted'] = "main/post_encrypted";
 
 $route['view/raw/:any'] = 'main/raw';
 $route['view/rss/:any'] = 'main/rss';
