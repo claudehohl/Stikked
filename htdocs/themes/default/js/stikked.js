@@ -118,7 +118,9 @@ ST.crypto = function() {
 
         // encrypt the paste
         var key = ST.crypto_generate_key(32);
-        var encrypted = CryptoJS.AES.encrypt($code.val(), key) + '';
+        var plaintext = $code.val();
+        plaintext = LZString.compressToBase64(plaintext);
+        var encrypted = CryptoJS.AES.encrypt(plaintext, key) + '';
 
         // linebreak after 100 chars
         encrypted = encrypted.replace(/(.{100})/g, "$1\n");
@@ -152,6 +154,7 @@ ST.crypto = function() {
                 var $code = $('#code');
                 var encrypted = $code.val().replace(/\n/g, '');
                 var decrypted = CryptoJS.AES.decrypt(encrypted, key).toString(CryptoJS.enc.Utf8) + '';
+                decrypted = LZString.decompressFromBase64(decrypted);
                 $code.val(decrypted);
                 $('.text_formatted .container div').html(decrypted
                     .replace(/&/g, '&amp;')
