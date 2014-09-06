@@ -113,7 +113,7 @@ ST.crypto = function() {
         var $code = $('#code');
 
         // encrypt the paste
-        var key = ST.crypto_generate_key();
+        var key = ST.crypto_generate_key(25);
         var encrypted = CryptoJS.AES.encrypt($code.val(), key) + '';
 
         // linebreak after 100 chars
@@ -136,10 +136,10 @@ ST.crypto = function() {
 }
 
 // generate a random key
-ST.crypto_generate_key = function() {
+ST.crypto_generate_key = function(len) {
 	var index = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
 	var key = '';
-	for(var i=0; i<25; i++) {
+	for(var i=0; i<len; i++) {
         key += index[Math.floor(Math.random()*index.length)]
     };
 	return key;
