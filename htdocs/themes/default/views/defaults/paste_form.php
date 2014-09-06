@@ -130,7 +130,7 @@
     echo form_input($set);
 ?>
 
-		<div><button type="submit" value="submit" name="submit"><?php echo lang('paste_create'); ?></button></div>
+		<div class="clear"><button type="submit" value="submit" name="submit"><?php echo lang('paste_create'); ?></button></div>
 		<div class="spacer"></div>
 	</form>
 </div>
