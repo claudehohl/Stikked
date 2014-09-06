@@ -107,11 +107,32 @@ ST.highlight_lines = function() {
     }
 }
 
+ST.crypto = function() {
+    $('button[name=submit]').on('mouseenter', function() {
+        var $code = $('#code');
+        var key = ST.crypto_generate_key();
+        var encrypted = CryptoJS.AES.encrypt($code.val(), key) + '';
+        encrypted = encrypted.replace(/(.{100})/g, "$1\n");
+        $code.val(encrypted + '\n\n' + '#' + key);
+    });
+}
+
+// generate a random key
+ST.crypto_generate_key = function() {
+	var index = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+	var key = '';
+	for(var i=0; i<25; i++) {
+        key += index[Math.floor(Math.random()*index.length)]
+    };
+	return key;
+}
+
 ST.init = function() {
 	ST.expand();
 	ST.show_embed();
 	ST.spamadmin();
 	ST.line_highlighter();
+	ST.crypto();
 };
 
 $(document).ready(function() {
