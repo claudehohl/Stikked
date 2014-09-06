@@ -117,7 +117,7 @@ ST.crypto = function() {
         var $code = $('#code');
 
         // encrypt the paste
-        var key = ST.crypto_generate_key(25);
+        var key = ST.crypto_generate_key(32);
         var encrypted = CryptoJS.AES.encrypt($code.val(), key) + '';
 
         // linebreak after 100 chars
