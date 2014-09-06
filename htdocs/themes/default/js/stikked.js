@@ -108,12 +108,14 @@ ST.highlight_lines = function() {
 }
 
 ST.crypto = function() {
-    $('button[name=submit]').on('mouseenter', function() {
+    $('button[name=submit]').after('<button id="create_encrypted">Create encrypted</button>');
+    $('#create_encrypted').on('click', function() {
         var $code = $('#code');
         var key = ST.crypto_generate_key();
         var encrypted = CryptoJS.AES.encrypt($code.val(), key) + '';
         encrypted = encrypted.replace(/(.{100})/g, "$1\n");
         $code.val(encrypted + '\n\n' + '#' + key);
+        return false;
     });
 }
 
