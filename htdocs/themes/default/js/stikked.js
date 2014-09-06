@@ -154,11 +154,11 @@ ST.crypto = function() {
                 var decrypted = CryptoJS.AES.decrypt(encrypted, key).toString(CryptoJS.enc.Utf8) + '';
                 $code.val(decrypted);
                 $('.text_formatted .container div').html(decrypted
-                    .replace(/&/g,"&amp;")
-                    .replace(/"/g,"&quot;")
-                    .replace(/'/g,"&#039;")
-                    .replace(/</g,"&lt;")
-                    .replace(/>/g,"&gt;")
+                    .replace(/&/g, '&amp;')
+                    .replace(/"/g, '&quot;')
+                    .replace(/'/g, '&#039;')
+                    .replace(/</g, '&lt;')
+                    .replace(/>/g, '&gt;')
                     .replace(/ /g, '&nbsp;')
                     .replace(/\n/g, '<br />')
                 );
