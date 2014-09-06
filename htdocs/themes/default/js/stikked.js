@@ -101,8 +101,12 @@ ST.highlight_lines = function() {
                 $('.container li:nth-child(' + i + ')').css('background', '#F8EEC7');
             }
         } else {
-            var marked_line = lines.replace('L', '');
-            $('.container li:nth-child(' + marked_line + ')').css('background', '#F8EEC7');
+            var re = new RegExp('^L[0-9].*?$');
+            var r = lines.match(re);
+            if(r) {
+                var marked_line = lines.replace('L', '');
+                $('.container li:nth-child(' + marked_line + ')').css('background', '#F8EEC7');
+            }
         }
     }
 }
@@ -126,6 +130,7 @@ ST.crypto = function() {
             'code': encrypted,
             'lang': $('#lang').val(),
             'expire': $('#expire').val(),
+            'reply': $('input[name=reply]').val()
         },
         function(redirect_url) {
             window.location.href = base_url + redirect_url + '#' + key;
@@ -133,6 +138,34 @@ ST.crypto = function() {
 
         return false;
     });
+
+    // decryption routine
+    w_href = window.location.href;
+    if(w_href.indexOf('#') > -1) {
+        key = w_href.split('#')[1];
+        var re = new RegExp('^L[0-9].*?$');
+        var r = key.match(re);
+        if(key.indexOf('-') > -1 || r) {
+            // line highlighter
+        } else {
+            try {
+                var $code = $('#code');
+                var encrypted = $code.val().replace(/\n/g, '');
+                var decrypted = CryptoJS.AES.decrypt(encrypted, key).toString(CryptoJS.enc.Utf8) + '';
+                $code.val(decrypted);
+                $('.text_formatted .container div').html(decrypted
+                    .replace(/&/g,"&amp;")
+                    .replace(/"/g,"&quot;")
+                    .replace(/'/g,"&#039;")
+                    .replace(/</g,"&lt;")
+                    .replace(/>/g,"&gt;")
+                    .replace(/ /g, '&nbsp;')
+                    .replace(/\n/g, '<br />')
+                );
+                $('.text_formatted').css('background', '#efe');
+            } catch(e) {}
+        }
+    }
 }
 
 // generate a random key
