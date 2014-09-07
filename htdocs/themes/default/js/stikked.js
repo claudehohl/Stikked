@@ -156,15 +156,22 @@ ST.crypto = function() {
                 var decrypted = CryptoJS.AES.decrypt(encrypted, key).toString(CryptoJS.enc.Utf8) + '';
                 decrypted = LZString.decompressFromBase64(decrypted);
                 $code.val(decrypted);
-                $('.text_formatted .container div').html(decrypted
+
+                // add a breaking_space after 90 chars (for later)
+                decrypted = decrypted.replace(/(.{90}.*?) /g, "$1{{{breaking_space}}}");
+
+                // remove html entities
+                decrypted = decrypted
                     .replace(/&/g, '&amp;')
                     .replace(/"/g, '&quot;')
                     .replace(/'/g, '&#039;')
                     .replace(/</g, '&lt;')
                     .replace(/>/g, '&gt;')
                     .replace(/ /g, '&nbsp;')
+                    .replace(/{{{breaking_space}}}/g, ' ')
                     .replace(/\n/g, '<br />')
-                );
+
+                $('.text_formatted .container div').html(decrypted);
 
                 // kick out potential dangerous and unnecessary stuff
                 $('.text_formatted').css('background', '#efe');
