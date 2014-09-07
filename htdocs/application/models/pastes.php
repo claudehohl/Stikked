@@ -427,10 +427,21 @@ class Pastes extends CI_Model
 		$this->load->library('process');
 		$amount = $this->config->item('per_page');
 		$page = ($this->uri->segment(2) ? $this->uri->segment(2) : 0);
-		$this->db->select('id, title, name, created, pid, lang, raw');
-		$this->db->where('private', 0);
-		$this->db->order_by('created', 'desc');
-		$query = $this->db->get('pastes', $amount, $page);
+		$search = '%' . $this->input->get('search') . '%';
+		
+		if ($search) 
+		{
+			$sql = "SELECT id, title, name, created, pid, lang, raw FROM pastes WHERE private = 0 AND (title LIKE ? OR raw LIKE ?) ORDER BY created DESC LIMIT $page,$amount";
+			$query = $this->db->query($sql, array(
+				$search,
+				$search,
+			));
+		}
+		else
+		{
+			$sql = "SELECT id, title, name, created, pid, lang, raw FROM pastes WHERE private = 0 ORDER BY created DESC LIMIT $page,$amount";
+			$query = $this->db->query($sql);
+		}
 		
 		if ($query->num_rows() > 0) 
 		{
@@ -469,11 +480,21 @@ class Pastes extends CI_Model
 		$this->load->library('pagination');
 		$amount = $this->config->item('per_page');
 		$page = ($this->uri->segment(2) ? $this->uri->segment(2) : 0);
-		$this->db->select('id, title, name, created, pid, lang, raw, hits');
-		$this->db->where('private', 0);
-		$this->db->order_by('hits', 'desc');
-		$this->db->order_by('created', 'desc');
-		$query = $this->db->get('pastes', $amount, $page);
+		$search = '%' . $this->input->get('search') . '%';
+		
+		if ($search) 
+		{
+			$sql = "SELECT id, title, name, created, pid, lang, raw, hits FROM pastes WHERE private = 0 AND (title LIKE ? OR raw LIKE ?) ORDER BY hits DESC, created DESC LIMIT $page,$amount";
+			$query = $this->db->query($sql, array(
+				$search,
+				$search,
+			));
+		}
+		else
+		{
+			$sql = "SELECT id, title, name, created, pid, lang, raw, hits FROM pastes WHERE private = 0 ORDER BY hits DESC, created DESC LIMIT $page,$amount";
+			$query = $this->db->query($sql);
+		}
 		
 		if ($query->num_rows() > 0) 
 		{
