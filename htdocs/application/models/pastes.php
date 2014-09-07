@@ -431,6 +431,16 @@ class Pastes extends CI_Model
 		
 		if ($search) 
 		{
+
+			// count total results
+			$sql = "SELECT id FROM pastes WHERE private = 0 AND (title LIKE ? OR raw LIKE ?)";
+			$query = $this->db->query($sql, array(
+				$search,
+				$search,
+			));
+			$total_rows = $query->num_rows();
+
+			// query
 			$sql = "SELECT id, title, name, created, pid, lang, raw FROM pastes WHERE private = 0 AND (title LIKE ? OR raw LIKE ?) ORDER BY created DESC LIMIT $page,$amount";
 			$query = $this->db->query($sql, array(
 				$search,
@@ -439,6 +449,13 @@ class Pastes extends CI_Model
 		}
 		else
 		{
+
+			// count total results
+			$sql = "SELECT id FROM pastes WHERE private = 0";
+			$query = $this->db->query($sql);
+			$total_rows = $query->num_rows();
+
+			// query
 			$sql = "SELECT id, title, name, created, pid, lang, raw FROM pastes WHERE private = 0 ORDER BY created DESC LIMIT $page,$amount";
 			$query = $this->db->query($sql);
 		}
@@ -464,7 +481,7 @@ class Pastes extends CI_Model
 			}
 		}
 		$config['base_url'] = site_url($root);
-		$config['total_rows'] = $this->countPastes();
+		$config['total_rows'] = $total_rows;
 		$config['per_page'] = $amount;
 		$config['num_links'] = 9;
 		$config['full_tag_open'] = '<div class="pages">';
@@ -484,6 +501,16 @@ class Pastes extends CI_Model
 		
 		if ($search) 
 		{
+
+			// count total results
+			$sql = "SELECT id FROM pastes WHERE private = 0 AND (title LIKE ? OR raw LIKE ?)";
+			$query = $this->db->query($sql, array(
+				$search,
+				$search,
+			));
+			$total_rows = $query->num_rows();
+
+			// query
 			$sql = "SELECT id, title, name, created, pid, lang, raw, hits FROM pastes WHERE private = 0 AND (title LIKE ? OR raw LIKE ?) ORDER BY hits DESC, created DESC LIMIT $page,$amount";
 			$query = $this->db->query($sql, array(
 				$search,
@@ -492,6 +519,13 @@ class Pastes extends CI_Model
 		}
 		else
 		{
+
+			// count total results
+			$sql = "SELECT id FROM pastes WHERE private = 0";
+			$query = $this->db->query($sql);
+			$total_rows = $query->num_rows();
+
+			// query
 			$sql = "SELECT id, title, name, created, pid, lang, raw, hits FROM pastes WHERE private = 0 ORDER BY hits DESC, created DESC LIMIT $page,$amount";
 			$query = $this->db->query($sql);
 		}
@@ -513,7 +547,7 @@ class Pastes extends CI_Model
 			}
 		}
 		$config['base_url'] = site_url($root);
-		$config['total_rows'] = $this->countPastes();
+		$config['total_rows'] = $total_rows;
 		$config['per_page'] = $amount;
 		$config['num_links'] = 9;
 		$config['full_tag_open'] = '<div class="pages">';
