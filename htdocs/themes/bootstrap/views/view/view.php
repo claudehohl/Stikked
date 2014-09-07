@@ -55,7 +55,7 @@ if(isset($insert)){
 		</div>
 	</div>
 </section>
-<section>
+<section class="replies">
 <?php
 
 function checkNum($num){
@@ -98,7 +98,6 @@ if(isset($replies) and !empty($replies)){
 	<?php }?>
 	</tbody>
 	</table>
-</section>
 <?php echo $pages;
 }
 
@@ -106,5 +105,6 @@ if(isset($replies) and !empty($replies)){
 	$reply_form['page']['instructions'] = lang('paste_replyto_desc');
 	$this->load->view('defaults/paste_form', $reply_form); ?>
 
+</section>
 
 <?php $this->load->view('view/view_footer'); ?>
