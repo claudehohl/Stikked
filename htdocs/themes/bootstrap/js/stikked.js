@@ -106,18 +106,22 @@ ST.line_highlighter = function() {
 ST.highlight_lines = function() {
     var wloc = window.location.href;
     if(wloc.indexOf('#') > -1) {
-        $('blockquote li').css('background', 'none');
+        $('.text_formatted .container li').css('background', 'none');
 
         var lines = wloc.split('#')[1];
         if(lines.indexOf('-') > -1) {
             var start_line = parseInt(lines.split('-')[0].replace('L', ''), 10);
             var end_line = parseInt(lines.split('-')[1].replace('L', ''), 10);
             for(var i=start_line; i<=end_line; i++) {
-                $('blockquote li:nth-child(' + i + ')').css('background', '#F8EEC7');
+                $('.text_formatted .container li:nth-child(' + i + ')').css('background', '#F8EEC7');
             }
         } else {
-            var marked_line = lines.replace('L', '');
-            $('blockquote li:nth-child(' + marked_line + ')').css('background', '#F8EEC7');
+            var re = new RegExp('^L[0-9].*?$');
+            var r = lines.match(re);
+            if(r) {
+                var marked_line = lines.replace('L', '');
+                $('.text_formatted .container li:nth-child(' + marked_line + ')').css('background', '#F8EEC7');
+            }
         }
     }
 }
@@ -188,13 +192,7 @@ ST.crypto = function() {
                 $('.text_formatted .container div').html(decrypted);
 
                 // kick out potential dangerous and unnecessary stuff
-                $('.text_formatted').css('background', '#efe');
                 $('.replies').hide();
-                for(var i=2; i<=7; i++) {
-                    $('.meta .detail:nth-child(' + i + ')').hide();
-                }
-                $('.meta .spacer:first').hide();
-                $('.qr').hide();
             } catch(e) {}
         }
     }
