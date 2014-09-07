@@ -189,10 +189,14 @@ ST.crypto = function() {
                     .replace(/{{{breaking_space}}}/g, ' ')
                     .replace(/\n/g, '<br />')
 
-                $('.text_formatted .container div').html(decrypted);
+                $('section blockquote.CodeMirror div').html(decrypted);
 
                 // kick out potential dangerous and unnecessary stuff
+                $('section blockquote.CodeMirror div').css('background', '#efe');
                 $('.replies').hide();
+                for(var i=2; i<=5; i++) {
+                    $('.meta .detail:nth-child(' + i + ')').hide();
+                }
             } catch(e) {}
         }
     }
