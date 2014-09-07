@@ -28,7 +28,7 @@ var CM = {
 			modes = $.parseJSON($('#codemirror_modes').text());
 		
 		
-			var editor = CodeMirror.fromTextArea(document.getElementById("code"), {
+			CM.editor = CodeMirror.fromTextArea(document.getElementById("code"), {
 				mode: "scheme",
 				lineNumbers: true,
 				matchBrackets: true,
@@ -40,7 +40,7 @@ var CM = {
 			});
 		
 			set_syntax = function(mode) {
-				editor.setOption('mode', mode);
+				CM.editor.setOption('mode', mode);
 			};
 		
 			set_language = function() {
@@ -122,8 +122,97 @@ ST.highlight_lines = function() {
     }
 }
 
+ST.crypto = function() {
+    $('button[name=submit]').after('&nbsp;&nbsp;<button type="submit" id="create_encrypted" class="btn-large btn-success"> <i class="icon-lock icon-white"></i> Create encrypted</button>');
+    $('#create_encrypted').on('click', function() {
+        var $code = $('#code');
+
+        // save CM into textarea
+        CM.editor.save();
+
+        // encrypt the paste
+        var key = ST.crypto_generate_key(32);
+        var plaintext = $code.val();
+        plaintext = LZString.compressToBase64(plaintext);
+        var encrypted = CryptoJS.AES.encrypt(plaintext, key) + '';
+
+        // linebreak after 100 chars
+        encrypted = encrypted.replace(/(.{100})/g, "$1\n");
+
+        // post request via JS
+        $.post(base_url + '/post_encrypted', {
+            'name': $('#name').val(),
+            'title': $('#title').val(),
+            'code': encrypted,
+            'lang': $('#lang').val(),
+            'expire': $('#expire').val(),
+            'reply': $('input[name=reply]').val()
+        },
+        function(redirect_url) {
+            window.location.href = base_url + redirect_url + '#' + key;
+        });
+
+        return false;
+    });
+
+    // decryption routine
+    w_href = window.location.href;
+    if(w_href.indexOf('#') > -1) {
+        key = w_href.split('#')[1];
+        var re = new RegExp('^L[0-9].*?$');
+        var r = key.match(re);
+        if(key.indexOf('-') > -1 || r) {
+            // line highlighter
+        } else {
+            try {
+                var $code = $('#code');
+                var encrypted = $code.val().replace(/\n/g, '');
+                var decrypted = CryptoJS.AES.decrypt(encrypted, key).toString(CryptoJS.enc.Utf8) + '';
+                decrypted = LZString.decompressFromBase64(decrypted);
+                $code.val(decrypted);
+
+                // add a breaking_space after 90 chars (for later)
+                decrypted = decrypted.replace(/(.{90}.*?) /g, "$1{{{breaking_space}}}");
+
+                // remove html entities
+                decrypted = decrypted
+                    .replace(/&/g, '&amp;')
+                    .replace(/"/g, '&quot;')
+                    .replace(/'/g, '&#039;')
+                    .replace(/</g, '&lt;')
+                    .replace(/>/g, '&gt;')
+                    .replace(/ /g, '&nbsp;')
+                    .replace(/{{{breaking_space}}}/g, ' ')
+                    .replace(/\n/g, '<br />')
+
+                $('.text_formatted .container div').html(decrypted);
+
+                // kick out potential dangerous and unnecessary stuff
+                $('.text_formatted').css('background', '#efe');
+                $('.replies').hide();
+                for(var i=2; i<=7; i++) {
+                    $('.meta .detail:nth-child(' + i + ')').hide();
+                }
+                $('.meta .spacer:first').hide();
+                $('.qr').hide();
+            } catch(e) {}
+        }
+    }
+}
+
+// generate a random key
+ST.crypto_generate_key = function(len) {
+	var index = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+	var key = '';
+	for(var i=0; i<len; i++) {
+        key += index[Math.floor(Math.random()*index.length)]
+    };
+	return key;
+}
+
 $(document).ready(function() {
 	ST.init();
 	CM.init();
 	ST.line_highlighter();
+	ST.crypto();
 });
