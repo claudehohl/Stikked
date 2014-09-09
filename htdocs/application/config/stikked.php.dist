@@ -34,7 +34,7 @@ $config['db_prefix'] = '';
  *
  * Which theme to use
  * Folder name in htdocs/themes/
- * Currently: default, bootstrap, gabdark, gabdark3, geocities, snowkat, stikkedizr
+ * Currently: default, bootstrap, gabdark, gabdark3, geocities, snowkat, stikkedizr, cleanwhite
  *
 */
 $config['theme'] = 'default';
