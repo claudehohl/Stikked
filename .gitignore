@@ -1,3 +1,4 @@
 .DS_Store
 htdocs/static/asset/*
 htdocs/application/config/stikked.php
+nbproject
