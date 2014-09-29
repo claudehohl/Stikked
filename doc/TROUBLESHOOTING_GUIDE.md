@@ -7,6 +7,10 @@ Stikked troubleshooting guide
 
 Rewrite rules must be enabled in httpd.conf.
 
+Enable it by executing the following command:
+
+```a2enmod rewrite```
+
 ### Nginx
 
 #### 502 Bad Gateway
