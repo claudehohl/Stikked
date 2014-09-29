@@ -622,8 +622,7 @@ class Pastes extends CI_Model
 			
 			if ($now > $stamp) 
 			{
-				$this->db->where('id', $row['id']);
-				$this->db->delete('pastes');
+				$this->delete_paste($row['pid']);
 			}
 		}
 		return;
@@ -633,6 +632,10 @@ class Pastes extends CI_Model
 	{
 		$this->db->where('pid', $pid);
 		$this->db->delete('pastes');
+
+		// delete from trending
+		$this->db->where('paste_id', $pid);
+		$this->db->delete('trending');
 		return;
 	}
 	
