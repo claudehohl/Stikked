@@ -55,8 +55,10 @@ ST.line_highlighter = function() {
     var first_line = false;
     var second_line = false;
 
-    $('.text_formatted').on('mousedown', function() {
-        window.getSelection().removeAllRanges();
+    $('.text_formatted').on('mousedown', function(ev) {
+        if(ev.which == 1){ // left mouse button has been clicked
+            window.getSelection().removeAllRanges();
+        }
     });
 
     $('.text_formatted').on('click', 'li', function(ev) {
