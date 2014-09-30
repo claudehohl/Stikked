@@ -9,6 +9,7 @@ if (!defined('BASEPATH')) exit('No direct script access allowed');
 
 //geshi languages
 $config['geshi_languages'] = array(
+	'text' => 'Plain Text',
 	'html5' => 'HTML5',
 	'css' => 'CSS',
 	'javascript' => 'JavaScript',
@@ -25,7 +26,7 @@ $config['geshi_languages'] = array(
 	'latex' => 'LaTeX',
 	'sql' => 'SQL',
 	'xml' => 'XML',
-	'text' => 'Plain Text',
+	'' => '',  // separator
 	'4cs' => '4CS',
 	'6502acme' => 'MOS 6502',
 	'6502kickass' => 'MOS 6502 Kick Assembler',
