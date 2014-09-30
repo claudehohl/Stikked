@@ -5,15 +5,18 @@ Stikked allows you to easily share code with anyone you wish. Based on the [orig
 Here are some features:
 
 * Easy setup
-* Syntaxhighlighting for many languages, including live syntaxhighlighting with CodeMirror
+* Syntax highlighting for many languages, including live syntax highlighting with CodeMirror
 * Paste replies
 * Diff view between the original paste and the reply
 * An API
+* Search pastes
 * Trending pastes
+* Encrypted pastes
+* Burn on reading
 * Anti-Spam features
 * Themes support
 * Multilanguage support
-* The awesome Team BlueRidge made an [Android app](https://play.google.com/store/apps/details?id=org.teamblueridge.pasteit)
+* An [Android app](https://play.google.com/store/apps/details?id=org.teamblueridge.pasteit)
 * Command line tool to upload paste to Stikked based pastebins: [Stikkit](https://github.com/benapetr/stikkit)
 * And many more. View [this review](http://maketecheasier.com/run-your-own-pastebin-with-stikked/2013/01/11) 
 
@@ -22,6 +25,8 @@ Try it out
 ----------
 
 http://paste.scratchbook.ch/
+
+See an encrypted paste: http://paste.scratchbook.ch/view/1427473f#iP7p05DRH0BC72qQjxv01BjUeOmNV073
 
 
 Installation
@@ -53,6 +58,22 @@ In the folder doc/, you will find:
 
 Changelog
 ---------
+
+### Version 0.9.0:
+
+* New translations: Japanese, Chinese-Simplified, Chinese-Traditional, Russian
+* New themes: Stikkedizr, Cleanwhite
+* Display QR code in paste
+* Multiline highlighter
+* Encrypted pastes (yeah!) - see it in action: http://paste.scratchbook.ch/view/1427473f#iP7p05DRH0BC72qQjxv01BjUeOmNV073
+* Added "burn on reading" as expiration
+* Search function - search in recent and trending pastes
+* Added mockingjay to word list for unknown posters - let the revolution begin!
+* Bugfixes and improvements
+
+#### Upgrade instructions
+
+Copy your htdocs/application/stikked.php config file away. Upload the new version. Copy it back.
 
 ### Version 0.8.6:
 
