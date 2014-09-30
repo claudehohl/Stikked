@@ -104,10 +104,19 @@ class Pastes extends CI_Model
 			}
 		}
 		while ($n == 0);
+		$burn = false;
 		
-		if ($this->input->post('expire') == 0) 
+		if ($this->input->post('expire') == '0') 
 		{
 			$data['expire'] = 0;
+		}
+		else 
+		if ($this->input->post('expire') == 'burn') 
+		{
+			$burn = true;
+			$data['toexpire'] = 1;
+			$data['expire'] = 0;
+			$data['private'] = 1;
 		}
 		else
 		{
@@ -128,7 +137,16 @@ class Pastes extends CI_Model
 		}
 		$data['ip_address'] = $this->input->ip_address();
 		$this->db->insert('pastes', $data);
-		return 'view/' . $data['pid'];
+		
+		if ($burn) 
+		{
+			echo 'copy this URL, it will become invalid on visit: ' . site_url('view/' . $data['pid']);
+			exit;
+		}
+		else
+		{
+			return 'view/' . $data['pid'];
+		}
 	}
 	private 
 	function _get_url($pid) 
@@ -235,6 +253,8 @@ class Pastes extends CI_Model
 			$data['lang'] = $this->languages->code_to_description($row['lang']);
 			$data['paste'] = $this->process->syntax(htmlspecialchars_decode($row['raw']) , $row['lang']);
 			$data['created'] = $row['created'];
+			$data['expire'] = $row['expire'];
+			$data['toexpire'] = $row['toexpire'];
 			$data['url'] = $this->_get_url($row['pid']);
 			$data['raw'] = $row['raw'];
 			$data['hits'] = $row['hits'];
@@ -357,6 +377,13 @@ class Pastes extends CI_Model
 		if (mktime() > (60 + $data['hits_updated'])) 
 		{
 			$this->calculate_hits($pid, $data['hits']);
+		}
+
+		//burn if necessary
+		
+		if ($data['expire'] == 0 and $data['toexpire'] == 1) 
+		{
+			$this->delete_paste($data['pid']);
 		}
 		return $data;
 	}
