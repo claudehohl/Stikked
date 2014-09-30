@@ -47,6 +47,7 @@ $lang['paste_missing'] = 'There have been no Pastes';
 $lang['paste_spam'] = 'Spam protection';
 $lang['paste_spam_desc'] = 'Type in the letters';
 $lang['exp_forever'] = 'Keep Forever';
+$lang['exp_burn'] = 'Burn on reading';
 $lang['exp_5min'] = '5 Minutes';
 $lang['exp_1h'] = '1 Hour';
 $lang['exp_1d'] = '1 Day';

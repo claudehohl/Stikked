@@ -47,6 +47,7 @@ $lang['paste_missing'] = 'Keine Pastes vorhanden';
 $lang['paste_spam'] = 'Spamschutz';
 $lang['paste_spam_desc'] = 'Schreibe die Buchstaben ab';
 $lang['exp_forever'] = 'Nie';
+$lang['exp_burn'] = 'Sofort';
 $lang['exp_5min'] = '5 Minuten';
 $lang['exp_1h'] = '1 Stunde';
 $lang['exp_1d'] = '1 Tag';

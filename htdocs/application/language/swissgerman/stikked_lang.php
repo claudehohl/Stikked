@@ -47,6 +47,7 @@ $lang['paste_missing'] = 'Git leider no nüt';
 $lang['paste_spam'] = 'Spämschutz';
 $lang['paste_spam_desc'] = 'Schrib die Zeiche ab';
 $lang['exp_forever'] = 'Gar nid';
+$lang['exp_burn'] = 'Soffort';
 $lang['exp_5min'] = '5 Minuttä';
 $lang['exp_1h'] = '1 Stündli';
 $lang['exp_1d'] = '1 Daag';
