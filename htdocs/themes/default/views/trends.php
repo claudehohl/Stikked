@@ -1,6 +1,8 @@
 <?php $this->load->view('defaults/header');?>
 <h1><?php echo lang('paste_trending'); ?></h1>
 
+<?php $this->load->view('view/search');?>
+
 		<?php 
 		function checkNum($num){
 			return ($num%2) ? TRUE : FALSE;
