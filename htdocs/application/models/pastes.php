@@ -426,7 +426,7 @@ class Pastes extends CI_Model
 		$this->load->library('pagination');
 		$this->load->library('process');
 		$amount = $this->config->item('per_page');
-		$page = ($this->uri->segment(2) ? $this->uri->segment(2) : 0);
+		$page = ($this->uri->segment($seg) ? $this->uri->segment($seg) : 0);
 		$search = '%' . $this->input->get('search') . '%';
 		
 		if ($search) 

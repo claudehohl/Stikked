@@ -543,11 +543,11 @@ class Main extends CI_Controller
 		else
 		{
 			$this->load->model('pastes');
-			$data = $this->pastes->getLists();
 			
 			if ($this->uri->segment(2) == 'rss') 
 			{
 				$this->load->helper('text');
+				$data = $this->pastes->getLists('lists/', 3);
 				$data['page_title'] = config_item('site_name');
 				$data['feed_url'] = site_url('lists/rss');
 				$data['replies'] = $data['pastes'];
@@ -556,6 +556,7 @@ class Main extends CI_Controller
 			}
 			else
 			{
+				$data = $this->pastes->getLists('lists/', 2);
 				$this->load->view('list', $data);
 			}
 		}
