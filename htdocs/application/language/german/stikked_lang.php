@@ -20,6 +20,7 @@ $lang['paste_delete'] = 'Löschen nach';
 $lang['paste_delete_desc'] = 'Wann soll Dein Paste verfallen?';
 $lang['paste_recent'] = 'Aktuelle Pastes';
 $lang['paste_trending'] = 'Oft aufgerufene Pastes';
+$lang['paste_search'] = 'Suche';
 $lang['paste_from'] = 'Von';
 $lang['paste_ago'] = 'vorher';
 $lang['paste_writtenin'] = 'geschrieben in';

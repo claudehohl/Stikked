@@ -20,6 +20,7 @@ $lang['paste_delete'] = 'Delete After';
 $lang['paste_delete_desc'] = 'When should we delete your paste?';
 $lang['paste_recent'] = 'Recent Pastes';
 $lang['paste_trending'] = 'Trending Pastes';
+$lang['paste_search'] = 'Search';
 $lang['paste_from'] = 'From';
 $lang['paste_ago'] = 'ago';
 $lang['paste_writtenin'] = 'written in';

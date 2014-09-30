@@ -20,6 +20,7 @@ $lang['paste_delete'] = 'Lösche nach';
 $lang['paste_delete_desc'] = 'Wenn sölls explodiere?';
 $lang['paste_recent'] = 'Die nöischtä Pastes';
 $lang['paste_trending'] = 'Die beliäbtischtä Pastes';
+$lang['paste_search'] = 'Suechi';
 $lang['paste_from'] = 'Vom';
 $lang['paste_ago'] = 'vorhär';
 $lang['paste_writtenin'] = 'gschriibä in';
