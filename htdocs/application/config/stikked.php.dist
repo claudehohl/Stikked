@@ -130,6 +130,7 @@ $config['enable_captcha'] = true;
 $config['recaptcha_publickey'] = '';
 $config['recaptcha_privatekey'] = '';
 $config['disable_api'] = false;
+$config['disable_keep_forever'] = false;
 $config['blocked_words'] = '';
 $config['disable_shorturl'] = false;
 $config['disallow_search_engines'] = false;
