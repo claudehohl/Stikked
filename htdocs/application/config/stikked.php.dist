@@ -120,9 +120,11 @@ $config['apikey'] = '';
  * private_only: No recent pastes will be displayed.
  * enable_captcha: Users must enter a captcha to post.
  * recaptcha_publickey & recaptcha_privatekey: If filled, reCaptcha will be used (get a key from https://www.google.com/recaptcha/admin/create)
- * blocked_words: Comma separated list, e.g. '.es.tl, mycraft.com, yourbadword'
  * disable_api: Don't allow pasting via API (because we can't use a captcha there...)
+ * disable_keep_forever: Don't allow pasting without expiration
+ * blocked_words: Comma separated list, e.g. '.es.tl, mycraft.com, yourbadword'
  * disable_shorturl: "Create Shorturl" option will be disabled
+ * disallow_search_engines: displays a robots.txt that forbids indexing
  *
 **/
 $config['private_only'] = false;
@@ -143,14 +145,14 @@ $config['spamadmin_pass'] = '';
  * Default paste expiration time (minutes)
  *
  * Possible values:
- *  0 (keep forever)
- *  30 (30 minutes)
+ *  burn (burn on reading)
+ *  5 (5 minutes)
  *  60 (1 hour)
- *  360 (6 hours)
- *  720 (12 hours)
  *  1440 (1 day)
  *  10080 (1 week)
- *  40320 (4 weeks)
+ *  40320 (1 month)
+ *  483840 (1 year)
+ *  0 (keep forever)
 **/
 $config['default_expiration'] = 0;
 
