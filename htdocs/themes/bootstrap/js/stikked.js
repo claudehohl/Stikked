@@ -148,7 +148,7 @@ ST.crypto = function() {
         encrypted = encrypted.replace(/(.{100})/g, "$1\n");
 
         // post request via JS
-        $.post(base_url + '/post_encrypted', {
+        $.post(base_url + 'post_encrypted', {
             'name': $('#name').val(),
             'title': $('#title').val(),
             'code': encrypted,
