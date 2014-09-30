@@ -220,7 +220,7 @@ $config['nouns'] = array('Hornbill', 'Elephant', 'Bison', 'Lion', 'Camel', 'Shee
 'Pig', 'Anoa', 'Octupus', 'Butterfly', 'Cat', 'Kitten', 'Coyote', 'Crocodile',
 'Cockroach', 'Crow', 'Bird', 'Dolphin', 'Earthworm', 'Frog', 'Hamster', 'Hedgehog',
 'Hog', 'Human', 'Hummingbird', 'Iguana', 'Leech', 'Leopard', ' Marten',
-'Mockingbird', 'Mosquito', 'Moth', 'Partdridge', 'Bee', 'Penguin');
+'Mockingbird', 'Mockingjay', 'Mosquito', 'Moth', 'Partdridge', 'Bee', 'Penguin');
 
 $config['adjectives'] = array('Ample', 'Mature', 'Bulky', 'Burly', 'Capacious',
 'Colossal', 'Commodious', 'Thundering', 'Mammoth', 'Mungo', 'Voluminous',
