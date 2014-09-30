@@ -92,7 +92,7 @@
 						</label>
 						<?php 
 							$expire_extra = 'id="expire" class="select" tabindex="7"';
-                            $default_expiration = '10080'; // 1 week
+                            $default_expiration = config_item('default_expiration');
 							$options = array(
                                         "burn" => lang('exp_burn'),
                                         "5" => lang('exp_5min'),
