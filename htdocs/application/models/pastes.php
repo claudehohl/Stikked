@@ -487,6 +487,9 @@ class Pastes extends CI_Model
 		$config['full_tag_open'] = '<div class="pages">';
 		$config['full_tag_close'] = '</div>';
 		$config['uri_segment'] = $seg;
+		$searchparams = ($this->input->get('search') ? '?search=' . $this->input->get('search') : '');
+		$config['first_url'] = '0' . $searchparams;
+		$config['suffix'] = $searchparams;
 		$this->pagination->initialize($config);
 		$data['pages'] = $this->pagination->create_links();
 		return $data;
@@ -553,6 +556,9 @@ class Pastes extends CI_Model
 		$config['full_tag_open'] = '<div class="pages">';
 		$config['full_tag_close'] = '</div>';
 		$config['uri_segment'] = $seg;
+		$searchparams = ($this->input->get('search') ? '?search=' . $this->input->get('search') : '');
+		$config['first_url'] = '0' . $searchparams;
+		$config['suffix'] = $searchparams;
 		$this->pagination->initialize($config);
 		$data['pages'] = $this->pagination->create_links();
 		return $data;
