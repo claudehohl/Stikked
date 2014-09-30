@@ -70,8 +70,10 @@ ST.line_highlighter = function() {
     var first_line = false;
     var second_line = false;
 
-    $('blockquote').on('mousedown', function() {
-        window.getSelection().removeAllRanges();
+    $('blockquote').on('mousedown', function(ev) {
+        if(ev.which == 1){ // left mouse button has been clicked
+            window.getSelection().removeAllRanges();
+        }
     });
 
     $('blockquote').on('click', 'li', function(ev) {
@@ -100,27 +102,29 @@ ST.line_highlighter = function() {
 
         ST.highlight_lines();
     });
+
     ST.highlight_lines();
+
 }
 
 ST.highlight_lines = function() {
     var wloc = window.location.href;
     if(wloc.indexOf('#') > -1) {
-        $('.text_formatted .container li').css('background', 'none');
+        $('.container .CodeMirror li').css('background', 'none');
 
         var lines = wloc.split('#')[1];
         if(lines.indexOf('-') > -1) {
             var start_line = parseInt(lines.split('-')[0].replace('L', ''), 10);
             var end_line = parseInt(lines.split('-')[1].replace('L', ''), 10);
             for(var i=start_line; i<=end_line; i++) {
-                $('.text_formatted .container li:nth-child(' + i + ')').css('background', '#F8EEC7');
+                $('.container .CodeMirror li:nth-child(' + i + ')').css('background', '#F8EEC7');
             }
         } else {
             var re = new RegExp('^L[0-9].*?$');
             var r = lines.match(re);
             if(r) {
                 var marked_line = lines.replace('L', '');
-                $('.text_formatted .container li:nth-child(' + marked_line + ')').css('background', '#F8EEC7');
+                $('.container .CodeMirror li:nth-child(' + marked_line + ')').css('background', '#F8EEC7');
             }
         }
     }
