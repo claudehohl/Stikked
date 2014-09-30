@@ -157,7 +157,11 @@ ST.crypto = function() {
             'reply': $('input[name=reply]').val()
         },
         function(redirect_url) {
-            window.location.href = base_url + redirect_url + '#' + key;
+            if(redirect_url.indexOf('invalid') > -1) {
+                $('#create_encrypted').parent().html('<p>' + redirect_url + '#' + key + '</p>');
+            } else {
+                window.location.href = base_url + redirect_url + '#' + key;
+            }
         });
 
         return false;
