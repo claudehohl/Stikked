@@ -1,6 +1,9 @@
 <?php $this->load->view('defaults/header');?>
 	<div class="page-header">
 		<h1><?php echo lang('paste_trending'); ?></h1>
+
+<?php $this->load->view('view/search');?>
+
 	</div>
 
 		<?php
