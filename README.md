@@ -18,6 +18,7 @@ Here are some features:
 * Multilanguage support
 * An [Android app](https://play.google.com/store/apps/details?id=org.teamblueridge.pasteit)
 * Command line tool to upload paste to Stikked based pastebins: [Stikkit](https://github.com/benapetr/stikkit)
+* Another CLI tool requiring only curl program: [pbin](https://github.com/glensc/pbin)
 * And many more. View [this review](http://maketecheasier.com/run-your-own-pastebin-with-stikked/2013/01/11) 
 
 
