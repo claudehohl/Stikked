@@ -129,7 +129,7 @@ class Api extends Main
 			show_404();
 		}
 		$this->load->model('pastes');
-		$pastes = $this->pastes->getLists();
+		$pastes = $this->pastes->getLists('api/recent');
 		$pastes = $pastes['pastes'];
 		$data = array();
 		foreach ($pastes as $paste) 
@@ -153,7 +153,7 @@ class Api extends Main
 			show_404();
 		}
 		$this->load->model('pastes');
-		$pastes = $this->pastes->getTrends();
+		$pastes = $this->pastes->getTrends('api/trending',2);
 		$pastes = $pastes['pastes'];
 		$data = array();
 		foreach ($pastes as $paste) 
