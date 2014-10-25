@@ -135,10 +135,10 @@ $config['codemirror_languages'] = array(
 		) ,
 	) ,
 	'sql' => array(
-		'mode' => 'mysql',
+		'mode' => 'sql',
 		'js' => array(
 			array(
-				'codemirror/mode/mysql/mysql.js'
+				'codemirror/mode/sql/sql.js'
 			) ,
 		) ,
 	) ,
@@ -157,6 +157,22 @@ $config['codemirror_languages'] = array(
 	'6502tasm' => 'MOS 6502 TASM/64TASS',
 	'68000devpac' => 'Motorola 68000 Devpac Assembler',
 	'abap' => 'ABAP',
+	'apl' => array(
+		'mode' => 'apl',
+		'js' => array(
+			array(
+				'codemirror/mode/apl/apl.js'
+			) ,
+		) ,
+	) ,
+	'asterisk' => array(
+		'mode' => 'asterisk',
+		'js' => array(
+			array(
+				'codemirror/mode/asterisk/asterisk.js'
+			) ,
+		) ,
+	) ,
 	'actionscript' => 'Actionscript',
 	'actionscript3' => 'ActionScript3',
 	'ada' => 'Ada',
@@ -221,7 +237,14 @@ $config['codemirror_languages'] = array(
 		) ,
 	) ,
 	'cuesheet' => 'Cuesheet',
-	'd' => 'D',
+	'd' => array(
+		'mode' => 'd',
+		'js' => array(
+			array(
+				'codemirror/mode/d/d.js'
+			) ,
+		) ,
+	) ,
 	'dcs' => 'DCS',
 	'delphi' => 'Delphi (Object Pascal)',
 	'div' => 'DIV',
@@ -239,6 +262,14 @@ $config['codemirror_languages'] = array(
 	'eiffel' => 'Eiffel',
 	'email' => 'Email (mbox/eml/RFC format)',
 	'epc' => 'Enerscript',
+	'erlang' => array(
+		'mode' => 'erlang',
+		'js' => array(
+			array(
+				'codemirror/mode/erlang/erlang.js'
+			) ,
+		) ,
+	) ,
 	'euphoria' => 'Euphoria',
 	'f1' => 'Formula One',
 	'falcon' => 'Falcon',
@@ -254,6 +285,14 @@ $config['codemirror_languages'] = array(
 	'glsl' => 'glSlang',
 	'gml' => 'GML',
 	'gnuplot' => 'Gnuplot script',
+	'go' => array(
+		'mode' => 'go',
+		'js' => array(
+			array(
+				'codemirror/mode/go/go.js'
+			) ,
+		) ,
+	) ,
 	'groovy' => array(
 		'mode' => 'text/x-groovy',
 		'js' => array(
@@ -268,6 +307,14 @@ $config['codemirror_languages'] = array(
 		'js' => array(
 			array(
 				'codemirror/mode/haskell/haskell.js'
+			) ,
+		) ,
+	) ,
+	'haxe' => array(
+		'mode' => 'text/x-haxe',
+		'js' => array(
+			array(
+				'codemirror/mode/haxe/haxe.js'
 			) ,
 		) ,
 	) ,
@@ -340,17 +387,24 @@ $config['codemirror_languages'] = array(
 	'make' => 'Make',
 	'mapbasic' => 'MapBasic',
 	'matlab' => 'Matlab M-file',
-	'mirc' => 'mIRC Scripting',
+	'mirc' => array(
+		'mode' => 'mirc',
+		'js' => array(
+			array(
+				'codemirror/mode/mirc/mirc.js'
+			) ,
+		) ,
+	) ,
 	'mmix' => 'MMIX Assembler',
 	'modula2' => 'Modula-2',
 	'modula3' => 'Modula-3',
 	'mpasm' => 'Microchip Assembler',
 	'mxml' => 'MXML',
 	'mysql' => array(
-		'mode' => 'mysql',
+		'mode' => 'sql',
 		'js' => array(
 			array(
-				'codemirror/mode/mysql/mysql.js'
+				'codemirror/mode/sql/sql.js'
 			) ,
 		) ,
 	) ,
@@ -360,6 +414,14 @@ $config['codemirror_languages'] = array(
 	'objc' => 'Objective-C',
 	'objeck' => 'Objeck Programming Language',
 	'ocaml' => 'OCaml (Objective Caml)',
+	'ocaml' => array(
+		'mode' => 'text/x-ocaml',
+		'js' => array(
+			array(
+				'codemirror/mode/ocaml/ocaml.js'
+			) ,
+		) ,
+	) ,
 	'oobas' => 'OpenOffice.org Basic',
 	'oracle11' => 'Oracle 11i',
 	'oracle8' => 'Oracle 8',
@@ -397,10 +459,10 @@ $config['codemirror_languages'] = array(
 	'pixelbender' => 'Pixel Bender 1.0',
 	'pli' => 'PL/I',
 	'plsql' => array(
-		'mode' => 'plsql',
+		'mode' => 'sql',
 		'js' => array(
 			array(
-				'codemirror/mode/plsql/plsql.js'
+				'codemirror/mode/sql/sql.js'
 			) ,
 		) ,
 	) ,
@@ -421,7 +483,14 @@ $config['codemirror_languages'] = array(
 	) ,
 	'providex' => 'ProvideX',
 	'purebasic' => 'PureBasic',
-	'q' => 'q/kdb+',
+	'q' => array(
+		'mode' => 'text/x-q',
+		'js' => array(
+			array(
+				'codemirror/mode/q/q.js'
+			) ,
+		) ,
+	) ,
 	'qbasic' => 'QBasic/QuickBASIC',
 	'rails' => 'Ruby (with Ruby on Rails Framework)',
 	'rebol' => 'Rebol',
@@ -430,7 +499,14 @@ $config['codemirror_languages'] = array(
 	'rpmspec' => 'RPM Spec',
 	'rsplus' => 'R',
 	'sas' => 'SAS',
-	'scala' => 'Scala',
+	'scala' => array(
+		'mode' => 'scala',
+		'js' => array(
+			array(
+				'codemirror/mode/clike/clike.js'
+			) ,
+		) ,
+	) ,
 	'scheme' => array(
 		'mode' => 'text/x-scheme',
 		'js' => array(
@@ -444,7 +520,14 @@ $config['codemirror_languages'] = array(
 	'smalltalk' => 'Smalltalk',
 	'smarty' => 'Smarty template',
 	'systemverilog' => 'SystemVerilog IEEE 1800-2009(draft8)',
-	'tcl' => 'TCL/iTCL',
+	'tcl' => array(
+		'mode' => 'text/x-tcl',
+		'js' => array(
+			array(
+				'codemirror/mode/tcl/tcl.js'
+			) ,
+		) ,
+	) ,
 	'teraterm' => 'Tera Term Macro',
 	'thinbasic' => 'thinBasic',
 	'tsql' => 'T-SQL',
@@ -453,18 +536,10 @@ $config['codemirror_languages'] = array(
 	'uscript' => 'UnrealScript',
 	'vala' => 'Vala',
 	'vb' => array(
-		'mode' => 'text/vbscript',
+		'mode' => 'text/x-vb',
 		'js' => array(
 			array(
-				'codemirror/mode/vbscript/vbscript.js'
-			) ,
-		) ,
-	) ,
-	'vbnet' => array(
-		'mode' => 'text/vbscript',
-		'js' => array(
-			array(
-				'codemirror/mode/vbscript/vbscript.js'
+				'codemirror/mode/vb/vb.js'
 			) ,
 		) ,
 	) ,
@@ -494,6 +569,13 @@ $config['codemirror_languages'] = array(
 			) ,
 		) ,
 	) ,
-	'z80' => 'ZiLOG Z80 Assembler',
+	'z80' => array(
+		'mode' => 'text/x-z80',
+		'js' => array(
+			array(
+				'codemirror/mode/z80/z80.js'
+			) ,
+		) ,
+	) ,
 	'zxbasic' => 'ZXBasic',
 );

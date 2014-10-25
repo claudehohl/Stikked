@@ -9,9 +9,9 @@ header("HTTP/1.1 404 Not Found");
 	<head>
 		<meta http-equiv="Content-type" content="text/html; charset=utf-8" />
 		<title>Stikked</title>
-				<link rel="stylesheet" href="<?php echo base_url(); ?>static/styles/reset.css" type="text/css" />
-		<link rel="stylesheet" href="<?php echo base_url(); ?>static/styles/fonts.css" type="text/css" />
-		<link rel="stylesheet" href="<?php echo base_url(); ?>static/styles/main.css" type="text/css" media="screen" title="main" charset="utf-8" />
+				<link rel="stylesheet" href="<?php echo base_url(); ?>themes/default/css/reset.css" type="text/css" />
+		<link rel="stylesheet" href="<?php echo base_url(); ?>themes/default/css/fonts.css" type="text/css" />
+		<link rel="stylesheet" href="<?php echo base_url(); ?>themes/default/css/main.css" type="text/css" media="screen" title="main" charset="utf-8" />
 	</head>
 
 	<body>
@@ -19,14 +19,6 @@ header("HTTP/1.1 404 Not Found");
 			<div class="container">
 				<div class="header">
 					<h1><a href="<?php echo base_url(); ?>" class="title"><?php echo $CI->config->item('site_name'); ?></a></h1>
-					<div class="tabs">
-						<ul>
-							<li><a href="<?php echo site_url(''); ?>">Paste</a></li>
-							<li><a href="<?php echo site_url('lists'); ?>">Recent</a></li>
-							<li><a href="<?php echo site_url('api'); ?>">API</a></li>
-							<li><a href="<?php echo site_url('about'); ?>">About</a></li>
-						</ul>
-					</div>
 				</div>
 				
 				<div class="page">
@@ -41,10 +33,6 @@ header("HTTP/1.1 404 Not Found");
 					</div>
 				</div>
 			
-			<div class="footer">
-				<?php $CI->load->view('defaults/footer_message'); ?>
-				<?php $CI->load->view('defaults/stats'); ?>
-			</div>
 			</div>
 		</div>
 	</body>

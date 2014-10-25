@@ -91,9 +91,9 @@ function make_header ( $title )
             if (cboxes[i].type == "checkbox") {
                 if (state == "true") {
                     cboxes[i].checked = true;
-                } else if (state == "false") {
+                } elseif (state == "false") {
                     cboxes[i].checked = false;
-                } else if (state == "invert") {
+                } elseif (state == "invert") {
                     cboxes[i].checked = !cboxes[i].checked;
                 }
             }
@@ -164,6 +164,13 @@ if ( !$step || $step == 1 )
     $geshi_path = get_var('geshi-path');
     $geshi_lang_path = get_var('geshi-lang-path');
 
+    if(strstr($geshi_path, '..')) {
+        unset($geshi_path);
+    }
+    if(strstr($geshi_lang_path, '..')) {
+        unset($geshi_lang_path);
+    }
+
     if ( !$geshi_path )
     {
         $geshi_path = '../geshi.php';
@@ -172,7 +179,6 @@ if ( !$step || $step == 1 )
     {
         $geshi_lang_path = '../geshi/';
     }
-
 
     if ( is_file($geshi_path) && is_readable($geshi_path) )
     {
@@ -272,6 +278,10 @@ elseif ( $step == 2 )
     {
         if ( $file == '.' || $file == '..' || $file == 'CVS' || $file == 'css-gen.cfg' )
         {
+            $file = readdir($dh);
+            continue;
+        }
+        if(!strstr(file_get_contents($dh . DIRECTORY_SEPARATOR . $file), '$language_data')) {
             $file = readdir($dh);
             continue;
         }

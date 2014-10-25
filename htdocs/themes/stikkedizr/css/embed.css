@@ -1,0 +1,25 @@
+
+body {
+}
+
+.paste {
+	margin: 0 auto;
+	width: auto;
+}
+
+.paste .text_formatted {
+	width: 100%;
+	margin: 0;
+    border: 0;
+}
+
+.paste p {
+    clear: both;
+    background: #ccc;
+    padding: 3px 6px;
+}
+
+.paste .right {
+    float: right;
+}
+

@@ -1,25 +1,32 @@
 RewriteEngine on
 #RewriteBase /
-RewriteCond $1 !^(index\.php|static|favicon\.ico)
+RewriteCond $1 !^(index\.php|static|favicon\.ico|robots\.txt)
 RewriteRule ^(.*)$ index.php?/$1 [QSA,L]
 
 SetOutputFilter DEFLATE
 FileETag MTime Size
 
-<IfModule !mod_rewrite.c>
+<IfModule !mod_rewrite>
     ErrorDocument 404 /index.php
-</IfModule> 
+</IfModule>
 
-ExpiresActive On
-ExpiresByType text/javascript "access plus 1 year"
-ExpiresByType application/x-javascript "access plus 1 year"
-ExpiresByType application/javascript "access plus 1 year"
-ExpiresByType text/css "access plus 1 year"
-ExpiresByType image/jpeg "access plus 1 year"
-ExpiresByType image/jpg "access plus 1 year"
-ExpiresByType image/gif "access plus 1 year"
-ExpiresByType image/png "access plus 1 year"
-ExpiresByType image/x-icon "access plus 1 year"
+<IfModule mod_expires>
+    ExpiresActive On
+    ExpiresByType text/javascript "access plus 1 year"
+    ExpiresByType application/x-javascript "access plus 1 year"
+    ExpiresByType application/javascript "access plus 1 year"
+    ExpiresByType text/css "access plus 1 year"
+    ExpiresByType image/jpeg "access plus 1 year"
+    ExpiresByType image/jpg "access plus 1 year"
+    ExpiresByType image/gif "access plus 1 year"
+    ExpiresByType image/png "access plus 1 year"
+    ExpiresByType image/x-icon "access plus 1 year"
+		ExpiresByType application/font-woff "access plus 1 year"
+    ExpiresByType application/vnd.ms-fontobject "access plus 1 year"
+    ExpiresByType application/x-font-ttf "access plus 1 year"
+    ExpiresByType font/opentype "access plus 1 year"
+    ExpiresByType image/svg+xml "access plus 1 year"
+</IfModule>
 
 #AuthType Basic
 #AuthName "Backend"

@@ -1,0 +1,130 @@
+/*
+   iphone.css
+   stikked
+   
+   Created by Ben McRedmond on 2008-03-19.
+   Copyright 2008 Stikked. Some rights reserved.
+*/
+
+* {
+	margin: 0;
+}
+
+body {
+	font-family: "Helvetica";
+	font-size: 20px;
+	font-weight: bold;
+}
+
+.container {
+	padding: 5px;
+}
+
+.pagetitle {
+	font-size: 25px;
+}
+
+/* Header */
+
+.header {
+	background-color: #74972A;
+	border-bottom: 2px solid #607C21;
+	color: #fff;
+	height: 40px;
+}
+
+.logo{
+	float: left;
+	font-size: 25px;
+}
+
+.toolbar {
+	margin-top: 3px;
+	color: #aaa;
+	float: right;
+	font-weight: normal;
+}
+
+.toolbar ul li{
+	display: inline;
+	padding-left: 15px;
+}
+
+.toolbar ul li.active{
+	color: #fff;
+}
+
+.toolbar ul li a {
+	color: inherit;
+	text-decoration: none;
+}
+
+/* List */
+tr {
+	height: 30px;
+}
+
+.recent {
+	list-style: none;
+	padding: 0;
+}
+
+.recent a {
+	color: inherit;
+	text-decoration: none;
+}
+
+.recent li {
+	padding: 5px;
+	border-bottom: 1px solid #eee;
+}
+
+.recent li span.author {
+	font-weight: normal;
+}
+
+.pages {
+	margin-top: 10px;
+	font-size: 25px;
+	font-weight: normal;
+	margin-right: 5px;
+	text-align: right;
+}
+
+.pages .current {
+	font-weight: bold;;
+}
+
+/* Create */
+.data {
+	border: 0;
+}
+
+textarea {
+	width: 90%;
+	margin-left: 6px;
+}
+
+.submit {
+	margin-left: 2px;
+	margin-bottom: 5px;
+}
+
+/* View */
+.info {
+	margin-left: 2px;
+}
+
+.meta{
+	font-weight: normal;
+	font-size: 15px;
+	margin-bottom: 5px;
+	color: #333;
+}
+
+.text_formatted {
+	font-size: 10px;
+	border-top: 1px solid #aaa;
+	padding-top: 5px;
+	overflow: auto;
+}

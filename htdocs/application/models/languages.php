@@ -30,11 +30,13 @@ class Languages extends CI_Model
 		$data = array();
 		foreach ($this->geshi_languages as $key => $value) 
 		{
-			$data[$key] = $value;
-			
-			if ($key == 'text') 
+			if ($key == '')
 			{
 				$data["0"] = "-----------------";
+			}
+			else
+			{
+				$data[$key] = $value;
 			}
 		}
 		return $data;
