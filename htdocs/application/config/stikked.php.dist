@@ -42,12 +42,9 @@ $config['theme'] = 'default';
 /**
  * Language
  *
- * Which language to use
- * Translate Stikked to your own language, see htdocs/application/language files
- * Currently: english, german, swissgerman, spanish, norwegian, portuguese, turkish, french, japanese, polish, russian, chinese-simplified, chinese-traditional
+ * New Language settings in application/config/language.php
  *
 */
-$config['language'] = 'english';
 
 /**
  * Combine JS & CSS files (recommended)
