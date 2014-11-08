@@ -1,4 +1,4 @@
-<?php $this->load->view('defaults/header');
+﻿<?php $this->load->view('defaults/header');
 
 $seg3 = $this->uri->segment(3);
 
@@ -44,7 +44,7 @@ if(isset($insert)){
 <?php } ?>
 				</div>
 				<div class="col-4 col-sm-12 col-lg-4">
-					<img src="<?php echo site_url('static/qr/' . $pid . '.png'); ?>">
+					<img src="<?php echo site_url('static/qr/' . $pid ); ?>">
 				</div>
 			</div>
 		</div>
