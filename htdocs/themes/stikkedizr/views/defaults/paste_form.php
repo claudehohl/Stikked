@@ -1,4 +1,4 @@
-
+﻿
 <?php echo validation_errors(); ?>
 
 <div class="row">
@@ -93,14 +93,13 @@
 						<?php 
 							$expire_extra = 'id="expire" class="form-control select" tabindex="7"';
 							$options = array(
-											"0" => lang('exp_forever'),
-											"30" => lang('exp_30min'),
+											"burn" => lang('exp_burn'),
+											"5" => lang('exp_5min'),
 											"60" => lang('exp_1h'),
-											"360" => lang('exp_6h'),
-											"720" => lang('exp_12h'),
 											"1440" => lang('exp_1d'),
 											"10080" => lang('exp_1w'),
-											"40320" => lang('exp_4w'),
+											"40320" => lang('exp_1m'),
+											"483840" => lang('exp_1y'),
 									);
 						echo form_dropdown('expire', $options, $expire_set, $expire_extra); ?>
 					</div>
