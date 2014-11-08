@@ -93,8 +93,9 @@
 						<?php 
 							$expire_extra = 'id="expire" class="form-control select" tabindex="7"';
 							$options = array(
-											"0" => lang('exp_forever'),
+							
 											"burn" => lang('exp_burn'),
+											"0" => lang('exp_forever'),
 											"5" => lang('exp_5min'),
 											"60" => lang('exp_1h'),
 											"1440" => lang('exp_1d'),
@@ -127,6 +128,7 @@
 			</div>
 		<?php } ?>
 			<div class="form-actions">
+				</br>
 				<button type="submit" name="submit" value="submit" class="btn btn-large btn-primary">
 					<i class="icon-pencil icon-white"></i>
 					<?php echo lang('paste_create'); ?>
