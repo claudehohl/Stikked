@@ -93,6 +93,7 @@
 						<?php 
 							$expire_extra = 'id="expire" class="form-control select" tabindex="7"';
 							$options = array(
+											"0" => lang('exp_forever'),
 											"burn" => lang('exp_burn'),
 											"5" => lang('exp_5min'),
 											"60" => lang('exp_1h'),
