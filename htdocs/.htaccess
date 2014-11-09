@@ -1,6 +1,6 @@
 RewriteEngine on
 #RewriteBase /
-RewriteCond $1 !^(index\.php|static|favicon\.ico|robots\.txt)
+RewriteCond $1 !^(index\.php|static|favicon\.ico|robots\.txt|sitemap.xml|google(.+)\.html)
 RewriteRule ^(.*)$ index.php?/$1 [QSA,L]
 
 SetOutputFilter DEFLATE
