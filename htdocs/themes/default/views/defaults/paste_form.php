@@ -53,19 +53,23 @@
 		
 		<div class="item_group">
 			<div class="item">
+			<?php if ($this->config->item('remove_shorturl_checkbox') == false)
+                                                     { 
+								?>
 				<label for="snipurl"><?php echo lang('paste_create_shorturl'); ?>
 					<span class="instruction"><?php echo lang('paste_shorturl_desc'); ?></span>
 				</label>
 				<div class="text_beside">
-					<?php
-						$set = array('name' => 'snipurl', 'id' => 'snipurl', 'value' => '1', 'tabindex' => '5', 'checked' => $snipurl_set);
-						if ($this->config->item('disable_shorturl')){
-							$set['checked'] = 0;
-							$set['disabled'] = 'disabled';
-						}
-						echo form_checkbox($set);
-					?>
+					                <?php                                       
+                                                $set = array('name' => 'snipurl', 'id' => 'snipurl', 'value' => '1', 'tabindex' => '5', 'checked' => $snipurl_set);
+                                                                        if ($this->config->item('disable_shorturl')){
+                                                                                $set['checked'] = 0;
+                                                                                $set['disabled'] = 'disabled';
+                                                                        }
+                                                                        echo form_checkbox($set);                                                            
+                                                ?>
 				</div>
+				<?php } ?>
 			</div>
 		
 			<div class="item">
