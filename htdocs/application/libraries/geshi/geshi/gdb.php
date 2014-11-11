@@ -4,7 +4,7 @@
  * --------
  * Author: Milian Wolff (mail@milianw.de)
  * Copyright: (c) 2009 Milian Wolff
- * Release Version: 1.0.8.11
+ * Release Version: 1.0.8.12
  * Date Started: 2009/06/24
  *
  * GDB language file for GeSHi.
@@ -189,10 +189,6 @@ $language_data = array (
     'PARSER_CONTROL' => array(
         'ENABLE_FLAGS' => array(
             'NUMBERS' => false
-            ),
+            )
         )
 );
-
-// kate: replace-tabs on; indent-width 4;
-
-?>

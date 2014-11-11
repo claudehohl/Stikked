@@ -4,7 +4,7 @@
  * -------
  * Author: David Spurr
  * Copyright: (c) 2007 David Spurr (http://www.defusion.org.uk/)
- * Release Version: 1.0.8.11
+ * Release Version: 1.0.8.12
  * Date Started: 2007/10/04
  *
  * MXML language file for GeSHi. Based on the XML file by Nigel McNie
@@ -141,5 +141,3 @@ $language_data = array (
         ),
     'TAB_WIDTH' => 4
 );
-
-?>

@@ -4,7 +4,7 @@
  * -------
  * Author: Alessandro Staltari (staltari@geocities.com)
  * Copyright: (c) 2005 Alessandro Staltari (http://www.geocities.com/SiliconValley/Vista/8155/)
- * Release Version: 1.0.8.11
+ * Release Version: 1.0.8.12
  * Date Started: 2005/07/05
  *
  * DOS language file for GeSHi.
@@ -223,5 +223,3 @@ $language_data = array (
             )
         )
 );
-
-?>

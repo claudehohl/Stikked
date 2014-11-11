@@ -4,7 +4,7 @@
  * --------
  * Author: Neville Dempsey (NevilleD.sourceforge@sgr-a.net)
  * Copyright: (c) 2010 Neville Dempsey (https://sourceforge.net/projects/algol68/files/)
- * Release Version: 1.0.8.11
+ * Release Version: 1.0.8.12
  * Date Started: 2010/04/24
  *
  * ALGOL 68 language file for GeSHi.
@@ -89,14 +89,14 @@ if(!function_exists('geshi_langfile_algol68_vars')) {
         # for some reason ".0 e - 2" is not recognised, but ".0 e + 2" IS!
         # work around: remove spaces between sign and digits! Maybe because
         # of the Unary '-' Operator
-        $sign_="(?:-|\-|[-]|[\-]|\+|)";  # attempts #
+        $sign_="(?:-|\-|[-]|[\-]|\+|)";  # attempts # // FIXME: This should be used or removed. Assignment beneath
 
         $sign_="(?:-\s*|\+\s*|)"; # n.b. sign is followed by white space #
 
         $_int=$sign_.$_dec;
         $il=          $_int;                      # +_9           #
 
-        $GESHI_NUMBER_INT_BASIC='(?:(?<![0-9a-z_\.%])|(?<=\.\.))(?<![\d\.]e[+\-])([1-9]\d*?|0)(?![0-9a-z]|\.(?:[eE][+\-]?)?\d)';
+        //$GESHI_NUMBER_INT_BASIC='(?:(?<![0-9a-z_\.%])|(?<=\.\.))(?<![\d\.]e[+\-])([1-9]\d*?|0)(?![0-9a-z]|\.(?:[eE][+\-]?)?\d)';
 
         # Define REAL: #
         $prereal=$pre; $postreal=$post;
@@ -326,4 +326,3 @@ $language_data = array(
 );
 
 unset($a68);
-?>

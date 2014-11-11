@@ -4,7 +4,7 @@
  * ----------
  * Author: julien ortin (jo_spam-divers@yahoo.fr)
  * Copyright: (c) 2009 julien ortin
- * Release Version: 1.0.8.11
+ * Release Version: 1.0.8.12
  * Date Started: 2009/09/20
  *
  * F# language file for GeSHi.
@@ -209,5 +209,3 @@ $language_data = array(
         )
     )
 );
-
-?>

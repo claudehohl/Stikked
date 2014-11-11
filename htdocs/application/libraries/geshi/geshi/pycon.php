@@ -4,7 +4,7 @@
  * ----------
  * Author: Roberto Rossi (rsoftware@altervista.org)
  * Copyright: (c) 2004 Roberto Rossi (http://rsoftware.altervista.org), Nigel McNie (http://qbnz.com/highlighter)
- * Release Version: 1.0.8.11
+ * Release Version: 1.0.8.12
  * Date Started: 2004/08/30
  *
  * Python language file for GeSHi.
@@ -60,5 +60,3 @@ if(!isset($language_data['COMMENT_REGEXP'])) {
 
 $language_data['COMMENT_REGEXP'][-1] = '/(?:^|\A\s)(?:>>>|\.\.\.)/m';
 $language_data['STYLES']['COMMENTS'][-1] = 'color: #444444;';
-
-?>

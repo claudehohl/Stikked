@@ -1,5 +1,4 @@
 <?php
-
 /**
  * Another GeSHi example script
  *
@@ -13,7 +12,7 @@
  * aliased.php/file.name.ext.
  *
  * @author  Ross Golder <ross@golder.org>
- * @version $Id: aliased.php 2533 2012-08-15 18:49:04Z benbe $
+ * @version $Id$
  */
 
 // Your config here

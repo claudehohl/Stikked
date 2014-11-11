@@ -4,7 +4,7 @@
  * -------
  * Author: Warren Willmey
  * Copyright: (c) 2010 Warren Willmey.
- * Release Version: 1.0.8.11
+ * Release Version: 1.0.8.12
  * Date Started: 2010/06/07
  *
  * MOS 6502 (6510) Kick Assembler 3.13 language file for GeSHi.
@@ -237,5 +237,3 @@ $language_data = array (
             )
         ),
 );
-
-?>

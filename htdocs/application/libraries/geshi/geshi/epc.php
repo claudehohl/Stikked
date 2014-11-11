@@ -4,7 +4,7 @@
  * --------
  * Author: Thorsten Muehlfelder (muehlfelder@enertex.de)
  * Copyright: (c) 2010 Enertex Bayern GmbH
- * Release Version: 1.0.8.11
+ * Release Version: 1.0.8.12
  * Date Started: 2010/08/26
  *
  * Enerscript language file for GeSHi.
@@ -150,5 +150,3 @@ $language_data = array (
         )
     )
 );
-
-?>

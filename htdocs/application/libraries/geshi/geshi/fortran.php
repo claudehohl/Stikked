@@ -4,7 +4,7 @@
  * -----------
  * Author: Cedric Arrabie (cedric.arrabie@univ-pau.fr)
  * Copyright: (C) 2006 Cetric Arrabie
- * Release Version: 1.0.8.11
+ * Release Version: 1.0.8.12
  * Date Started: 2006/04/22
  *
  * Fortran language file for GeSHi.
@@ -156,5 +156,3 @@ $language_data = array (
     'HIGHLIGHT_STRICT_BLOCK'=> array(
         )
 );
-
-?>

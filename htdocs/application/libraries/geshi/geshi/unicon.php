@@ -4,7 +4,7 @@
  * --------
  * Author: Matt Oates (mattoates@gmail.com)
  * Copyright: (c) 2010 Matt Oates (http://mattoates.co.uk)
- * Release Version: 1.0.8.11
+ * Release Version: 1.0.8.12
  * Date Started: 2010/04/20
  *
  * Unicon the Unified Extended Dialect of Icon language file for GeSHi.
@@ -206,5 +206,3 @@ $language_data = array(
             )
         )
 );
-
-?>

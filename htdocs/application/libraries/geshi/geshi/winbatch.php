@@ -4,7 +4,7 @@
  * ------------
  * Author: Craig Storey (storey.craig@gmail.com)
  * Copyright: (c) 2004 Craig Storey (craig.xcottawa.ca)
- * Release Version: 1.0.8.11
+ * Release Version: 1.0.8.12
  * Date Started: 2006/05/19
  *
  * WinBatch language file for GeSHi.
@@ -365,5 +365,3 @@ $language_data = array (
     'HIGHLIGHT_STRICT_BLOCK' => array(
         )
 );
-
-?>

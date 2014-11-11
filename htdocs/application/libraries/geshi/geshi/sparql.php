@@ -4,7 +4,7 @@
  * -------
  * Author: Karima Rafes (karima.rafes@bordercloud.com)
  * Copyright: (c) 2011 Bourdercloud.com
- * Release Version: 1.0.8.11
+ * Release Version: 1.0.8.12
  * Date Started: 2011/11/05
  *
  * SPARQL language file for GeSHi.
@@ -151,5 +151,3 @@ $language_data = array (
     'SCRIPT_DELIMITERS' => array(),
     'HIGHLIGHT_STRICT_BLOCK' => array()
 );
-
-?>

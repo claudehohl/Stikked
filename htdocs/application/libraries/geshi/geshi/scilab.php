@@ -4,7 +4,7 @@
  * --------
  * Author: Christophe David (geshi@christophedavid.org)
  * Copyright: (c) 2008 Christophe David (geshi@christophedavid.org)
- * Release Version: 1.0.8.11
+ * Release Version: 1.0.8.12
  * Date Started: 2008/08/04
  *
  * SciLab language file for GeSHi.
@@ -291,5 +291,3 @@ $language_data = array (
     'HIGHLIGHT_STRICT_BLOCK' => array(
         )
 );
-
-?>

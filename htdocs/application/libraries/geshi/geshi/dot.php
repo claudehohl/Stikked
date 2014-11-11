@@ -4,7 +4,7 @@
  * ---------------------------------
  * Author: Adrien Friggeri (adrien@friggeri.net)
  * Copyright: (c) 2007 Adrien Friggeri (http://www.friggeri.net)
- * Release Version: 1.0.8.11
+ * Release Version: 1.0.8.12
  * Date Started: 2007/05/30
  *
  * dot language file for GeSHi.
@@ -160,5 +160,3 @@ $language_data = array (
         3 => true
         )
 );
-
-?>

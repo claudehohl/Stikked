@@ -4,7 +4,7 @@
  * ---------
  * Author: Marjolein Katsma (marjolein.is.back@gmail.com)
  * Copyright: (c) 2008 Marjolein Katsma (http://blog.marjoleinkatsma.com/)
- * Release Version: 1.0.8.11
+ * Release Version: 1.0.8.12
  * Date Started: 2008-12-12
  *
  * MySQL language file for GeSHi.
@@ -313,7 +313,6 @@ $language_data = array (
         11 => false,
         12 => false,
         13 => false,
-        13 => false,
         14 => false,
         15 => false,
         16 => false,
@@ -471,5 +470,3 @@ $language_data = array (
             )
         )
 );
-
-?>

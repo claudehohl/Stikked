@@ -4,7 +4,7 @@
  * --------
  * Author: Duncan Lock (dunc@dflock.co.uk)
  * Copyright: (c) 2006 Duncan Lock (http://dflock.co.uk/), Nigel McNie (http://qbnz.com/highlighter)
- * Release Version: 1.0.8.11
+ * Release Version: 1.0.8.12
  * Date Started: 2005/11/22
  *
  * T-SQL language file for GeSHi.
@@ -305,11 +305,14 @@ $language_data = array (
             'fn_trace_geteventinfo', 'fn_trace_getfilterinfo', 'fn_trace_getinfo',
             'fn_trace_gettable', 'fn_virtualfilestats','fn_listextendedproperty',
             ),
+        5 => array(
+            'ALL', 'AND', 'ANY', 'BETWEEN', 'CROSS', 'EXISTS', 'IN', 'JOIN', 'LIKE', 'NOT', 'NULL',
+            'OR', 'OUTER', 'SOME',
+            )
         ),
     'SYMBOLS' => array(
         '!', '!=', '%', '&', '&&', '(', ')', '*', '+', '-', '/', '<', '<<', '<=',
-        '<=>', '<>', '=', '>', '>=', '>>', '^', 'ALL', 'AND', 'ANY', 'BETWEEN', 'CROSS',
-        'EXISTS', 'IN', 'JOIN', 'LIKE', 'NOT', 'NULL', 'OR', 'OUTER', 'SOME', '|', '||', '~'
+        '<=>', '<>', '=', '>', '>=', '>>', '^', '|', '||', '~'
         ),
     'CASE_SENSITIVE' => array(
         GESHI_COMMENTS => false,
@@ -317,13 +320,15 @@ $language_data = array (
         2 => false,
         3 => false,
         4 => false,
+        5 => false
         ),
     'STYLES' => array(
         'KEYWORDS' => array(
             1 => 'color: #0000FF;',
             2 => 'color: #FF00FF;',
             3 => 'color: #AF0000;',
-            4 => 'color: #AF0000;'
+            4 => 'color: #AF0000;',
+            5 => 'color: #808080;'
             ),
         'COMMENTS' => array(
             1 => 'color: #008080;',
@@ -357,7 +362,8 @@ $language_data = array (
         1 => '',
         2 => '',
         3 => '',
-        4 => ''
+        4 => '',
+        5 => ''
         ),
     'OOLANG' => true,
     'OBJECT_SPLITTERS' => array(
@@ -371,5 +377,3 @@ $language_data = array (
     'HIGHLIGHT_STRICT_BLOCK' => array(
         )
 );
-
-?>

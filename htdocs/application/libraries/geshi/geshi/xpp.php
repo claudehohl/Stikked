@@ -4,7 +4,7 @@
  * -------
  * Author: Simon Butcher (simon@butcher.name)
  * Copyright: (c) 2007 Simon Butcher (http://simon.butcher.name/)
- * Release Version: 1.0.8.11
+ * Release Version: 1.0.8.12
  * Date Started: 2007/02/27
  *
  * Axapta/Dynamics Ax X++ language file for GeSHi.
@@ -432,5 +432,3 @@ $language_data = array (
     'HIGHLIGHT_STRICT_BLOCK' => array(
         )
 );
-
-?>

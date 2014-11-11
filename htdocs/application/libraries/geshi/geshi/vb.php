@@ -5,7 +5,7 @@
  * Author: Roberto Rossi (rsoftware@altervista.org)
  * Copyright: (c) 2004 Roberto Rossi (http://rsoftware.altervista.org),
  *                     Nigel McNie (http://qbnz.com/highlighter)
- * Release Version: 1.0.8.11
+ * Release Version: 1.0.8.12
  * Date Started: 2004/08/30
  *
  * Visual Basic language file for GeSHi.
@@ -50,7 +50,7 @@ $language_data = array (
     'COMMENT_MULTI' => array(),
     'COMMENT_REGEXP' => array(
         // Comments (either single or multiline with _
-        1 => '/\'.*(?<! _)\n/sU',
+        1 => '/\'.*(?<! _)$/sUm',
         ),
     'CASE_KEYWORDS' => GESHI_CAPS_NO_CHANGE,
     'QUOTEMARKS' => array('"'),
@@ -65,16 +65,16 @@ $language_data = array (
             'Call', 'Private', 'Public', 'Sub', 'Explicit', 'Compare', 'Exit'
             ),
         3 => array(
-            'And', 'Case', 'Do', 'Each', 'Else', 'ElseIf', 'For',
-            'Goto', 'If', 'Is', 'Loop', 'Next', 'Not', 'Or', 'Select', 'Step',
-            'Then', 'To', 'Until', 'While', 'With', 'Xor', 'WithEvents',
-            'DoEvents', 'Close', 'Like', 'In', 'End'
+            'And', 'Case', 'Do', 'Each', 'Else', 'ElseIf', 'End', 'For', 'GoSub',
+            'Goto', 'If', 'Is', 'Loop', 'Next', 'Not', 'Or', 'Resume', 'Select',
+            'Step', 'Then', 'To', 'Until', 'While', 'With', 'Xor', 'WithEvents',
+            'DoEvents', 'Close', 'Like', 'In'
             ),
         4 => array(
             'As', 'Dim', 'Get', 'Set', 'ReDim', 'Error',
-            'Resume', 'Declare', 'Let', 'ByRef', 'ByVal',
+            'Declare', 'Let', 'ByRef', 'ByVal',
             'Optional', 'Property', 'Control', 'UBound', 'Mod',
-            'GoSub', 'Implements', 'Input', 'LBound', 'Static', 'Stop',
+            'Implements', 'Input', 'LBound', 'Static', 'Stop',
             'Type', 'TypeOf', 'On', 'Open', 'Output', 'ParamArray',
             'Preserve', 'Print', 'RaiseEvent', 'Random', 'Line'
             ),
@@ -153,5 +153,3 @@ $language_data = array (
             )
         )
 );
-
-?>
