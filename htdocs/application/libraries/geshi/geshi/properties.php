@@ -4,7 +4,7 @@
  * --------
  * Author: Edy Hinzen
  * Copyright: (c) 2009 Edy Hinzen
- * Release Version: 1.0.8.11
+ * Release Version: 1.0.8.12
  * Date Started: 2009/04/03
  *
  * Property language file for GeSHi.
@@ -123,5 +123,3 @@ $language_data = array (
     'HIGHLIGHT_STRICT_BLOCK' => array(
         )
 );
-
-?>

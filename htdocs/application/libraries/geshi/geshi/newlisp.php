@@ -4,7 +4,7 @@
  * ----------
  * Author: cormullion (cormullion@mac.com) Sept 2009
  * Copyright: (c) 2009 Cormullion (http://unbalanced-parentheses.nfshost.com/)
- * Release Version: 1.0.8.11
+ * Release Version: 1.0.8.12
  * Date Started: 2009/09/30
  *
  * newLISP language file for GeSHi.
@@ -187,5 +187,3 @@ $language_data = array (
         ),
 
 );
-
-?>

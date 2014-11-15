@@ -6,7 +6,7 @@
  *         John Liao (colorhook@gmail.com)
  * Copyright: (c) 2012 onthewings (http://www.onthewings.net/)
  *                2010 colorhook (http://colorhook.com/)
- * Release Version: 1.0.8.11
+ * Release Version: 1.0.8.12
  * Date Started: 2010/10/05
  *
  * Haxe language file for GeSHi.
@@ -111,7 +111,6 @@ $language_data = array (
             1 => 'color: #666666; font-style: italic;',
             2 => 'color: #006699;',
             3 => 'color: #008000; font-style: italic; font-weight: bold;',
-            3 => 'color: #008000; font-style: italic; font-weight: bold;',
             'MULTI' => 'color: #666666; font-style: italic;',
             ),
         'ESCAPE_CHAR' => array(
@@ -157,5 +156,3 @@ $language_data = array (
     'HIGHLIGHT_STRICT_BLOCK' => array(
         ),
 );
-
-?>

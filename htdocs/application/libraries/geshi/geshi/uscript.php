@@ -4,7 +4,7 @@
  * ---------------------------------
  * Author: pospi (pospi@spadgos.com)
  * Copyright: (c) 2007 pospi (http://pospi.spadgos.com)
- * Release Version: 1.0.8.11
+ * Release Version: 1.0.8.12
  * Date Started: 2007/05/21
  *
  * UnrealScript language file for GeSHi.
@@ -295,5 +295,3 @@ $language_data = array (
             )
         )
 );
-
-?>

@@ -4,7 +4,7 @@
  * -------
  * Author: Iulian M
  * Copyright: (c) 2006 Iulian M
- * Release Version: 1.0.8.11
+ * Release Version: 1.0.8.12
  * Date Started: 2004/09/27
  *
  * C++ (with Qt extensions) language file for GeSHi.
@@ -48,7 +48,11 @@ $language_data = array (
         //Multiline-continued single-line comments
         1 => '/\/\/(?:\\\\\\\\|\\\\\\n|.)*$/m',
         //Multiline-continued preprocessor define
-        2 => '/#(?:\\\\\\\\|\\\\\\n|.)*$/m'
+        2 => '/#(?:\\\\\\\\|\\\\\\n|.)*$/m',
+        //C++ 11 string literal extensions
+        3 => '/(?:L|u8?|U)(?=")/',
+        //C++ 11 string literal extensions (raw)
+        4 => '/R"([^()\s\\\\]*)\((?:(?!\)\\1").)*\)\\1"/ms'
         ),
     'CASE_KEYWORDS' => GESHI_CAPS_NO_CHANGE,
     'QUOTEMARKS' => array("'", '"'),
@@ -489,6 +493,8 @@ $language_data = array (
         'COMMENTS' => array(
             1 => 'color: #888888;',
             2 => 'color: #006E28;',
+            3 => 'color: #BF0303;',
+            4 => 'color: #BF0303;',
             'MULTI' => 'color: #888888; font-style: italic;'
             ),
         'ESCAPE_CHAR' => array(
@@ -534,7 +540,7 @@ $language_data = array (
         2 => '',
         3 => '',
         4 => '',
-        5 => 'http://doc.trolltech.com/latest/{FNAMEL}.html'
+        5 => 'http://qt-project.org/doc/latest/{FNAMEL}.html'
         ),
     'OOLANG' => true,
     'OBJECT_SPLITTERS' => array(
@@ -560,5 +566,3 @@ $language_data = array (
         )
     )
 );
-
-?>

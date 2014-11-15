@@ -8,7 +8,7 @@
  *                2009-2011 Benny Baumann (http://qbnz.com/highlighter),
  *                2011 Dennis Yurichev (dennis@conus.info),
  *                2011 Marat Dukhan (mdukhan3.at.gatech.dot.edu)
- * Release Version: 1.0.8.11
+ * Release Version: 1.0.8.12
  * Date Started: 2004/07/27
  *
  * x86 Assembler language file for GeSHi.
@@ -599,5 +599,3 @@ $language_data = array (
         )
     )
 );
-
-?>

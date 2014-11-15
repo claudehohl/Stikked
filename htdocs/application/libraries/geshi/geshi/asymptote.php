@@ -4,7 +4,7 @@
  * -------------
  * Author: Manuel Yguel (manuel.yguel.robotics@gmail.com)
  * Copyright: (c) 2012 Manuel Yguel (http://manuelyguel.eu)
- * Release Version: 1.0.8.11
+ * Release Version: 1.0.8.12
  * Date Started: 2012/05/24
  *
  * asymptote language file for GeSHi.
@@ -190,5 +190,3 @@ $language_data = array(
             )
         )
 );
-
-?>

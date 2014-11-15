@@ -4,7 +4,7 @@
  * ------------------------
  * Author: Richard Civil (info@richardcivil.net)
  * Copyright: (c) 2008 Richard Civil (info@richardcivil.net), Nigel McNie (http://qbnz.com/highlighter)
- * Release Version: 1.0.8.11
+ * Release Version: 1.0.8.12
  * Date Started: 2008/04/12
  *
  * @Formula/@Command language file for GeSHi.
@@ -313,6 +313,4 @@ $language_data = array (
     'HIGHLIGHT_STRICT_BLOCK' => array(
         ),
     'TAB_WIDTH' => 2
-    );
-
-?>
+);

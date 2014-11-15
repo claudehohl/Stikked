@@ -3,8 +3,8 @@
  * dcpu16.php
  * -------
  * Author: Benny Baumann (BenBE@omorphia.de)
- * Copyright: (c) 2007-2012 Benny Baumann (http://geshi.org/)
- * Release Version: 1.0.8.11
+ * Copyright: (c) 2007-2014 Benny Baumann (http://geshi.org/)
+ * Release Version: 1.0.8.12
  * Date Started: 2012/04/12
  *
  * DCPU/16 Assembly language file for GeSHi.
@@ -127,5 +127,3 @@ $language_data = array (
             )
         )
 );
-
-?>

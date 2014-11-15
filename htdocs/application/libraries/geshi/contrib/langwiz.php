@@ -8,7 +8,7 @@
  *This script
  *
  * @author  Nigel McNie, Benny Baumann (BenBE@geshi.org), Andreas 'Segaja' Schleifer (webmaster at segaja dot de)
- * @version $Id: langwiz.php 2510 2012-06-27 15:57:55Z reedy_boy $
+ * @version $Id$
  */
 header('Content-Type: text/html; charset=utf-8');
 
@@ -43,7 +43,7 @@ define ('TYPE_ERROR', 2);
 $error_abort = false;
 $error_cache = array();
 function output_error_cache(){
-    global $error_cache, $error_abort;
+    global $error_cache;
 
     if(count($error_cache)) {
         echo "<span style=\"color: #F00; font-weight: bold;\">Failed</span><br />";
@@ -801,7 +801,7 @@ echo "</pre>";
     <div id="langfile">
         <fieldset>
         <legend>Language File Source</legend>
-<?
+<?php
 $G = new GeSHi('', 'php');
 $langfile_source = gen_langfile($lang);
 $G->set_source($langfile_source);
@@ -814,7 +814,7 @@ unset($G);
     <input type="submit" name="btn" value="Send!" />
 </form>
 
-<p>Operation completed in <?
+<p>Operation completed in <?php
 $time_end = explode(' ', microtime());
 $time_diff = $time_end[0] + $time_end[1] - $time_start[0] - $time_start[1];
 
@@ -824,7 +824,7 @@ echo sprintf("%.2f", $time_diff);
 <div id="footer">GeSHi &copy; 2004-2007 Nigel McNie, 2007-2009 Benny Baumann, released under the GNU GPL</div>
 </body>
 </html>
-<?
+<?php
 
 function str_to_phpstring($str, $doublequote = false){
     if($doublequote) {
@@ -1138,12 +1138,10 @@ GESHI_LANGFILE_HEAD;
     $src .= $i[2] . "),\n";
     $src .= $i[1] . "'HIGHLIGHT_STRICT_BLOCK' => array(\n";
     $src .= $i[2] . "),\n";
-    $src .= $i[1] . "'TAB_WIDTH' => 4,\n";
+    $src .= $i[1] . "'TAB_WIDTH' => 4\n";
 
     $src .= <<<GESHI_LANGFILE_FOOTER
 );
-
-?>
 GESHI_LANGFILE_FOOTER;
 
     //Reduce source ...
@@ -1153,6 +1151,3 @@ GESHI_LANGFILE_FOOTER;
 
     return $src;
 }
-
-// vim: shiftwidth=4 softtabstop=4
-?>

@@ -4,7 +4,7 @@
  * --------
  * Author: AUGER Mickael
  * Copyright: Synchronic
- * Release Version: 1.0.8.11
+ * Release Version: 1.0.8.12
  * Date Started: 2008/04/16
  *
  * KLone with C++ language file for GeSHi.
@@ -306,5 +306,3 @@ $language_data = array (
         )
     )
 );
-
-?>

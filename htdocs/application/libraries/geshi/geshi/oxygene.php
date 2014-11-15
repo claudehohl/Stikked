@@ -4,7 +4,7 @@
  * ----------
  * Author: Carlo Kok (ck@remobjects.com), J�rja Norbert (jnorbi@vipmail.hu), Benny Baumann (BenBE@omorphia.de)
  * Copyright: (c) 2004 J�rja Norbert, Benny Baumann (BenBE@omorphia.de), Nigel McNie (http://qbnz.com/highlighter)
- * Release Version: 1.0.8.11
+ * Release Version: 1.0.8.12
  * Date Started: 2010/01/11
  *
  * Delphi Prism (Oxygene) language file for GeSHi.
@@ -12,6 +12,8 @@
  *
  * CHANGES
  * -------
+ * 2014/01/09 (1.0.8.12)
+ *   -  New keywords & updated languge name
  * 2012/06/28 (1.0.8.11)
  *   -  Added "write" keyword for properties
  * 2010/01/11 (1.0.0)
@@ -38,7 +40,7 @@
  ************************************************************************************/
 
 $language_data = array (
-    'LANG_NAME' => 'Oxygene (Delphi Prism)',
+    'LANG_NAME' => 'Oxygene',
     'COMMENT_SINGLE' => array(1 => '//'),
     'COMMENT_MULTI' => array('(*' => '*)', '{' => '}'),
     //Compiler directives
@@ -58,7 +60,7 @@ $language_data = array (
             'false', 'new', 'ensure', 'require', 'on', 'event', 'delegate', 'method',
             'raise', 'assembly', 'module', 'using','locking', 'old', 'invariants', 'operator',
             'self', 'async', 'finalizer', 'where', 'yield', 'nullable', 'Future',
-            'From',  'Finally', 'dynamic'
+            'From',  'Finally', 'dynamic', 'mapped'
             ),
         2 => array(
             'override', 'virtual', 'External', 'read', 'add', 'remove','final', 'abstract',
@@ -68,7 +70,8 @@ $language_data = array (
             'Implies', 'Select', 'Order', 'By', 'Desc', 'Asc', 'Group', 'Join', 'Take',
             'Skip', 'Concat', 'Union', 'Reverse', 'Distinct', 'Into', 'Equals', 'params',
             'sequence', 'index', 'notify', 'Parallel', 'create', 'array', 'Queryable', 'Aspect',
-            'volatile', 'write'
+            'volatile', 'write', 'autoreleasepool', 'await', 'block', 'deprecated', 'extension',
+            'optional', 'raises', 'selector', 'strong', 'weak', 'tuple', 'unretained'
             ),
         3 => array(
             'chr', 'ord', 'inc', 'dec', 'assert', 'iff', 'assigned','futureAssigned', 'length', 'low', 'high', 'typeOf', 'sizeOf', 'disposeAndNil', 'Coalesce', 'unquote'
@@ -150,5 +153,3 @@ $language_data = array (
         ),
     'TAB_WIDTH' => 2
 );
-
-?>

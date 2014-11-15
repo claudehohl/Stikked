@@ -1,4 +1,4 @@
-
+﻿
 <?php echo validation_errors(); ?>
 
 <div class="row">
@@ -73,15 +73,18 @@
 					<div class="control-group">
 						<div class="controls">
 							<label class="checkbox">
-								<?php
-								$set = array('name' => 'private', 'id' => 'private', 'tabindex' => '6', 'value' => '1', 'checked' => $private_set);
-										if ($this->config->item('private_only')){
-											$set['checked'] = 1;
-											$set['disabled'] = 'disabled';
-											}
-								echo form_checkbox($set);
-							?>
-								<?php echo lang('paste_private') . ' - ' . lang('paste_private_desc'); ?>
+								                <?php
+                                                if ($this->config->item('remove_shorturl_checkbox') == false)
+                                                     {
+                                                $set = array('name' => 'snipurl', 'id' => 'snipurl', 'value' => '1', 'tabindex' => '5', 'checked' => $snipurl_set);
+                                                                        if ($this->config->item('disable_shorturl')){
+                                                                                $set['checked'] = 0;
+                                                                                $set['disabled'] = 'disabled';
+                                                                        }
+                                                                        echo form_checkbox($set);
+                                                                 echo lang('paste_create_shorturl') . ' - ' . lang('paste_shorturl_desc');
+                                                                        } ?>
+
 							</label>
 						</div>
 					</div>
@@ -93,14 +96,15 @@
 						<?php 
 							$expire_extra = 'id="expire" class="form-control select" tabindex="7"';
 							$options = array(
+							
+											"burn" => lang('exp_burn'),
 											"0" => lang('exp_forever'),
-											"30" => lang('exp_30min'),
+											"5" => lang('exp_5min'),
 											"60" => lang('exp_1h'),
-											"360" => lang('exp_6h'),
-											"720" => lang('exp_12h'),
 											"1440" => lang('exp_1d'),
 											"10080" => lang('exp_1w'),
-											"40320" => lang('exp_4w'),
+											"40320" => lang('exp_1m'),
+											"483840" => lang('exp_1y'),
 									);
 						echo form_dropdown('expire', $options, $expire_set, $expire_extra); ?>
 					</div>
@@ -127,6 +131,7 @@
 			</div>
 		<?php } ?>
 			<div class="form-actions">
+				</br>
 				<button type="submit" name="submit" value="submit" class="btn btn-large btn-primary">
 					<i class="icon-pencil icon-white"></i>
 					<?php echo lang('paste_create'); ?>

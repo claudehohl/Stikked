@@ -6,10 +6,10 @@
  *         Juan Pablo Carbajal (carbajal@ifi.uzh.ch)
  * Copyright: (c) 2012 Carnë Draug
  *            (c) 2012 Juan Pablo Carbajal
- * Release Version: 1.0.8.11
+ * Release Version: 1.0.8.12
  * Date Started: 2012/05/22
  *
- * GNU Octave M-file language file for GeSHi.
+ * GNU/Octave M-file language file for GeSHi.
  *
  * This file was heavily based on octave.lang from gtksourceview. If bugs are
  * found and/or fixed on this file, please send them to the gtksourceview
@@ -41,7 +41,7 @@
  ************************************************************************************/
 
 $language_data = array (
-    'LANG_NAME' => 'GNU Octave',
+    'LANG_NAME' => 'GNU/Octave',
     'COMMENT_SINGLE' => array(1 => '#', 2 => '%'),
     // we can't use COMMENT_MULTI since start and end of block comments need to
     // be alone on the line (optionally, with whitespace). See COMMENT_REGEXP
@@ -82,10 +82,14 @@ $language_data = array (
         GESHI_NUMBER_FLT_SCI_ZERO,
     'CASE_KEYWORDS' => GESHI_CAPS_NO_CHANGE,
     'KEYWORDS' => array(
-        // Data types
+        // Reserved words
         1 => array(
-            'cell', 'char', 'double', 'uint8', 'uint16', 'uint32', 'uint64',
-            'int8','int16', 'int32', 'int64', 'logical', 'single', 'struct'
+            'break', 'case', 'catch', 'continue', 'do', 'else', 'elseif', 'end',
+            'end_try_catch', 'end_unwind_protect', 'endfor', 'endfunction',
+            'endif', 'endparfor', 'endswitch', 'endwhile', 'for', 'function',
+            'if', 'otherwise', 'parfor', 'return',
+            'switch', 'try', 'until', 'unwind_protect',
+            'unwind_protect_cleanup', 'varargin', 'varargout', 'while'
             ),
         // Storage type
         2 => array(
@@ -95,14 +99,10 @@ $language_data = array (
         3 => array(
             'ans'
             ),
-        // Reserved words
+        // Data types
         4 => array(
-            'break', 'case', 'catch', 'continue', 'do', 'else', 'elseif', 'end',
-            'end_try_catch', 'end_unwind_protect', 'endfor', 'endfunction',
-            'endif', 'endparfor', 'endswitch', 'endwhile', 'for', 'function',
-            'if', 'otherwise', 'parfor', 'return',
-            'switch', 'try', 'until', 'unwind_protect',
-            'unwind_protect_cleanup', 'varargin', 'varargout', 'while'
+            'cell', 'char', 'double', 'uint8', 'uint16', 'uint32', 'uint64',
+            'int8','int16', 'int32', 'int64', 'logical', 'single', 'struct'
             ),
         // Built in
         5 => array(
@@ -370,7 +370,7 @@ $language_data = array (
             '__pathorig__', '__profiler_data__', '__profiler_enable__',
             '__profiler_reset__', '__request_drawnow__', '__sort_rows_idx__',
             '__token_count__', '__varval__', '__version_info__', '__which__'
-        ),
+            ),
         // Private Octave functions
         8 => array(
             '__all_opts__', '__contourc__', '__delaunayn__', '__dispatch__',
@@ -445,10 +445,10 @@ $language_data = array (
         10 => true,
         ),
     'URLS' => array(
-        1 => 'http://octave.sourceforge.net/octave/function/{FNAME}.html',
+        1 => '',
         2 => '',
         3 => '',
-        4 => '',
+        4 => 'http://octave.sourceforge.net/octave/function/{FNAME}.html',
         5 => 'http://octave.sourceforge.net/octave/function/{FNAME}.html',
         6 => 'http://octave.sourceforge.net/octave/function/{FNAME}.html',
         7 => '',
@@ -466,8 +466,8 @@ $language_data = array (
     'HIGHLIGHT_STRICT_BLOCK' => array(),
     'STYLES' => array(
         'COMMENTS' => array(
-            1 => 'color: #0000FF; font-style: italic;', // single quote strings
-            2 => 'color: #0000FF; font-style: italic;', // double quote strings
+            1 => 'color: #0000FF; font-style: italic;', // comments with #
+            2 => 'color: #0000FF; font-style: italic;', // comments with %
             3 => 'color: #FF00FF; font-style: italic;', // single quote strings
             4 => 'color: #FF00FF; font-style: italic;', // double quote strings
             5 => 'color: #0000FF; font-style: italic;', // block comments
@@ -476,10 +476,10 @@ $language_data = array (
             'MULTI' => 'color: #0000FF; font-style: italic;',
             ),
         'KEYWORDS' => array(
-            1 => 'color: #2E8B57; font-weight:bold;',   // Data types
+            1 => 'color: #990000; font-weight:bold;',   // Reserved words
             2 => 'color: #2E8B57;',                     // Storage type
             3 => 'color: #0000FF; font-weight:bold;',   // Internal variable
-            4 => 'color: #990000; font-weight:bold;',   // Reserved words
+            4 => 'color: #2E8B57; font-weight:bold;',   // Data types
             5 => 'color: #008A8C; font-weight:bold;',   // Built-in
             6 => 'color: #008A8C;',                     // Octave functions
             9 => 'color: #000000; font-weight:bold;',   // Builtin Global Variables
@@ -511,5 +511,3 @@ $language_data = array (
         'SCRIPT' => array(),
         )
 );
-
-?>

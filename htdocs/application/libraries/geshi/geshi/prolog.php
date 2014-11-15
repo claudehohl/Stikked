@@ -4,7 +4,7 @@
  * --------
  * Author: Benny Baumann (BenBE@geshi.org)
  * Copyright: (c) 2008 Benny Baumann (http://qbnz.com/highlighter/)
- * Release Version: 1.0.8.11
+ * Release Version: 1.0.8.12
  * Date Started: 2008/10/02
  *
  * Prolog language file for GeSHi.
@@ -139,5 +139,3 @@ $language_data = array (
         ),
     'TAB_WIDTH' => 4
 );
-
-?>

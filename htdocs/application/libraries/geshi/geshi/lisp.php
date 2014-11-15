@@ -3,14 +3,16 @@
  * lisp.php
  * --------
  * Author: Roberto Rossi (rsoftware@altervista.org)
- * Copyright: (c) 2004 Roberto Rossi (http://rsoftware.altervista.org), Nigel McNie (http://qbnz.com/highlighter
- * Release Version: 1.0.8.11
+ * Copyright: (c) 2004 Roberto Rossi (http://rsoftware.altervista.org), Nigel McNie (http://qbnz.com/highlighter)
+ * Release Version: 1.0.8.12
  * Date Started: 2004/08/30
  *
  * Generic Lisp language file for GeSHi.
  *
  * CHANGES
  * -------
+ * 2013/11/13 (1.0.8.12)
+ *  -  Fixed bug where a keyword was highlighted in identifiers (Edward Hart)
  * 2005/12/9  (1.0.2)
  *  -  Added support for :keywords and ::access (Denis Mashkevich)
  * 2004/11/27 (1.0.1)
@@ -135,10 +137,11 @@ $language_data = array (
     'HIGHLIGHT_STRICT_BLOCK' => array(
         ),
     'PARSER_CONTROL' => array(
+        'KEYWORDS' => array(
+            'DISALLOWED_BEFORE' => '(?<![a-zA-Z0-9-\$_\|\#|^&])',
+            ),
         'OOLANG' => array(
             'MATCH_AFTER' => '[a-zA-Z][a-zA-Z0-9_\-]*'
             )
         )
 );
-
-?>

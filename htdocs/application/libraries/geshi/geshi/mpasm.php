@@ -4,7 +4,7 @@
  * ---------
  * Author: Bakalex (bakalex@gmail.com)
  * Copyright: (c) 2004 Bakalex, Nigel McNie (http://qbnz.com/highlighter)
- * Release Version: 1.0.8.11
+ * Release Version: 1.0.8.12
  * Date Started: 2004/12/6
  *
  * Microchip Assembler language file for GeSHi.
@@ -160,5 +160,3 @@ $language_data = array (
     'HIGHLIGHT_STRICT_BLOCK' => array(
         )
 );
-
-?>

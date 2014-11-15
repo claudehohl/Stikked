@@ -28,7 +28,7 @@
  * @package    geshi
  * @subpackage core
  * @author     Nigel McNie <nigel@geshi.org>, Benny Baumann <BenBE@omorphia.de>
- * @copyright  (C) 2004 - 2007 Nigel McNie, (C) 2007 - 2008 Benny Baumann
+ * @copyright  (C) 2004 - 2007 Nigel McNie, (C) 2007 - 2014 Benny Baumann
  * @license    http://gnu.org/copyleft/gpl.html GNU GPL
  *
  */
@@ -41,7 +41,7 @@
 //
 
 /** The version of this GeSHi file */
-define('GESHI_VERSION', '1.0.8.11');
+define('GESHI_VERSION', '1.0.8.12');
 
 // Define the root directory for the GeSHi code tree
 if (!defined('GESHI_ROOT')) {
@@ -254,7 +254,7 @@ define('GESHI_ERROR_INVALID_LINE_NUMBER_TYPE', 5);
  *
  * @package   geshi
  * @author    Nigel McNie <nigel@geshi.org>, Benny Baumann <BenBE@omorphia.de>
- * @copyright (C) 2004 - 2007 Nigel McNie, (C) 2007 - 2008 Benny Baumann
+ * @copyright (C) 2004 - 2007 Nigel McNie, (C) 2007 - 2014 Benny Baumann
  */
 class GeSHi {
     /**#@+
@@ -617,7 +617,7 @@ class GeSHi {
 
     /**
      * Returns an error message associated with the last GeSHi operation,
-     * or false if no error has occured
+     * or false if no error has occurred
      *
      * @return string|false An error message if there has been an error, else false
      * @since  1.0.0
@@ -1019,10 +1019,20 @@ class GeSHi {
      */
     function set_keyword_group_style($key, $style, $preserve_defaults = false) {
         //Set the style for this keyword group
-        if (!$preserve_defaults) {
-            $this->language_data['STYLES']['KEYWORDS'][$key] = $style;
+        if('*' == $key) {
+            foreach($this->language_data['STYLES']['KEYWORDS'] as $_key => $_value) {
+                if (!$preserve_defaults) {
+                    $this->language_data['STYLES']['KEYWORDS'][$_key] = $style;
+                } else {
+                    $this->language_data['STYLES']['KEYWORDS'][$_key] .= $style;
+                }
+            }
         } else {
-            $this->language_data['STYLES']['KEYWORDS'][$key] .= $style;
+            if (!$preserve_defaults) {
+                $this->language_data['STYLES']['KEYWORDS'][$key] = $style;
+            } else {
+                $this->language_data['STYLES']['KEYWORDS'][$key] .= $style;
+            }
         }
 
         //Update the lexic permissions
@@ -1054,10 +1064,20 @@ class GeSHi {
      * @since 1.0.0
      */
     function set_comments_style($key, $style, $preserve_defaults = false) {
-        if (!$preserve_defaults) {
-            $this->language_data['STYLES']['COMMENTS'][$key] = $style;
+        if('*' == $key) {
+            foreach($this->language_data['STYLES']['COMMENTS'] as $_key => $_value) {
+                if (!$preserve_defaults) {
+                    $this->language_data['STYLES']['COMMENTS'][$_key] = $style;
+                } else {
+                    $this->language_data['STYLES']['COMMENTS'][$_key] .= $style;
+                }
+            }
         } else {
-            $this->language_data['STYLES']['COMMENTS'][$key] .= $style;
+            if (!$preserve_defaults) {
+                $this->language_data['STYLES']['COMMENTS'][$key] = $style;
+            } else {
+                $this->language_data['STYLES']['COMMENTS'][$key] .= $style;
+            }
         }
     }
 
@@ -1445,9 +1465,8 @@ class GeSHi {
      * @since 1.0.5
      * @todo Re-think about how this method works (maybe make it private and/or make it
      *       a extension->lang lookup?)
-     * @todo static?
      */
-    function get_language_name_from_extension( $extension, $lookup = array() ) {
+    static function get_language_name_from_extension( $extension, $lookup = array() ) {
         $extension = strtolower($extension);
 
         if ( !is_array($lookup) || empty($lookup)) {
@@ -1557,7 +1576,7 @@ class GeSHi {
     function load_from_file($file_name, $lookup = array()) {
         if (is_readable($file_name)) {
             $this->set_source(file_get_contents($file_name));
-            $this->set_language($this->get_language_name_from_extension(substr(strrchr($file_name, '.'), 1), $lookup));
+            $this->set_language(self::get_language_name_from_extension(substr(strrchr($file_name, '.'), 1), $lookup));
         } else {
             $this->error = GESHI_ERROR_FILE_NOT_READABLE;
         }
@@ -3573,7 +3592,6 @@ class GeSHi {
                 $symbol_length = strlen($symbol_match);
                 $symbol_offset = $pot_symbols[$s_id][0][1];
                 unset($pot_symbols[$s_id]);
-                $symbol_end = $symbol_length + $symbol_offset;
                 $symbol_hl = "";
 
                 // if we have multiple styles, we have to handle them properly
@@ -3874,9 +3892,6 @@ class GeSHi {
             // If we're using the <pre> header, we shouldn't add newlines because
             // the <pre> will line-break them (and the <li>s already do this for us)
             $ls = ($this->header_type != GESHI_HEADER_PRE && $this->header_type != GESHI_HEADER_PRE_VALID) ? "\n" : '';
-
-            // Set vars to defaults for following loop
-            $i = 0;
 
             // Foreach line...
             for ($i = 0, $n = count($code); $i < $n;) {
@@ -4386,13 +4401,13 @@ class GeSHi {
                 " * --------------------------------------\n".
                 " * Dynamically generated stylesheet for {$this->language}\n".
                 " * CSS class: {$this->overall_class}, CSS id: {$this->overall_id}\n".
-                " * GeSHi (C) 2004 - 2007 Nigel McNie, 2007 - 2008 Benny Baumann\n" .
+                " * GeSHi (C) 2004 - 2007 Nigel McNie, 2007 - 2014 Benny Baumann\n" .
                 " * (http://qbnz.com/highlighter/ and http://geshi.org/)\n".
                 " * --------------------------------------\n".
                 " */\n";
         } else {
             $stylesheet = "/**\n".
-                " * GeSHi (C) 2004 - 2007 Nigel McNie, 2007 - 2008 Benny Baumann\n" .
+                " * GeSHi (C) 2004 - 2007 Nigel McNie, 2007 - 2014 Benny Baumann\n" .
                 " * (http://qbnz.com/highlighter/ and http://geshi.org/)\n".
                 " */\n";
         }
@@ -4771,5 +4786,3 @@ if (!function_exists('geshi_highlight')) {
         return true;
     }
 }
-
-?>

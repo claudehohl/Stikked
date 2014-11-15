@@ -4,7 +4,7 @@
  * --------
  * Author: Kevin Reid (kpreid@switchb.org)
  * Copyright: (c) 2010 Kevin Reid (http://switchb.org/kpreid/)
- * Release Version: 1.0.8.11
+ * Release Version: 1.0.8.12
  * Date Started: 2010/04/16
  *
  * E language file for GeSHi.
@@ -204,5 +204,3 @@ $language_data = array(
     'SCRIPT_DELIMITERS' => array(),
     'HIGHLIGHT_STRICT_BLOCK' => array()
 );
-
-?>

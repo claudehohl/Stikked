@@ -4,7 +4,7 @@
  * --------
  * Author: Randy Hollines (objeck@gmail.com)
  * Copyright: (c) 2010 Randy Hollines (http://code.google.com/p/objeck-lang/)
- * Release Version: 1.0.8.11
+ * Release Version: 1.0.8.12
  * Date Started: 2010/07/01
  *
  * Objeck Programming Language language file for GeSHi.
@@ -112,5 +112,3 @@ $language_data = array(
     'SCRIPT_DELIMITERS' => array(),
     'HIGHLIGHT_STRICT_BLOCK' => array()
 );
-
-?>

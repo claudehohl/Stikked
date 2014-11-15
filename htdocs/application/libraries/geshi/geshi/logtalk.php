@@ -5,7 +5,7 @@
  *
  * Author: Paulo Moura (pmoura@logtalk.org)
  * Copyright: (c) 2009-2011 Paulo Moura (http://logtalk.org/)
- * Release Version: 1.0.8.11
+ * Release Version: 1.0.8.12
  * Date Started: 2009/10/24
  *
  * Logtalk language file for GeSHi.
@@ -308,38 +308,36 @@ $language_data = array(
     'PARSER_CONTROL' => array(
         'ENABLE_FLAGS' => array(
             'BRACKETS' => GESHI_NEVER
-        ),
+            ),
         'KEYWORDS' => array(
             1 => array(
                 'DISALLOWED_BEFORE' => '(?<=:-\s)',
                 'DISALLOWED_AFTER' => '(?=\()'
-            ),
+                ),
             2 => array(
                 'DISALLOWED_BEFORE' => '(?<=:-\s)',
                 'DISALLOWED_AFTER' => '(?=\.)'
-            ),
+                ),
             3 => array(
                 'DISALLOWED_BEFORE' => '(?<![a-zA-Z0-9\$_\|\#>|^&\'"])',
                 'DISALLOWED_AFTER' => '(?=\()'
-            ),
+                ),
             4 => array(
                 'DISALLOWED_BEFORE' => '(?<![a-zA-Z0-9\$_\|\#>|^&\'"])',
                 'DISALLOWED_AFTER' => '(?=\()'
-            ),
+                ),
             5 => array(
                 'DISALLOWED_BEFORE' => '(?<![a-zA-Z0-9\$_\|\#>|^&\'"])',
                 'DISALLOWED_AFTER' => '(?![a-zA-Z0-9_\|%\\-&\'"])'
-            ),
+                ),
             6 => array(
                 'DISALLOWED_BEFORE' => '(?<![a-zA-Z0-9\$_\|\#;>|^&\'"])',
                 'DISALLOWED_AFTER' => '(?=\()'
-            ),
+                ),
             7 => array(
                 'DISALLOWED_BEFORE' => '(?<![a-zA-Z0-9\$_\|\#;>|^&\'"])',
                 'DISALLOWED_AFTER' => '(?![a-zA-Z0-9_\|%\\-&\'"])'
+                )
             )
         )
-    ),
 );
-
-?>

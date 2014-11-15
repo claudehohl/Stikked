@@ -4,7 +4,7 @@
  * -------
  * Author: Alexandre Morgand (morgand.alexandre@gmail.com)
  * Copyright: (c) 2011 Morgand (http://gostai.com)
- * Release Version: 1.0.8.11
+ * Release Version: 1.0.8.12
  * Date Started: 2011/09/10
  *
  * Urbi language file for GeSHi.
@@ -196,5 +196,3 @@ $language_data = array (
         ),
     'TAB_WIDTH' => 4,
 );
-
-?>

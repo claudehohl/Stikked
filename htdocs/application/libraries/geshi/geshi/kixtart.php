@@ -4,7 +4,7 @@
  * --------
  * Author: Riley McArdle (riley@glyff.net)
  * Copyright: (c) 2007 Riley McArdle (http://www.glyff.net/)
- * Release Version: 1.0.8.11
+ * Release Version: 1.0.8.12
  * Date Started: 2007/08/31
  *
  * PHP language file for GeSHi.
@@ -325,5 +325,3 @@ $language_data = array (
         ),
     'TAB_WIDTH' => 4
 );
-
-?>

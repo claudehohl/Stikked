@@ -4,7 +4,7 @@
  * ----------
  * Author: Milian Wolff (mail@milianw.de)
  * Copyright: (c) 2008 Milian Wolff (http://milianw.de)
- * Release Version: 1.0.8.11
+ * Release Version: 1.0.8.12
  * Date Started: 2008/06/17
  *
  * Apt sources.list language file for GeSHi.
@@ -55,7 +55,7 @@ $language_data = array (
             'stable/updates',
             //Debian
             'buzz', 'rex', 'bo', 'hamm', 'slink', 'potato', 'woody', 'sarge',
-            'etch', 'lenny', 'wheezy', 'sid',
+            'etch', 'lenny', 'wheezy', 'jessie', 'sid',
             //Ubuntu
             'warty', 'warty-updates', 'warty-security', 'warty-proposed', 'warty-backports',
             'hoary', 'hoary-updates', 'hoary-security', 'hoary-proposed', 'hoary-backports',
@@ -69,13 +69,20 @@ $language_data = array (
             'jaunty', 'jaunty-updates', 'jaunty-security', 'jaunty-proposed', 'jaunty-backports',
             'karmic', 'karmic-updates', 'karmic-security', 'karmic-proposed', 'karmic-backports',
             'lucid', 'lucid-updates', 'lucid-security', 'lucid-proposed', 'lucid-backports',
-            'maverick', 'maverick-updates', 'maverick-security', 'maverick-proposed', 'maverick-backports'
+            'maverick', 'maverick-updates', 'maverick-security', 'maverick-proposed', 'maverick-backports',
+            'natty', 'natty-updates', 'natty-security', 'natty-proposed', 'natty-backports',
+            'oneiric', 'oneiric-updates', 'oneiric-security', 'oneiric-proposed', 'oneiric-backports',
+            'precise', 'precise-updates', 'precise-security', 'precise-proposed', 'precise-backports',
+            'quantal', 'quantal-updates', 'quantal-security', 'quantal-proposed', 'quantal-backports',
+            'raring', 'raring-updates', 'raring-security', 'raring-proposed', 'raring-backports',
+            'saucy', 'saucy-updates', 'saucy-security', 'saucy-proposed', 'saucy-backports',
+            'trusty', 'trusty-updates', 'trusty-security', 'trusty-proposed', 'trusty-backports'
             ),
         3 => array(
             'main', 'restricted', 'preview', 'contrib', 'non-free',
             'commercial', 'universe', 'multiverse'
             )
-    ),
+        ),
     'REGEXPS' => array(
         0 => "(((http|ftp):\/\/|file:\/)[^\s]+)|(cdrom:\[[^\]]*\][^\s]*)",
         ),
@@ -144,5 +151,3 @@ $language_data = array (
     ),
     'TAB_WIDTH' => 4
 );
-
-?>

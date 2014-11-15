@@ -7,7 +7,7 @@
  *  - M. Uli Kusterer (witness.of.teachtext@gmx.net)
  *  - Jack Lloyd (lloyd@randombit.net)
  * Copyright: (c) 2004 Dennis Bayer, Nigel McNie (http://qbnz.com/highlighter)
- * Release Version: 1.0.8.11
+ * Release Version: 1.0.8.12
  * Date Started: 2004/09/27
  *
  * C++ language file for GeSHi.
@@ -56,14 +56,18 @@ $language_data = array (
         //Multiline-continued single-line comments
         1 => '/\/\/(?:\\\\\\\\|\\\\\\n|.)*$/m',
         //Multiline-continued preprocessor define
-        2 => '/#(?:\\\\\\\\|\\\\\\n|.)*$/m'
+        2 => '/#(?:\\\\\\\\|\\\\\\n|.)*$/m',
+        //C++ 11 string literal extensions
+        3 => '/(?:L|u8?|U)(?=")/',
+        //C++ 11 string literal extensions (raw)
+        4 => '/R"([^()\s\\\\]*)\((?:(?!\)\\1").)*\)\\1"/ms'
         ),
     'CASE_KEYWORDS' => GESHI_CAPS_NO_CHANGE,
     'QUOTEMARKS' => array("'", '"'),
     'ESCAPE_CHAR' => '',
     'ESCAPE_REGEXP' => array(
         //Simple Single Char Escapes
-        1 => "#\\\\[abfnrtv\\\'\"?\n]#i",
+        1 => "#\\\\[abfnrtv\\\'\"?\n]#",
         //Hexadecimal Char Specs
         2 => "#\\\\x[\da-fA-F]{2}#",
         //Hexadecimal Char Specs
@@ -167,6 +171,8 @@ $language_data = array (
         'COMMENTS' => array(
             1 => 'color: #666666;',
             2 => 'color: #339900;',
+            3 => 'color: #FF0000;',
+            4 => 'color: #FF0000;',
             'MULTI' => 'color: #ff0000; font-style: italic;'
             ),
         'ESCAPE_CHAR' => array(
@@ -236,5 +242,3 @@ $language_data = array (
         )
     )
 );
-
-?>

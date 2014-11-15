@@ -4,7 +4,7 @@
  * --------
  * Author: Josh Ventura (JoshV10@gmail.com)
  * Copyright: (c) 2010 Josh Ventura
- * Release Version: 1.0.8.11
+ * Release Version: 1.0.8.12
  * Date Started: 2010/12/14
  *
  * YAML language file for GeSHi.
@@ -140,11 +140,9 @@ $language_data = array (
         ),
     'URLS' => array(1 => ''),
     'OOLANG' => false,
-    'OBJECT_SPLITTERS' => array( ),
-    'REGEXPS' => array( ),
+    'OBJECT_SPLITTERS' => array(),
+    'REGEXPS' => array(),
     'STRICT_MODE_APPLIES' => GESHI_NEVER,
-    'SCRIPT_DELIMITERS' => array( ),
-    'HIGHLIGHT_STRICT_BLOCK' => array( )
+    'SCRIPT_DELIMITERS' => array(),
+    'HIGHLIGHT_STRICT_BLOCK' => array()
 );
-
-?>

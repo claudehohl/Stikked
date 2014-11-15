@@ -4,7 +4,7 @@
  * --------
  * Author: Archimmersion ( based on ruby.php by Moises Deniz )
  * Copyright: (c) 2011 Archimmersion ( http://www.archimmersion.com )
- * Release Version: 1.0.8.11
+ * Release Version: 1.0.8.12
  * Date Started: 2011/03/30
  *
  * StoneScript language file for GeSHi.
@@ -303,5 +303,3 @@ $language_data = array (
         ),
     'TAB_WIDTH' => 2
 );
-
-?>

@@ -4,7 +4,7 @@
  * -----
  * Author: Ian Roddis (ian.roddis@proteanmind.net)
  * Copyright: (c) 2008 Ian Roddis (http://proteanmind.net)
- * Release Version: 1.0.8.11
+ * Release Version: 1.0.8.12
  * Date Started: 2009/01/21
  *
  * q/kdb+ language file for GeSHi.
@@ -145,5 +145,3 @@ $language_data = array (
         2   => '',
         ),
 );
-
-?>
