@@ -4,7 +4,7 @@
  * Function list:
  * Classes list:
  */
-require_once ('./'.APPPATH.'/libraries/phpqrcode/qrlib.php');
+require_once (APPPATH.'/libraries/phpqrcode/qrlib.php');
 $qrurl = $url;
 
 if ($snipurl != false) 

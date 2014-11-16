@@ -297,7 +297,7 @@ class Pastes extends CI_Model
 						//diff
 						//yes, I'm aware, two times htmlspecialchars_decode(). Needs to be, since it's saved that way in the DB from the original stikked author ages ago ;)
 
-						include_once ('./application/libraries/finediff.php');
+						include_once (APPPATH.'/libraries/finediff.php');
 						$from_text = htmlspecialchars_decode(utf8_decode($row['raw']));
 						$to_text = htmlspecialchars_decode(utf8_decode($data['raw']));
 						$opcodes = FineDiff::getDiffOpcodes($from_text, $to_text, FineDiff::$wordGranularity);
