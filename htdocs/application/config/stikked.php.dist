@@ -132,7 +132,6 @@ $config['disable_api'] = false;
 $config['disable_keep_forever'] = false;
 $config['blocked_words'] = '';
 $config['disable_shorturl'] = false;
-$config['remove_shorturl_checkbox'] = false;
 $config['disallow_search_engines'] = false;
 
 //spamadmin: accessible via /spamadmin (only active when user + pass is set)
