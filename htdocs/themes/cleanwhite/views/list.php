@@ -28,7 +28,8 @@
 			<td class="first"><a href="<?php echo site_url("view/".$paste['pid']); ?>"><?php echo $paste['title']; ?></a></td>
 			<td><?php echo $paste['name']; ?></td>
 			<td><?php echo $paste['lang']; ?></td>
-			<td><?php $p = explode(",", timespan($paste['created'], time())); echo $p[0]; ?> <?php echo lang('paste_ago'); ?>.</td>
+			<td><?php $p = explode(",", timespan($paste['created'], time()));
+			echo sprintf($this->lang->line('paste_ago'),$p[0]); ?>.</td>
 		</tr>
 
 		<?php }?>
