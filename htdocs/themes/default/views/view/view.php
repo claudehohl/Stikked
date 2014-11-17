@@ -16,7 +16,7 @@ if(isset($insert)){
 	<div class="info">
 		<h1 class="pagetitle right"><?php echo $title; ?></h1>
 		<div class="meta">
-			<span class="detail by"><?php echo lang('paste_from'); ?> <?php echo $name; ?>, <?php $p = explode(',', timespan($created, time())); echo $p[0]?> <?php echo lang('paste_ago'); ?>, <?php echo lang('paste_writtenin'); ?> <?php echo $lang; ?>, <?php echo lang('paste_viewed'); ?> <?php echo number_format($hits, 0, '.', "'"); ?> <?php echo lang('paste_times'); ?>.</span>
+			<span class="detail by"><?php echo lang('paste_from'); ?> <?php echo $name; ?>, <?php $p = explode(',', timespan($created, time())); echo sprintf($this->lang->line('paste_ago'),$p[0]); ?>, <?php echo lang('paste_writtenin'); ?> <?php echo $lang; ?>, <?php echo lang('paste_viewed'); ?> <?php echo number_format($hits, 0, '.', "'"); ?> <?php echo lang('paste_times'); ?>.</span>
 			<?php if(isset($inreply)){?><span class="detail by"><?php echo lang('paste_isareply'); ?> <a href="<?php echo $inreply['url']?>"><?php echo $inreply['title']; ?></a> <?php echo strtolower(lang('paste_from')); ?> <?php echo $inreply['name']; ?>
 
 <?php if($seg3 != 'diff'){ ?>
@@ -99,7 +99,8 @@ if(isset($insert)){
 					<td class="first"><a href="<?php echo site_url("view/".$reply['pid']); ?>"><?php echo $reply['title']; ?></a></td>
 					<td><?php echo $reply['name']; ?></td>
 					<td><?php echo $reply['lang']; ?></td>
-					<td><?php $p = explode(",", timespan($reply['created'], time())); echo $p[0];?> <?php echo lang('paste_ago'); ?>.</td>
+					<td><?php $p = explode(",", timespan($reply['created'], time()));
+					echo sprintf($this->lang->line('paste_ago'),$p[0]); ?>.</td>
 				</tr>
 		
 			<?php }?>

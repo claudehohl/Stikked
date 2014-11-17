@@ -26,7 +26,7 @@ $lang['matches']		= "Pole %s nie jest takie same jak pole %s.";
 $lang['is_unique']		= "Pole %s musi zawierać unikalną wartość.";
 $lang['is_natural']		= "Pole %s musi zawierać tylko liczby dodatnie.";
 $lang['is_natural_no_zero']	= "Pole %s musi zawierać liczbę większą od zera.";
-$lang['decimal']		= "Pole %s musi zawierać tylko liczby dziesiętne."​​;
+$lang['decimal']		= "Pole %s musi zawierać tylko liczby dziesiętne.";
 $lang['less_than']		= "Liczba w polu %s musi być mniejsza niż %s.";
 $lang['greater_than']		= "Liczba w polu %s musi być większa niż %s.";
 

@@ -26,7 +26,7 @@ if(isset($insert)){
 
 			</span><?php }?>
 			<div class="spacer"></div>
-			By: <?=$name?> | <? $p = explode(',', timespan($created, time())); echo $p[0]?> | Syntax: <?=$lang?> | Views: <?php echo number_format($hits, 0, '.', "'"); ?>
+			By: <?=$name?> | <?php $p = explode(',', timespan($created, time())); echo sprintf($this->lang->line('paste_ago'),$p[0]); ?> | Syntax: <?=$lang?> | Views: <?php echo number_format($hits, 0, '.', "'"); ?>
 			<div class="spacer"></div>
 			<span class="detail"><span class="item">URL </span><a href="<?=$url?>" style="color: #858585;text-decoration: none;"><?=$url?></a></span>
 			
@@ -103,7 +103,8 @@ if(isset($insert)){
 					<td class="first"><a href="<?php echo site_url("view/".$reply['pid']); ?>"><?php echo $reply['title']; ?></a></td>
 					<td><?php echo $reply['name']; ?></td>
 					<td><?php echo $reply['lang']; ?></td>
-					<td><?php $p = explode(",", timespan($reply['created'], time())); echo $p[0];?> <?php echo lang('paste_ago'); ?>.</td>
+					<td><?php $p = explode(",", timespan($reply['created'], time()));
+					echo sprintf($this->lang->line('paste_ago'),$p[0]); ?>.</td>
 				</tr>
 		
 			<?php }?>
