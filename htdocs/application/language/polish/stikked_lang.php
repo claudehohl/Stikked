@@ -1,5 +1,4 @@
 <?php
-
 $lang['paste_create_new']	= 'Utwórz nową wklejkę';
 $lang['paste_create_new_desc']	= 'Tutaj możesz utworzyć nową wklejkę';
 $lang['paste_author']		= 'Autor';
@@ -22,7 +21,7 @@ $lang['paste_recent']		= 'Aktualne wklejki';
 $lang['paste_trending']		= 'Często wyświetlane wklejki';
 $lang['paste_search']		= 'Szukaj';
 $lang['paste_from']		= 'z';
-$lang['paste_ago']		= 'temu';
+$lang['paste_ago']		= '%s temu';
 $lang['paste_writtenin']	= 'napisane w';
 $lang['paste_viewed']		= 'wyświetlone';
 $lang['paste_times']		= 'razy';
@@ -47,9 +46,9 @@ $lang['paste_missing']		= 'Brak podanej wklejki';
 $lang['paste_spam']		= 'Ochrona przed spamem';
 $lang['paste_spam_desc']	= 'Wpisz litery z obrazka';
 $lang['exp_forever']		= 'wieczna';
-$lang['exp_burn']		= 'natychmiast';
+$lang['exp_burn']		= 'spal po przeczytaniu!';
 $lang['exp_5min']		= '5 minut';
-$lang['exp_1h']			= 'jednej godzinie';
+$lang['exp_1h']			= '1 godzina';
 $lang['exp_1d']			= '1 dzień';
 $lang['exp_1w']			= '1 tydzień';
 $lang['exp_1m']			= '1 miesiąc';
@@ -62,11 +61,10 @@ $lang['menu_recent_title']	= 'Nowo utworzone Wklejki';
 $lang['menu_trending']		= 'Popularne';
 $lang['menu_trending_title']	= 'Wklejki często odwiedzane';
 $lang['menu_api']		= "API";
-$lang['menu_about']		= 'O Wklejkach';
+$lang['menu_about']		= 'O wklejkach';
 $lang['table_title']		= 'Tytuł';
 $lang['table_name']		= 'Autor';
 $lang['table_lang']		= 'Język';
 $lang['table_hits']		= 'Wyświetlenia';
 $lang['table_time']		= 'Dodano';
 $lang['powered_by']		= 'Wspierane przez';
-

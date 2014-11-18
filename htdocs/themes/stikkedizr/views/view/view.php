@@ -20,7 +20,7 @@ if(isset($insert)){
 			</div>
 			<div class="row">
 				<div class="col-8 col-sm-12 col-lg-8">
-					<div class="detail by"><?php echo lang('paste_from'); ?> <?php echo $name; ?>, <?php $p = explode(',', timespan($created, time())); echo $p[0]?> <?php echo lang('paste_ago'); ?>, <?php echo lang('paste_writtenin'); ?> <?php echo $lang; ?>.</div>
+					<div class="detail by"><?php echo lang('paste_from'); ?> <?php echo $name; ?>, <?php $p = explode(',', timespan($created, time())); echo sprintf($this->lang->line('paste_ago'),$p[0]); ?>, <?php echo lang('paste_writtenin'); ?> <?php echo $lang; ?>.</div>
 					<?php if(isset($inreply)){?><div class="detail by"><?php echo lang('paste_isareply'); ?> <a href="<?php echo $inreply['url']?>"><?php echo $inreply['title']; ?></a> <?php echo strtolower(lang('paste_from')); ?> <?php echo $inreply['name']; ?>
 
 <?php if($seg3 != 'diff'){ ?>
@@ -95,7 +95,8 @@ if(isset($replies) and !empty($replies)){
 			<td><?php echo $reply['name']; ?></td>
 			<td><?php echo $reply['lang']; ?></td>
 			<td class="hidden"><?php echo $reply['created']; ?></td>
-			<td><?php $p = explode(",", timespan($reply['created'], time())); echo $p[0];?> <?php echo lang('paste_ago'); ?>.</td>
+			<td><?php $p = explode(",", timespan($reply['created'], time()));
+			echo sprintf($this->lang->line('paste_ago'),$p[0]); ?>.</td>
 		</tr>
 
 	<?php }?>

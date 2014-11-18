@@ -27,7 +27,8 @@
 			<td><?php echo $paste['name']; ?></td>
 			<td><?php echo $paste['lang']; ?></td>
 			<td class="hidden"><?php echo $paste['created']; ?></td>
-			<td><?php $p = explode(",", timespan($paste['created'], time())); echo $p[0]; ?> <?php echo lang('paste_ago'); ?>.</td>
+			<<td><?php $p = explode(",", timespan($paste['created'], time()));
+			echo sprintf($this->lang->line('paste_ago'),$p[0]); ?>.</td>
 		</tr>
 
 		<?php }?>
