@@ -55,6 +55,7 @@ $lang['exp_12h'] = '半天';
 $lang['exp_1d'] = '一天';
 $lang['exp_1w'] = '一週';
 $lang['exp_4w'] = '四週';
+$lang['exp_1m'] = '一月';
 $lang['exp_1y'] = '一年';
 $lang['paste_create'] = '建立';
 $lang['menu_create'] = '建立';
