@@ -41,6 +41,7 @@ class Main extends CI_Controller
 		parent::__construct();
 		$this->output->enable_profiler(false);
 		$this->load->model('languages');
+		$this->load->library('curl'); 
 		
 		if (config_item('require_auth')) 
 		{
