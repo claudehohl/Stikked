@@ -29,8 +29,12 @@ $this->carabiner->css('font-awesome.min.css');
 $this->carabiner->css('style.css');
 $this->carabiner->css('codemirror.css');
 
-$this->carabiner->display('css'); 
+$this->carabiner->display('css');
 
+// Captcha
+if($this->use_recaptcha) {
+  echo "<script src='https://www.google.com/recaptcha/api.js'></script>";
+}
 ?>
 	<script type="text/javascript">
 	//<![CDATA[
@@ -38,7 +42,7 @@ $this->carabiner->display('css');
 	//]]>
 	</script>
 	</head>
-	<body>		
+	<body>
 		<header>
 			<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
 				<div class="container">
@@ -76,4 +80,4 @@ $this->carabiner->display('css');
 						<?php echo $status_message; ?>
 					</div>
 				</div>
-				<?php }?>				
+				<?php }?>
