@@ -34,10 +34,14 @@ $this->carabiner->css('print.css', 'print');
 $this->carabiner->css('codemirror.css');
 $this->carabiner->css('diff.css');
 
-$this->carabiner->display('css'); 
+$this->carabiner->display('css');
 
 $searchparams = ($this->input->get('search') ? '?search=' . $this->input->get('search') : '');
 
+// Captcha
+if($this->use_recaptcha) {
+  echo "<script src='https://www.google.com/recaptcha/api.js'></script>";
+}
 ?>
 	<script type="text/javascript">
 	//<![CDATA[
@@ -47,7 +51,7 @@ $searchparams = ($this->input->get('search') ? '?search=' . $this->input->get('s
 	</head>
 	<body>
 		<div id="container">
-			<div class="container">			
+			<div class="container">
 				<div class="header">
 					<h1><a href="<?php echo base_url(); ?>" class="title"><?php echo $this->config->item('site_name'); ?></a></h1>
 					<ul class="tabs">

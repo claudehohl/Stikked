@@ -697,16 +697,16 @@ class Main extends CI_Controller
 	function _valid_recaptcha() 
 	{
 		
-		if ($this->input->post('recaptcha_response_field')) 
+		if ($_POST["g-recaptcha-response"]) 
 		{
 			$pk = $this->recaptcha_privatekey;
-			$ra = $_SERVER['REMOTE_ADDR'];
-			$cf = $this->input->post('recaptcha_challenge_field');
-			$rf = $this->input->post('recaptcha_response_field');
+			$ra = $_SERVER["REMOTE_ADDR"];
+			$cr = $_POST["g-recaptcha-response"];
+			$recap = new ReCaptcha($pk);
 
 			//check
-			$resp = recaptcha_check_answer($pk, $ra, $cf, $rf);
-			return $resp->is_valid;
+			$resp = $recap->verifyResponse($ra, $cr);
+			return $resp->success;
 		}
 		else
 		{
