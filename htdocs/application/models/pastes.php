@@ -253,6 +253,7 @@ class Pastes extends CI_Model
 			$data['lang'] = $this->languages->code_to_description($row['lang']);
 			$data['paste'] = $this->process->syntax(htmlspecialchars_decode($row['raw']) , $row['lang']);
 			$data['created'] = $row['created'];
+			$data['private'] = $row['private'];
 			$data['expire'] = $row['expire'];
 			$data['toexpire'] = $row['toexpire'];
 			$data['url'] = $this->_get_url($row['pid']);
