@@ -30,7 +30,7 @@
 						<?php echo lang('paste_title'); ?>
 					</label>
 					
-					<input value="<?php if(isset($title_set)){ echo $title_set; }?>" class="span3" type="text" id="title" name="title" tabindex="2" maxlength="32" />
+					<input value="<?php if(isset($title_set)){ echo $title_set; }?>" class="span3" type="text" id="title" name="title" tabindex="2" maxlength="50" />
 				</div>
 		
 				<div class="span3">

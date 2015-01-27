@@ -5,7 +5,7 @@
  *
  * Which language to use
  * Translate Stikked to your own language, see htdocs/application/language files
- * Currently: english, german, swissgerman, spanish, norwegian, portuguese, turkish, french, japanese, polish, russian, chinese-simplified, chinese-traditional
+ * Currently: english, german, swissgerman, spanish, norwegian, danish, portuguese, turkish, french, japanese, polish, russian, chinese-simplified, chinese-traditional
  *
 */
 
@@ -43,6 +43,13 @@ $config['supported_languages'] = array(
         'folder'      => 'norwegian',
         'direction'   => 'ltr',
         'codes'	      => array('no', 'norwegian', 'no_NO'),
+        'ckeditor'    => NULL
+    ),
+	'da' => array(
+        'name'	      => 'dansk',
+        'folder'      => 'danish',
+        'direction'   => 'ltr',
+        'codes'	      => array('da', 'danish', 'da_DA'),
         'ckeditor'    => NULL
     ),
     'pt' => array(

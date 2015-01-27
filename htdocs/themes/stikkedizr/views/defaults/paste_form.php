@@ -29,7 +29,7 @@
 					<label for="title">
 						<i class="fa fa-flag"></i> <?php echo lang('paste_title'); ?>
 					</label>
-					<input value="<?php if(isset($title_set)){ echo $title_set; }?>" class="form-control" type="text" id="title" name="title" tabindex="2" maxlength="32" />
+					<input value="<?php if(isset($title_set)){ echo $title_set; }?>" class="form-control" type="text" id="title" name="title" tabindex="2" maxlength="50" />
 				</div>
 		
 				<div class="col-3 col-sm-12 col-lg-3">
