@@ -455,10 +455,11 @@ class Pastes extends CI_Model
 		$this->load->library('process');
 		$amount = $this->config->item('per_page');
 		$page = ($this->uri->segment($seg) ? $this->uri->segment($seg) : 0);
-		$search = '%' . $this->input->get('search') . '%';
+		$search = $this->input->get('search');
 		
 		if ($search) 
 		{
+			$search = '%' . $search . '%';
 
 			// count total results
 			$sql = "SELECT id FROM pastes WHERE private = 0 AND (title LIKE ? OR raw LIKE ?)";
@@ -549,10 +550,11 @@ class Pastes extends CI_Model
 		$this->load->library('pagination');
 		$amount = $this->config->item('per_page');
 		$page = ($this->uri->segment(2) ? $this->uri->segment(2) : 0);
-		$search = '%' . $this->input->get('search') . '%';
+		$search = $this->input->get('search');
 		
 		if ($search) 
 		{
+			$search = '%' . $search . '%';
 
 			// count total results
 			$sql = "SELECT id FROM pastes WHERE private = 0 AND (title LIKE ? OR raw LIKE ?)";
