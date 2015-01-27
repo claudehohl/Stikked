@@ -41,6 +41,7 @@ class Main extends CI_Controller
 		parent::__construct();
 		$this->output->enable_profiler(false);
 		$this->load->model('languages');
+		$this->load->library('curl');
 		
 		if (config_item('require_auth')) 
 		{
@@ -278,6 +279,30 @@ class Main extends CI_Controller
 				$this->db->query("ALTER TABLE " . $db_prefix . "pastes CHANGE COLUMN ip_address ip_address VARCHAR(45) NOT NULL DEFAULT '0'");
 				$this->db->query("ALTER TABLE " . $db_prefix . "blocked_ips CHANGE COLUMN ip_address ip_address VARCHAR(45) NOT NULL DEFAULT '0'");
 				$this->db->query("ALTER TABLE " . $db_prefix . "ci_sessions CHANGE COLUMN ip_address ip_address VARCHAR(45) NOT NULL DEFAULT '0'");
+			}
+		}
+
+		//expand title to 50
+		$fields = $this->db->field_data('pastes');
+		foreach ($fields as $field) 
+		{
+			
+			if ($field->name == 'title') 
+			{
+				
+				if ($field->max_length < 50) 
+				{
+					$db_prefix = config_item('db_prefix');
+					
+					if ($this->db->dbdriver == "postgre") 
+					{
+						$this->db->query("ALTER TABLE " . $db_prefix . "pastes ALTER COLUMN title TYPE VARCHAR(50), ALTER COLUMN title SET NOT NULL");
+					}
+					else
+					{
+						$this->db->query("ALTER TABLE " . $db_prefix . "pastes CHANGE COLUMN title title VARCHAR(50) NOT NULL");
+					}
+				}
 			}
 		}
 	}
@@ -594,6 +619,11 @@ class Main extends CI_Controller
 			}
 			$data = $this->pastes->getPaste(2, true, $this->uri->segment(3) == 'diff');
 			$data['reply_form'] = $this->_form_prep($data['lang_code'], 'Re: ' . $data['title'], $data['raw'], $data['pid']);
+			
+			if ($data['private'] == 1) 
+			{
+				$data['reply_form']['use_recaptcha'] = 0;
+			}
 			$this->load->view('view/view', $data);
 		}
 		else
@@ -697,16 +727,29 @@ class Main extends CI_Controller
 	function _valid_recaptcha() 
 	{
 		
-		if ($this->input->post('recaptcha_response_field')) 
+		if ($this->recaptcha_privatekey == null || $this->recaptcha_privatekey == '') 
+		{
+			die("To use reCAPTCHA you must get an API key from <a href='https://www.google.com/recaptcha/admin/create'>https://www.google.com/recaptcha/admin/create</a>");
+		}
+		
+		if ($this->input->post('g-recaptcha-response')) 
 		{
 			$pk = $this->recaptcha_privatekey;
 			$ra = $_SERVER['REMOTE_ADDR'];
-			$cf = $this->input->post('recaptcha_challenge_field');
-			$rf = $this->input->post('recaptcha_response_field');
-
-			//check
-			$resp = recaptcha_check_answer($pk, $ra, $cf, $rf);
-			return $resp->is_valid;
+			$rf = trim($this->input->post('g-recaptcha-response'));
+			$url = "https://www.google.com/recaptcha/api/siteverify?secret=" . $pk . "&response;=" . $rf . "&remoteip;=" . $ra;
+			$response = $this->curl->simple_get($url);
+			$status = json_decode($response, true);
+			
+			if ($status['success']) 
+			{
+				$recaptcha_response->is_valid = true;
+			}
+			else
+			{
+				$recaptcha_response->is_valid = false;
+			}
+			return $recaptcha_response;
 		}
 		else
 		{
