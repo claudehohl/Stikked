@@ -41,7 +41,7 @@ class Main extends CI_Controller
 		parent::__construct();
 		$this->output->enable_profiler(false);
 		$this->load->model('languages');
-		$this->load->library('curl'); 
+		$this->load->library('curl');
 		
 		if (config_item('require_auth')) 
 		{
@@ -279,6 +279,30 @@ class Main extends CI_Controller
 				$this->db->query("ALTER TABLE " . $db_prefix . "pastes CHANGE COLUMN ip_address ip_address VARCHAR(45) NOT NULL DEFAULT '0'");
 				$this->db->query("ALTER TABLE " . $db_prefix . "blocked_ips CHANGE COLUMN ip_address ip_address VARCHAR(45) NOT NULL DEFAULT '0'");
 				$this->db->query("ALTER TABLE " . $db_prefix . "ci_sessions CHANGE COLUMN ip_address ip_address VARCHAR(45) NOT NULL DEFAULT '0'");
+			}
+		}
+
+		//expand title to 50
+		$fields = $this->db->field_data('pastes');
+		foreach ($fields as $field) 
+		{
+			
+			if ($field->name == 'title') 
+			{
+				
+				if ($field->max_length < 50) 
+				{
+					$db_prefix = config_item('db_prefix');
+					
+					if ($this->db->dbdriver == "postgre") 
+					{
+						$this->db->query("ALTER TABLE " . $db_prefix . "pastes ALTER COLUMN title TYPE VARCHAR(50), ALTER COLUMN title SET NOT NULL");
+					}
+					else
+					{
+						$this->db->query("ALTER TABLE " . $db_prefix . "pastes CHANGE COLUMN title title VARCHAR(50) NOT NULL");
+					}
+				}
 			}
 		}
 	}
@@ -697,22 +721,22 @@ class Main extends CI_Controller
 	
 	function _valid_recaptcha() 
 	{
-
-		if ($this->recaptcha_privatekey == null || $this->recaptcha_privatekey == '') {
-			die ("To use reCAPTCHA you must get an API key from <a href='https://www.google.com/recaptcha/admin/create'>https://www.google.com/recaptcha/admin/create</a>");
+		
+		if ($this->recaptcha_privatekey == null || $this->recaptcha_privatekey == '') 
+		{
+			die("To use reCAPTCHA you must get an API key from <a href='https://www.google.com/recaptcha/admin/create'>https://www.google.com/recaptcha/admin/create</a>");
 		}
-
+		
 		if ($this->input->post('g-recaptcha-response')) 
 		{
 			$pk = $this->recaptcha_privatekey;
 			$ra = $_SERVER['REMOTE_ADDR'];
 			$rf = trim($this->input->post('g-recaptcha-response'));
-
-			$url="https://www.google.com/recaptcha/api/siteverify?secret=".$pk."&response;=".$rf."&remoteip;=".$ra;
-		  	$response = $this->curl->simple_get($url);
-			$status= json_decode($response, true);
-
-			if($status['success'])
+			$url = "https://www.google.com/recaptcha/api/siteverify?secret=" . $pk . "&response;=" . $rf . "&remoteip;=" . $ra;
+			$response = $this->curl->simple_get($url);
+			$status = json_decode($response, true);
+			
+			if ($status['success']) 
 			{
 				$recaptcha_response->is_valid = true;
 			}
