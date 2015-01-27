@@ -26,7 +26,7 @@
 
 class Pastes extends CI_Model
 {
-
+	
 	function __construct() 
 	{
 		parent::__construct();
@@ -297,7 +297,7 @@ class Pastes extends CI_Model
 						//diff
 						//yes, I'm aware, two times htmlspecialchars_decode(). Needs to be, since it's saved that way in the DB from the original stikked author ages ago ;)
 
-						include_once (APPPATH.'/libraries/finediff.php');
+						include_once (APPPATH . '/libraries/finediff.php');
 						$from_text = htmlspecialchars_decode(utf8_decode($row['raw']));
 						$to_text = htmlspecialchars_decode(utf8_decode($data['raw']));
 						$opcodes = FineDiff::getDiffOpcodes($from_text, $to_text, FineDiff::$wordGranularity);
@@ -468,11 +468,18 @@ class Pastes extends CI_Model
 			$total_rows = $query->num_rows();
 
 			// query
-			if($this->db->dbdriver == "postgre") {
+			
+			if ($this->db->dbdriver == "postgre") 
+			{
 				$sql = "SELECT id, title, name, created, pid, lang, raw FROM pastes WHERE private = 0 AND (title LIKE ? OR raw LIKE ?) ORDER BY created DESC LIMIT $amount OFFSET $page";
-			} else if ($root == 'api/recent'){
+			}
+			else 
+			if ($root == 'api/recent') 
+			{
 				$sql = "SELECT id, title, name, created, pid, lang, raw FROM pastes WHERE private = 0 AND (title LIKE ? OR raw LIKE ?) ORDER BY created DESC LIMIT 0,15";
-			} else {
+			}
+			else
+			{
 				$sql = "SELECT id, title, name, created, pid, lang, raw FROM pastes WHERE private = 0 AND (title LIKE ? OR raw LIKE ?) ORDER BY created DESC LIMIT $page,$amount";
 			}
 			$query = $this->db->query($sql, array(
@@ -489,11 +496,15 @@ class Pastes extends CI_Model
 			$total_rows = $query->num_rows();
 
 			// query
-			if($this->db->dbdriver == "postgre") {
+			
+			if ($this->db->dbdriver == "postgre") 
+			{
 				$sql = "SELECT id, title, name, created, pid, lang, raw FROM pastes WHERE private = 0 ORDER BY created DESC LIMIT $amount OFFSET $page";
-			} else {
+			}
+			else
+			{
 				$sql = "SELECT id, title, name, created, pid, lang, raw FROM pastes WHERE private = 0 ORDER BY created DESC LIMIT $page,$amount";
-			} 
+			}
 			$query = $this->db->query($sql);
 		}
 		
@@ -551,11 +562,18 @@ class Pastes extends CI_Model
 			$total_rows = $query->num_rows();
 
 			// query
-			if($this->db->dbdriver == "postgre") {
+			
+			if ($this->db->dbdriver == "postgre") 
+			{
 				$sql = "SELECT id, title, name, created, pid, lang, raw, hits FROM pastes WHERE private = 0 AND (title LIKE ? OR raw LIKE ?) ORDER BY hits DESC, created DESC LIMIT $amount OFFSET $page";
-			} else if ($root == "api/trending"){
+			}
+			else 
+			if ($root == "api/trending") 
+			{
 				$sql = "SELECT id, title, name, created, pid, lang, raw, hits FROM pastes WHERE private = 0 AND (title LIKE ? OR raw LIKE ?) ORDER BY hits DESC, created DESC LIMIT 0,15";
-			}else {
+			}
+			else
+			{
 				$sql = "SELECT id, title, name, created, pid, lang, raw, hits FROM pastes WHERE private = 0 AND (title LIKE ? OR raw LIKE ?) ORDER BY hits DESC, created DESC LIMIT $page,$amount";
 			}
 			$query = $this->db->query($sql, array(
@@ -572,9 +590,13 @@ class Pastes extends CI_Model
 			$total_rows = $query->num_rows();
 
 			// query
-			if($this->db->dbdriver == "postgre") {
+			
+			if ($this->db->dbdriver == "postgre") 
+			{
 				$sql = "SELECT id, title, name, created, pid, lang, raw, hits FROM pastes WHERE private = 0 ORDER BY hits DESC, created DESC LIMIT $amount OFFSET $page";
-			} else {
+			}
+			else
+			{
 				$sql = "SELECT id, title, name, created, pid, lang, raw, hits FROM pastes WHERE private = 0 ORDER BY hits DESC, created DESC LIMIT $page,$amount";
 			}
 			$query = $this->db->query($sql);
