@@ -10,6 +10,7 @@ $page_title .= $this->config->item('site_name');
 <html lang="en">
 	<head>
 		<meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<title><?php echo $page_title; ?></title>
 		<link rel="shortcut icon" href="<?php echo base_url() . 'favicon.ico'; ?>" />
 <?php
