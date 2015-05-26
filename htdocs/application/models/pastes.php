@@ -698,7 +698,7 @@ class Pastes extends CI_Model
 		{
 			$stamp = $row['expire'];
 			
-			if ($now > $stamp) 
+			if ($now > $stamp AND $stamp != 0) 
 			{
 				$this->delete_paste($row['pid']);
 			}
