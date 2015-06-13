@@ -273,7 +273,7 @@ h4 {
 }
 
 .form_wrapper button {
-	opacity; 1;
+	opacity: 1;
 	padding: 4px 12px;
 	border: 1px solid #fff;
 	color: #333;
