@@ -4,7 +4,7 @@
  * -------
  * Author: Victor Engmark <victor.engmark@gmail.com>
  * Copyright: (c) 2006 Victor Engmark (http://l0b0.net/)
- * Release Version: 1.0.8.11
+ * Release Version: 1.0.8.12
  * Date Started: 2006/10/26
  *
  * Oracle 9.2 PL/SQL language file for GeSHi.
@@ -252,5 +252,3 @@ $language_data = array (
     'SCRIPT_DELIMITERS' => array(),
     'HIGHLIGHT_STRICT_BLOCK' => array()
 );
-
-?>

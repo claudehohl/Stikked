@@ -4,7 +4,7 @@
  * -------
  * Author: George Pollard (porges@porg.es)
  * Copyright: (c) 2009 George Pollard
- * Release Version: 1.0.8.11
+ * Release Version: 1.0.8.12
  * Date Started: 2009/01/28
  *
  * Awk language file for GeSHi.
@@ -154,5 +154,3 @@ $language_data = array (
     'SCRIPT_DELIMITERS' => array (),
     'HIGHLIGHT_STRICT_BLOCK' => array()
 );
-
-?>

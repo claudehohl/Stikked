@@ -42,10 +42,12 @@ $route['default_controller'] = "main";
 $route['scaffolding_trigger'] = "";
 
 $route['cron/:any'] = "main/cron";
+$route['post_encrypted'] = "main/post_encrypted";
 
 $route['view/raw/:any'] = 'main/raw';
 $route['view/rss/:any'] = 'main/rss';
 $route['view/embed/:any'] = 'main/embed';
+$route['view/qr/:any'] = 'main/qr';
 $route['view/download/:any'] = 'main/download';
 $route['view/captcha'] = 'main/captcha';
 $route['view/:any'] = 'main/view';
@@ -65,11 +67,13 @@ $route['iphone/:num'] = 'iphone';
 $route['iphone/view/:any'] = 'iphone/view';
 
 $route['404_override'] = 'main/error_404';
+$route['robots.txt'] = 'main/robots_txt';
 
 $route['themes/:any/css/:any'] = 'theme_assets/css';
 $route['themes/:any/images/:any'] = 'theme_assets/images';
 $route['themes/:any/img/:any'] = 'theme_assets/images';
 $route['themes/:any/js/:any'] = 'theme_assets/js';
+$route['themes/:any/fonts/:any'] = 'theme_assets/fonts';
 
 /* End of file routes.php */
 /* Location: ./application/config/routes.php */

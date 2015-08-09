@@ -4,7 +4,7 @@
  * --------
  * Author: Markus Jarderot (mizardx at gmail dot com)
  * Copyright: (c) 2010 Markus Jarderot
- * Release Version: 1.0.8.11
+ * Release Version: 1.0.8.12
  * Date Started: 2010/05/20
  *
  * Go language file for GeSHi.
@@ -321,7 +321,7 @@ $language_data = array(
             ),
         'STRINGS' => array(
             0 => 'color: #0000ff;',
-            0 => 'color: #cc66cc;'
+            0 => 'color: #cc66cc;' // FIXME: Duplicate array key
             ),
         'NUMBERS' => array(
             0 => 'color: #cc66cc;'
@@ -371,5 +371,3 @@ $language_data = array(
             )
         )
 );
-
-?>

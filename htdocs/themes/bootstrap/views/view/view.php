@@ -19,10 +19,12 @@ if(isset($insert)){
 				<h1 class="pagetitle right"><?php echo $title; ?></h1>
 			</div>
 			<div class="row">
-				<div class="span12">
-					<div class="detail by"><?php echo lang('paste_from'); ?> <?php echo $name; ?>, <?php $p = explode(',', timespan($created, time())); echo $p[0]?> <?php echo lang('paste_ago'); ?>, <?php echo lang('paste_writtenin'); ?> <?php echo $lang; ?>.</div>
+				<div class="span12 meta">
+					<div class="detail by"><?php echo lang('paste_from'); ?> <?php echo $name; ?>, <?php $p = explode(',', timespan($created, time())); echo sprintf($this->lang->line('paste_ago'),$p[0]); ?>, <?php echo lang('paste_writtenin'); ?> <?php echo $lang; ?>.</div>
 					<?php if(isset($inreply)){?><div class="detail by"><?php echo lang('paste_isareply'); ?> <a href="<?php echo $inreply['url']?>"><?php echo $inreply['title']; ?></a> <?php echo strtolower(lang('paste_from')); ?> <?php echo $inreply['name']; ?>
-
+				<div class="qr">
+				<img src="<?php echo site_url('view/qr/' . $pid ); ?>">
+				</div>
 <?php if($seg3 != 'diff'){ ?>
             - <a href="<?php echo $url . '/diff'; ?>"><?php echo lang('paste_viewdiff'); ?></a>
 <?php }else{ ?>
@@ -42,7 +44,8 @@ if(isset($insert)){
 <?php }else{ ?>
                     <?php echo lang('paste_viewdiffs'); ?> <a href="<?php echo $inreply['url']?>"><?php echo $inreply['title']; ?></a> <?php echo lang('paste_and'); ?> <a href="<?php echo $url; ?>"><?php echo $title; ?></a>
 <?php } ?>
-				</div>
+						
+				</div>			
 			</div>
 		</div>
 	</div>
@@ -55,7 +58,7 @@ if(isset($insert)){
 		</div>
 	</div>
 </section>
-<section>
+<section class="replies">
 <?php
 
 function checkNum($num){
@@ -92,13 +95,13 @@ if(isset($replies) and !empty($replies)){
 			<td><?php echo $reply['name']; ?></td>
 			<td><?php echo $reply['lang']; ?></td>
 			<td class="hidden"><?php echo $reply['created']; ?></td>
-			<td><?php $p = explode(",", timespan($reply['created'], time())); echo $p[0];?> <?php echo lang('paste_ago'); ?>.</td>
+			<td><?php $p = explode(",", timespan($reply['created'], time()));
+			echo sprintf($this->lang->line('paste_ago'),$p[0]); ?>.</td>
 		</tr>
 
 	<?php }?>
 	</tbody>
 	</table>
-</section>
 <?php echo $pages;
 }
 
@@ -106,5 +109,6 @@ if(isset($replies) and !empty($replies)){
 	$reply_form['page']['instructions'] = lang('paste_replyto_desc');
 	$this->load->view('defaults/paste_form', $reply_form); ?>
 
+</section>
 
 <?php $this->load->view('view/view_footer'); ?>

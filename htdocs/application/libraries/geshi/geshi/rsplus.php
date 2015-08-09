@@ -7,7 +7,7 @@
  *  - Benilton Carvalho (beniltoncarvalho@gmail.com)
  *  - Fernando Henrique Ferraz Pereira da Rosa (mentus@gmail.com)
  * Copyright: (c) 2009 Ron Fredericks (http://www.LectureMaker.com)
- * Release Version: 1.0.8.11
+ * Release Version: 1.0.8.12
  * Date Started: 2009/03/28
  *
  * R language file for GeSHi.
@@ -479,5 +479,3 @@ $language_data = array (
             )
         )
 );
-
-?>

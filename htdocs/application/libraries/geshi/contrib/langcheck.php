@@ -8,7 +8,7 @@
  * CLI mode is supported
  *
  * @author  Benny Baumann
- * @version $Id: langcheck.php 2510 2012-06-27 15:57:55Z reedy_boy $
+ * @version $Id$
  */
 header('Content-Type: text/html; charset=utf-8');
 
@@ -53,7 +53,7 @@ define ('TYPE_OK', 3);
 $error_abort = false;
 $error_cache = array();
 function output_error_cache(){
-    global $error_cache, $error_abort;
+    global $error_cache;
 
     if(count($error_cache)) {
         echo colorize(TYPE_ERROR, "Failed");
@@ -300,8 +300,17 @@ if(!$error_abort) {
             if(preg_match("/\?>(?:\r?\n|\r(?!\n)){2,}\Z/", $langfile_content)) {
                 report_error(TYPE_ERROR, 'Language file contains trailing empty lines at EOF!');
             }
-            if(!preg_match("/\?>(?:\r?\n|\r(?!\n))?\Z/", $langfile_content)) {
-                report_error(TYPE_ERROR, 'Language file contains no PHP end marker at EOF!');
+            if(preg_match("/\?>(?:\r?\n|\r(?!\n))?\Z/", $langfile_content)) {
+                report_error(TYPE_ERROR, 'Language file contains an PHP end marker at EOF!');
+            }
+            if(!preg_match("/(?:\r?\n|\r(?!\n))\Z/", $langfile_content)) {
+                report_error(TYPE_ERROR, 'Language file contains no newline at EOF!');
+            }
+            if(preg_match("/(\r?\n|\r(?!\n))\\1\Z/", $langfile_content)) {
+                report_error(TYPE_ERROR, 'Language file contains trailing empty line before EOF!');
+            }
+            if(preg_match("/[\x20\t]$/m", $langfile_content)) {
+                report_error(TYPE_ERROR, 'Language file contains trailing whitespace at EOL!');
             }
             if(preg_match("/\t/", $langfile_content)) {
                 report_error(TYPE_NOTICE, 'Language file contains unescaped tabulator chars (probably for indentation)!');
@@ -754,7 +763,7 @@ if ( PHP_SAPI != 'cli' ) {
 ?></li>
 </ol>
 
-<p>Validation process completed in <? printf("%.2f", $time_diff); ?> seconds.</p>
+<p>Validation process completed in <?php printf("%.2f", $time_diff); ?> seconds.</p>
 
 <div id="footer">GeSHi &copy; 2004-2007 Nigel McNie, 2007-2008 Benny Baumann, released under the GNU GPL</div>
 </body>
@@ -762,8 +771,8 @@ if ( PHP_SAPI != 'cli' ) {
 
 <?php } else { ?>
 
-Validation process completed in <? printf("%.2f", $time_diff); ?> seconds.
+Validation process completed in <?php printf("%.2f", $time_diff); ?> seconds.
 
-GeSHi &copy; 2004-2007 Nigel McNie, 2007-2012 Benny Baumann, released under the GNU GPL
+GeSHi &copy; 2004-2007 Nigel McNie, 2007-2014 Benny Baumann, released under the GNU GPL
 
 <?php } ?>

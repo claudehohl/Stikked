@@ -1,6 +1,9 @@
 <?php $this->load->view('defaults/header');?>
 	<div class="page-header">
 		<h1><?php echo lang('paste_trending'); ?></h1>
+
+<?php $this->load->view('view/search');?>
+
 	</div>
 
 		<?php
@@ -25,7 +28,8 @@
 			<td><?php echo $paste['lang']; ?></td>
 			<td class="hidden"><?php echo $paste['created']; ?></td>
 			<td><?php echo number_format($paste['hits'], 0, '.', "'"); ?></td>
-			<td><?php $p = explode(",", timespan($paste['created'], time())); echo $p[0]; ?> <?php echo lang('paste_ago'); ?>.</td>
+			<td><?php $p = explode(",", timespan($paste['created'], time()));
+			echo sprintf($this->lang->line('paste_ago'),$p[0]); ?>.</td>
 		</tr>
 
 		<?php }?>

@@ -7,7 +7,7 @@
  *  - Sandra Rossi (sandra.rossi@gmail.com)
  *  - Jacob Laursen (jlu@kmd.dk)
  * Copyright: (c) 2007 Andres Picazo
- * Release Version: 1.0.8.11
+ * Release Version: 1.0.8.12
  * Date Started: 2004/06/04
  *
  * ABAP language file for GeSHi.
@@ -1405,5 +1405,3 @@ $language_data = array(
         ),
     'TAB_WIDTH' => 4
 );
-
-?>

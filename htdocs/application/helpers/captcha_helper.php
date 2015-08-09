@@ -286,7 +286,7 @@ if (!function_exists('display_captcha'))
 			'word' => $word,
 			'img_path' => '',
 			'img_url' => '',
-			'img_width' => '110',
+			'img_width' => '180',
 			'img_height' => '40',
 			'font_path' => '',
 			'expiration' => 7200

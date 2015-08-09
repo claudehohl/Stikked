@@ -4,13 +4,16 @@
  * ----------
  * Author: Benny Baumann (BenBE@geshi.org)
  * Copyright: (c) 2008 Benny Baumann (http://qbnz.com/highlighter/)
- * Release Version: 1.0.8.11
+ * Release Version: 1.0.8.12
  * Date Started: 2009/10/31
  *
  * LOLcode language file for GeSHi.
  *
  * CHANGES
  * -------
+ * 2014/2/25
+ *   -  Fixed to not throw missing index exception.
+ *
  * 2008/10/31 (1.0.8.1)
  *   -  First Release
  *
@@ -36,10 +39,11 @@
  *   Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  *
  ************************************************************************************/
-$language_data = array (
+
+$language_data = array(
     'LANG_NAME' => 'LOLcode',
-    'COMMENT_SINGLE' => array(),
-    'COMMENT_MULTI' => array(),
+    'COMMENT_SINGLE' => array('BTW'),
+    'COMMENT_MULTI' => array('BTW','WTB'),
     'COMMENT_REGEXP' => array(
         1 => "/\bBTW\b.*$/im",
         2 => "/(^|\b)(?:OBTW\b.+?\bTLDR|LOL\b.+?\/LOL)(\b|$)/si"
@@ -102,6 +106,7 @@ $language_data = array (
             4 => 'color: #800000;'
             ),
         'COMMENTS' => array(
+            0 => 'color: #666666; style: italic;',
             1 => 'color: #666666; style: italic;',
             2 => 'color: #666666; style: italic;'
             ),
@@ -112,15 +117,19 @@ $language_data = array (
             0 => 'color: #ff0000;'
             ),
         'NUMBERS' => array(
+            0 => 'color: #00F;'
             ),
         'METHODS' => array(
+            0 => 'color: #0F0;'
             ),
         'SYMBOLS' => array(
             0 => 'color: #66cc66;'
             ),
         'ESCAPE_CHAR' => array(
+            0 => 'color: #00F;'
             ),
         'SCRIPT' => array(
+            0 => 'color: #00F;'
             ),
         'REGEXPS' => array(
             )
@@ -148,5 +157,3 @@ $language_data = array (
         ),
     'TAB_WIDTH' => 4
 );
-
-?>

@@ -6,7 +6,7 @@
  * Contributors:
  *  - Jürgen Thomas (Juergen.Thomas@vs-polis.de)
  * Copyright: (c) 2004 Nigel McNie (http://qbnz.com/highlighter)
- * Release Version: 1.0.8.11
+ * Release Version: 1.0.8.12
  * Date Started: 2004/06/04
  *
  * SQL language file for GeSHi.
@@ -159,7 +159,10 @@ $language_data = array (
     'SCRIPT_DELIMITERS' => array(
         ),
     'HIGHLIGHT_STRICT_BLOCK' => array(
+        ),
+    'PARSER_CONTROL' => array(
+        'KEYWORDS' => array( //'
+            'DISALLOWED_BEFORE' => "(?<![a-zA-Z0-9\$_\.\|\#|^&])"
+            )
         )
 );
-
-?>

@@ -4,7 +4,7 @@
  * --------
  * Author: Andreas Gohr (andi@splitbrain.org)
  * Copyright: (c) 2004 Andreas Gohr, Nigel McNie (http://qbnz.com/highlighter)
- * Release Version: 1.0.8.11
+ * Release Version: 1.0.8.12
  * Date Started: 2004/08/20
  *
  * BASH language file for GeSHi.
@@ -132,7 +132,16 @@ $language_data = array (
             'apt-src remove', 'apt-src update', 'apt-src upgrade',
             'apt-src version',
 
-            'basename', 'bash', 'bc', 'bison', 'bunzip2', 'bzcat',
+            'aptitude autoclean', 'aptitude build-dep', 'aptitude changelog',
+            'aptitude clean', 'aptitude download', 'aptitude forbid-version',
+            'aptitude forget-new', 'aptitude full-upgrade', 'aptitude hold',
+            'aptitude install', 'aptitude markauto', 'aptitude purge',
+            'aptitude reinstall', 'aptitude remove', 'aptitude safe-upgrade',
+            'aptitude search', 'aptitude show', 'aptitude unhold',
+            'aptitude unmarkauto', 'aptitude update', 'aptitude versions',
+            'aptitude why', 'aptitude why-not',
+
+            'basename', 'bash', 'batctl', 'bc', 'bison', 'bunzip2', 'bzcat',
             'bzcmp', 'bzdiff', 'bzegrep', 'bzfgrep', 'bzgrep',
             'bzip2', 'bzip2recover', 'bzless', 'bzmore',
 
@@ -160,7 +169,7 @@ $language_data = array (
             'false', 'fbset', 'fdisk', 'ffmpeg', 'fgconsole','fgrep', 'file',
             'find', 'flex', 'flex++', 'fmt', 'free', 'ftp', 'funzip', 'fuser',
 
-            'g++', 'gawk', 'gc','gcc', 'gdb', 'getent', 'getkeycodes',
+            'g++', 'gawk', 'gc','gcc', 'gdb', 'gdisk', 'getent', 'getkeycodes',
             'getopt', 'gettext', 'gettextize', 'gimp', 'gimp-remote',
             'gimptool', 'gmake', 'gocr', 'grep', 'groups', 'gs', 'gunzip',
             'gzexe', 'gzip',
@@ -176,7 +185,7 @@ $language_data = array (
             'git difftool--helper', 'git diff-tree', 'git fast-export',
             'git fast-import', 'git fetch', 'git fetch-pack',
             'git filter-branch', 'git fmt-merge-msg', 'git for-each-ref',
-            'git format-patch', 'git fsck', 'git fsck-objects', 'git gc',
+            'git format-patch', 'git fsck', 'git fsck-objects', 'git gc', 'git gui',
             'git get-tar-commit-id', 'git grep', 'git hash-object', 'git help',
             'git http-backend', 'git http-fetch', 'git http-push',
             'git imap-send', 'git index-pack', 'git init', 'git init-db',
@@ -247,14 +256,14 @@ $language_data = array (
             'git-web--browse', 'git-whatchanged', 'gitwhich', 'gitwipe',
             'git-write-tree', 'gitxgrep',
 
-            'head', 'hexdump', 'hostname',
+            'head', 'hexdump', 'hostname', 'htop',
 
             'id', 'ifconfig', 'ifdown', 'ifup', 'igawk', 'install',
 
             'ip', 'ip addr', 'ip addrlabel', 'ip link', 'ip maddr', 'ip mroute',
             'ip neigh', 'ip route', 'ip rule', 'ip tunnel', 'ip xfrm',
 
-            'join',
+            'jar', 'java', 'javac', 'join',
 
             'kbd_mode','kbdrate', 'kdialog', 'kfile', 'kill', 'killall',
 
@@ -271,10 +280,11 @@ $language_data = array (
 
             'od', 'openvt',
 
-            'passwd', 'patch', 'pcregrep', 'pcretest', 'perl', 'perror',
-            'pgawk', 'pidof', 'ping', 'pr', 'procmail', 'prune', 'ps', 'pstree',
-            'ps2ascii', 'ps2epsi', 'ps2frag', 'ps2pdf', 'ps2ps', 'psbook',
-            'psmerge', 'psnup', 'psresize', 'psselect', 'pstops',
+            'passwd', 'patch', 'pbzip2', 'pcregrep', 'pcretest', 'perl',
+            'perror', 'pgawk', 'pidof', 'pigz', 'ping', 'pr', 'procmail',
+            'prune', 'ps', 'pstree', 'ps2ascii', 'ps2epsi', 'ps2frag',
+            'ps2pdf', 'ps2ps', 'psbook', 'psmerge', 'psnup', 'psresize',
+            'psselect', 'pstops',
 
             'rbash', 'rcs', 'rcs2log', 'read', 'readlink', 'red', 'resizecons',
             'rev', 'rm', 'rmdir', 'rsh', 'run-parts',
@@ -283,7 +293,7 @@ $language_data = array (
             'setkeycodes', 'setleds', 'setmetamode', 'setserial', 'setterm',
             'sh', 'showkey', 'shred', 'size', 'size86', 'skill', 'sleep',
             'slogin', 'snice', 'sort', 'sox', 'split', 'ssed', 'ssh', 'ssh-add',
-            'ssh-agent', 'ssh-keygen', 'ssh-keyscan', 'stat', 'strace',
+            'ssh-agent', 'ssh-keygen', 'ssh-keyscan', 'sshfs', 'stat', 'strace',
             'strings', 'strip', 'stty', 'su', 'sudo', 'suidperl', 'sum', 'svn',
             'svnadmin', 'svndumpfilter', 'svnlook', 'svnmerge', 'svnmucc',
             'svnserve', 'svnshell', 'svnsync', 'svnversion', 'svnwrap', 'sync',
@@ -291,16 +301,40 @@ $language_data = array (
             'svn add', 'svn ann', 'svn annotate', 'svn blame', 'svn cat',
             'svn changelist', 'svn checkout', 'svn ci', 'svn cl', 'svn cleanup',
             'svn co', 'svn commit', 'svn copy', 'svn cp', 'svn del',
-            'svn delete', 'svn di', 'svn diff', 'svn export', 'svn h',
-            'svn help', 'svn import', 'svn info', 'svn list', 'svn lock',
-            'svn log', 'svn ls', 'svn merge', 'svn mergeinfo', 'svn mkdir',
-            'svn move', 'svn mv', 'svn pd', 'svn pdel', 'svn pe', 'svn pedit',
+            'svn delete', 'svn di', 'svn diff', 'svn export', 'svn help',
+            'svn import', 'svn info', 'svn list', 'svn lock', 'svn log',
+            'svn ls', 'svn merge', 'svn mergeinfo', 'svn mkdir', 'svn move',
+            'svn mv', 'svn patch', 'svn pd', 'svn pdel', 'svn pe', 'svn pedit',
             'svn pg', 'svn pget', 'svn pl', 'svn plist', 'svn praise',
             'svn propdel', 'svn propedit', 'svn propget', 'svn proplist',
-            'svn propset', 'svn ps', 'svn pset', 'svn remove', 'svn ren',
+            'svn propset', 'svn ps', 'svn pset', 'svn relocate', 'svn remove',
             'svn rename', 'svn resolve', 'svn resolved', 'svn revert', 'svn rm',
             'svn st', 'svn stat', 'svn status', 'svn sw', 'svn switch',
-            'svn unlock', 'svn up', 'svn update',
+            'svn unlock', 'svn up', 'svn update', 'svn upgrade',
+
+            'svnadmin crashtest', 'svnadmin create', 'svnadmin deltify',
+            'svnadmin dump', 'svnadmin help', 'svnadmin hotcopy',
+            'svnadmin list-dblogs', 'svnadmin list-unused-dblogs',
+            'svnadmin load', 'svnadmin lslocks', 'svnadmin lstxns',
+            'svnadmin pack', 'svnadmin recover', 'svnadmin rmlocks',
+            'svnadmin rmtxns', 'svnadmin setlog', 'svnadmin setrevprop',
+            'svnadmin setuuid', 'svnadmin upgrade', 'svnadmin verify',
+
+            'svndumpfilter exclude', 'svndumpfilter help',
+            'svndumpfilter include',
+
+            'svnlook author', 'svnlook cat', 'svnlook changed', 'svnlook date',
+            'svnlook diff', 'svnlook dirs-changed', 'svnlook filesize',
+            'svnlook help', 'svnlook history', 'svnlook info', 'svnlook lock',
+            'svnlook log', 'svnlook pg', 'svnlook pget', 'svnlook pl',
+            'svnlook plist', 'svnlook propget', 'svnlook proplist',
+            'svnlook tree', 'svnlook uuid', 'svnlook youngest',
+
+            'svnrdump dump', 'svnrdump help', 'svnrdump load',
+
+            'svnsync copy-revprops', 'svnsync help', 'svnsync info',
+            'svnsync init', 'svnsync initialize', 'svnsync sync',
+            'svnsync synchronize',
 
             'tac', 'tail', 'tar', 'tee', 'tempfile', 'touch', 'tr', 'tree',
             'true',
@@ -436,5 +470,3 @@ $language_data = array (
             )
         )
 );
-
-?>

@@ -5,9 +5,11 @@
  * - __construct()
  * - _form_prep()
  * - index()
+ * - post_encrypted()
  * - raw()
  * - rss()
  * - embed()
+ * - qr()
  * - download()
  * - lists()
  * - trends()
@@ -19,11 +21,14 @@
  * - _valid_captcha()
  * - _valid_recaptcha()
  * - _valid_ip()
+ * - _valid_ipv4()
+ * - _valid_ipv6()
  * - _blockwords_check()
  * - _autofill_check()
  * - _valid_authentication()
  * - get_cm_js()
  * - error_404()
+ * - robots_txt()
  * Classes list:
  * - Main extends CI_Controller
  */
@@ -34,7 +39,9 @@ class Main extends CI_Controller
 	function __construct() 
 	{
 		parent::__construct();
+		$this->output->enable_profiler(false);
 		$this->load->model('languages');
+		$this->load->library('curl');
 		
 		if (config_item('require_auth')) 
 		{
@@ -44,6 +51,7 @@ class Main extends CI_Controller
 		//recaptcha
 		$this->recaptcha_publickey = config_item('recaptcha_publickey');
 		$this->recaptcha_privatekey = config_item('recaptcha_privatekey');
+		$this->use_recaptcha = false;
 		
 		if ($this->recaptcha_publickey != '' && $this->recaptcha_privatekey != '') 
 		{
@@ -143,7 +151,7 @@ class Main extends CI_Controller
 				) ,
 				'ip_address' => array(
 					'type' => 'VARCHAR',
-					'constraint' => 16,
+					'constraint' => 45,
 					'null' => TRUE,
 				) ,
 				'hits' => array(
@@ -175,7 +183,7 @@ class Main extends CI_Controller
 			$fields = array(
 				'ip_address' => array(
 					'type' => 'VARCHAR',
-					'constraint' => 16,
+					'constraint' => 45,
 					'default' => 0,
 				) ,
 				'blocked_at' => array(
@@ -203,7 +211,7 @@ class Main extends CI_Controller
 				) ,
 				'ip_address' => array(
 					'type' => 'VARCHAR',
-					'constraint' => 16,
+					'constraint' => 45,
 					'default' => 0,
 				) ,
 				'created' => array(
@@ -224,7 +232,7 @@ class Main extends CI_Controller
 			$fields = array(
 				'ip_address' => array(
 					'type' => 'VARCHAR',
-					'constraint' => 16,
+					'constraint' => 45,
 					'null' => TRUE,
 				) ,
 			);
@@ -249,6 +257,53 @@ class Main extends CI_Controller
 			$this->dbforge->add_key('hits');
 			$this->dbforge->add_key('hits_updated');
 			$this->dbforge->add_column('pastes', $fields);
+		}
+
+		//ipv6 migration
+		$fields = $this->db->field_data('trending');
+		
+		if ($fields[1]->max_length < 45) 
+		{
+			$db_prefix = config_item('db_prefix');
+			
+			if ($this->db->dbdriver == "postgre") 
+			{
+				$this->db->query("ALTER TABLE " . $db_prefix . "trending ALTER COLUMN ip_address TYPE VARCHAR(45), ALTER COLUMN ip_address SET NOT NULL, ALTER COLUMN ip_address SET DEFAULT '0'");
+				$this->db->query("ALTER TABLE " . $db_prefix . "pastes ALTER COLUMN ip_address TYPE VARCHAR(45), ALTER COLUMN ip_address SET NOT NULL, ALTER COLUMN ip_address SET DEFAULT '0'");
+				$this->db->query("ALTER TABLE " . $db_prefix . "blocked_ips ALTER COLUMN ip_address TYPE VARCHAR(45), ALTER COLUMN ip_address SET NOT NULL, ALTER COLUMN ip_address SET DEFAULT '0'");
+				$this->db->query("ALTER TABLE " . $db_prefix . "ci_sessions ALTER COLUMN ip_address TYPE VARCHAR(45), ALTER COLUMN ip_address SET NOT NULL, ALTER COLUMN ip_address SET DEFAULT '0'");
+			}
+			else
+			{
+				$this->db->query("ALTER TABLE " . $db_prefix . "trending CHANGE COLUMN ip_address ip_address VARCHAR(45) NOT NULL DEFAULT '0'");
+				$this->db->query("ALTER TABLE " . $db_prefix . "pastes CHANGE COLUMN ip_address ip_address VARCHAR(45) NOT NULL DEFAULT '0'");
+				$this->db->query("ALTER TABLE " . $db_prefix . "blocked_ips CHANGE COLUMN ip_address ip_address VARCHAR(45) NOT NULL DEFAULT '0'");
+				$this->db->query("ALTER TABLE " . $db_prefix . "ci_sessions CHANGE COLUMN ip_address ip_address VARCHAR(45) NOT NULL DEFAULT '0'");
+			}
+		}
+
+		//expand title to 50
+		$fields = $this->db->field_data('pastes');
+		foreach ($fields as $field) 
+		{
+			
+			if ($field->name == 'title') 
+			{
+				
+				if ($field->max_length < 50) 
+				{
+					$db_prefix = config_item('db_prefix');
+					
+					if ($this->db->dbdriver == "postgre") 
+					{
+						$this->db->query("ALTER TABLE " . $db_prefix . "pastes ALTER COLUMN title TYPE VARCHAR(50), ALTER COLUMN title SET NOT NULL");
+					}
+					else
+					{
+						$this->db->query("ALTER TABLE " . $db_prefix . "pastes CHANGE COLUMN title title VARCHAR(50) NOT NULL");
+					}
+				}
+			}
 		}
 	}
 	
@@ -286,6 +341,12 @@ class Main extends CI_Controller
 			{
 				$default_expiration = config_item('default_expiration');
 				$this->db_session->set_userdata('expire', $default_expiration);
+			}
+			
+			if (!$this->db_session->userdata('snipurl')) 
+			{
+				$shorturl_selected = config_item('shorturl_selected');
+				$this->db_session->set_userdata('snipurl', $shorturl_selected);
 			}
 			
 			if ($this->db_session->flashdata('settings_changed')) 
@@ -387,6 +448,11 @@ class Main extends CI_Controller
 					$_POST['private'] = 1;
 				}
 				
+				if (config_item('disable_shorturl')) 
+				{
+					$_POST['snipurl'] = 0;
+				}
+				
 				if ($this->input->post('reply') == false) 
 				{
 					$user_data = array(
@@ -401,6 +467,15 @@ class Main extends CI_Controller
 				redirect($this->pastes->createPaste());
 			}
 		}
+	}
+	
+	function post_encrypted() 
+	{
+		$this->load->model('pastes');
+		$_POST['private'] = 1;
+		$_POST['snipurl'] = 0;
+		$ret_url = $this->pastes->createPaste();
+		echo $ret_url;
 	}
 	
 	function raw() 
@@ -458,6 +533,13 @@ class Main extends CI_Controller
 		}
 	}
 	
+	function qr() 
+	{
+		$this->load->model('pastes');
+		$data = $this->pastes->getPaste(3);
+		$this->load->view('view/qr', $data);
+	}
+	
 	function download() 
 	{
 		$this->_valid_authentication();
@@ -486,11 +568,11 @@ class Main extends CI_Controller
 		else
 		{
 			$this->load->model('pastes');
-			$data = $this->pastes->getLists();
 			
 			if ($this->uri->segment(2) == 'rss') 
 			{
 				$this->load->helper('text');
+				$data = $this->pastes->getLists('lists/', 3);
 				$data['page_title'] = config_item('site_name');
 				$data['feed_url'] = site_url('lists/rss');
 				$data['replies'] = $data['pastes'];
@@ -499,6 +581,7 @@ class Main extends CI_Controller
 			}
 			else
 			{
+				$data = $this->pastes->getLists('lists/', 2);
 				$this->load->view('list', $data);
 			}
 		}
@@ -536,6 +619,11 @@ class Main extends CI_Controller
 			}
 			$data = $this->pastes->getPaste(2, true, $this->uri->segment(3) == 'diff');
 			$data['reply_form'] = $this->_form_prep($data['lang_code'], 'Re: ' . $data['title'], $data['raw'], $data['pid']);
+			
+			if ($data['private'] == 1) 
+			{
+				$data['reply_form']['use_recaptcha'] = 0;
+			}
 			$this->load->view('view/view', $data);
 		}
 		else
@@ -572,7 +660,7 @@ class Main extends CI_Controller
 		//get "word"
 		$pool = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ@';
 		$str = '';
-		for ($i = 0;$i < 4;$i++) 
+		for ($i = 0;$i < 8;$i++) 
 		{
 			$str.= substr($pool, mt_rand(0, strlen($pool) - 1) , 1);
 		}
@@ -599,17 +687,35 @@ class Main extends CI_Controller
 	function _valid_captcha($text) 
 	{
 		
-		if (config_item('enable_captcha')) 
+		if (config_item('enable_captcha') && $this->db_session->userdata('is_human') === false) 
 		{
 			$this->form_validation->set_message('_valid_captcha', lang('captcha'));
 			
 			if ($this->use_recaptcha) 
 			{
-				return $this->_valid_recaptcha();
+				
+				if ($this->_valid_recaptcha()) 
+				{
+					$this->db_session->set_userdata('is_human', true);
+					return true;
+				}
+				else
+				{
+					return false;
+				}
 			}
 			else
 			{
-				return strtolower($text) == strtolower($this->db_session->userdata('captcha'));
+				
+				if (strtolower($text) == strtolower($this->db_session->userdata('captcha'))) 
+				{
+					$this->db_session->set_userdata('is_human', true);
+					return true;
+				}
+				else
+				{
+					return false;
+				}
 			}
 		}
 		else
@@ -621,16 +727,29 @@ class Main extends CI_Controller
 	function _valid_recaptcha() 
 	{
 		
-		if ($this->input->post('recaptcha_response_field')) 
+		if ($this->recaptcha_privatekey == null || $this->recaptcha_privatekey == '') 
+		{
+			die("To use reCAPTCHA you must get an API key from <a href='https://www.google.com/recaptcha/admin/create'>https://www.google.com/recaptcha/admin/create</a>");
+		}
+		
+		if ($this->input->post('g-recaptcha-response')) 
 		{
 			$pk = $this->recaptcha_privatekey;
 			$ra = $_SERVER['REMOTE_ADDR'];
-			$cf = $this->input->post('recaptcha_challenge_field');
-			$rf = $this->input->post('recaptcha_response_field');
-
-			//check
-			$resp = recaptcha_check_answer($pk, $ra, $cf, $rf);
-			return $resp->is_valid;
+			$rf = trim($this->input->post('g-recaptcha-response'));
+			$url = "https://www.google.com/recaptcha/api/siteverify?secret=" . $pk . "&response;=" . $rf . "&remoteip;=" . $ra;
+			$response = $this->curl->simple_get($url);
+			$status = json_decode($response, true);
+			
+			if ($status['success']) 
+			{
+				$recaptcha_response->is_valid = true;
+			}
+			else
+			{
+				$recaptcha_response->is_valid = false;
+			}
+			return $recaptcha_response;
 		}
 		else
 		{
@@ -643,6 +762,21 @@ class Main extends CI_Controller
 
 		//get ip
 		$ip_address = $this->input->ip_address();
+		
+		if (stristr($ip_address, ':')) 
+		{
+			return $this->_valid_ipv6($ip_address);
+		}
+		else
+		{
+			return $this->_valid_ipv4($ip_address);
+		}
+	}
+	
+	function _valid_ipv4($ip_address) 
+	{
+
+		//get ip range
 		$ip = explode('.', $ip_address);
 		$ip_firstpart = $ip[0] . '.' . $ip[1] . '.';
 
@@ -652,6 +786,39 @@ class Main extends CI_Controller
 		//lookup
 		$this->db->select('ip_address, spam_attempts');
 		$this->db->like('ip_address', $ip_firstpart, 'after');
+		$query = $this->db->get('blocked_ips');
+
+		//check
+		
+		if ($query->num_rows() > 0) 
+		{
+
+			//update spamcount
+			$blocked_ips = $query->result_array();
+			$spam_attempts = $blocked_ips[0]['spam_attempts'];
+			$this->db->where('ip_address', $ip_address);
+			$this->db->update('blocked_ips', array(
+				'spam_attempts' => $spam_attempts + 1,
+			));
+
+			//return for the validation
+			return false;
+		}
+		else
+		{
+			return true;
+		}
+	}
+	
+	function _valid_ipv6($ip_address) 
+	{
+
+		//setup message
+		$this->form_validation->set_message('_valid_ip', lang('not_allowed'));
+
+		//lookup
+		$this->db->select('ip_address, spam_attempts');
+		$this->db->where('ip_address', $ip_address);
 		$query = $this->db->get('blocked_ips');
 
 		//check
@@ -758,5 +925,19 @@ class Main extends CI_Controller
 	function error_404() 
 	{
 		show_404();
+	}
+	
+	function robots_txt() 
+	{
+		
+		if (config_item('disallow_search_engines')) 
+		{
+			header('Content-Type: text/plain; charset=utf-8');
+			$this->load->view('robots_txt');
+		}
+		else
+		{
+			echo '';
+		}
 	}
 }

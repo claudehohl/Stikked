@@ -30,7 +30,7 @@
 						<?php echo lang('paste_title'); ?>
 					</label>
 					
-					<input value="<?php if(isset($title_set)){ echo $title_set; }?>" class="span3" type="text" id="title" name="title" tabindex="2" maxlength="32" />
+					<input value="<?php if(isset($title_set)){ echo $title_set; }?>" class="span3" type="text" id="title" name="title" tabindex="2" maxlength="50" />
 				</div>
 		
 				<div class="span3">
@@ -61,9 +61,13 @@
 							<label class="checkbox">
 								<?php
 									$set = array('name' => 'snipurl', 'id' => 'snipurl', 'value' => '1', 'tabindex' => '5', 'checked' => $snipurl_set);
+									if ($this->config->item('disable_shorturl')){
+										$set['checked'] = 0;
+										$set['disabled'] = 'disabled';
+									}
 									echo form_checkbox($set);
 								?>
-								<?php echo lang('paste_shorturl') . ' - ' . lang('paste_shorturl_desc'); ?>
+								<?php echo lang('paste_create_shorturl') . ' - ' . lang('paste_shorturl_desc'); ?>
 							</label>
 						</div>
 					</div>
@@ -107,7 +111,7 @@
 			<input type="hidden" value="<?php echo $reply; ?>" name="reply" />
 		<?php } ?>
 		
-		<?php if($this->config->item('enable_captcha')){ ?>
+        <?php if($this->config->item('enable_captcha') && $this->db_session->userdata('is_human') === false){ ?>
 			<div class="item_group">
 				<div class="item item_captcha">
 					<label for="captcha"><?php echo lang('paste_spam'); ?>
@@ -116,7 +120,7 @@
                     <?php if($use_recaptcha){
                         echo recaptcha_get_html($recaptcha_publickey);
                     } else { ?>
-                        <img class="captcha" src="<?php echo site_url('view/captcha'); ?>?<?php echo date('U', mktime()); ?>" alt="captcha" width="110" height="40" />
+                        <img class="captcha" src="<?php echo site_url('view/captcha'); ?>?<?php echo date('U', mktime()); ?>" alt="captcha" width="180" height="40" />
                         <input value="" type="text" id="captcha" name="captcha" tabindex="2" maxlength="32" />
                     <?php } ?>
 				</div>

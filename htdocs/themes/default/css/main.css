@@ -25,6 +25,7 @@ em, i {
 
 .container {
 	padding: 10px;
+    position: relative;
 }
 
 h1, h2, h3 ,h4 {
@@ -106,6 +107,12 @@ h4 {
 	border: 3px solid #D6DBE4;
 }
 
+.searchgroup {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+}
+
 /* !Forms */
 .form_wrapper {
 	width: 854px;
@@ -134,7 +141,7 @@ h4 {
 
 .form_wrapper .item_group .item_captcha {
 	width: 450px;
-    margin-bottom: -10px;
+    margin-bottom: 25px;
 }
 
 .form_wrapper .item_group .captcha {
@@ -146,6 +153,7 @@ h4 {
 #captcha {
     position: relative;
     left: 140px;
+    width: 174px;
 }
 
 .form_wrapper .item_group .item input, .form_wrapper .item_group .item select {
@@ -241,7 +249,6 @@ h4 {
 }
 
 .form_wrapper button {
-	clear: both;
 	float: left;
 	margin-left: 150px;
 	width: 125px;
@@ -257,6 +264,10 @@ h4 {
 	background-image: url("../images/button.png");
     cursor: pointer;
 	margin-top: 20px;
+}
+
+#create_encrypted {
+    margin-left: 10px;
 }
 
 .form_wrapper .dangerbutton:hover {
@@ -363,6 +374,16 @@ h4 {
 .meta {
 	font-size: 93%;
 	line-height: 18px;
+	width: 80%;
+	float: left;
+}
+
+.qr {
+	width: 99px;
+	height: 99px;
+	float: right;
+    margin-bottom: 20px;
+    margin-right: 10px;
 }
 
 .meta .spacer, .spacer.high {

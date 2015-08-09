@@ -4,7 +4,7 @@
  * ---------------------------------
  * Author: Stuart Moncrieff (stuart at myloadtest dot com)
  * Copyright: (c) 2010 Stuart Moncrieff (http://www.myloadtest.com/loadrunner-syntax-highlighter/)
- * Release Version: 1.0.8.11
+ * Release Version: 1.0.8.12
  * Date Started: 2010-07-25
  *
  * C (for LoadRunner) language file for GeSHi.
@@ -319,5 +319,3 @@ $language_data = array (
     // Note that if you are using <pre> tags for your code, then the browser chooses how many spaces your tabs will translate to.
     'TAB_WIDTH' => 4
 );
-
-?>

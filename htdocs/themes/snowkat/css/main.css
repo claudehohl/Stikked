@@ -1,0 +1,567 @@
+/* Dark theme the for Stikked: https://github.com/claudehohl/Stikked - by https://github.com/GabrielWanzek - version 1.0 */
+
+html {
+  background: none;
+}
+
+body {
+	background: #000 url(../images/snowkat.png) center center fixed no-repeat;
+	-moz-background-size: cover;
+	background-size: cover;
+	color: #fefefe;
+	font: normal 13px/1.8em 'Open Sans', sans-serif;
+}
+
+b, strong {
+	font-weight: bold;
+}
+
+em, i {
+	font-style: italic;
+}
+
+#container {
+	width: 900px;
+	margin: 0 auto;
+}
+
+.container {
+	padding: 10px;
+}
+
+h1, h2, h3 ,h4 {
+	font-weight: bold;
+	color: #fff;
+}
+
+h1 {
+	font-size: 116%;
+}
+
+h2 {
+	font-size: 108%;
+}
+
+h3 {
+	font-size: 100%;
+}
+
+h4 {
+	font-size: 93%;
+}
+
+/* !Header */
+.header {
+}
+
+.header h1 {
+	margin-top: 1px;
+	float: left;
+}
+
+.header h1 a.title {
+	text-decoration: none;
+	color: #FFFFFF;
+	font-size: 160%;
+	font-family: Tahoma;
+	font-weight: bolder;
+	letter-spacing: 2px;
+}
+
+.header .tabs {
+	float: right;
+	margin-top: 8px;
+}
+
+.header .tabs li {
+	display: inline;
+	text-align: center;
+	font-weight: bold;
+}
+
+.header .tabs li a {
+	padding: 4px 12px;
+	border: 1px solid #fff;
+	color: #fff;
+	text-decoration: none;
+	border-radius: 8px;
+	-moz-border-radius: 8px;
+	-webkit-border-radius: 8px;
+	margin: 0;
+	font-size: 14px;
+}
+
+.header .tabs li a.active, .header .tabs li a:hover {
+	background: rgba(255,255,255,0.7);
+	color: #000;
+	font-weight: bold;
+	text-shadow: 0px 0px 0px #000;
+}
+
+/* !Content */
+.content {	
+	margin-top: 10px;	
+	float: left;
+}
+
+.replies {
+	margin: 10px auto;
+}
+
+.replies, .content {
+	width: 874px;
+	clear: both;
+	-webkit-box-shadow: 0px 0px 20px rgba(255, 255, 255, 0.75);
+	-moz-box-shadow:    0px 0px 20px rgba(255, 255, 255, 0.75);
+	box-shadow:         0px 0px 20px rgba(255, 255, 255, 0.75);
+	background: rgba(165, 160, 160, 0.7);
+	border: 1px solid #fff;
+}
+
+/* !Forms */
+.form_wrapper {
+	width: 854px;
+}
+
+.form_wrapper.margin {
+	padding-bottom: 20px;
+}
+
+.form_wrapper.background {
+	border: solid 2px #b7ddf2;
+	background: #EBF4FB;
+	padding: 14px;
+}
+
+.form_wrapper .item_group {
+	clear: both;
+	width: 900px;
+}
+
+.form_wrapper .item_group .item {
+	width: 284px;
+	margin-right: 10px;
+	clear: none;
+}
+
+.form_wrapper .item_group .item_captcha {
+	width: 450px;
+    margin-bottom: -10px;
+}
+
+.form_wrapper .item_group .captcha {
+    margin-left: 10px;
+    padding-left: 10px;
+    display: block;
+}
+
+#captcha {
+    position: relative;
+    left: 140px;
+}
+
+.form_wrapper .item_group .item input, .form_wrapper .item_group .item select {
+	width: 104px;
+	float: left;
+}
+
+.form_wrapper .item_group .item select {
+	width: 115px;
+}
+
+.form_wrapper .item {
+	clear: both;
+	width: 100%;
+	float: left;
+	margin-bottom: 10px;
+}
+
+.hidden, .email, .url {
+	display: none;
+}
+
+.form_wrapper .advanced {
+	width: 100%;
+	text-align: center;
+	color: #ccc;
+	margin-top: 20px;
+	/*margin-left: 140px;*/
+	font-size: 93%;
+}
+
+.form_wrapper label {
+	display: block;
+	font-weight: bold;
+	text-align: right;
+	width: 140px;
+	float: left;
+}
+
+.form_wrapper .instruction {
+	color: #fff;
+	display: block;
+	font-size: 85%;
+	font-weight: normal;
+	text-align: right;
+	width: 140px;
+	/*display: none;*/
+}
+
+.form_wrapper .instruction.error {
+	color: #F02F34;
+}
+
+.form_wrapper .instruction.error p {
+	margin: 0;
+	line-height: inherit;
+}
+
+.form_wrapper input, .form_wrapper select {
+	width: 25%;
+	color: #fff;
+}
+
+.form_wrapper input.check {
+	width: auto;
+	margin-right: 10px;
+}
+
+.form_wrapper select, .form_wrapper input, .form_wrapper textarea {
+	float: left;
+	padding: 4px 2px;
+	margin: 2px 0 20px 10px;
+	border: solid 1px #457DAF;
+	font-size: 93%;
+		-webkit-box-shadow: 0px 0px 20px rgba(255, 255, 255, 0.75);
+	-moz-box-shadow:    0px 0px 20px rgba(255, 255, 255, 0.75);
+	box-shadow:         0px 0px 20px rgba(255, 255, 255, 0.75);
+	background: rgba(165, 160, 160, 0.7);
+	border: 1px solid #fff;
+	color: #fff;
+}
+
+.form_wrapper .text_beside {
+	width: 130px;
+	float: left;
+}
+
+.form_wrapper .text_beside input, .form_wrapper .item_group .item .text_beside input {
+	margin-right: 5px;
+	float: left;
+	width: auto;
+	-webkit-box-shadow: 0px 0px 20px rgba(255, 255, 255, 0.75);
+	-moz-box-shadow:    0px 0px 20px rgba(255, 255, 255, 0.75);
+	box-shadow:         0px 0px 20px rgba(255, 255, 255, 0.75);
+	background: rgba(165, 160, 160, 0.7);
+	border: 1px solid #fff;
+	color: #fff;
+}
+
+.form_wrapper .text_beside p {
+	font-size: 93%;
+	float: left;
+}
+
+.form_wrapper textarea {
+	width: 694px;
+	-webkit-box-shadow: 0px 0px 20px rgba(255, 255, 255, 0.75);
+	-moz-box-shadow:    0px 0px 20px rgba(255, 255, 255, 0.75);
+	box-shadow:         0px 0px 20px rgba(255, 255, 255, 0.75);
+	background: rgba(165, 160, 160, 0.7);
+	border: 1px solid #fff;
+	color: #fff;
+}
+
+.form_wrapper button {
+	opacity; 1;
+	padding: 4px 12px;
+	border: 1px solid #fff;
+	color: #333;
+	text-decoration: none;
+	border-radius: 8px;
+	-moz-border-radius: 8px;
+	-webkit-border-radius: 8px;
+	margin: 0;
+	font-size: 14px;
+	float: right;
+}
+
+.form_wrapper button:hover {
+	color: #000;
+	font-weight: bold;
+	text-shadow: 0px 0px 0px #000;
+}
+
+.form_wrapper .dangerbutton:hover {
+	background: #f00;
+}
+
+.form_wrapper .message_wrapper .message {
+	margin-top: -10px;
+}
+
+.spacer {
+	clear: both;
+	height: 1px;
+}
+
+.clear {
+    clear: both;
+}
+
+.explain {
+	font-size: 12px;
+	color: #fff;
+	margin-bottom: 20px;
+}
+
+.explain.border {
+	border-bottom: solid 1px #9ABAD7;
+	padding-bottom: 10px;
+}
+
+.explain.lowmargin {
+	margin-bottom: 10px;
+}
+
+/* Pagination */
+
+.pages {
+	margin-top: 20px;
+ 	font-size: 116%;
+ 	text-align: center;
+ 	width: 100%;
+ 	float: left;
+ 	clear: both;
+}
+
+/* !Recent Paste Listings */
+.recent {
+	clear: both;
+	width: 854px;
+}
+
+.recent th {
+	font-weight: bold;
+	font-size: 100%;
+	text-align: left;
+}
+
+.recent .title{
+	width: 280px;
+}
+
+.recent .name {
+	width: 180px;
+}
+
+.recent .lang {
+	width: 100px;
+}
+
+.recent .time {
+	width: 100px;
+}
+
+.recent .qr {
+	width: 20px;
+}
+
+.recent .hits {
+	width: 70px;
+}
+
+.recent tr {
+	line-height: 30px;
+}
+
+.recent tr.title {
+	line-height: auto;
+}
+
+.recent tr td {
+	font-size: 100%;
+	padding: 3px;
+}
+
+
+/* !Pastes */
+.meta {
+	font-size: 93%;
+	line-height: 18px;
+}
+
+.meta .spacer, .spacer.high {
+	height: 10px;
+	width: 100%;
+	clear: both;	
+}
+
+.detail {
+	display: block;
+	width: 100%;
+	clear: both;
+}
+
+.detail.by {
+	font-style: italic;
+	color: #fff;
+}
+
+.detail .item {
+	color: #ccc;
+	width: 60px;
+	display: block;
+	float: left;
+}
+
+#embed_field {
+    width: 200px;
+    border: 1px solid #ccc;
+}
+
+.paste {
+	margin: 0 auto;
+	width: 900px;
+	font-size: 100%;
+}
+
+.paste .text_formatted {
+	clear: both;
+	float: left;
+	width: 874px;
+	margin-top: 10px;
+	margin-left: 10px;
+	background: rgba(165, 160, 160, 0.7);
+	border: 1px solid #fff;
+	-webkit-box-shadow: 0px 0px 20px rgba(255, 255, 255, 0.75);
+	-moz-box-shadow:    0px 0px 20px rgba(255, 255, 255, 0.75);
+	box-shadow:         0px 0px 20px rgba(255, 255, 255, 0.75);
+    color: #fff;
+}
+
+.text_formatted ol {
+	padding-left: 50px;
+}
+
+.text_formatted ol li {
+	list-style: decimal outside;
+}
+
+.text_formatted ins {
+    color: green;
+    background: #dfd;
+    text-decoration: none;
+}
+
+.text_formatted del {
+    color: red;
+    background: #fdd;
+}
+
+/* !Messages */
+.message {
+	width: 100%;
+	font-size: 85%;
+	margin-bottom: 15px;
+	color: #fff;
+}
+
+.message.success {
+	background-color: green;
+}
+
+.message.status {
+	background: #DB9330;
+}
+
+.message.error {
+	background: red;
+}
+
+.message .container {
+	padding: 5px;
+}
+
+/* About Page */
+.about {
+	line-height: 18px;
+}
+
+.about h1.space {
+	margin-top: 10px;
+	float: left;
+	clear: both;
+	width: 100%;
+}
+
+.about p, .about ul, .about code {
+	margin-bottom: 10px;
+}
+
+.about ul, .about code {
+	margin-left: 20px;
+}
+
+.about ul li {
+	list-style-type: disc;
+	list-style-position: inside;
+}
+
+.about code {
+	width: 100%;
+	clear: both;
+	display: block;
+	border-left: 3px solid #AAAAAA;
+	padding-left: 10px;
+	padding-top: 4px;
+	padding-bottom: 4px;
+}
+
+/* !Footer */
+.footer {
+	width: 100%;
+	clear: both;
+	float: left;
+	margin-top: 30px;
+	padding-bottom: 30px;
+	text-align: center;
+	font-size: 93%;
+	color: #fff;
+	font-family: Helvetica, Arial, sans-serif;
+	line-height: 16px;
+}
+
+.footer a {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.login {
+    margin-left: 30%;
+    margin-right: auto;
+}
+
+.login_error {
+    border: 1px solid;
+    margin: 0 30% 10px 25%;
+    padding:15px 10px 15px 50px;
+    text-align: center;
+    background-color: #ccc;
+    color: #D8000C;
+}
+
+.login .form_wrapper input {
+    margin: 1px 0 0 5px;
+    width: 130px;
+}
+
+.login .form_wrapper label {
+    width: 104px;
+}
+
+/* Special for dark theme */
+
+a {color: #fff; text-decoration: underline;}
+a:hover {color: #ccc; text-decoration: none;}
+.CodeMirror-scroll {background-color: #fff;}

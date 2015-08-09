@@ -4,7 +4,7 @@
  * ---------------------------------
  * Author: Stelio Passaris (GeSHi@stelio.net)
  * Copyright: (c) 2009 Stelio Passaris (http://stelio.net/stiki/GeSHi)
- * Release Version: 1.0.8.11
+ * Release Version: 1.0.8.12
  * Date Started: 2009/01/20
  *
  * DCS language file for GeSHi.
@@ -178,5 +178,3 @@ $language_data = array (
         ),
     'TAB_WIDTH' => 4
 );
-
-?>

@@ -4,7 +4,7 @@
  * --------
  * Author: Conny Brunnkvist (conny@fuchsia.se), W. Tasin (tasin@fhm.edu)
  * Copyright: (c) 2004 Fuchsia Open Source Solutions (http://www.fuchsia.se/)
- * Release Version: 1.0.8.11
+ * Release Version: 1.0.8.12
  * Date Started: 2004/12/29
  *
  * Diff-output language file for GeSHi.
@@ -192,5 +192,3 @@ $language_data = array (
     'HIGHLIGHT_STRICT_BLOCK' => array(
         )
 );
-
-?>

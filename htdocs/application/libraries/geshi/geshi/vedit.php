@@ -4,7 +4,7 @@
  * --------
  * Author: Pauli Lindgren (pauli0212@yahoo.com)
  * Copyright: (c) 2009 Pauli Lindgren (http://koti.mbnet.fi/pkl/)
- * Release Version: 1.0.8.11
+ * Release Version: 1.0.8.12
  * Date Started: 2009/12/16
  *
  * Vedit macro language language file for GeSHi.
@@ -99,5 +99,3 @@ $language_data = array(
     'SCRIPT_DELIMITERS' => array(),
     'HIGHLIGHT_STRICT_BLOCK' => array()
 );
-
-?>

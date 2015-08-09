@@ -4,7 +4,7 @@
  * --------------
  * Author: Rob Loach (http://www.robloach.net)
  * Copyright: (c) 2009 Rob Loach (http://www.robloach.net)
- * Release Version: 1.0.8.11
+ * Release Version: 1.0.8.12
  * Date Started: 2009/07/20
  *
  * jQuery 1.3 language file for GeSHi.
@@ -234,5 +234,3 @@ $language_data = array (
         1 => true
         )
 );
-
-?>

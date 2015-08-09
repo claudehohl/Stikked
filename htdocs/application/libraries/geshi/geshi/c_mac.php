@@ -4,7 +4,7 @@
  * ---------
  * Author: M. Uli Kusterer (witness.of.teachtext@gmx.net)
  * Copyright: (c) 2004 M. Uli Kusterer, Nigel McNie (http://qbnz.com/highlighter/)
- * Release Version: 1.0.8.11
+ * Release Version: 1.0.8.12
  * Date Started: 2004/06/04
  *
  * C for Macs language file for GeSHi.
@@ -223,5 +223,3 @@ $language_data = array (
         ),
     'TAB_WIDTH' => 4
 );
-
-?>

@@ -4,7 +4,7 @@
  * --------
  * Author: Benny Baumann (BenBE@geshi.org)
  * Copyright: (c) 2008 Benny Baumann (http://qbnz.com/highlighter/)
- * Release Version: 1.0.8.11
+ * Release Version: 1.0.8.12
  * Date Started: 2008/09/14
  *
  * Whois response (RPSL format) language file for GeSHi.
@@ -168,14 +168,11 @@ $language_data = array (
         'ENABLE_FLAGS' => array(
             'BRACKETS' => GESHI_NEVER,
             'SYMBOLS' => GESHI_NEVER,
-            'BRACKETS' => GESHI_NEVER,
             'STRINGS' => GESHI_NEVER,
             'ESCAPE_CHAR' => GESHI_NEVER,
             'NUMBERS' => GESHI_NEVER,
             'METHODS' => GESHI_NEVER,
             'SCRIPT' => GESHI_NEVER
             )
-        ),
+        )
 );
-
-?>

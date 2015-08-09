@@ -4,7 +4,7 @@
  * -------
  * Author: Nigel McNie (nigel@geshi.org)
  * Copyright: (c) 2006 Nigel McNie (http://qbnz.com/highlighter/)
- * Release Version: 1.0.8.11
+ * Release Version: 1.0.8.12
  * Date Started: 2006/09/23
  *
  * Io language file for GeSHi. Thanks to Johnathan Wright for the suggestion and help
@@ -134,5 +134,3 @@ $language_data = array (
     'HIGHLIGHT_STRICT_BLOCK' => array(
         )
 );
-
-?>

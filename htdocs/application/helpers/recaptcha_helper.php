@@ -35,7 +35,7 @@
 /**
  * The reCAPTCHA server URL's
  */
-define("RECAPTCHA_API_SERVER", "http://www.google.com/recaptcha/api");
+define("RECAPTCHA_API_SERVER", "//www.google.com/recaptcha/api");
 define("RECAPTCHA_API_SECURE_SERVER", "https://www.google.com/recaptcha/api");
 define("RECAPTCHA_VERIFY_SERVER", "www.google.com");
 
@@ -119,13 +119,17 @@ function recaptcha_get_html ($pubkey, $error = null, $use_ssl = false)
         if ($error) {
            $errorpart = "&amp;error=" . $error;
         }
-        return '<script type="text/javascript" src="'. $server . '/challenge?k=' . $pubkey . $errorpart . '"></script>
+	return '<script src=\'https://www.google.com/recaptcha/api.js\'></script>
+		<div class="g-recaptcha" data-sitekey="' . $pubkey . '"></div>';
+
+
+        /*return '<script type="text/javascript" src="'. $server . '/challenge?k=' . $pubkey . $errorpart . '"></script>
 
 	<noscript>
   		<iframe src="'. $server . '/noscript?k=' . $pubkey . $errorpart . '" height="300" width="500" frameborder="0"></iframe><br/>
   		<textarea name="recaptcha_challenge_field" rows="3" cols="40"></textarea>
   		<input type="hidden" name="recaptcha_response_field" value="manual_challenge"/>
-	</noscript>';
+	</noscript>';*/
 }
 
 
@@ -237,7 +241,7 @@ function recaptcha_mailhide_url($pubkey, $privkey, $email) {
 	$ky = pack('H*', $privkey);
 	$cryptmail = _recaptcha_aes_encrypt ($email, $ky);
 	
-	return "http://www.google.com/recaptcha/mailhide/d?k=" . $pubkey . "&c=" . _recaptcha_mailhide_urlbase64 ($cryptmail);
+	return "https://www.google.com/recaptcha/mailhide/d?k=" . $pubkey . "&c=" . _recaptcha_mailhide_urlbase64 ($cryptmail);
 }
 
 /**

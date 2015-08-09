@@ -4,7 +4,7 @@
  * --------
  * Author: Marcus Griep (neoeinstein+GeSHi@gmail.com)
  * Copyright: (c) 2007 Marcus Griep (http://www.xpdm.us)
- * Release Version: 1.0.8.11
+ * Release Version: 1.0.8.12
  * Date Started: 2007/10/24
  *
  * CIL (Common Intermediate Language) language file for GeSHi.
@@ -192,5 +192,3 @@ $language_data = array (
         ),
     'TAB_WIDTH' => 4
 );
-
-?>

@@ -7,6 +7,7 @@
  * - countReplies()
  * - createPaste()
  * - _get_url()
+ * - _shorten_url()
  * - checkPaste()
  * - getPaste()
  * - calculate_hits()
@@ -18,6 +19,7 @@
  * - delete_paste()
  * - random_paste()
  * - _format_diff()
+ * - _strip_bad_multibyte_chars()
  * Classes list:
  * - Pastes extends CI_Model
  */
@@ -54,7 +56,7 @@ class Pastes extends CI_Model
 		$data['created'] = time();
 
 		//this is SO evil… saving the «raw» data with htmlspecialchars :-( (but I have to leave this, because of backwards-compatibility)
-		$data['raw'] = htmlspecialchars($this->input->post('code'));
+		$data['raw'] = htmlspecialchars($this->_strip_bad_multibyte_chars($this->input->post('code')));
 		$data['lang'] = htmlspecialchars($this->input->post('lang'));
 		$data['replyto'] = $this->input->post('reply');
 		
@@ -102,10 +104,19 @@ class Pastes extends CI_Model
 			}
 		}
 		while ($n == 0);
+		$burn = false;
 		
-		if ($this->input->post('expire') == 0) 
+		if ($this->input->post('expire') == '0') 
 		{
 			$data['expire'] = 0;
+		}
+		else 
+		if ($this->input->post('expire') == 'burn') 
+		{
+			$burn = true;
+			$data['toexpire'] = 1;
+			$data['expire'] = 0;
+			$data['private'] = 1;
 		}
 		else
 		{
@@ -121,32 +132,78 @@ class Pastes extends CI_Model
 		else
 		{
 			$url = $this->_get_url($data['pid']);
-			$url = urlencode($url);
-			$config_gwgd_url = $this->config->item('gwgd_url');
-			$gwgd_url = ($config_gwgd_url ? $config_gwgd_url : 'http://gw.gd/');
-			$target = $gwgd_url . 'api.php?long=' . $url;
-			$ch = curl_init();
-			curl_setopt($ch, CURLOPT_URL, $target);
-			curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-			curl_setopt($ch, CURLOPT_ENCODING, 'identity');
-			$resp = curl_exec($ch);
-			curl_close($ch);
-			$data['snipurl'] = $resp;
-			
-			if (empty($data['snipurl'])) 
-			{
-				$data['snipurl'] = false;
-			}
+			$shorturl = $this->_shorten_url($url);
+			$data['snipurl'] = $shorturl;
 		}
 		$data['ip_address'] = $this->input->ip_address();
 		$this->db->insert('pastes', $data);
-		return 'view/' . $data['pid'];
+		
+		if ($burn) 
+		{
+			echo 'copy this URL, it will become invalid on visit: ' . site_url('view/' . $data['pid']);
+			exit;
+		}
+		else
+		{
+			return 'view/' . $data['pid'];
+		}
 	}
 	private 
 	function _get_url($pid) 
 	{
 		$override_url = $this->config->item('displayurl_override');
 		return ($override_url ? str_replace('$id', $pid, $override_url) : site_url('view/' . $pid));
+	}
+	private 
+	function _shorten_url($url) 
+	{
+		$config_yourls_url = $this->config->item('yourls_url');
+		
+		if ($config_yourls_url) 
+		{
+
+			//use yourls
+			$config_yourls_url = $this->config->item('yourls_url');
+			$config_yourls_signature = $this->config->item('yourls_signature');
+			$timestamp = time();
+			$signature = md5($timestamp . $config_yourls_signature);
+
+			// Init the CURL session
+			$ch = curl_init();
+			curl_setopt($ch, CURLOPT_URL, $config_yourls_url . 'yourls-api.php');
+			curl_setopt($ch, CURLOPT_HEADER, 0);
+			curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+			curl_setopt($ch, CURLOPT_POST, 1);
+			curl_setopt($ch, CURLOPT_POSTFIELDS, array(
+				'url' => $url,
+				'format' => 'simple',
+				'action' => 'shorturl',
+				'signature' => $signature,
+				'timestamp' => $timestamp,
+			));
+			$resp = curl_exec($ch);
+			curl_close($ch);
+			$shorturl = (empty($resp) ? false : $resp);
+		}
+		else
+		{
+
+			//use gdgw
+			$url = urlencode($url);
+			$config_gwgd_url = $this->config->item('gwgd_url');
+			$gwgd_url = ($config_gwgd_url ? $config_gwgd_url : 'http://gw.gd/');
+			$target = $gwgd_url . 'api.php?long=' . $url;
+
+			// Init the CURL session
+			$ch = curl_init();
+			curl_setopt($ch, CURLOPT_URL, $target);
+			curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+			curl_setopt($ch, CURLOPT_ENCODING, 'identity');
+			$resp = curl_exec($ch);
+			curl_close($ch);
+			$shorturl = (empty($resp) ? false : $resp);
+		}
+		return $shorturl;
 	}
 	
 	function checkPaste($seg = 2) 
@@ -196,6 +253,9 @@ class Pastes extends CI_Model
 			$data['lang'] = $this->languages->code_to_description($row['lang']);
 			$data['paste'] = $this->process->syntax(htmlspecialchars_decode($row['raw']) , $row['lang']);
 			$data['created'] = $row['created'];
+			$data['private'] = $row['private'];
+			$data['expire'] = $row['expire'];
+			$data['toexpire'] = $row['toexpire'];
 			$data['url'] = $this->_get_url($row['pid']);
 			$data['raw'] = $row['raw'];
 			$data['hits'] = $row['hits'];
@@ -238,7 +298,7 @@ class Pastes extends CI_Model
 						//diff
 						//yes, I'm aware, two times htmlspecialchars_decode(). Needs to be, since it's saved that way in the DB from the original stikked author ages ago ;)
 
-						include_once ('./application/libraries/finediff.php');
+						include_once (APPPATH . '/libraries/finediff.php');
 						$from_text = htmlspecialchars_decode(utf8_decode($row['raw']));
 						$to_text = htmlspecialchars_decode(utf8_decode($data['raw']));
 						$opcodes = FineDiff::getDiffOpcodes($from_text, $to_text, FineDiff::$wordGranularity);
@@ -292,19 +352,39 @@ class Pastes extends CI_Model
 			}
 		}
 
-		// hits
-		$hits_data = array(
-			'paste_id' => $pid,
-			'ip_address' => $this->input->ip_address() ,
-			'created' => mktime() ,
-		);
-		$insert_query = $this->db->insert_string('trending', $hits_data);
-		$insert_query = str_replace('INSERT INTO', 'INSERT IGNORE INTO', $insert_query);
-		$this->db->query($insert_query);
+		/*
+		 * Hits
+		 * First check if record already exists.  If it does, do not insert.
+		 * INSERT IGNORE INTO does not work for postgres.
+		*/
+		$this->db->select('count(paste_id) as count');
+		$this->db->where('paste_id', $pid);
+		$this->db->where('ip_address', $this->input->ip_address());
+		$query = $this->db->get('trending');
+		$hits_count = $query->result_array();
+		$hits_count = $hits_count[0]['count'];
+		
+		if ($hits_count == 0) 
+		{
+			$this->db->insert('trending', array(
+				'paste_id' => $pid,
+				'ip_address' => $this->input->ip_address() ,
+				'created' => mktime() ,
+			));
+		}
+
+		//update hits counter every minute
 		
 		if (mktime() > (60 + $data['hits_updated'])) 
 		{
 			$this->calculate_hits($pid, $data['hits']);
+		}
+
+		//burn if necessary
+		
+		if ($data['expire'] == 0 and $data['toexpire'] == 1) 
+		{
+			$this->delete_paste($data['pid']);
 		}
 		return $data;
 	}
@@ -374,11 +454,61 @@ class Pastes extends CI_Model
 		$this->load->library('pagination');
 		$this->load->library('process');
 		$amount = $this->config->item('per_page');
-		$page = ($this->uri->segment(2) ? $this->uri->segment(2) : 0);
-		$this->db->select('id, title, name, created, pid, lang, raw');
-		$this->db->where('private', 0);
-		$this->db->order_by('created', 'desc');
-		$query = $this->db->get('pastes', $amount, $page);
+		$page = ($this->uri->segment($seg) ? $this->uri->segment($seg) : 0);
+		$search = $this->input->get('search');
+		
+		if ($search) 
+		{
+			$search = '%' . $search . '%';
+
+			// count total results
+			$sql = "SELECT id FROM pastes WHERE private = 0 AND (title LIKE ? OR raw LIKE ?)";
+			$query = $this->db->query($sql, array(
+				$search,
+				$search,
+			));
+			$total_rows = $query->num_rows();
+
+			// query
+			
+			if ($this->db->dbdriver == "postgre") 
+			{
+				$sql = "SELECT id, title, name, created, pid, lang, raw FROM pastes WHERE private = 0 AND (title LIKE ? OR raw LIKE ?) ORDER BY created DESC LIMIT $amount OFFSET $page";
+			}
+			else 
+			if ($root == 'api/recent') 
+			{
+				$sql = "SELECT id, title, name, created, pid, lang, raw FROM pastes WHERE private = 0 AND (title LIKE ? OR raw LIKE ?) ORDER BY created DESC LIMIT 0,15";
+			}
+			else
+			{
+				$sql = "SELECT id, title, name, created, pid, lang, raw FROM pastes WHERE private = 0 AND (title LIKE ? OR raw LIKE ?) ORDER BY created DESC LIMIT $page,$amount";
+			}
+			$query = $this->db->query($sql, array(
+				$search,
+				$search,
+			));
+		}
+		else
+		{
+
+			// count total results
+			$sql = "SELECT id FROM pastes WHERE private = 0";
+			$query = $this->db->query($sql);
+			$total_rows = $query->num_rows();
+
+			// query
+			
+			if ($this->db->dbdriver == "postgre") 
+			{
+				$sql = "SELECT id, title, name, created, pid, lang, raw FROM pastes WHERE private = 0 ORDER BY created DESC LIMIT $amount OFFSET $page";
+			}
+			else
+			{
+				$sql = "SELECT id, title, name, created, pid, lang, raw FROM pastes WHERE private = 0 ORDER BY created DESC LIMIT $page,$amount";
+			}
+			$query = $this->db->query($sql);
+		}
 		
 		if ($query->num_rows() > 0) 
 		{
@@ -389,7 +519,7 @@ class Pastes extends CI_Model
 				$data['pastes'][$n]['title'] = $row['title'];
 				$data['pastes'][$n]['name'] = $row['name'];
 				$data['pastes'][$n]['created'] = $row['created'];
-				$data['pastes'][$n]['lang'] = $row['lang'];
+				$data['pastes'][$n]['lang'] = $this->languages->code_to_description($row['lang']);
 				$data['pastes'][$n]['pid'] = $row['pid'];
 				
 				if ($this->uri->segment(2) == 'rss') 
@@ -401,12 +531,15 @@ class Pastes extends CI_Model
 			}
 		}
 		$config['base_url'] = site_url($root);
-		$config['total_rows'] = $this->countPastes();
+		$config['total_rows'] = $total_rows;
 		$config['per_page'] = $amount;
 		$config['num_links'] = 9;
 		$config['full_tag_open'] = '<div class="pages">';
 		$config['full_tag_close'] = '</div>';
 		$config['uri_segment'] = $seg;
+		$searchparams = ($this->input->get('search') ? '?search=' . $this->input->get('search') : '');
+		$config['first_url'] = '0' . $searchparams;
+		$config['suffix'] = $searchparams;
 		$this->pagination->initialize($config);
 		$data['pages'] = $this->pagination->create_links();
 		return $data;
@@ -417,11 +550,60 @@ class Pastes extends CI_Model
 		$this->load->library('pagination');
 		$amount = $this->config->item('per_page');
 		$page = ($this->uri->segment(2) ? $this->uri->segment(2) : 0);
-		$this->db->select('id, title, name, created, pid, lang, raw, hits');
-		$this->db->where('private', 0);
-		$this->db->order_by('hits', 'desc');
-		$this->db->order_by('created', 'desc');
-		$query = $this->db->get('pastes', $amount, $page);
+		$search = $this->input->get('search');
+		
+		if ($search) 
+		{
+			$search = '%' . $search . '%';
+
+			// count total results
+			$sql = "SELECT id FROM pastes WHERE private = 0 AND (title LIKE ? OR raw LIKE ?)";
+			$query = $this->db->query($sql, array(
+				$search,
+				$search,
+			));
+			$total_rows = $query->num_rows();
+
+			// query
+			
+			if ($this->db->dbdriver == "postgre") 
+			{
+				$sql = "SELECT id, title, name, created, pid, lang, raw, hits FROM pastes WHERE private = 0 AND (title LIKE ? OR raw LIKE ?) ORDER BY hits DESC, created DESC LIMIT $amount OFFSET $page";
+			}
+			else 
+			if ($root == "api/trending") 
+			{
+				$sql = "SELECT id, title, name, created, pid, lang, raw, hits FROM pastes WHERE private = 0 AND (title LIKE ? OR raw LIKE ?) ORDER BY hits DESC, created DESC LIMIT 0,15";
+			}
+			else
+			{
+				$sql = "SELECT id, title, name, created, pid, lang, raw, hits FROM pastes WHERE private = 0 AND (title LIKE ? OR raw LIKE ?) ORDER BY hits DESC, created DESC LIMIT $page,$amount";
+			}
+			$query = $this->db->query($sql, array(
+				$search,
+				$search,
+			));
+		}
+		else
+		{
+
+			// count total results
+			$sql = "SELECT id FROM pastes WHERE private = 0";
+			$query = $this->db->query($sql);
+			$total_rows = $query->num_rows();
+
+			// query
+			
+			if ($this->db->dbdriver == "postgre") 
+			{
+				$sql = "SELECT id, title, name, created, pid, lang, raw, hits FROM pastes WHERE private = 0 ORDER BY hits DESC, created DESC LIMIT $amount OFFSET $page";
+			}
+			else
+			{
+				$sql = "SELECT id, title, name, created, pid, lang, raw, hits FROM pastes WHERE private = 0 ORDER BY hits DESC, created DESC LIMIT $page,$amount";
+			}
+			$query = $this->db->query($sql);
+		}
 		
 		if ($query->num_rows() > 0) 
 		{
@@ -432,7 +614,7 @@ class Pastes extends CI_Model
 				$data['pastes'][$n]['title'] = $row['title'];
 				$data['pastes'][$n]['name'] = $row['name'];
 				$data['pastes'][$n]['created'] = $row['created'];
-				$data['pastes'][$n]['lang'] = $row['lang'];
+				$data['pastes'][$n]['lang'] = $this->languages->code_to_description($row['lang']);
 				$data['pastes'][$n]['pid'] = $row['pid'];
 				$data['pastes'][$n]['raw'] = $row['raw'];
 				$data['pastes'][$n]['hits'] = $row['hits'];
@@ -440,12 +622,15 @@ class Pastes extends CI_Model
 			}
 		}
 		$config['base_url'] = site_url($root);
-		$config['total_rows'] = $this->countPastes();
+		$config['total_rows'] = $total_rows;
 		$config['per_page'] = $amount;
 		$config['num_links'] = 9;
 		$config['full_tag_open'] = '<div class="pages">';
 		$config['full_tag_close'] = '</div>';
 		$config['uri_segment'] = $seg;
+		$searchparams = ($this->input->get('search') ? '?search=' . $this->input->get('search') : '');
+		$config['first_url'] = '0' . $searchparams;
+		$config['suffix'] = $searchparams;
 		$this->pagination->initialize($config);
 		$data['pages'] = $this->pagination->create_links();
 		return $data;
@@ -513,10 +698,9 @@ class Pastes extends CI_Model
 		{
 			$stamp = $row['expire'];
 			
-			if ($now > $stamp) 
+			if ($now > $stamp AND $stamp != 0) 
 			{
-				$this->db->where('id', $row['id']);
-				$this->db->delete('pastes');
+				$this->delete_paste($row['pid']);
 			}
 		}
 		return;
@@ -526,14 +710,18 @@ class Pastes extends CI_Model
 	{
 		$this->db->where('pid', $pid);
 		$this->db->delete('pastes');
+
+		// delete from trending
+		$this->db->where('paste_id', $pid);
+		$this->db->delete('trending');
 		return;
 	}
 	
 	function random_paste() 
 	{
 		$this->load->library('process');
-		$paste_id = rand(1, $this->countPastes());
-		$this->db->where('id', $paste_id);
+		$this->db->order_by('id', 'RANDOM');
+		$this->db->limit(1);
 		$query = $this->db->get('pastes');
 		
 		if ($query->num_rows() > 0) 
@@ -583,7 +771,32 @@ class Pastes extends CI_Model
 	function _format_diff($text) 
 	{
 		$text = str_replace("\t", '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;', $text);
+		$text = str_replace("<br />", '<br/>', $text);
+		$text = str_replace(" ", '&nbsp;', $text);
 		$text = '<div class="text" style="font-family:monospace; font: normal normal 1em/1.2em monospace;">' . $text . '</div>';
 		return $text;
+	}
+	private 
+	function _strip_bad_multibyte_chars($str) 
+	{
+		$result = '';
+		$length = strlen($str);
+		for ($i = 0;$i < $length;$i++) 
+		{
+
+			// Replace four-byte characters (11110www 10zzzzzz 10yyyyyy 10xxxxxx)
+			$ord = ord($str[$i]);
+			
+			if ($ord >= 240 && $ord <= 244) 
+			{
+				$result.= '?';
+				$i+= 3;
+			}
+			else
+			{
+				$result.= $str[$i];
+			}
+		}
+		return $result;
 	}
 }

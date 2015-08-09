@@ -24,7 +24,7 @@ $config['base_url']	= '';
 | So that we can track your version.
 |
 */
-$config['stikked_version'] = '0.8.5';
+$config['stikked_version'] = '0.9.0';
 
 /*
 |--------------------------------------------------------------------------
@@ -101,7 +101,7 @@ $config['charset'] = 'UTF-8';
 | setting this variable to TRUE (boolean).  See the user guide for details.
 |
 */
-$config['enable_hooks'] = FALSE;
+$config['enable_hooks'] = TRUE;
 
 
 /*
@@ -254,7 +254,7 @@ $config['encryption_key'] = '';
 | 'sess_time_to_update'		= how many seconds between CI refreshing Session Information
 |
 */
-$config['sess_cookie_name']		= 'ci_session';
+$config['sess_cookie_name']		= 'stikked';
 $config['sess_expiration']		= 60*60*24*1;
 $config['sess_expire_on_close']	= FALSE;
 $config['sess_encrypt_cookie']	= FALSE;

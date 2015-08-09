@@ -1,6 +1,8 @@
 <?php $this->load->view('defaults/header');?>
 <h1><?php echo lang('paste_trending'); ?></h1>
 
+<?php $this->load->view('view/search');?>
+
 		<?php 
 		function checkNum($num){
 			return ($num%2) ? TRUE : FALSE;
@@ -30,7 +32,8 @@
 			<td><?php echo $paste['name']; ?></td>
 			<td><?php echo $paste['lang']; ?></td>
 			<td><?php echo number_format($paste['hits'], 0, '.', "'"); ?></td>
-			<td><?php $p = explode(",", timespan($paste['created'], time())); echo $p[0]; ?> <?php echo lang('paste_ago'); ?>.</td>
+			<td><?php $p = explode(",", timespan($paste['created'], time()));
+			echo sprintf($this->lang->line('paste_ago'),$p[0]); ?>.</td>
 		</tr>
 
 		<?php }?>

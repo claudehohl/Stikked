@@ -1,0 +1,238 @@
+<?php if (!defined('BASEPATH')) exit('No direct script access allowed');
+
+/**
+ * Site Name
+ *
+ * The name of your site
+ *
+*/
+$config['site_name'] = 'Stikked';
+
+/**
+ * Database connection
+ *
+ * Credentials for your database
+ * The database structure will be created automatically
+ *
+*/
+$config['db_hostname'] = '127.0.0.1';
+$config['db_database'] = 'stikked';
+$config['db_username'] = 'stikked';
+$config['db_password'] = 'stikked';
+
+/**
+ * Table prefix
+ * Generate table prefix for stikked db, commonly used if the webhoster only has one db.
+ * Use underscore as suffix to easily see the tables.
+ * example: $config['db_prefix'] = 'stikked_';
+ * use $config['db_prefix'] = ''; if you don't want to use table prefix.
+*/
+$config['db_prefix'] = '';
+
+/**
+ * Theme
+ *
+ * Which theme to use
+ * Folder name in htdocs/themes/
+ * Currently: default, bootstrap, gabdark, gabdark3, geocities, snowkat, stikkedizr, cleanwhite
+ *
+*/
+$config['theme'] = 'default';
+
+/**
+ * Language
+ *
+ * New Language settings in application/config/language.php
+ *
+*/
+
+/**
+ * Combine JS & CSS files (recommended)
+ *
+ * htdocs/static/asset/ folder must be writeable
+ *
+*/
+$config['combine_assets'] = false;
+
+/**
+ * Key for Cron
+ *
+ * The password required to run the cron job */
+// Example cron: */5 * * * * curl --silent http://yoursite.com/cron/[key]
+//
+//
+$config['cron_key'] = '';
+
+/**
+ * url shortener config
+ *
+ * If yourls_url is set, yourls is used instead of gw.gd
+ *
+ * yourls_url: Your own instance of yourls URL-shortener (Download: http://yourls.org/)
+ * Example: http://example.com/yourls/
+ *
+ * yourls_signature: Your signature, used to authenticate API requests.
+ * You can find your signature under http://your-yourls-installation.com/admin/tools.php
+ *
+ * OR
+ *
+ * gwgd_url: Your own instance of the gw.gd URL-shortener (Download: https://github.com/neofutur/gwgd)
+ * Default: http://gw.gd/
+ *
+**/
+$config['yourls_url'] = '';
+$config['yourls_signature'] = '';
+$config['gwgd_url'] = '';
+$config['shorturl_selected'] = false;
+
+/**
+ * Credentials for the backup URL
+ *
+ * Basic auth user & pass for the backup URL, accessible via http://yoursite.com/backup
+ *
+**/
+$config['backup_user'] = '';
+$config['backup_pass'] = '';
+
+/**
+ * Pastes Per Page
+ *
+ * Number of pastes per page, on the recent pastes listings.
+ *
+**/
+$config['per_page'] = 15;
+
+/**
+ * API key
+ *
+ * Require a key to interact with the API.
+ * Append to all API requests: ?apikey=[yourkey]
+ *
+**/
+$config['apikey'] = '';
+
+/**
+ * Anti spam
+ *
+ * private_only: No recent pastes will be displayed.
+ * enable_captcha: Users must enter a captcha to post.
+ * recaptcha_publickey & recaptcha_privatekey: If filled, reCaptcha will be used (get a key from https://www.google.com/recaptcha/admin/create)
+ * disable_api: Don't allow pasting via API (because we can't use a captcha there...)
+ * disable_keep_forever: Don't allow pasting without expiration
+ * blocked_words: Comma separated list, e.g. '.es.tl, mycraft.com, yourbadword'
+ * disable_shorturl: "Create Shorturl" option will be disabled
+ * disallow_search_engines: displays a robots.txt that forbids indexing
+ *
+**/
+$config['private_only'] = false;
+$config['enable_captcha'] = true;
+$config['recaptcha_publickey'] = '';
+$config['recaptcha_privatekey'] = '';
+$config['disable_api'] = false;
+$config['disable_keep_forever'] = false;
+$config['blocked_words'] = '';
+$config['disable_shorturl'] = false;
+$config['disallow_search_engines'] = false;
+
+//spamadmin: accessible via /spamadmin (only active when user + pass is set)
+$config['spamadmin_user'] = '';
+$config['spamadmin_pass'] = '';
+
+/**
+ * Default paste expiration time (minutes)
+ *
+ * Possible values:
+ *  burn (burn on reading)
+ *  5 (5 minutes)
+ *  60 (1 hour)
+ *  1440 (1 day)
+ *  10080 (1 week)
+ *  40320 (1 month)
+ *  483840 (1 year)
+ *  0 (keep forever)
+**/
+$config['default_expiration'] = 0;
+
+/**
+ * Default language
+ *
+ * Preselected language. See application/config/geshi_languages.php for valid values (array keys)
+ *
+**/
+$config['default_language'] = 'text';
+
+/**
+ * Name for anonymous poster
+ *
+ * What name is to be set for anonymous posters
+ * DO NOT SET BLANK
+ * Set to random for a random paste to be generated
+ * NOTE: if changed only pastes from then on will be updated.
+ *
+**/
+$config['unknown_poster'] = 'random';
+
+/**
+ * Name for untitled pastes
+ *
+ * What name is to be set for untitled pastes.
+ * DO NOT SET BLANK
+ * NOTE: if changed only pastes from then on will be updated.
+**/
+$config['unknown_title'] = 'Untitled';
+
+/**
+ * To require LDAP authentication or not.
+ *
+ * Weather to require LDAP authenticaiton or not.
+ * Set to either 'true' to require authentication or 'false' not to.
+ * NOTE: if changed, set LDAP settings in auth_ldap.php
+**/ 
+$config['require_auth'] = false;
+ 
+/**
+ * Override the displayed URL
+ *
+ * Display this URL in a paste's detail view instead of the main URL - e.g. if you use mod_rewrite
+ * Variable $id: the paste_id
+ * Example: 'http://example.com/$id'
+ *
+**/
+$config['displayurl_override'] = '';
+
+/**
+ *
+ *
+ *  Words used for when unknown_poster is set to random
+ *
+ *
+**/
+$config['nouns'] = array('Hornbill', 'Elephant', 'Bison', 'Lion', 'Camel', 'Sheep',
+'Monkey', 'Prairie Dog', 'Plover', 'Tapir', 'Capybara', 'Cheetah', 'Flamingo', 'Peccary', 'Eider',	'Porcupine', 'Pelican', 'Dove', 'Crane', 'Tortoise', 'Agouti',
+'Tamarin', 'Pheasant', 'Owl', 'Gibbon', 'Goose', 'Baboon', 'Hamerkop', 'Zebra',
+'Macaw', 'Gibbon', 'Madrill', 'Wolf', 'Stork', 'Armadillo', 'Ostrich', 'Marmoset',
+'Lizard', 'Panda', 'Giraffe', 'Cassowary', 'Kangaroo', 'Gorilla', 'Pheasant',
+'Finch', 'Duck', 'Matamata', 'Teal', 'Macaque', 'Goat', 'Lechwe', 'Ibis', 'Parrot',
+'Parakeet', 'Bongo', 'Pudu', 'Echidna', 'Lemur', 'Bat', 'Curlew', 'Terrapin',
+'Peafowl', 'Duck', 'Owl', 'Parakeet', 'Meerkat', 'Tern', 'Wigeon', 'Pintail',
+'Meerkat', 'Motmot', 'Motmot', 'Shama', 'Dormouse', 'Horse', 'Rhinoceros', 'Sloth',
+ 'Mousedeer', 'Treeshrew', 'Bushbaby', 'Guinea Pig', 'Agouti', 'Water Vole', 'Hog',
+'Pig', 'Anoa', 'Octupus', 'Butterfly', 'Cat', 'Kitten', 'Coyote', 'Crocodile',
+'Cockroach', 'Crow', 'Bird', 'Dolphin', 'Earthworm', 'Frog', 'Hamster', 'Hedgehog',
+'Hog', 'Human', 'Hummingbird', 'Iguana', 'Leech', 'Leopard', ' Marten',
+'Mockingbird', 'Mockingjay', 'Mosquito', 'Moth', 'Partdridge', 'Bee', 'Penguin');
+
+$config['adjectives'] = array('Ample', 'Mature', 'Bulky', 'Burly', 'Capacious',
+'Colossal', 'Commodious', 'Thundering', 'Mammoth', 'Mungo', 'Voluminous',
+'Walloping', 'Tiny', 'Baby', 'Bitty', 'Diminutive', 'Little', 'Paltry', 'Scanty',
+'Trivial', 'Scribby', 'Blush', 'Tinct', 'Colorant', 'Aqua', 'Beige', 'Bistre',
+'Buff', 'Bistre', 'Chartreuse', 'Chocolate', 'Cobalt', 'Coral', 'Cream', 'Crimson',
+'Denim', 'Emerald', 'Gray', 'Gamboge', 'Ivory', 'Mustard', 'Silly', 'Perl',
+'Whipped', 'Violet', 'Harmless', 'Gentle', 'Innocent', 'Reliable', 'Unreliable',
+'Soft', 'Toxic', 'Anorexic', 'Beefy', 'Sexy', 'Morose', 'Rude', 'Ungracious',
+'Abrupt', 'Gracious', 'Queen', 'Cute', 'Edgy', 'Insensitive', 'Round', 'Sharp',
+'Gruff', 'Subtle', 'Crippled', 'Eratic', 'Social', 'Jittery', 'Sole', 'Unique',
+'Botched', 'Tacky', 'Sludgy', 'Stained', 'Wet', 'Soiled', 'Big', 'Small', 'Sloppy',
+'Smelly', 'Funky', 'Putrid', 'Melodic', 'Corrupt', 'Lousy', 'Fiery', 'Red',
+'Sweet', 'Hot', 'Scorching', 'Sweltering', 'Torrid', 'Obese', 'Speedy', 'Flying',
+'Idiotic', 'Chunky');

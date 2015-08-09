@@ -5,14 +5,20 @@ Stikked allows you to easily share code with anyone you wish. Based on the [orig
 Here are some features:
 
 * Easy setup
-* Syntaxhighlighting for many languages, including live syntaxhighlighting with CodeMirror
+* Syntax highlighting for many languages, including live syntax highlighting with CodeMirror
 * Paste replies
 * Diff view between the original paste and the reply
 * An API
+* Search pastes
 * Trending pastes
+* Encrypted pastes
+* Burn on reading
 * Anti-Spam features
 * Themes support
 * Multilanguage support
+* An [Android app](https://play.google.com/store/apps/details?id=org.teamblueridge.pasteitapp)
+* Command line tool to upload paste to Stikked based pastebins: [Stikkit](https://github.com/benapetr/stikkit)
+* Another CLI tool requiring only curl program: [pbin](https://github.com/glensc/pbin)
 * And many more. View [this review](http://maketecheasier.com/run-your-own-pastebin-with-stikked/2013/01/11) 
 
 
@@ -21,19 +27,22 @@ Try it out
 
 http://paste.scratchbook.ch/
 
+See an encrypted paste: http://paste.scratchbook.ch/view/1427473f#iP7p05DRH0BC72qQjxv01BjUeOmNV073
+
 
 Installation
 ------------
 
 1. Download stikked from https://github.com/claudehohl/Stikked/tags
 2. Create a user and database for Stikked
-3. Edit configuration settings in application/config/stikked.php - everything is described there
-4. You're done!
+3. Copy application/config/stikked.php.default to application/config/stikked.php
+4. Edit configuration settings in application/config/stikked.php - everything is described there
+5. You're done!
 
 * The database structure will be created automatically if it doesn't exist.
 * No special file permissions are needed by default. Optional: If you want to have the JavaScript- and CSS-files minified, the static/asset/ folder has to be writable.
 * To ensure that pastes with an expiration set get cleaned up, define the cron key in the config and set up a cronjob, for example:
-  * */5 * * * * curl --silent http://yoursite.com/cron/[key]
+  * `*/5 * * * * curl --silent http://yoursite.com/cron/[key]`
 
 
 Documentation
@@ -50,6 +59,36 @@ In the folder doc/, you will find:
 
 Changelog
 ---------
+
+### Version 0.9.0:
+
+* New translations: Japanese, Chinese-Simplified, Chinese-Traditional, Russian
+* New themes: Stikkedizr, Cleanwhite
+* Display QR code in paste
+* Multiline highlighter
+* Encrypted pastes (yeah!) - see it in action: http://paste.scratchbook.ch/view/1427473f#iP7p05DRH0BC72qQjxv01BjUeOmNV073
+* Added "burn on reading" as expiration
+* Search function - search in recent and trending pastes
+* Added mockingjay to word list for unknown posters - let the revolution begin!
+* Bugfixes and improvements
+
+#### Upgrade instructions
+
+Copy your htdocs/application/stikked.php config file away. Upload the new version. Copy it back.
+
+### Version 0.8.6:
+
+* New translations: Portuguese, Norwegian, Turkish, French
+* New theme: Snowkat
+* YOURLS support (http://yourls.org/)
+* There is now a stikked.php.dist. You may copy that to config.php and have your own settings
+* The API has more possibilities, see API doc
+* Captcha must be entered only once, no more for further pastes
+* Bugfixes and improvements
+
+#### Upgrade instructions
+
+Copy your htdocs/application/stikked.php config file away. Upload the new version. Copy it back.
 
 ### Version 0.8.5:
 

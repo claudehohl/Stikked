@@ -4,7 +4,7 @@
  * ---------------------------------
  * Author: billykater (billykater+geshi@gmail.com)
  * Copyright: (c) 2010 billykater (http://falconpl.org/)
- * Release Version: 1.0.8.11
+ * Release Version: 1.0.8.12
  * Date Started: 2010/06/07
  *
  * Falcon language file for GeSHi.
@@ -215,4 +215,3 @@ $language_data = array (
         '.'
     )
 );
-?>

@@ -4,7 +4,7 @@
  * ----------------
  * Author: Steffen Krause (Steffen.krause@muse.de)
  * Copyright: (c) 2004 Steffen Krause, Nigel McNie (http://qbnz.com/highlighter)
- * Release Version: 1.0.8.11
+ * Release Version: 1.0.8.12
  * Date Started: 2004/06/20
  *
  * Actionscript language file for GeSHi.
@@ -193,5 +193,3 @@ $language_data = array (
     'SCRIPT_DELIMITERS' => array(),
     'HIGHLIGHT_STRICT_BLOCK' => array()
 );
-
-?>

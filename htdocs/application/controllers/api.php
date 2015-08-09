@@ -7,6 +7,9 @@
  * - create()
  * - paste()
  * - random()
+ * - recent()
+ * - trending()
+ * - langs()
  * Classes list:
  * - Api extends Main
  */
@@ -22,6 +25,11 @@ class Api extends Main
 		if (config_item('disable_api')) 
 		{
 			die("The API has been disabled\n");
+		}
+		
+		if (config_item('apikey') != $this->input->get('apikey')) 
+		{
+			die("Invalid API key\n");
 		}
 	}
 	
@@ -80,6 +88,11 @@ class Api extends Main
 	
 	function paste() 
 	{
+		
+		if (config_item('private_only')) 
+		{
+			show_404();
+		}
 		$this->load->model('pastes');
 		$check = $this->pastes->checkPaste(3);
 		
@@ -93,20 +106,73 @@ class Api extends Main
 				'message' => 'Not found',
 			);
 		}
-		echo stripslashes(json_encode($data));
+		echo json_encode($data);
 	}
 	
 	function random() 
 	{
+		
+		if (config_item('private_only')) 
+		{
+			show_404();
+		}
 		$this->load->model('pastes');
 		$data = $this->pastes->random_paste();
+		echo json_encode($data);
+	}
+	
+	function recent() 
+	{
 		
-		if (!$data) 
+		if (config_item('private_only')) 
 		{
-			$data = array(
-				'message' => 'Please try again',
+			show_404();
+		}
+		$this->load->model('pastes');
+		$pastes = $this->pastes->getLists('api/recent');
+		$pastes = $pastes['pastes'];
+		$data = array();
+		foreach ($pastes as $paste) 
+		{
+			$data[] = array(
+				'pid' => $paste['pid'],
+				'title' => $paste['title'],
+				'name' => $paste['name'],
+				'created' => $paste['created'],
+				'lang' => $paste['lang'],
 			);
 		}
-		echo stripslashes(json_encode($data));
+		echo json_encode($data);
+	}
+	
+	function trending() 
+	{
+		
+		if (config_item('private_only')) 
+		{
+			show_404();
+		}
+		$this->load->model('pastes');
+		$pastes = $this->pastes->getTrends('api/trending', 2);
+		$pastes = $pastes['pastes'];
+		$data = array();
+		foreach ($pastes as $paste) 
+		{
+			$data[] = array(
+				'pid' => $paste['pid'],
+				'title' => $paste['title'],
+				'name' => $paste['name'],
+				'created' => $paste['created'],
+				'lang' => $paste['lang'],
+				'hits' => $paste['hits'],
+			);
+		}
+		echo json_encode($data);
+	}
+	
+	function langs() 
+	{
+		$languages = $this->languages->get_languages();
+		echo json_encode($languages);
 	}
 }

@@ -4,7 +4,7 @@
  * ---------------------------------
  * Author: aquaticus.info
  * Copyright: (c) 2008 aquaticus.info
- * Release Version: 1.0.8.11
+ * Release Version: 1.0.8.12
  * Date Started: 2008/01/09
  *
  * BASCOM AVR language file for GeSHi.
@@ -181,5 +181,3 @@ $language_data = array (
         ),
     'TAB_WIDTH' => 4
 );
-
-?>

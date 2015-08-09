@@ -7,6 +7,10 @@ Stikked troubleshooting guide
 
 Rewrite rules must be enabled in httpd.conf.
 
+Enable it by executing the following command:
+
+```a2enmod rewrite```
+
 ### Nginx
 
 #### 502 Bad Gateway
@@ -36,6 +40,12 @@ You can adapt that to your system.
 PHP FastCGI must be running. See the php-fcgi section under Nginx.
 
 ### Cherokee
+
+### PHP
+
+#### The QR file isn't created and the image isn't showed
+
+You need to have the GD extension for PHP installed and enabled so that the QR codes are rendered.
 
 Still have a problem?
 ---------------------

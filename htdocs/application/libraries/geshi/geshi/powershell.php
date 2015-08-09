@@ -4,7 +4,7 @@
  * ---------------------------------
  * Author: Frode Aarebrot (frode@aarebrot.net)
  * Copyright: (c) 2008 Frode Aarebrot (http://www.aarebrot.net)
- * Release Version: 1.0.8.11
+ * Release Version: 1.0.8.12
  * Date Started: 2008/06/20
  *
  * PowerShell language file for GeSHi.
@@ -273,5 +273,3 @@ $language_data = array (
             )
         )
 );
-
-?>

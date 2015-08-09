@@ -30,7 +30,7 @@
 						<?php echo lang('paste_title'); ?>
 					</label>
 					
-					<input value="<?php if(isset($title_set)){ echo $title_set; }?>" class="span3" type="text" id="title" name="title" tabindex="2" maxlength="32" />
+					<input value="<?php if(isset($title_set)){ echo $title_set; }?>" class="span3" type="text" id="title" name="title" tabindex="2" maxlength="50" />
 				</div>
 		
 				<div class="span3">
@@ -61,9 +61,13 @@
 							<label class="checkbox">
 								<?php
 									$set = array('name' => 'snipurl', 'id' => 'snipurl', 'value' => '1', 'tabindex' => '5', 'checked' => $snipurl_set);
+									if ($this->config->item('disable_shorturl')){
+										$set['checked'] = 0;
+										$set['disabled'] = 'disabled';
+									}
 									echo form_checkbox($set);
 								?>
-								<?php echo lang('paste_shorturl') . ' - ' . lang('paste_shorturl_desc'); ?>
+								<?php echo lang('paste_create_shorturl') . ' - ' . lang('paste_shorturl_desc'); ?>
 							</label>
 						</div>
 					</div>
@@ -88,17 +92,21 @@
 						</label>
 						<?php 
 							$expire_extra = 'id="expire" class="select" tabindex="7"';
+                            $default_expiration = config_item('default_expiration');
 							$options = array(
-											"0" => lang('exp_forever'),
-											"30" => lang('exp_30min'),
-											"60" => lang('exp_1h'),
-											"360" => lang('exp_6h'),
-											"720" => lang('exp_12h'),
-											"1440" => lang('exp_1d'),
-											"10080" => lang('exp_1w'),
-											"40320" => lang('exp_4w'),
+                                        "burn" => lang('exp_burn'),
+                                        "5" => lang('exp_5min'),
+                                        "60" => lang('exp_1h'),
+                                        "1440" => lang('exp_1d'),
+                                        "10080" => lang('exp_1w'),
+                                        "40320" => lang('exp_1m'),
+                                        "483840" => lang('exp_1y'),
 									);
-						echo form_dropdown('expire', $options, $expire_set, $expire_extra); ?>
+                            if(! config_item('disable_keep_forever')) {
+                                $options['0'] = lang('exp_forever');
+                                $default_expiration = '0'; // forever
+                            }
+						echo form_dropdown('expire', $options, $default_expiration, $expire_extra); ?>
 					</div>
 				</div>
 			</div>
@@ -107,7 +115,7 @@
 			<input type="hidden" value="<?php echo $reply; ?>" name="reply" />
 		<?php } ?>
 		
-		<?php if($this->config->item('enable_captcha')){ ?>
+        <?php if($this->config->item('enable_captcha') && $this->db_session->userdata('is_human') === false){ ?>
 			<div class="item_group">
 				<div class="item item_captcha">
 					<label for="captcha"><?php echo lang('paste_spam'); ?>
@@ -116,7 +124,7 @@
                     <?php if($use_recaptcha){
                         echo recaptcha_get_html($recaptcha_publickey);
                     } else { ?>
-                        <img class="captcha" src="<?php echo site_url('view/captcha'); ?>?<?php echo date('U', mktime()); ?>" alt="captcha" width="110" height="40" />
+                        <img class="captcha" src="<?php echo site_url('view/captcha'); ?>?<?php echo date('U', mktime()); ?>" alt="captcha" width="180" height="40" />
                         <input value="" type="text" id="captcha" name="captcha" tabindex="2" maxlength="32" />
                     <?php } ?>
 				</div>
