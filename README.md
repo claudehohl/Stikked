@@ -60,14 +60,6 @@ In the folder doc/, you will find:
 Changelog
 ---------
 
-### Version 0.9.1:
-
-* Fixed bug with db_prefix config value
-
-#### Upgrade instructions
-
-Copy your htdocs/application/stikked.php config file away. Upload the new version. Copy it back.
-
 ### Version 0.9.0:
 
 * New translations: Japanese, Chinese-Simplified, Chinese-Traditional, Russian
