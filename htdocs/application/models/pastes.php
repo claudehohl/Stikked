@@ -456,13 +456,14 @@ class Pastes extends CI_Model
 		$amount = $this->config->item('per_page');
 		$page = ($this->uri->segment($seg) ? $this->uri->segment($seg) : 0);
 		$search = $this->input->get('search');
-		
+		$TABLE = $this->config->item('db_prefix') . "pastes";
+
 		if ($search) 
 		{
 			$search = '%' . $search . '%';
 
 			// count total results
-			$sql = "SELECT id FROM pastes WHERE private = 0 AND (title LIKE ? OR raw LIKE ?)";
+			$sql = "SELECT id FROM ${this->config->item("db_prefix")}pastes WHERE private = 0 AND (title LIKE ? OR raw LIKE ?)";
 			$query = $this->db->query($sql, array(
 				$search,
 				$search,
@@ -473,16 +474,16 @@ class Pastes extends CI_Model
 			
 			if ($this->db->dbdriver == "postgre") 
 			{
-				$sql = "SELECT id, title, name, created, pid, lang, raw FROM pastes WHERE private = 0 AND (title LIKE ? OR raw LIKE ?) ORDER BY created DESC LIMIT $amount OFFSET $page";
+				$sql = "SELECT id, title, name, created, pid, lang, raw FROM $TABLE WHERE private = 0 AND (title LIKE ? OR raw LIKE ?) ORDER BY created DESC LIMIT $amount OFFSET $page";
 			}
 			else 
 			if ($root == 'api/recent') 
 			{
-				$sql = "SELECT id, title, name, created, pid, lang, raw FROM pastes WHERE private = 0 AND (title LIKE ? OR raw LIKE ?) ORDER BY created DESC LIMIT 0,15";
+				$sql = "SELECT id, title, name, created, pid, lang, raw FROM $TABLE WHERE private = 0 AND (title LIKE ? OR raw LIKE ?) ORDER BY created DESC LIMIT 0,15";
 			}
 			else
 			{
-				$sql = "SELECT id, title, name, created, pid, lang, raw FROM pastes WHERE private = 0 AND (title LIKE ? OR raw LIKE ?) ORDER BY created DESC LIMIT $page,$amount";
+				$sql = "SELECT id, title, name, created, pid, lang, raw FROM $TABLE WHERE private = 0 AND (title LIKE ? OR raw LIKE ?) ORDER BY created DESC LIMIT $page,$amount";
 			}
 			$query = $this->db->query($sql, array(
 				$search,
@@ -493,7 +494,7 @@ class Pastes extends CI_Model
 		{
 
 			// count total results
-			$sql = "SELECT id FROM pastes WHERE private = 0";
+			$sql = "SELECT id FROM $TABLE WHERE private = 0";
 			$query = $this->db->query($sql);
 			$total_rows = $query->num_rows();
 
@@ -501,11 +502,11 @@ class Pastes extends CI_Model
 			
 			if ($this->db->dbdriver == "postgre") 
 			{
-				$sql = "SELECT id, title, name, created, pid, lang, raw FROM pastes WHERE private = 0 ORDER BY created DESC LIMIT $amount OFFSET $page";
+				$sql = "SELECT id, title, name, created, pid, lang, raw FROM $TABLE WHERE private = 0 ORDER BY created DESC LIMIT $amount OFFSET $page";
 			}
 			else
 			{
-				$sql = "SELECT id, title, name, created, pid, lang, raw FROM pastes WHERE private = 0 ORDER BY created DESC LIMIT $page,$amount";
+				$sql = "SELECT id, title, name, created, pid, lang, raw FROM $TABLE WHERE private = 0 ORDER BY created DESC LIMIT $page,$amount";
 			}
 			$query = $this->db->query($sql);
 		}
@@ -551,13 +552,14 @@ class Pastes extends CI_Model
 		$amount = $this->config->item('per_page');
 		$page = ($this->uri->segment(2) ? $this->uri->segment(2) : 0);
 		$search = $this->input->get('search');
-		
+		$TABLE = $this->config->item('db_prefix') . "pastes";
+
 		if ($search) 
 		{
 			$search = '%' . $search . '%';
 
 			// count total results
-			$sql = "SELECT id FROM pastes WHERE private = 0 AND (title LIKE ? OR raw LIKE ?)";
+			$sql = "SELECT id FROM $TABLE WHERE private = 0 AND (title LIKE ? OR raw LIKE ?)";
 			$query = $this->db->query($sql, array(
 				$search,
 				$search,
@@ -568,16 +570,16 @@ class Pastes extends CI_Model
 			
 			if ($this->db->dbdriver == "postgre") 
 			{
-				$sql = "SELECT id, title, name, created, pid, lang, raw, hits FROM pastes WHERE private = 0 AND (title LIKE ? OR raw LIKE ?) ORDER BY hits DESC, created DESC LIMIT $amount OFFSET $page";
+				$sql = "SELECT id, title, name, created, pid, lang, raw, hits FROM $TABLE WHERE private = 0 AND (title LIKE ? OR raw LIKE ?) ORDER BY hits DESC, created DESC LIMIT $amount OFFSET $page";
 			}
 			else 
 			if ($root == "api/trending") 
 			{
-				$sql = "SELECT id, title, name, created, pid, lang, raw, hits FROM pastes WHERE private = 0 AND (title LIKE ? OR raw LIKE ?) ORDER BY hits DESC, created DESC LIMIT 0,15";
+				$sql = "SELECT id, title, name, created, pid, lang, raw, hits FROM $TABLE WHERE private = 0 AND (title LIKE ? OR raw LIKE ?) ORDER BY hits DESC, created DESC LIMIT 0,15";
 			}
 			else
 			{
-				$sql = "SELECT id, title, name, created, pid, lang, raw, hits FROM pastes WHERE private = 0 AND (title LIKE ? OR raw LIKE ?) ORDER BY hits DESC, created DESC LIMIT $page,$amount";
+				$sql = "SELECT id, title, name, created, pid, lang, raw, hits FROM $TABLE WHERE private = 0 AND (title LIKE ? OR raw LIKE ?) ORDER BY hits DESC, created DESC LIMIT $page,$amount";
 			}
 			$query = $this->db->query($sql, array(
 				$search,
@@ -588,7 +590,7 @@ class Pastes extends CI_Model
 		{
 
 			// count total results
-			$sql = "SELECT id FROM pastes WHERE private = 0";
+			$sql = "SELECT id FROM $TABLE WHERE private = 0";
 			$query = $this->db->query($sql);
 			$total_rows = $query->num_rows();
 
@@ -596,11 +598,11 @@ class Pastes extends CI_Model
 			
 			if ($this->db->dbdriver == "postgre") 
 			{
-				$sql = "SELECT id, title, name, created, pid, lang, raw, hits FROM pastes WHERE private = 0 ORDER BY hits DESC, created DESC LIMIT $amount OFFSET $page";
+				$sql = "SELECT id, title, name, created, pid, lang, raw, hits FROM $TABLE WHERE private = 0 ORDER BY hits DESC, created DESC LIMIT $amount OFFSET $page";
 			}
 			else
 			{
-				$sql = "SELECT id, title, name, created, pid, lang, raw, hits FROM pastes WHERE private = 0 ORDER BY hits DESC, created DESC LIMIT $page,$amount";
+				$sql = "SELECT id, title, name, created, pid, lang, raw, hits FROM $TABLE WHERE private = 0 ORDER BY hits DESC, created DESC LIMIT $page,$amount";
 			}
 			$query = $this->db->query($sql);
 		}
