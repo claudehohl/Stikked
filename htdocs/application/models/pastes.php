@@ -463,7 +463,7 @@ class Pastes extends CI_Model
 			$search = '%' . $search . '%';
 
 			// count total results
-			$sql = "SELECT id FROM ${this->config->item("db_prefix")}pastes WHERE private = 0 AND (title LIKE ? OR raw LIKE ?)";
+			$sql = "SELECT id FROM $TABLE WHERE private = 0 AND (title LIKE ? OR raw LIKE ?)";
 			$query = $this->db->query($sql, array(
 				$search,
 				$search,
