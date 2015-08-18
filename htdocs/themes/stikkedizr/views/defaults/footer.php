@@ -12,7 +12,7 @@ $this->load->view('defaults/stats');
 
 //Javascript
 $this->carabiner->js('modernizr.js');
-$this->carabiner->js('jquery-1.10.2.min.js');
+$this->carabiner->js('jquery.js');
 $this->carabiner->js('bootstrap.min.js');
 $this->carabiner->js('jquery.timers.js');
 $this->carabiner->js('codemirror/lib/codemirror.js');
