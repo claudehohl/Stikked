@@ -32,3 +32,4 @@
 * kiang https://github.com/kiang (Chinese-Traditional translation)
 * Abbas A. Elmas https://github.com/abbaselmas (Intense testing and making valuable suggestions)
 * Sebastian Korotkiewicz http://git.itunix.eu/git/cleanwhite.git/ (CleanWhite theme)
+* Franklyn Tackitt https://github.com/kageurufu (Fixed bug with db_prefix config value)
