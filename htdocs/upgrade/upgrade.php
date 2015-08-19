@@ -2,7 +2,8 @@
 /**
  * Patch for application/config/stikked.php
  * @since 0.9.2
- * New version, new features! Your stikked.php need to be upgraded, and running this script will do so.
+ * New
+ *  version, new features! Your stikked.php need to be upgraded, and running this script will do so.
  * No worry, your's settings will be left intact, just few things added.
  *
  * !WARNING!
