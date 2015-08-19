@@ -66,24 +66,63 @@ $config['cron_key'] = '';
 /**
  * url shortener config
  *
- * If yourls_url is set, yourls is used instead of gw.gd
- *
+ * url_shortening_use:
+ *    - Enables specific url shortening engine or disables them all
+ *    - Valid values:
+ *           @string yourls
+ *           @string gwgd
+ *           @string googl
+ *           @string bitly 
+ *           @string random - Randomly chose any of upper API-s !WARNING! May be slow! For maximum performanse, it's recommended to either set all API keys or use random_url_engines to list working engines.
+ *           @string none - same as off
+ * 
+ * random_url_engines:
+ *    - This variable sets list of APIs to be considered for usage if url_shortening_use is set to 'random'
+ *      To consider all API-s, either leave it empty (as empty array or string) or type all apis available (yourls,gwgd,googl,bitly)
+ *      be aware that considering all the APIs is not recommended because program will test them all, and that affects speed.
+ *      This will greatly improve performance of 'random' mode if listed are only valid, filled APIs.
+ *      Accepted inputs:
+ *           @array array('use this', 'and this', 'and this of course')
+ *           @string 'use this,and this,and this of course'
+ *      - If input is @string it must be comma delimited, otherwise will be ignored.
+ *      - Script will accept minimum of 2 APIs, ignored otherwise
+ *      - Only alphanumeric characters and "." are allowed. Everything else is filtered out.
+ * 
+ * -------------------------------------------------------------------------------------------------------------
  * yourls_url: Your own instance of yourls URL-shortener (Download: http://yourls.org/)
  * Example: http://example.com/yourls/
  *
  * yourls_signature: Your signature, used to authenticate API requests.
  * You can find your signature under http://your-yourls-installation.com/admin/tools.php
  *
- * OR
- *
  * gwgd_url: Your own instance of the gw.gd URL-shortener (Download: https://github.com/neofutur/gwgd)
  * Default: http://gw.gd/
  *
+ * googl_url_api: URL shortening service provided by Google Inc. (API: http://code.google.com/apis/console/) 
+ * Usage: Your API key
+ * 
+ * bitly_url_api: Famous URL shortening service (API: http://dev.bitly.com/get_started.html)
+ * Usage: Your API key
+ * 
 **/
+$config['url_shortening_use'] = 'off';
+$config['random_url_engines'] = 'googl,bitly'; // Used only in random mode, read comment above for more info
+
+
+// Yourls
 $config['yourls_url'] = '';
 $config['yourls_signature'] = '';
+
+// gwgd_url
 $config['gwgd_url'] = '';
 $config['shorturl_selected'] = false;
+
+// goo.gl API key
+$config['googl_url_api'] = '';
+// Bit.ly API key
+$config['bitly_url_api'] = '';
+
+
 
 /**
  * Credentials for the backup URL
@@ -207,32 +246,223 @@ $config['displayurl_override'] = '';
  *
  *
 **/
-$config['nouns'] = array('Hornbill', 'Elephant', 'Bison', 'Lion', 'Camel', 'Sheep',
-'Monkey', 'Prairie Dog', 'Plover', 'Tapir', 'Capybara', 'Cheetah', 'Flamingo', 'Peccary', 'Eider',	'Porcupine', 'Pelican', 'Dove', 'Crane', 'Tortoise', 'Agouti',
-'Tamarin', 'Pheasant', 'Owl', 'Gibbon', 'Goose', 'Baboon', 'Hamerkop', 'Zebra',
-'Macaw', 'Gibbon', 'Madrill', 'Wolf', 'Stork', 'Armadillo', 'Ostrich', 'Marmoset',
-'Lizard', 'Panda', 'Giraffe', 'Cassowary', 'Kangaroo', 'Gorilla', 'Pheasant',
-'Finch', 'Duck', 'Matamata', 'Teal', 'Macaque', 'Goat', 'Lechwe', 'Ibis', 'Parrot',
-'Parakeet', 'Bongo', 'Pudu', 'Echidna', 'Lemur', 'Bat', 'Curlew', 'Terrapin',
-'Peafowl', 'Duck', 'Owl', 'Parakeet', 'Meerkat', 'Tern', 'Wigeon', 'Pintail',
-'Meerkat', 'Motmot', 'Motmot', 'Shama', 'Dormouse', 'Horse', 'Rhinoceros', 'Sloth',
- 'Mousedeer', 'Treeshrew', 'Bushbaby', 'Guinea Pig', 'Agouti', 'Water Vole', 'Hog',
-'Pig', 'Anoa', 'Octupus', 'Butterfly', 'Cat', 'Kitten', 'Coyote', 'Crocodile',
-'Cockroach', 'Crow', 'Bird', 'Dolphin', 'Earthworm', 'Frog', 'Hamster', 'Hedgehog',
-'Hog', 'Human', 'Hummingbird', 'Iguana', 'Leech', 'Leopard', ' Marten',
-'Mockingbird', 'Mockingjay', 'Mosquito', 'Moth', 'Partdridge', 'Bee', 'Penguin');
+$config['nouns'] = array (
+  0 => 'Hornbill',
+  1 => 'Elephant',
+  2 => 'Bison',
+  3 => 'Lion',
+  4 => 'Camel',
+  5 => 'Sheep',
+  6 => 'Monkey',
+  7 => 'Prairie Dog',
+  8 => 'Plover',
+  9 => 'Tapir',
+  10 => 'Capybara',
+  11 => 'Cheetah',
+  12 => 'Flamingo',
+  13 => 'Peccary',
+  14 => 'Eider',
+  15 => 'Porcupine',
+  16 => 'Pelican',
+  17 => 'Dove',
+  18 => 'Crane',
+  19 => 'Tortoise',
+  20 => 'Agouti',
+  21 => 'Tamarin',
+  22 => 'Pheasant',
+  23 => 'Owl',
+  24 => 'Gibbon',
+  25 => 'Goose',
+  26 => 'Baboon',
+  27 => 'Hamerkop',
+  28 => 'Zebra',
+  29 => 'Macaw',
+  30 => 'Gibbon',
+  31 => 'Madrill',
+  32 => 'Wolf',
+  33 => 'Stork',
+  34 => 'Armadillo',
+  35 => 'Ostrich',
+  36 => 'Marmoset',
+  37 => 'Lizard',
+  38 => 'Panda',
+  39 => 'Giraffe',
+  40 => 'Cassowary',
+  41 => 'Kangaroo',
+  42 => 'Gorilla',
+  43 => 'Pheasant',
+  44 => 'Finch',
+  45 => 'Duck',
+  46 => 'Matamata',
+  47 => 'Teal',
+  48 => 'Macaque',
+  49 => 'Goat',
+  50 => 'Lechwe',
+  51 => 'Ibis',
+  52 => 'Parrot',
+  53 => 'Parakeet',
+  54 => 'Bongo',
+  55 => 'Pudu',
+  56 => 'Echidna',
+  57 => 'Lemur',
+  58 => 'Bat',
+  59 => 'Curlew',
+  60 => 'Terrapin',
+  61 => 'Peafowl',
+  62 => 'Duck',
+  63 => 'Owl',
+  64 => 'Parakeet',
+  65 => 'Meerkat',
+  66 => 'Tern',
+  67 => 'Wigeon',
+  68 => 'Pintail',
+  69 => 'Meerkat',
+  70 => 'Motmot',
+  71 => 'Motmot',
+  72 => 'Shama',
+  73 => 'Dormouse',
+  74 => 'Horse',
+  75 => 'Rhinoceros',
+  76 => 'Sloth',
+  77 => 'Mousedeer',
+  78 => 'Treeshrew',
+  79 => 'Bushbaby',
+  80 => 'Guinea Pig',
+  81 => 'Agouti',
+  82 => 'Water Vole',
+  83 => 'Hog',
+  84 => 'Pig',
+  85 => 'Anoa',
+  86 => 'Octupus',
+  87 => 'Butterfly',
+  88 => 'Cat',
+  89 => 'Kitten',
+  90 => 'Coyote',
+  91 => 'Crocodile',
+  92 => 'Cockroach',
+  93 => 'Crow',
+  94 => 'Bird',
+  95 => 'Dolphin',
+  96 => 'Earthworm',
+  97 => 'Frog',
+  98 => 'Hamster',
+  99 => 'Hedgehog',
+  100 => 'Hog',
+  101 => 'Human',
+  102 => 'Hummingbird',
+  103 => 'Iguana',
+  104 => 'Leech',
+  105 => 'Leopard',
+  106 => ' Marten',
+  107 => 'Mockingbird',
+  108 => 'Mockingjay',
+  109 => 'Mosquito',
+  110 => 'Moth',
+  111 => 'Partdridge',
+  112 => 'Bee',
+  113 => 'Penguin',
+);
 
-$config['adjectives'] = array('Ample', 'Mature', 'Bulky', 'Burly', 'Capacious',
-'Colossal', 'Commodious', 'Thundering', 'Mammoth', 'Mungo', 'Voluminous',
-'Walloping', 'Tiny', 'Baby', 'Bitty', 'Diminutive', 'Little', 'Paltry', 'Scanty',
-'Trivial', 'Scribby', 'Blush', 'Tinct', 'Colorant', 'Aqua', 'Beige', 'Bistre',
-'Buff', 'Bistre', 'Chartreuse', 'Chocolate', 'Cobalt', 'Coral', 'Cream', 'Crimson',
-'Denim', 'Emerald', 'Gray', 'Gamboge', 'Ivory', 'Mustard', 'Silly', 'Perl',
-'Whipped', 'Violet', 'Harmless', 'Gentle', 'Innocent', 'Reliable', 'Unreliable',
-'Soft', 'Toxic', 'Anorexic', 'Beefy', 'Sexy', 'Morose', 'Rude', 'Ungracious',
-'Abrupt', 'Gracious', 'Queen', 'Cute', 'Edgy', 'Insensitive', 'Round', 'Sharp',
-'Gruff', 'Subtle', 'Crippled', 'Eratic', 'Social', 'Jittery', 'Sole', 'Unique',
-'Botched', 'Tacky', 'Sludgy', 'Stained', 'Wet', 'Soiled', 'Big', 'Small', 'Sloppy',
-'Smelly', 'Funky', 'Putrid', 'Melodic', 'Corrupt', 'Lousy', 'Fiery', 'Red',
-'Sweet', 'Hot', 'Scorching', 'Sweltering', 'Torrid', 'Obese', 'Speedy', 'Flying',
-'Idiotic', 'Chunky');
+$config['adjectives'] = array (
+  0 => 'Ample',
+  1 => 'Mature',
+  2 => 'Bulky',
+  3 => 'Burly',
+  4 => 'Capacious',
+  5 => 'Colossal',
+  6 => 'Commodious',
+  7 => 'Thundering',
+  8 => 'Mammoth',
+  9 => 'Mungo',
+  10 => 'Voluminous',
+  11 => 'Walloping',
+  12 => 'Tiny',
+  13 => 'Baby',
+  14 => 'Bitty',
+  15 => 'Diminutive',
+  16 => 'Little',
+  17 => 'Paltry',
+  18 => 'Scanty',
+  19 => 'Trivial',
+  20 => 'Scribby',
+  21 => 'Blush',
+  22 => 'Tinct',
+  23 => 'Colorant',
+  24 => 'Aqua',
+  25 => 'Beige',
+  26 => 'Bistre',
+  27 => 'Buff',
+  28 => 'Bistre',
+  29 => 'Chartreuse',
+  30 => 'Chocolate',
+  31 => 'Cobalt',
+  32 => 'Coral',
+  33 => 'Cream',
+  34 => 'Crimson',
+  35 => 'Denim',
+  36 => 'Emerald',
+  37 => 'Gray',
+  38 => 'Gamboge',
+  39 => 'Ivory',
+  40 => 'Mustard',
+  41 => 'Silly',
+  42 => 'Perl',
+  43 => 'Whipped',
+  44 => 'Violet',
+  45 => 'Harmless',
+  46 => 'Gentle',
+  47 => 'Innocent',
+  48 => 'Reliable',
+  49 => 'Unreliable',
+  50 => 'Soft',
+  51 => 'Toxic',
+  52 => 'Anorexic',
+  53 => 'Beefy',
+  54 => 'Sexy',
+  55 => 'Morose',
+  56 => 'Rude',
+  57 => 'Ungracious',
+  58 => 'Abrupt',
+  59 => 'Gracious',
+  60 => 'Queen',
+  61 => 'Cute',
+  62 => 'Edgy',
+  63 => 'Insensitive',
+  64 => 'Round',
+  65 => 'Sharp',
+  66 => 'Gruff',
+  67 => 'Subtle',
+  68 => 'Crippled',
+  69 => 'Eratic',
+  70 => 'Social',
+  71 => 'Jittery',
+  72 => 'Sole',
+  73 => 'Unique',
+  74 => 'Botched',
+  75 => 'Tacky',
+  76 => 'Sludgy',
+  77 => 'Stained',
+  78 => 'Wet',
+  79 => 'Soiled',
+  80 => 'Big',
+  81 => 'Small',
+  82 => 'Sloppy',
+  83 => 'Smelly',
+  84 => 'Funky',
+  85 => 'Putrid',
+  86 => 'Melodic',
+  87 => 'Corrupt',
+  88 => 'Lousy',
+  89 => 'Fiery',
+  90 => 'Red',
+  91 => 'Sweet',
+  92 => 'Hot',
+  93 => 'Scorching',
+  94 => 'Sweltering',
+  95 => 'Torrid',
+  96 => 'Obese',
+  97 => 'Speedy',
+  98 => 'Flying',
+  99 => 'Idiotic',
+  100 => 'Chunky',
+);
