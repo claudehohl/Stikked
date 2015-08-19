@@ -925,6 +925,7 @@ class Pastes extends CI_Model
 		$this->load->library('process');
 		$this->db->order_by('id', 'RANDOM');
 		$this->db->limit(1);
+                $this->db->where('private', '0');
 		$query = $this->db->get('pastes');
 		
 		if ($query->num_rows() > 0) 
