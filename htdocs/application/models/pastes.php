@@ -154,58 +154,111 @@ class Pastes extends CI_Model
 		$override_url = $this->config->item('displayurl_override');
 		return ($override_url ? str_replace('$id', $pid, $override_url) : site_url('view/' . $pid));
 	}
+        
+        
+        /**
+         * Simple cURL connect // Used by _shorten_url
+         * @param array $opt_array
+         * @return mixed or boolean false on failure
+         */
+        private 
+                function curl_connect($opt_array){
+                    $ch = curl_init();
+                    curl_setopt_array($ch, $opt_array);
+                    $resp = curl_exec($ch);
+                    curl_close($ch);
+                    return (empty($resp) ? false : $resp);
+                }
+        
+        
 	private 
 	function _shorten_url($url) 
 	{
-		$config_yourls_url = $this->config->item('yourls_url');
-		
-		if ($config_yourls_url) 
-		{
-
-			//use yourls
-			$config_yourls_url = $this->config->item('yourls_url');
+                $url_shortening_api = $this->config->item('url_shortening_use');
+                // Check if url shortening should be used
+                if(!$url_shortening_api === false) {
+                
+                // switch: Check which engine should be used
+                switch($url_shortening_api){
+                    case "yourls":
+                        $config_yourls_url = $this->config->item('yourls_url');
 			$config_yourls_signature = $this->config->item('yourls_signature');
-			$timestamp = time();
-			$signature = md5($timestamp . $config_yourls_signature);
+                        $timestamp = time();
 
-			// Init the CURL session
-			$ch = curl_init();
-			curl_setopt($ch, CURLOPT_URL, $config_yourls_url . 'yourls-api.php');
-			curl_setopt($ch, CURLOPT_HEADER, 0);
-			curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-			curl_setopt($ch, CURLOPT_POST, 1);
-			curl_setopt($ch, CURLOPT_POSTFIELDS, array(
-				'url' => $url,
-				'format' => 'simple',
-				'action' => 'shorturl',
-				'signature' => $signature,
-				'timestamp' => $timestamp,
-			));
-			$resp = curl_exec($ch);
-			curl_close($ch);
-			$shorturl = (empty($resp) ? false : $resp);
-		}
-		else
-		{
-
-			//use gdgw
+                        $prep_data = array(
+                            CURLOPT_URL => $config_yourls_url . 'yourls-api.php',
+                            CURLOPT_RETURNTRANSFER => true,
+                            CURLOPT_POST => true,
+                            CURLOPT_POSTFIELDS => array(
+                                'url' => $url,
+                                'format' => 'simple',
+                                'action' => 'shorturl',
+                                'signature' => md5($timestamp . $config_yourls_signature),
+                                'timestamp' => $timestamp
+                            ) 
+                        );
+                        $shorturl = $this->curl_connect($prep_data);
+                        break;
+                    
+                    case "gdgw":
+                        //use gdgw
 			$url = urlencode($url);
 			$config_gwgd_url = $this->config->item('gwgd_url');
 			$gwgd_url = ($config_gwgd_url ? $config_gwgd_url : 'http://gw.gd/');
-			$target = $gwgd_url . 'api.php?long=' . $url;
+                        
+                        // Prepare CURL options array
+                        $prep_data = array(
+                            CURLOPT_URL => $target = $gwgd_url . 'api.php?long=' . $url,
+                            CURLOPT_RETURNTRANSFER => true,
+                            CURLOPT_ENCODING => 'identity'
+                        );
+                        $shorturl = $this->curl_connect($prep_data);                        
+                        break;
+                    
+                    case "googl":
+                        $config_googl_url = $this->config->item('googl_url_api');
+                        // Prepare CURL options array
+                        $prep_data = array(
+                            CURLOPT_URL => 'https://www.googleapis.com/urlshortener/v1/url',
+                            CURLOPT_RETURNTRANSFER => true,
+                            CURLOPT_SSL_VERIFYPEER => false,
+                            CURLOPT_HEADER => false,
+                            CURLOPT_HTTPHEADER => array('Content-type:application/json'),
+                            CURLOPT_POST => true,
+                            CURLOPT_POSTFIELDS => json_encode(array('longUrl' => $url, 'key' => $config_googl_url))
+                        );
+                        $shorturl = @json_decode($this->curl_connect($prep_data));
+                        $shorturl = $shorturl->id;
+                        break;
+                    
+                    case "bitly":
+                        $config_bitly_url = $this->config->item('bitly_url_api');
+                        if(is_array($config_bitly_url) && isset($config_bitly_url['LOGIN']) && isset($config_bitly_url['API_KEY'])){
+                        $url = urlencode($url);
+                        // Prepare CURL options array
+                        $prep_data = array(
+                            CURLOPT_URL => "http://api.bit.ly/v3/shorten?login={$config_bitly_url['LOGIN']}&apiKey={$config_bitly_url['API_KEY']}&uri={$url}&format=txt",
+                            CURLOPT_RETURNTRANSFER => true,
+                        );
+                        $shorturl = $this->curl_connect($prep_data);
+                        }else{
+                            $shorturl = false;
+                        }
+                        break;
+                    
+                    default:
+                        $shorturl = false;
+                        break;
+                }
+                
+                }else{
+                    $shorturl = false;
+                }
 
-			// Init the CURL session
-			$ch = curl_init();
-			curl_setopt($ch, CURLOPT_URL, $target);
-			curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-			curl_setopt($ch, CURLOPT_ENCODING, 'identity');
-			$resp = curl_exec($ch);
-			curl_close($ch);
-			$shorturl = (empty($resp) ? false : $resp);
-		}
 		return $shorturl;
 	}
-	
+        
+
 	function checkPaste($seg = 2) 
 	{
 		
