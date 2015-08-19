@@ -7,6 +7,7 @@
  * - countReplies()
  * - createPaste()
  * - _get_url()
+ * - curl_connect()
  * - _shorten_url()
  * - checkPaste()
  * - getPaste()
@@ -154,111 +155,258 @@ class Pastes extends CI_Model
 		$override_url = $this->config->item('displayurl_override');
 		return ($override_url ? str_replace('$id', $pid, $override_url) : site_url('view/' . $pid));
 	}
-        
-        
-        /**
-         * Simple cURL connect // Used by _shorten_url
-         * @param array $opt_array
-         * @return mixed or boolean false on failure
-         */
-        private 
-                function curl_connect($opt_array){
-                    $ch = curl_init();
-                    curl_setopt_array($ch, $opt_array);
-                    $resp = curl_exec($ch);
-                    curl_close($ch);
-                    return (empty($resp) ? false : $resp);
-                }
-        
-        
+	/**
+	 * Simple cURL connect // Used by _shorten_url
+	 * @param array $opt_array
+	 * @return mixed or boolean false on failure
+	 */
+	private 
+	function curl_connect($opt_array) 
+	{
+		$ch = curl_init();
+		curl_setopt_array($ch, $opt_array);
+		$resp = curl_exec($ch);
+		curl_close($ch);
+		return (empty($resp) ? false : $resp);
+	}
 	private 
 	function _shorten_url($url) 
 	{
-                $url_shortening_api = $this->config->item('url_shortening_use');
-                // Check if url shortening should be used
-                if(!$url_shortening_api === false) {
-                
-                // switch: Check which engine should be used
-                switch($url_shortening_api){
-                    case "yourls":
-                        $config_yourls_url = $this->config->item('yourls_url');
-			$config_yourls_signature = $this->config->item('yourls_signature');
-                        $timestamp = time();
 
-                        $prep_data = array(
-                            CURLOPT_URL => $config_yourls_url . 'yourls-api.php',
-                            CURLOPT_RETURNTRANSFER => true,
-                            CURLOPT_POST => true,
-                            CURLOPT_POSTFIELDS => array(
-                                'url' => $url,
-                                'format' => 'simple',
-                                'action' => 'shorturl',
-                                'signature' => md5($timestamp . $config_yourls_signature),
-                                'timestamp' => $timestamp
-                            ) 
-                        );
-                        $shorturl = $this->curl_connect($prep_data);
-                        break;
-                    
-                    case "gdgw":
-                        //use gdgw
-			$url = urlencode($url);
-			$config_gwgd_url = $this->config->item('gwgd_url');
-			$gwgd_url = ($config_gwgd_url ? $config_gwgd_url : 'http://gw.gd/');
-                        
-                        // Prepare CURL options array
-                        $prep_data = array(
-                            CURLOPT_URL => $target = $gwgd_url . 'api.php?long=' . $url,
-                            CURLOPT_RETURNTRANSFER => true,
-                            CURLOPT_ENCODING => 'identity'
-                        );
-                        $shorturl = $this->curl_connect($prep_data);                        
-                        break;
-                    
-                    case "googl":
-                        $config_googl_url = $this->config->item('googl_url_api');
-                        // Prepare CURL options array
-                        $prep_data = array(
-                            CURLOPT_URL => 'https://www.googleapis.com/urlshortener/v1/url',
-                            CURLOPT_RETURNTRANSFER => true,
-                            CURLOPT_SSL_VERIFYPEER => false,
-                            CURLOPT_HEADER => false,
-                            CURLOPT_HTTPHEADER => array('Content-type:application/json'),
-                            CURLOPT_POST => true,
-                            CURLOPT_POSTFIELDS => json_encode(array('longUrl' => $url, 'key' => $config_googl_url))
-                        );
-                        $shorturl = @json_decode($this->curl_connect($prep_data));
-                        $shorturl = $shorturl->id;
-                        break;
-                    
-                    case "bitly":
-                        $config_bitly_url = $this->config->item('bitly_url_api');
-                        if(is_array($config_bitly_url) && isset($config_bitly_url['LOGIN']) && isset($config_bitly_url['API_KEY'])){
-                        $url = urlencode($url);
-                        // Prepare CURL options array
-                        $prep_data = array(
-                            CURLOPT_URL => "http://api.bit.ly/v3/shorten?login={$config_bitly_url['LOGIN']}&apiKey={$config_bitly_url['API_KEY']}&uri={$url}&format=txt",
-                            CURLOPT_RETURNTRANSFER => true,
-                        );
-                        $shorturl = $this->curl_connect($prep_data);
-                        }else{
-                            $shorturl = false;
-                        }
-                        break;
-                    
-                    default:
-                        $shorturl = false;
-                        break;
-                }
-                
-                }else{
-                    $shorturl = false;
-                }
+		// Check if url shortening should be used
+		$url_shortening_api = $this->config->item('url_shortening_use');
+		$API_DB = array(
+			"googl",
+			"goo.gl",
+			"bitly",
+			"bit.ly",
+			"yourls",
+			"gwgd",
+			"random"
+		);
+		
+		if ($url_shortening_api !== false) 
+		{
+			if (in_array($url_shortening_api, $API_DB, true)) 
+			{
+				if ($url_shortening_api === "random") 
+				{
+					$url_shortening_consider = $this->config->item('random_url_engines');
+					
+					if (!is_array($url_shortening_consider)) 
+					{
+						if ($url_shortening_consider = @explode(",", preg_replace("/[^a-zA-Z0-9.]+/", "", $url_shortening_consider))) 
+						{
+							
+							if (count($url_shortening_consider) > 1) 
+							{
+								foreach ($url_shortening_consider as $key => $api) 
+								{	
+									if (($key = array_search($api, $API_DB)) === false) 
+									{
+										unset($API_DB[$key]);
+									}
+								}
+							}
+						}
+					}
+					else
+					{
+						if (count($url_shortening_consider) > 1) 
+						{
+							foreach ($url_shortening_consider as $key => $api) 
+							{	
+								if (($key = array_search($api, $API_DB)) === false) 
+								{
+									unset($API_DB[$key]);
+								}
+							}
+						}
+					}
 
+					// We will use random API in this case
+					$url_shortening_api = false; //Prepare for use in while loop
+
+					// Run through while loop as long as an API which satisfy requirement's isn't found.
+
+					// As satisfied API is considerer any API which is filled and not empty
+
+					while ($url_shortening_api === false && $url_shortening_api !== "random") 
+					{
+						$RAND_API = $API_DB[mt_rand(0, count($API_DB) - 1) ];
+						switch ($RAND_API) 
+						{
+						case "yourls":
+							
+							if (!empty($this->config->item('yourls_url')) && !empty($this->config->item('yourls_signature'))) 
+							{
+								$url_shortening_api = "yourls";
+							}
+						break;
+						case "gwgd":
+						case "gw.gd":
+							
+							if (!empty($this->config->item('gwgd_url'))) 
+							{
+								$url_shortening_api = "gwgd";
+							}
+						break;
+						case "googl":
+						case "google":
+						case "goo.gl":
+							
+							if (!empty($this->config->item('googl_url_api'))) 
+							{
+								$url_shortening_api = "googl";
+							}
+						break;
+						case "bitly":
+						case "bit.ly":
+							
+							if (!empty($this->config->item('bitly_url_api'))) 
+							{
+								$url_shortening_api = "bitly";
+							}
+						break;
+						default:
+							$url_shortening_api = false;
+						break;
+						}
+					}
+				}
+
+				// switch: Check which engine should be used
+				switch ($url_shortening_api) 
+				{
+				case "yourls":
+					$config_yourls_url = $this->config->item('yourls_url');
+					$config_yourls_signature = $this->config->item('yourls_signature');
+					$timestamp = time();
+					$prep_data = array(
+						CURLOPT_URL => $config_yourls_url . 'yourls-api.php',
+						CURLOPT_RETURNTRANSFER => true,
+						CURLOPT_POST => true,
+						CURLOPT_POSTFIELDS => array(
+							'url' => $url,
+							'format' => 'simple',
+							'action' => 'shorturl',
+							'signature' => md5($timestamp . $config_yourls_signature) ,
+							'timestamp' => $timestamp
+						)
+					);
+					$fetchResp = $this->curl_connect($prep_data);
+					$shorturl = ((strlen($fetchResp) > 4) ? $fetchResp : false);
+				break;
+				case "gwgd":
+				case "gw.gd":
+
+					//use gwgd
+					$url = urlencode($url);
+					$config_gwgd_url = $this->config->item('gwgd_url');
+					$gwgd_url = ($config_gwgd_url ? $config_gwgd_url : 'http://gw.gd/');
+
+					// Prepare CURL options array
+					$prep_data = array(
+						CURLOPT_URL => $target = $gwgd_url . 'api.php?long=' . $url,
+						CURLOPT_RETURNTRANSFER => true,
+						CURLOPT_ENCODING => 'identity'
+					);
+					$fetchResp = $this->curl_connect($prep_data);
+					$shorturl = ((strlen($fetchResp) > 4) ? $fetchResp : false);
+				break;
+				case "googl":
+				case "google":
+				case "goo.gl":
+
+					// Prepare CURL options array
+					$prep_data = array(
+						CURLOPT_URL => 'https://www.googleapis.com/urlshortener/v1/url?key=' . $this->config->item('googl_url_api') ,
+						CURLOPT_RETURNTRANSFER => true,
+						CURLOPT_SSL_VERIFYPEER => false,
+						CURLOPT_HEADER => false,
+						CURLOPT_HTTPHEADER => array(
+							'Content-type:application/json'
+						) ,
+						CURLOPT_POST => true,
+						CURLOPT_POSTFIELDS => json_encode(array(
+							'longUrl' => $url
+						))
+					);
+					$shorturl = @json_decode($this->curl_connect($prep_data));
+					$shorturl = ((isset($shorturl->id)) ? $shorturl->id : false);
+				break;
+				case "bitly":
+				case "bit.ly":
+					$config_bitly_api = $this->config->item('bitly_url_api');
+					$url = urlencode($url);
+
+					// Prepare CURL options array
+					$prep_data = array(
+						CURLOPT_URL => "https://api-ssl.bitly.com/v3/shorten?access_token={$config_bitly_api}&longUrl={$url}&format=txt",
+						CURLOPT_RETURNTRANSFER => true,
+						CURLOPT_SSL_VERIFYPEER => false
+					);
+					$fetchResp = $this->curl_connect($prep_data);
+					$shorturl = ((strlen($fetchResp) > 4) ? $fetchResp : false);
+				break;
+				default:
+					$shorturl = false;
+				break;
+				}
+			}
+			else
+			{
+				$shorturl = false;
+			}
+		}
+		else
+		{
+
+			//  Backward compatibility - Falling back to legacy mode
+			$config_yourls_url = $this->config->item('yourls_url');
+			
+			if ($config_yourls_url) 
+			{
+
+				//use yourls
+				$config_yourls_signature = $this->config->item('yourls_signature');
+				$timestamp = time();
+				$prep_data = array(
+					CURLOPT_URL => $config_yourls_url . 'yourls-api.php',
+					CURLOPT_RETURNTRANSFER => true,
+					CURLOPT_POST => true,
+					CURLOPT_POSTFIELDS => array(
+						'url' => $url,
+						'format' => 'simple',
+						'action' => 'shorturl',
+						'signature' => md5($timestamp . $config_yourls_signature) ,
+						'timestamp' => $timestamp
+					)
+				);
+				$fetchResp = $this->curl_connect($prep_data);
+				$shorturl = ((strlen($fetchResp) > 4) ? $fetchResp : false);
+			}
+			else
+			{
+
+				//use gdgw
+				$url = urlencode($url);
+				$config_gwgd_url = $this->config->item('gwgd_url');
+				$gwgd_url = ($config_gwgd_url ? $config_gwgd_url : 'http://gw.gd/');
+
+				// Prepare CURL options array
+				$prep_data = array(
+					CURLOPT_URL => $target = $gwgd_url . 'api.php?long=' . $url,
+					CURLOPT_RETURNTRANSFER => true,
+					CURLOPT_ENCODING => 'identity'
+				);
+				$fetchResp = $this->curl_connect($prep_data);
+				$shorturl = ((strlen($fetchResp) > 4) ? $fetchResp : false);
+			}
+		}
 		return $shorturl;
 	}
-        
-
+	
 	function checkPaste($seg = 2) 
 	{
 		
@@ -422,7 +570,7 @@ class Pastes extends CI_Model
 			$this->db->insert('trending', array(
 				'paste_id' => $pid,
 				'ip_address' => $this->input->ip_address() ,
-				'created' => mktime() ,
+				'created' => mktime()
 			));
 		}
 
@@ -457,7 +605,7 @@ class Pastes extends CI_Model
 			$this->db->where('pid', $pid);
 			$this->db->update('pastes', array(
 				'hits' => $hits_count,
-				'hits_updated' => mktime() ,
+				'hits_updated' => mktime()
 			));
 		}
 	}
@@ -518,7 +666,7 @@ class Pastes extends CI_Model
 			$sql = "SELECT id FROM pastes WHERE private = 0 AND (title LIKE ? OR raw LIKE ?)";
 			$query = $this->db->query($sql, array(
 				$search,
-				$search,
+				$search
 			));
 			$total_rows = $query->num_rows();
 
@@ -539,7 +687,7 @@ class Pastes extends CI_Model
 			}
 			$query = $this->db->query($sql, array(
 				$search,
-				$search,
+				$search
 			));
 		}
 		else
@@ -613,7 +761,7 @@ class Pastes extends CI_Model
 			$sql = "SELECT id FROM pastes WHERE private = 0 AND (title LIKE ? OR raw LIKE ?)";
 			$query = $this->db->query($sql, array(
 				$search,
-				$search,
+				$search
 			));
 			$total_rows = $query->num_rows();
 
@@ -634,7 +782,7 @@ class Pastes extends CI_Model
 			}
 			$query = $this->db->query($sql, array(
 				$search,
-				$search,
+				$search
 			));
 		}
 		else

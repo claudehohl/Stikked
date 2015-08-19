@@ -32,3 +32,4 @@
 * kiang https://github.com/kiang (Chinese-Traditional translation)
 * Abbas A. Elmas https://github.com/abbaselmas (Intense testing and making valuable suggestions)
 * Sebastian Korotkiewicz http://git.itunix.eu/git/cleanwhite.git/ (CleanWhite theme)
+* Aleksandar Puharic https://github.com/xZero707/  (New URL shortening API-s Goo.gl and Bit.ly, several fixes)
