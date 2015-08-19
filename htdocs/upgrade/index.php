@@ -12,7 +12,7 @@ $status = "";
 if (!$locked) 
 {
 	$title = "Upgrade";
-	$message = " This upgrade is only needed if you migrate from version lower than 0.9.1.<br/>";
+	$message = " This upgrade is only needed if you migrate from version lower than 0.9.2.<br/>";
 	$message.= "<span class='warning'>Warning: All custom code will be erased!</span><br/>";
 	$message.= "Do you want to upgrade? <a href='{$URL}?auth={$authCode}'>Yes</a> | <a href='../'>No</a>";
 }
