@@ -59,11 +59,16 @@ class Main extends CI_Controller
 			$this->use_recaptcha = true;
 		}
 		
-		if (!$this->db->table_exists('ci_sessions')) 
+		if (!$this->db->table_exists('sessions')) 
 		{
 			$this->load->dbforge();
+			
+			if ($this->db->table_exists('ci_sessions')) 
+			{
+				$this->dbforge->drop_table('ci_sessions');
+			}
 			$fields = array(
-				'session_id' => array(
+				'id' => array(
 					'type' => 'VARCHAR',
 					'constraint' => 40,
 					'default' => 0,
@@ -73,23 +78,19 @@ class Main extends CI_Controller
 					'constraint' => 45,
 					'default' => 0,
 				) ,
-				'user_agent' => array(
-					'type' => 'VARCHAR',
-					'constraint' => 50,
-				) ,
-				'last_activity' => array(
+				'timestamp' => array(
 					'type' => 'INT',
 					'constraint' => 10,
 					'unsigned' => TRUE,
 					'default' => 0,
 				) ,
-				'session_data' => array(
-					'type' => 'TEXT',
-					'null' => TRUE,
+				'data' => array(
+					'type' => 'BLOB',
 				) ,
 			);
 			$this->dbforge->add_field($fields);
-			$this->dbforge->add_key('session_id', true);
+			$this->dbforge->add_key('id', true);
+			$this->dbforge->add_key('timestamp');
 			$this->dbforge->create_table('ci_sessions', true);
 		}
 		
