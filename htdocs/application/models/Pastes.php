@@ -7,6 +7,7 @@
  * - countReplies()
  * - createPaste()
  * - _get_url()
+ * - curl_connect()
  * - _shorten_url()
  * - checkPaste()
  * - getPaste()
@@ -58,7 +59,7 @@ class Pastes extends CI_Model
 		//this is SO evil… saving the «raw» data with htmlspecialchars :-( (but I have to leave this, because of backwards-compatibility)
 		$data['raw'] = htmlspecialchars($this->_strip_bad_multibyte_chars($this->input->post('code')));
 		$data['lang'] = htmlspecialchars($this->input->post('lang'));
-		$data['replyto'] = $this->input->post('reply');
+		$data['replyto'] = ($this->input->post('reply') === null ? '0' : $this->input->post('reply'));
 		
 		if ($this->input->post('name')) 
 		{
@@ -84,10 +85,10 @@ class Pastes extends CI_Model
 		{
 			$data['title'] = $this->config->item('unknown_title');
 		}
-		$data['private'] = $this->input->post('private');
+		$data['private'] = ($this->input->post('private') === null ? '0' : $this->input->post('private'));
 		do 
 		{
-			$data['pid'] = substr(md5(md5(mt_rand(0, 1000000) . mktime())) , rand(0, 24) , 8);
+			$data['pid'] = substr(md5(md5(mt_rand(0, 1000000) . time())) , rand(0, 24) , 8);
 			$this->db->select('id');
 			$this->db->where('pid', $data['pid']);
 			$query = $this->db->get('pastes');
@@ -122,7 +123,7 @@ class Pastes extends CI_Model
 		{
 			$format = 'Y-m-d H:i:s';
 			$data['toexpire'] = 1;
-			$data['expire'] = mktime() + (60 * $this->input->post('expire'));
+			$data['expire'] = time() + (60 * $this->input->post('expire'));
 		}
 		
 		if ($this->input->post('snipurl') == false) 
@@ -154,7 +155,6 @@ class Pastes extends CI_Model
 		$override_url = $this->config->item('displayurl_override');
 		return ($override_url ? str_replace('$id', $pid, $override_url) : site_url('view/' . $pid));
 	}
-        
 	/**
 	 * Simple cURL connect // Used by _shorten_url
 	 * @param array $opt_array
@@ -187,21 +187,25 @@ class Pastes extends CI_Model
 		
 		if ($url_shortening_api !== false) 
 		{
+			
 			if (in_array($url_shortening_api, $API_DB, true)) 
 			{
+				
 				if ($url_shortening_api === "random") 
 				{
 					$url_shortening_consider = $this->config->item('random_url_engines');
 					
 					if (!is_array($url_shortening_consider)) 
 					{
+						
 						if ($url_shortening_consider = @explode(",", preg_replace("/[^a-zA-Z0-9.]+/", "", $url_shortening_consider))) 
 						{
 							
 							if (count($url_shortening_consider) > 1) 
 							{
 								foreach ($url_shortening_consider as $key => $api) 
-								{	
+								{
+									
 									if (($key = array_search($api, $API_DB)) === false) 
 									{
 										unset($API_DB[$key]);
@@ -212,10 +216,12 @@ class Pastes extends CI_Model
 					}
 					else
 					{
+						
 						if (count($url_shortening_consider) > 1) 
 						{
 							foreach ($url_shortening_consider as $key => $api) 
-							{	
+							{
+								
 								if (($key = array_search($api, $API_DB)) === false) 
 								{
 									unset($API_DB[$key]);
@@ -570,13 +576,13 @@ class Pastes extends CI_Model
 			$this->db->insert('trending', array(
 				'paste_id' => $pid,
 				'ip_address' => $this->input->ip_address() ,
-				'created' => mktime() ,
+				'created' => time() ,
 			));
 		}
 
 		//update hits counter every minute
 		
-		if (mktime() > (60 + $data['hits_updated'])) 
+		if (time() > (60 + $data['hits_updated'])) 
 		{
 			$this->calculate_hits($pid, $data['hits']);
 		}
@@ -605,7 +611,7 @@ class Pastes extends CI_Model
 			$this->db->where('pid', $pid);
 			$this->db->update('pastes', array(
 				'hits' => $hits_count,
-				'hits_updated' => mktime() ,
+				'hits_updated' => time() ,
 			));
 		}
 	}
@@ -658,7 +664,7 @@ class Pastes extends CI_Model
 		$page = ($this->uri->segment($seg) ? $this->uri->segment($seg) : 0);
 		$search = $this->input->get('search');
 		$TABLE = $this->config->item('db_prefix') . "pastes";
-
+		
 		if ($search) 
 		{
 			$search = '%' . $search . '%';
@@ -754,7 +760,7 @@ class Pastes extends CI_Model
 		$page = ($this->uri->segment(2) ? $this->uri->segment(2) : 0);
 		$search = $this->input->get('search');
 		$TABLE = $this->config->item('db_prefix') . "pastes";
-
+		
 		if ($search) 
 		{
 			$search = '%' . $search . '%';
@@ -925,7 +931,7 @@ class Pastes extends CI_Model
 		$this->load->library('process');
 		$this->db->order_by('id', 'RANDOM');
 		$this->db->limit(1);
-                $this->db->where('private', '0');
+		$this->db->where('private', '0');
 		$query = $this->db->get('pastes');
 		
 		if ($query->num_rows() > 0) 
