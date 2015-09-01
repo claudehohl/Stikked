@@ -39,7 +39,7 @@ class Main extends CI_Controller
 	function __construct() 
 	{
 		parent::__construct();
-		$this->output->enable_profiler(true);
+		$this->output->enable_profiler(false);
 		$this->load->model('languages');
 		$this->load->library('curl');
 		
