@@ -35,3 +35,4 @@
 * Franklyn Tackitt https://github.com/kageurufu (Fixed bug with db_prefix config value)
 * Aleksandar Puharic https://github.com/xZero707/ (New URL shortening API-s Goo.gl and Bit.ly, several fixes)
 * Benjamin Townsend https://github.com/benjaminarthurt (submitted pull request to casimir/gw.gd which fixes a bug)
+* Pawel Janisio https://github.com/PJanisio (Several fixes; QR code, hardcoded paths etc., geshi update)
