@@ -112,7 +112,7 @@
 		<input type="hidden" value="<?php echo $reply; ?>" name="reply" />
 <?php } ?>
 
-<?php if($this->config->item('enable_captcha') && $this->db_session->userdata('is_human') === false){ ?>
+<?php if($this->config->item('enable_captcha') && $this->session->userdata('is_human') === null){ ?>
 		<div class="item_group">
 			<div class="item item_captcha">
 				<label for="captcha"><?php echo lang('paste_spam'); ?>

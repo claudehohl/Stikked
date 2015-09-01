@@ -338,26 +338,26 @@ class Main extends CI_Controller
 		if (!$this->input->post('submit')) 
 		{
 			
-			if (!$this->db_session->userdata('expire')) 
+			if (!$this->session->userdata('expire')) 
 			{
 				$default_expiration = config_item('default_expiration');
-				$this->db_session->set_userdata('expire', $default_expiration);
+				$this->session->set_userdata('expire', $default_expiration);
 			}
 			
-			if (!$this->db_session->userdata('snipurl')) 
+			if (!$this->session->userdata('snipurl')) 
 			{
 				$shorturl_selected = config_item('shorturl_selected');
-				$this->db_session->set_userdata('snipurl', $shorturl_selected);
+				$this->session->set_userdata('snipurl', $shorturl_selected);
 			}
 			
-			if ($this->db_session->flashdata('settings_changed')) 
+			if ($this->session->flashdata('settings_changed')) 
 			{
 				$data['status_message'] = 'Settings successfully changed';
 			}
-			$data['name_set'] = $this->db_session->userdata('name');
-			$data['expire_set'] = $this->db_session->userdata('expire');
-			$data['private_set'] = $this->db_session->userdata('private');
-			$data['snipurl_set'] = $this->db_session->userdata('snipurl');
+			$data['name_set'] = $this->session->userdata('name');
+			$data['expire_set'] = $this->session->userdata('expire');
+			$data['private_set'] = $this->session->userdata('private');
+			$data['snipurl_set'] = $this->session->userdata('snipurl');
 			$data['paste_set'] = $paste;
 			$data['title_set'] = $title;
 			$data['reply'] = $reply;
@@ -463,7 +463,7 @@ class Main extends CI_Controller
 						'snipurl' => $this->input->post('snipurl') ,
 						'private' => $this->input->post('private') ,
 					);
-					$this->db_session->set_userdata($user_data);
+					$this->session->set_userdata($user_data);
 				}
 				redirect($this->pastes->createPaste());
 			}
@@ -614,7 +614,7 @@ class Main extends CI_Controller
 		if ($check) 
 		{
 			
-			if ($this->db_session->userdata('view_raw')) 
+			if ($this->session->userdata('view_raw')) 
 			{
 				redirect('view/raw/' . $this->uri->segment(2));
 			}
@@ -668,7 +668,7 @@ class Main extends CI_Controller
 		$word = $str;
 
 		//save
-		$this->db_session->set_userdata(array(
+		$this->session->set_userdata(array(
 			'captcha' => $word
 		));
 
@@ -688,7 +688,7 @@ class Main extends CI_Controller
 	function _valid_captcha($text) 
 	{
 		
-		if (config_item('enable_captcha') && $this->db_session->userdata('is_human') === false) 
+		if (config_item('enable_captcha') && $this->session->userdata('is_human') === null) 
 		{
 			$this->form_validation->set_message('_valid_captcha', lang('captcha'));
 			
@@ -697,7 +697,7 @@ class Main extends CI_Controller
 				
 				if ($this->_valid_recaptcha()) 
 				{
-					$this->db_session->set_userdata('is_human', true);
+					$this->session->set_userdata('is_human', true);
 					return true;
 				}
 				else
@@ -708,9 +708,9 @@ class Main extends CI_Controller
 			else
 			{
 				
-				if (strtolower($text) == strtolower($this->db_session->userdata('captcha'))) 
+				if (strtolower($text) == strtolower($this->session->userdata('captcha'))) 
 				{
-					$this->db_session->set_userdata('is_human', true);
+					$this->session->set_userdata('is_human', true);
 					return true;
 				}
 				else
@@ -891,7 +891,7 @@ class Main extends CI_Controller
 			
 			if (!$this->auth_ldap->is_authenticated()) 
 			{
-				$this->db_session->set_flashdata('tried_to', "/" . $this->uri->uri_string());
+				$this->session->set_flashdata('tried_to', "/" . $this->uri->uri_string());
 				redirect('/auth');
 			}
 		}
