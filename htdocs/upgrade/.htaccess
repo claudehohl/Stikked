@@ -1,0 +1,4 @@
+<Files "upgrade_schema.ugs">
+Order Allow,Deny
+Deny from all
+</Files>

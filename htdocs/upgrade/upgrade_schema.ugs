@@ -6,7 +6,7 @@
  * The name of your site
  *
 */
-$config['site_name'] = 'Stikked';
+$config['site_name'] = {INS->SITE_NAME};
 
 /**
  * Database connection
@@ -15,10 +15,10 @@ $config['site_name'] = 'Stikked';
  * The database structure will be created automatically
  *
 */
-$config['db_hostname'] = '127.0.0.1';
-$config['db_database'] = 'stikked';
-$config['db_username'] = 'stikked';
-$config['db_password'] = 'stikked';
+$config['db_hostname'] = {INS->DB_HOSTNAME};
+$config['db_database'] = {INS->DB_DATABASE};
+$config['db_username'] = {INS->DB_USERNAME};
+$config['db_password'] = {INS->DB_PASSWORD};
 
 /**
  * Table prefix
@@ -27,7 +27,7 @@ $config['db_password'] = 'stikked';
  * example: $config['db_prefix'] = 'stikked_';
  * use $config['db_prefix'] = ''; if you don't want to use table prefix.
 */
-$config['db_prefix'] = '';
+$config['db_prefix'] = {INS->DB_PREFIX};
 
 /**
  * Theme
@@ -37,7 +37,7 @@ $config['db_prefix'] = '';
  * Currently: default, bootstrap, gabdark, gabdark3, geocities, snowkat, stikkedizr, cleanwhite
  *
 */
-$config['theme'] = 'default';
+$config['theme'] = {INS->THEME};
 
 /**
  * Language
@@ -52,7 +52,7 @@ $config['theme'] = 'default';
  * htdocs/static/asset/ folder must be writeable
  *
 */
-$config['combine_assets'] = false;
+$config['combine_assets'] = {INS->COMBINE_ASSETS};
 
 /**
  * Key for Cron
@@ -61,7 +61,7 @@ $config['combine_assets'] = false;
 // Example cron: */5 * * * * curl --silent http://yoursite.com/cron/[key]
 //
 //
-$config['cron_key'] = '';
+$config['cron_key'] = {INS->CRON_KEY};
 
 /**
  * url shortener config
@@ -105,23 +105,17 @@ $config['cron_key'] = '';
  * Usage: Your API key
  * 
 **/
-$config['url_shortening_use'] = 'off';
-$config['random_url_engines'] = 'googl,bitly'; // Used only in random mode, read comment above for more info
-
+{INS->URL_SHORTENING_NEW#1}
 
 // Yourls
-$config['yourls_url'] = '';
-$config['yourls_signature'] = '';
+$config['yourls_url'] = {INS->YOURLS_URL};
+$config['yourls_signature'] = {INS->YOURLS_SIGNATURE};
 
 // gwgd_url
-$config['gwgd_url'] = '';
-$config['shorturl_selected'] = false;
+$config['gwgd_url'] = {INS->GWGD_URL};
+$config['shorturl_selected'] = {INS->SHORTURL_SELECTED};
 
-// goo.gl API key
-$config['googl_url_api'] = '';
-// Bit.ly API key
-$config['bitly_url_api'] = '';
-
+{INS->URL_SHORTENING_NEW#2}
 
 
 /**
@@ -130,8 +124,8 @@ $config['bitly_url_api'] = '';
  * Basic auth user & pass for the backup URL, accessible via http://yoursite.com/backup
  *
 **/
-$config['backup_user'] = '';
-$config['backup_pass'] = '';
+$config['backup_user'] = {INS->BACKUP_USER};
+$config['backup_pass'] = {INS->BACKUP_PASS};
 
 /**
  * Pastes Per Page
@@ -139,7 +133,7 @@ $config['backup_pass'] = '';
  * Number of pastes per page, on the recent pastes listings.
  *
 **/
-$config['per_page'] = 15;
+$config['per_page'] = {INS->PER_PAGE};
 
 /**
  * API key
@@ -148,7 +142,7 @@ $config['per_page'] = 15;
  * Append to all API requests: ?apikey=[yourkey]
  *
 **/
-$config['apikey'] = '';
+$config['apikey'] = {INS->APIKEY};
 
 /**
  * Anti spam
@@ -163,19 +157,19 @@ $config['apikey'] = '';
  * disallow_search_engines: displays a robots.txt that forbids indexing
  *
 **/
-$config['private_only'] = false;
-$config['enable_captcha'] = true;
-$config['recaptcha_publickey'] = '';
-$config['recaptcha_privatekey'] = '';
-$config['disable_api'] = false;
-$config['disable_keep_forever'] = false;
-$config['blocked_words'] = '';
-$config['disable_shorturl'] = false;
-$config['disallow_search_engines'] = false;
+$config['private_only'] = {INS->PRIVATE_ONLY};
+$config['enable_captcha'] = {INS->ENABLE_CAPTCHA};
+$config['recaptcha_publickey'] = {INS->PUBLICKEY};
+$config['recaptcha_privatekey'] = {INS->PRIVATEKEY};
+$config['disable_api'] = {INS->DISABLEAPI};
+$config['disable_keep_forever'] = {INS->DISABLEKEEPFOREVER};
+$config['blocked_words'] = {INS->BLOCKEDWORDS};
+$config['disable_shorturl'] = {INS->DISABLE_SHORTURL};
+$config['disallow_search_engines'] = {INS->DISALLOW_SEARCH_ENGINES};
 
 //spamadmin: accessible via /spamadmin (only active when user + pass is set)
-$config['spamadmin_user'] = '';
-$config['spamadmin_pass'] = '';
+$config['spamadmin_user'] = {INS->SPAMADMIN_USER};
+$config['spamadmin_pass'] = {INS->SPAMADMIN_PASS};
 
 /**
  * Default paste expiration time (minutes)
@@ -190,7 +184,7 @@ $config['spamadmin_pass'] = '';
  *  483840 (1 year)
  *  0 (keep forever)
 **/
-$config['default_expiration'] = 0;
+$config['default_expiration'] = {INS->DEFAULT_EXPIRATION};
 
 /**
  * Default language
@@ -198,7 +192,7 @@ $config['default_expiration'] = 0;
  * Preselected language. See application/config/geshi_languages.php for valid values (array keys)
  *
 **/
-$config['default_language'] = 'text';
+$config['default_language'] = {INS->DEFAULT_LANGUAGE};
 
 /**
  * Name for anonymous poster
@@ -209,7 +203,7 @@ $config['default_language'] = 'text';
  * NOTE: if changed only pastes from then on will be updated.
  *
 **/
-$config['unknown_poster'] = 'random';
+$config['unknown_poster'] = {INS->UNKNOWN_POSTER};
 
 /**
  * Name for untitled pastes
@@ -218,7 +212,7 @@ $config['unknown_poster'] = 'random';
  * DO NOT SET BLANK
  * NOTE: if changed only pastes from then on will be updated.
 **/
-$config['unknown_title'] = 'Untitled';
+$config['unknown_title'] = {INS->UNKNOWN_TITLE};
 
 /**
  * To require LDAP authentication or not.
@@ -227,7 +221,7 @@ $config['unknown_title'] = 'Untitled';
  * Set to either 'true' to require authentication or 'false' not to.
  * NOTE: if changed, set LDAP settings in auth_ldap.php
 **/ 
-$config['require_auth'] = false;
+$config['require_auth'] = {INS->REQUIRE_AUTH};
  
 /**
  * Override the displayed URL
@@ -237,7 +231,7 @@ $config['require_auth'] = false;
  * Example: 'http://example.com/$id'
  *
 **/
-$config['displayurl_override'] = '';
+$config['displayurl_override'] = {INS->DISPLAYURL_OVERRIDE};
 
 /**
  *
@@ -246,223 +240,6 @@ $config['displayurl_override'] = '';
  *
  *
 **/
-$config['nouns'] = array (
-  0 => 'Hornbill',
-  1 => 'Elephant',
-  2 => 'Bison',
-  3 => 'Lion',
-  4 => 'Camel',
-  5 => 'Sheep',
-  6 => 'Monkey',
-  7 => 'Prairie Dog',
-  8 => 'Plover',
-  9 => 'Tapir',
-  10 => 'Capybara',
-  11 => 'Cheetah',
-  12 => 'Flamingo',
-  13 => 'Peccary',
-  14 => 'Eider',
-  15 => 'Porcupine',
-  16 => 'Pelican',
-  17 => 'Dove',
-  18 => 'Crane',
-  19 => 'Tortoise',
-  20 => 'Agouti',
-  21 => 'Tamarin',
-  22 => 'Pheasant',
-  23 => 'Owl',
-  24 => 'Gibbon',
-  25 => 'Goose',
-  26 => 'Baboon',
-  27 => 'Hamerkop',
-  28 => 'Zebra',
-  29 => 'Macaw',
-  30 => 'Gibbon',
-  31 => 'Madrill',
-  32 => 'Wolf',
-  33 => 'Stork',
-  34 => 'Armadillo',
-  35 => 'Ostrich',
-  36 => 'Marmoset',
-  37 => 'Lizard',
-  38 => 'Panda',
-  39 => 'Giraffe',
-  40 => 'Cassowary',
-  41 => 'Kangaroo',
-  42 => 'Gorilla',
-  43 => 'Pheasant',
-  44 => 'Finch',
-  45 => 'Duck',
-  46 => 'Matamata',
-  47 => 'Teal',
-  48 => 'Macaque',
-  49 => 'Goat',
-  50 => 'Lechwe',
-  51 => 'Ibis',
-  52 => 'Parrot',
-  53 => 'Parakeet',
-  54 => 'Bongo',
-  55 => 'Pudu',
-  56 => 'Echidna',
-  57 => 'Lemur',
-  58 => 'Bat',
-  59 => 'Curlew',
-  60 => 'Terrapin',
-  61 => 'Peafowl',
-  62 => 'Duck',
-  63 => 'Owl',
-  64 => 'Parakeet',
-  65 => 'Meerkat',
-  66 => 'Tern',
-  67 => 'Wigeon',
-  68 => 'Pintail',
-  69 => 'Meerkat',
-  70 => 'Motmot',
-  71 => 'Motmot',
-  72 => 'Shama',
-  73 => 'Dormouse',
-  74 => 'Horse',
-  75 => 'Rhinoceros',
-  76 => 'Sloth',
-  77 => 'Mousedeer',
-  78 => 'Treeshrew',
-  79 => 'Bushbaby',
-  80 => 'Guinea Pig',
-  81 => 'Agouti',
-  82 => 'Water Vole',
-  83 => 'Hog',
-  84 => 'Pig',
-  85 => 'Anoa',
-  86 => 'Octupus',
-  87 => 'Butterfly',
-  88 => 'Cat',
-  89 => 'Kitten',
-  90 => 'Coyote',
-  91 => 'Crocodile',
-  92 => 'Cockroach',
-  93 => 'Crow',
-  94 => 'Bird',
-  95 => 'Dolphin',
-  96 => 'Earthworm',
-  97 => 'Frog',
-  98 => 'Hamster',
-  99 => 'Hedgehog',
-  100 => 'Hog',
-  101 => 'Human',
-  102 => 'Hummingbird',
-  103 => 'Iguana',
-  104 => 'Leech',
-  105 => 'Leopard',
-  106 => ' Marten',
-  107 => 'Mockingbird',
-  108 => 'Mockingjay',
-  109 => 'Mosquito',
-  110 => 'Moth',
-  111 => 'Partdridge',
-  112 => 'Bee',
-  113 => 'Penguin',
-);
+$config['nouns'] = {INS->NOUNS};
 
-$config['adjectives'] = array (
-  0 => 'Ample',
-  1 => 'Mature',
-  2 => 'Bulky',
-  3 => 'Burly',
-  4 => 'Capacious',
-  5 => 'Colossal',
-  6 => 'Commodious',
-  7 => 'Thundering',
-  8 => 'Mammoth',
-  9 => 'Mungo',
-  10 => 'Voluminous',
-  11 => 'Walloping',
-  12 => 'Tiny',
-  13 => 'Baby',
-  14 => 'Bitty',
-  15 => 'Diminutive',
-  16 => 'Little',
-  17 => 'Paltry',
-  18 => 'Scanty',
-  19 => 'Trivial',
-  20 => 'Scribby',
-  21 => 'Blush',
-  22 => 'Tinct',
-  23 => 'Colorant',
-  24 => 'Aqua',
-  25 => 'Beige',
-  26 => 'Bistre',
-  27 => 'Buff',
-  28 => 'Bistre',
-  29 => 'Chartreuse',
-  30 => 'Chocolate',
-  31 => 'Cobalt',
-  32 => 'Coral',
-  33 => 'Cream',
-  34 => 'Crimson',
-  35 => 'Denim',
-  36 => 'Emerald',
-  37 => 'Gray',
-  38 => 'Gamboge',
-  39 => 'Ivory',
-  40 => 'Mustard',
-  41 => 'Silly',
-  42 => 'Perl',
-  43 => 'Whipped',
-  44 => 'Violet',
-  45 => 'Harmless',
-  46 => 'Gentle',
-  47 => 'Innocent',
-  48 => 'Reliable',
-  49 => 'Unreliable',
-  50 => 'Soft',
-  51 => 'Toxic',
-  52 => 'Anorexic',
-  53 => 'Beefy',
-  54 => 'Sexy',
-  55 => 'Morose',
-  56 => 'Rude',
-  57 => 'Ungracious',
-  58 => 'Abrupt',
-  59 => 'Gracious',
-  60 => 'Queen',
-  61 => 'Cute',
-  62 => 'Edgy',
-  63 => 'Insensitive',
-  64 => 'Round',
-  65 => 'Sharp',
-  66 => 'Gruff',
-  67 => 'Subtle',
-  68 => 'Crippled',
-  69 => 'Eratic',
-  70 => 'Social',
-  71 => 'Jittery',
-  72 => 'Sole',
-  73 => 'Unique',
-  74 => 'Botched',
-  75 => 'Tacky',
-  76 => 'Sludgy',
-  77 => 'Stained',
-  78 => 'Wet',
-  79 => 'Soiled',
-  80 => 'Big',
-  81 => 'Small',
-  82 => 'Sloppy',
-  83 => 'Smelly',
-  84 => 'Funky',
-  85 => 'Putrid',
-  86 => 'Melodic',
-  87 => 'Corrupt',
-  88 => 'Lousy',
-  89 => 'Fiery',
-  90 => 'Red',
-  91 => 'Sweet',
-  92 => 'Hot',
-  93 => 'Scorching',
-  94 => 'Sweltering',
-  95 => 'Torrid',
-  96 => 'Obese',
-  97 => 'Speedy',
-  98 => 'Flying',
-  99 => 'Idiotic',
-  100 => 'Chunky',
-);
+$config['adjectives'] = {INS->ADJECTIVES};
