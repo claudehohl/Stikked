@@ -33,4 +33,5 @@
 * Abbas A. Elmas https://github.com/abbaselmas (Intense testing and making valuable suggestions)
 * Sebastian Korotkiewicz http://git.itunix.eu/git/cleanwhite.git/ (CleanWhite theme)
 * Franklyn Tackitt https://github.com/kageurufu (Fixed bug with db_prefix config value)
-* Aleksandar Puharic https://github.com/xZero707/  (New URL shortening API-s Goo.gl and Bit.ly, several fixes)
+* Aleksandar Puharic https://github.com/xZero707/ (New URL shortening API-s Goo.gl and Bit.ly, several fixes)
+* Benjamin Townsend https://github.com/benjaminarthurt (submitted pull request to casimir/gw.gd which fixes a bug)
