@@ -39,7 +39,7 @@ class Main extends CI_Controller
 	function __construct() 
 	{
 		parent::__construct();
-		$this->output->enable_profiler(false);
+		$this->output->enable_profiler(true);
 		$this->load->model('languages');
 		$this->load->library('curl');
 		
@@ -91,7 +91,7 @@ class Main extends CI_Controller
 			$this->dbforge->add_field($fields);
 			$this->dbforge->add_key('id', true);
 			$this->dbforge->add_key('timestamp');
-			$this->dbforge->create_table('ci_sessions', true);
+			$this->dbforge->create_table('sessions', true);
 		}
 		
 		if (!$this->db->table_exists('pastes')) 
