@@ -13,7 +13,7 @@
  * Classes list:
  * - Api extends Main
  */
-include_once ('application/controllers/main.php');
+include_once ('application/controllers/Main.php');
 
 class Api extends Main
 {
