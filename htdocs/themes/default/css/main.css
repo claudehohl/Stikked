@@ -553,3 +553,6 @@ h4 {
     width: 104px;
 }
 
+#code {
+    font-family: monospace;
+}
