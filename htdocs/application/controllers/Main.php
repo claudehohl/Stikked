@@ -93,6 +93,9 @@ class Main extends CI_Controller
 			$this->dbforge->add_key('timestamp');
 			$this->dbforge->create_table('sessions', true);
 		}
+
+		// load this after db has been initialized
+		$this->load->library('session');
 		
 		if (!$this->db->table_exists('pastes')) 
 		{
