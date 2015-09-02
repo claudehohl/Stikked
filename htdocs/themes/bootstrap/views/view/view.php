@@ -22,14 +22,14 @@ if(isset($insert)){
 				<div class="span12 meta">
 					<div class="detail by"><?php echo lang('paste_from'); ?> <?php echo $name; ?>, <?php $p = explode(',', timespan($created, time())); echo sprintf($this->lang->line('paste_ago'),$p[0]); ?>, <?php echo lang('paste_writtenin'); ?> <?php echo $lang; ?>.</div>
 					<?php if(isset($inreply)){?><div class="detail by"><?php echo lang('paste_isareply'); ?> <a href="<?php echo $inreply['url']?>"><?php echo $inreply['title']; ?></a> <?php echo strtolower(lang('paste_from')); ?> <?php echo $inreply['name']; ?>
+<?php } ?>
 				<div class="qr">
-				<img src="<?php echo site_url('view/qr/' . $pid ); ?>">
+                    <img src="<?php echo site_url('view/qr/' . $pid ); ?>">
 				</div>
 <?php if($seg3 != 'diff'){ ?>
             - <a href="<?php echo $url . '/diff'; ?>"><?php echo lang('paste_viewdiff'); ?></a>
 <?php }else{ ?>
             - <a href="<?php echo $url; ?>"><?php echo lang('paste_goback'); ?></a>
-<?php } ?>
 
 </div><?php }?>
 					<div class="detail"><span class="item"><?php echo lang('paste_url'); ?> </span><a href="<?php echo $url; ?>"><?php echo $url; ?></a></div>
