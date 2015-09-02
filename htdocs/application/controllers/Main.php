@@ -266,7 +266,7 @@ class Main extends CI_Controller
 		//ipv6 migration
 		$fields = $this->db->field_data('trending');
 		
-		if ($fields[1]->max_length < 45) 
+		if (config_item('db_driver') != 'sqlite' && $fields[1]->max_length < 45) 
 		{
 			$db_prefix = config_item('db_prefix');
 			
@@ -275,14 +275,14 @@ class Main extends CI_Controller
 				$this->db->query("ALTER TABLE " . $db_prefix . "trending ALTER COLUMN ip_address TYPE VARCHAR(45), ALTER COLUMN ip_address SET NOT NULL, ALTER COLUMN ip_address SET DEFAULT '0'");
 				$this->db->query("ALTER TABLE " . $db_prefix . "pastes ALTER COLUMN ip_address TYPE VARCHAR(45), ALTER COLUMN ip_address SET NOT NULL, ALTER COLUMN ip_address SET DEFAULT '0'");
 				$this->db->query("ALTER TABLE " . $db_prefix . "blocked_ips ALTER COLUMN ip_address TYPE VARCHAR(45), ALTER COLUMN ip_address SET NOT NULL, ALTER COLUMN ip_address SET DEFAULT '0'");
-				$this->db->query("ALTER TABLE " . $db_prefix . "ci_sessions ALTER COLUMN ip_address TYPE VARCHAR(45), ALTER COLUMN ip_address SET NOT NULL, ALTER COLUMN ip_address SET DEFAULT '0'");
+				$this->db->query("ALTER TABLE " . $db_prefix . "sessions ALTER COLUMN ip_address TYPE VARCHAR(45), ALTER COLUMN ip_address SET NOT NULL, ALTER COLUMN ip_address SET DEFAULT '0'");
 			}
 			else
 			{
 				$this->db->query("ALTER TABLE " . $db_prefix . "trending CHANGE COLUMN ip_address ip_address VARCHAR(45) NOT NULL DEFAULT '0'");
 				$this->db->query("ALTER TABLE " . $db_prefix . "pastes CHANGE COLUMN ip_address ip_address VARCHAR(45) NOT NULL DEFAULT '0'");
 				$this->db->query("ALTER TABLE " . $db_prefix . "blocked_ips CHANGE COLUMN ip_address ip_address VARCHAR(45) NOT NULL DEFAULT '0'");
-				$this->db->query("ALTER TABLE " . $db_prefix . "ci_sessions CHANGE COLUMN ip_address ip_address VARCHAR(45) NOT NULL DEFAULT '0'");
+				$this->db->query("ALTER TABLE " . $db_prefix . "sessions CHANGE COLUMN ip_address ip_address VARCHAR(45) NOT NULL DEFAULT '0'");
 			}
 		}
 
@@ -294,7 +294,7 @@ class Main extends CI_Controller
 			if ($field->name == 'title') 
 			{
 				
-				if ($field->max_length < 50) 
+				if (config_item('db_driver') != 'sqlite' && $field->max_length < 50) 
 				{
 					$db_prefix = config_item('db_prefix');
 					
