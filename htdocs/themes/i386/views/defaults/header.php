@@ -17,8 +17,8 @@ $page_title .= $this->config->item('site_name');
 
 //Carabiner
 $this->carabiner->config(array(
-    'script_dir' => 'themes/bootstrap/js/',
-    'style_dir'  => 'themes/bootstrap/css/',
+    'script_dir' => 'themes/i386/js/',
+    'style_dir'  => 'themes/i386/css/',
     'cache_dir'  => 'static/asset/',
     'base_uri'	 => base_url(),
     'combine'	 => true,
@@ -44,7 +44,7 @@ $searchparams = ($this->input->get('search') ? '?search=' . $this->input->get('s
 	</head>
 	<body>		
 		<header>
-			<div class="navbar navbar-fixed-top">
+			<div class="navbar navbar-inverse navbar-fixed-top">
 				<div class="navbar-inner">
 					<div class="container">
 						<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
