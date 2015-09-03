@@ -22,9 +22,6 @@ if(isset($insert)){
 				<div class="span12 meta">
 					<div class="detail by"><?php echo lang('paste_from'); ?> <?php echo $name; ?>, <?php $p = explode(',', timespan($created, time())); echo sprintf($this->lang->line('paste_ago'),$p[0]); ?>, <?php echo lang('paste_writtenin'); ?> <?php echo $lang; ?>.</div>
 					<?php if(isset($inreply)){?><div class="detail by"><?php echo lang('paste_isareply'); ?> <a href="<?php echo $inreply['url']?>"><?php echo $inreply['title']; ?></a> <?php echo strtolower(lang('paste_from')); ?> <?php echo $inreply['name']; ?>
-				<div class="qr">
-				<img src="<?php echo site_url('view/qr/' . $pid ); ?>">
-				</div>
 <?php if($seg3 != 'diff'){ ?>
             - <a href="<?php echo $url . '/diff'; ?>"><?php echo lang('paste_viewdiff'); ?></a>
 <?php }else{ ?>
@@ -54,7 +51,7 @@ if(isset($insert)){
 <section>
 	<div class="row">
 		<div class="span12">
-			<blockquote class="CodeMirror"><?php echo $paste; ?></blockquote>
+			<blockquote class="hero-unit"><?php echo $paste; ?></blockquote>
 		</div>
 	</div>
 </section>

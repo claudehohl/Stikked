@@ -275,7 +275,7 @@ $config['adjectives'] = array('Ample', 'Mature', 'Bulky', 'Burly', 'Capacious',
 'Botched', 'Tacky', 'Sludgy', 'Stained', 'Wet', 'Soiled', 'Big', 'Small', 'Sloppy',
 'Smelly', 'Funky', 'Putrid', 'Melodic', 'Corrupt', 'Lousy', 'Fiery', 'Red',
 'Sweet', 'Hot', 'Scorching', 'Sweltering', 'Torrid', 'Obese', 'Speedy', 'Flying',
-'Idiotic', 'Chunky');
+'Idiotic', 'Chunky', 'Forensic');
 
 /**
  *

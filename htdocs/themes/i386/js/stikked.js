@@ -27,7 +27,6 @@ var CM = {
 		if(txtAreas > 0) {
 			modes = $.parseJSON($('#codemirror_modes').text());
 		
-		
 			CM.editor = CodeMirror.fromTextArea(document.getElementById("code"), {
 				mode: "scheme",
 				lineNumbers: true,
@@ -131,12 +130,9 @@ ST.highlight_lines = function() {
 }
 
 ST.crypto = function() {
-    $('button[name=submit]').after('&nbsp;&nbsp;<button type="submit" id="create_encrypted" class="btn-large btn-success"> <i class="icon-lock icon-white"></i> Create encrypted</button>');
+    $('button[name=submit]').after('&nbsp;&nbsp;<button type="submit" id="create_encrypted" class="btn btn-large btn-success"> <i class="icon-lock icon-white"></i> Create encrypted</button>');
     $('#create_encrypted').on('click', function() {
         var $code = $('#code');
-
-        // save CM into textarea
-        CM.editor.save();
 
         // encrypt the paste
         var key = ST.crypto_generate_key(32);
@@ -197,10 +193,9 @@ ST.crypto = function() {
                     .replace(/{{{breaking_space}}}/g, ' ')
                     .replace(/\n/g, '<br />')
 
-                $('section blockquote.CodeMirror div').html(decrypted);
+                $('section blockquote.hero-unit div').html(decrypted);
 
                 // kick out potential dangerous and unnecessary stuff
-                $('section blockquote.CodeMirror div').css('background', '#efe');
                 $('.replies').hide();
                 for(var i=2; i<=5; i++) {
                     $('.meta .detail:nth-child(' + i + ')').hide();

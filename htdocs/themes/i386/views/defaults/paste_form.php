@@ -131,7 +131,7 @@
 			</div>
 		<?php } ?>
 			<div class="form-actions">
-				<button type="submit" name="submit" value="submit" class="btn-large btn-primary">
+				<button type="submit" name="submit" value="submit" class="btn btn-large btn-primary">
 					<i class="icon-pencil icon-white"></i>
 					<?php echo lang('paste_create'); ?>
 				</button>

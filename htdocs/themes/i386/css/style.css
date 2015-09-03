@@ -17,6 +17,9 @@ img {
     -webkit-filter: contrast(100%);
 }
 
+.btn {
+    cursor: pointer;
+}
 
 /* Footer
 -------------------------------------------------- */
