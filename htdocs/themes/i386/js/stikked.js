@@ -222,7 +222,7 @@ ST.crypto_generate_key = function(len) {
 
 $(document).ready(function() {
 	ST.init();
-	CM.init();
+	//CM.init();
 	ST.line_highlighter();
 	ST.crypto();
 });

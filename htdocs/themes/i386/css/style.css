@@ -13,6 +13,10 @@ body {
     visibility: hidden;
 }
 
+img {
+    -webkit-filter: contrast(100%);
+}
+
 
 /* Footer
 -------------------------------------------------- */
