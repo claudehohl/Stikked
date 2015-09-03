@@ -9,6 +9,10 @@
 	display: none;
 }
 
+body {
+    visibility: hidden;
+}
+
 
 /* Footer
 -------------------------------------------------- */

@@ -31,7 +31,6 @@ class Theme_assets extends CI_Controller
 		{
 			$font_file = $this->uri->segment(5);
 			$font_file = basename($font_file);
-			echo $font_file;
 
 			//file path
 			$file_path = 'themes/' . $this->theme . '/css/fonts/' . $font_file;

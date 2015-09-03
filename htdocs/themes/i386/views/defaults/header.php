@@ -39,6 +39,10 @@ $searchparams = ($this->input->get('search') ? '?search=' . $this->input->get('s
 	<script type="text/javascript">
 	//<![CDATA[
 	var base_url = '<?php echo base_url(); ?>';
+    window._386 = {
+        onePass: true,
+        speedFactor: 5
+    };
 	//]]>
 	</script>
 	</head>
