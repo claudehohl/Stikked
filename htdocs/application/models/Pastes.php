@@ -901,6 +901,7 @@ class Pastes extends CI_Model
 	function cron() 
 	{
 		$now = now();
+		$this->db->select('pid,expire');
 		$this->db->where('toexpire', '1');
 		$query = $this->db->get('pastes');
 		foreach ($query->result_array() as $row) 
