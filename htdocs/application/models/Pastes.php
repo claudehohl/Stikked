@@ -243,16 +243,17 @@ class Pastes extends CI_Model
 						switch ($RAND_API) 
 						{
 						case "yourls":
-							
-							if (!empty($this->config->item('yourls_url')) && !empty($this->config->item('yourls_signature'))) 
+							$var1 = $this->config->item('yourls_url');
+							$var2 = $this->config->item('yourls_signature');
+							if (!empty($var1) && !empty($var2)) 
 							{
 								$url_shortening_api = "yourls";
 							}
 						break;
 						case "gwgd":
 						case "gw.gd":
-							
-							if (!empty($this->config->item('gwgd_url'))) 
+							$var3 = $this->config->item('gwgd_url');
+							if (!empty($var3)) 
 							{
 								$url_shortening_api = "gwgd";
 							}
@@ -260,16 +261,16 @@ class Pastes extends CI_Model
 						case "googl":
 						case "google":
 						case "goo.gl":
-							
-							if (!empty($this->config->item('googl_url_api'))) 
+							$var4 = $this->config->item('googl_url_api');
+							if (!empty($var4)) 
 							{
 								$url_shortening_api = "googl";
 							}
 						break;
 						case "bitly":
 						case "bit.ly":
-							
-							if (!empty($this->config->item('bitly_url_api'))) 
+							$var5 = $this->config->item('bitly_url_api');
+							if (!empty($var5)) 
 							{
 								$url_shortening_api = "bitly";
 							}
@@ -412,7 +413,6 @@ class Pastes extends CI_Model
 		}
 		return $shorturl;
 	}
-	
 	function checkPaste($seg = 2) 
 	{
 		
