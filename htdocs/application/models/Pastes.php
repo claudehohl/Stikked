@@ -243,16 +243,17 @@ class Pastes extends CI_Model
 						switch ($RAND_API) 
 						{
 						case "yourls":
-							
-							if (!empty($this->config->item('yourls_url')) && !empty($this->config->item('yourls_signature'))) 
+							$var_yourls_url = $this->config->item('yourls_url');
+							$var_yourls_signature = $this->config->item('yourls_signature');
+							if (!empty($var_yourls_url) && !empty($v_yourls_signature)) 
 							{
 								$url_shortening_api = "yourls";
 							}
 						break;
 						case "gwgd":
 						case "gw.gd":
-							
-							if (!empty($this->config->item('gwgd_url'))) 
+							$var_gwgd_url = $this->config->item('gwgd_url');
+							if (!empty($var_gwgd_url)) 
 							{
 								$url_shortening_api = "gwgd";
 							}
@@ -260,16 +261,16 @@ class Pastes extends CI_Model
 						case "googl":
 						case "google":
 						case "goo.gl":
-							
-							if (!empty($this->config->item('googl_url_api'))) 
+							$var_googl_url_api = $this->config->item('googl_url_api');
+							if (!empty($var_googl_url_api)) 
 							{
 								$url_shortening_api = "googl";
 							}
 						break;
 						case "bitly":
 						case "bit.ly":
-							
-							if (!empty($this->config->item('bitly_url_api'))) 
+							$var_bitly_url_api = $this->config->item('bitly_url_api');
+							if (!empty($var_bitly_url_api)) 
 							{
 								$url_shortening_api = "bitly";
 							}
@@ -412,7 +413,6 @@ class Pastes extends CI_Model
 		}
 		return $shorturl;
 	}
-	
 	function checkPaste($seg = 2) 
 	{
 		
