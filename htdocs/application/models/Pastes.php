@@ -243,17 +243,17 @@ class Pastes extends CI_Model
 						switch ($RAND_API) 
 						{
 						case "yourls":
-							$var1 = $this->config->item('yourls_url');
-							$var2 = $this->config->item('yourls_signature');
-							if (!empty($var1) && !empty($var2)) 
+							$var_yourls_url = $this->config->item('yourls_url');
+							$var_yourls_signature = $this->config->item('yourls_signature');
+							if (!empty($var_yourls_url) && !empty($v_yourls_signature)) 
 							{
 								$url_shortening_api = "yourls";
 							}
 						break;
 						case "gwgd":
 						case "gw.gd":
-							$var3 = $this->config->item('gwgd_url');
-							if (!empty($var3)) 
+							$var_gwgd_url = $this->config->item('gwgd_url');
+							if (!empty($var_gwgd_url)) 
 							{
 								$url_shortening_api = "gwgd";
 							}
@@ -261,16 +261,16 @@ class Pastes extends CI_Model
 						case "googl":
 						case "google":
 						case "goo.gl":
-							$var4 = $this->config->item('googl_url_api');
-							if (!empty($var4)) 
+							$var_googl_url_api = $this->config->item('googl_url_api');
+							if (!empty($var_googl_url_api)) 
 							{
 								$url_shortening_api = "googl";
 							}
 						break;
 						case "bitly":
 						case "bit.ly":
-							$var5 = $this->config->item('bitly_url_api');
-							if (!empty($var5)) 
+							$var_bitly_url_api = $this->config->item('bitly_url_api');
+							if (!empty($var_bitly_url_api)) 
 							{
 								$url_shortening_api = "bitly";
 							}
