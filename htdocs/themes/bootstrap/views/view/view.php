@@ -27,11 +27,12 @@ if(isset($insert)){
                     <img src="<?php echo site_url('view/qr/' . $pid ); ?>">
 				</div>
 <?php if($seg3 != 'diff'){ ?>
+    <?php if(isset($inreply)){ ?>
             - <a href="<?php echo $url . '/diff'; ?>"><?php echo lang('paste_viewdiff'); ?></a>
+    <?php }?>
 <?php }else{ ?>
             - <a href="<?php echo $url; ?>"><?php echo lang('paste_goback'); ?></a>
-
-</div><?php }?>
+<?php }?>
 					<div class="detail"><span class="item"><?php echo lang('paste_url'); ?> </span><a href="<?php echo $url; ?>"><?php echo $url; ?></a></div>
 					<?php if(!empty($snipurl)){?>
 						<div class="detail"><div class="item"><?php echo lang('paste_shorturl');?> </div><a href="<?php echo $snipurl; ?>"><?php echo htmlspecialchars($snipurl) ?></a></div>
