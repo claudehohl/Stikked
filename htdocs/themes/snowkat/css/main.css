@@ -565,3 +565,8 @@ h4 {
 a {color: #fff; text-decoration: underline;}
 a:hover {color: #ccc; text-decoration: none;}
 .CodeMirror-scroll {background-color: #fff;}
+
+.text {
+    word-wrap: break-word;
+}
+

@@ -134,3 +134,6 @@ table.table thead .sorting_desc_disabled { background: url('../images/sort_desc_
     margin-left: 40px;
 }
 
+.text {
+    word-wrap: break-word;
+}

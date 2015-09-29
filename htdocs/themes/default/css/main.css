@@ -556,3 +556,8 @@ h4 {
 #code {
     font-family: monospace;
 }
+
+.text {
+    word-wrap: break-word;
+}
+
