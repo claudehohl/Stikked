@@ -104,7 +104,6 @@
 									);
                             if(! config_item('disable_keep_forever')) {
                                 $options['0'] = lang('exp_forever');
-                                $default_expiration = '0'; // forever
                             }
 						echo form_dropdown('expire', $options, $default_expiration, $expire_extra); ?>
 					</div>
