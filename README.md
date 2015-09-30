@@ -60,6 +60,29 @@ In the folder doc/, you will find:
 Changelog
 ---------
 
+### Version 0.10.0:
+
+* Upgrade to CodeIgniter 3.0.1 and with it, lots of improvements:
+  * SQLite support (yay!)
+  * Lots of "Error 500" and blank screens fixed
+* New theme: i386
+* New translations: Lithuanian, Danish, Polish
+* Automatic language detection
+* Support for the new ReCaptcha API
+* Support for Goo.gl and Bit.ly URL shorteners
+* Display expiration time if set
+* XSS fixes
+* Word wrap for looong words in paste display
+* And many more
+
+#### Upgrade instructions
+
+Copy your htdocs/application/stikked.php config file away. Upload the new version.
+
+Append the $config['expires'] part at the bottom of application/config/stikked.php.dist to your config.
+
+Copy it back.
+
 ### Version 0.9.0:
 
 * New translations: Japanese, Chinese-Simplified, Chinese-Traditional, Russian
