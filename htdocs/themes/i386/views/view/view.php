@@ -21,6 +21,7 @@ if(isset($insert)){
 			<div class="row">
 				<div class="span12 meta">
 					<div class="detail by"><?php echo lang('paste_from'); ?> <?php echo $name; ?>, <?php $p = explode(',', timespan($created, time())); echo sprintf($this->lang->line('paste_ago'),$p[0]); ?>, <?php echo lang('paste_writtenin'); ?> <?php echo $lang; ?>.</div>
+			<?php if($expire > 0){?><span class="detail by"><?php echo sprintf(lang('paste_expire'), random_expire_msg()); ?> <?php echo timespan(time(), $expire, 1); ?>.</span><?php } ?>
 					<?php if(isset($inreply)){?><div class="detail by"><?php echo lang('paste_isareply'); ?> <a href="<?php echo $inreply['url']?>"><?php echo $inreply['title']; ?></a> <?php echo strtolower(lang('paste_from')); ?> <?php echo $inreply['name']; ?>
 <?php if($seg3 != 'diff'){ ?>
             - <a href="<?php echo $url . '/diff'; ?>"><?php echo lang('paste_viewdiff'); ?></a>
