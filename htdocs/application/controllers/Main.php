@@ -744,6 +744,7 @@ class Main extends CI_Controller
 			$url = "https://www.google.com/recaptcha/api/siteverify?secret=" . $pk . "&response;=" . $rf . "&remoteip;=" . $ra;
 			$response = $this->curl->simple_get($url);
 			$status = json_decode($response, true);
+			$recaptcha_response = new stdClass();
 			
 			if ($status['success']) 
 			{
