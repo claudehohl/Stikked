@@ -713,7 +713,7 @@ class Pastes extends CI_Model
 			}
 			else
 			{
-				$sql = "SELECT id, title, name, created, pid, lang, raw FROM $TABLE WHERE private = 0 ORDER BY created DESC LIMIT $page,$amount";
+				$sql = "SELECT id, title, name, created, pid, lang, raw FROM $TABLE WHERE private = 0 ORDER BY created DESC LIMIT 0,$amount";
 			}
 			$query = $this->db->query($sql);
 		}
@@ -786,7 +786,7 @@ class Pastes extends CI_Model
 			}
 			else
 			{
-				$sql = "SELECT id, title, name, created, pid, lang, raw, hits FROM $TABLE WHERE private = 0 AND (title LIKE ? OR raw LIKE ?) ORDER BY hits DESC, created DESC LIMIT $page,$amount";
+				$sql = "SELECT id, title, name, created, pid, lang, raw, hits FROM $TABLE WHERE private = 0 AND (title LIKE ? OR raw LIKE ?) ORDER BY hits DESC, created DESC LIMIT 0,$amount";
 			}
 			$query = $this->db->query($sql, array(
 				$search,
@@ -809,7 +809,7 @@ class Pastes extends CI_Model
 			}
 			else
 			{
-				$sql = "SELECT id, title, name, created, pid, lang, raw, hits FROM $TABLE WHERE private = 0 ORDER BY hits DESC, created DESC LIMIT $page,$amount";
+				$sql = "SELECT id, title, name, created, pid, lang, raw, hits FROM $TABLE WHERE private = 0 ORDER BY hits DESC, created DESC LIMIT 0,$amount";
 			}
 			$query = $this->db->query($sql);
 		}
