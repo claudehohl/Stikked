@@ -35,7 +35,7 @@ Installation
 
 1. Download stikked from https://github.com/claudehohl/Stikked/tags
 2. Create a user and database for Stikked
-3. Copy application/config/stikked.php.default to application/config/stikked.php
+3. Copy application/config/stikked.php.dist to application/config/stikked.php
 4. Edit configuration settings in application/config/stikked.php - everything is described there
 5. You're done!
 
