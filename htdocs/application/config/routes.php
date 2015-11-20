@@ -51,6 +51,7 @@ $route['view/qr/:any'] = 'main/qr';
 $route['view/download/:any'] = 'main/download';
 $route['view/captcha'] = 'main/captcha';
 $route['view/:any'] = 'main/view';
+$route['view/:any/:num'] = 'main/view';
 $route['view/:any/diff'] = 'main/view';
 $route['lists'] = 'main/lists';
 $route['lists/rss'] = 'main/lists/rss';
