@@ -10,6 +10,7 @@
  * - recent()
  * - trending()
  * - langs()
+ * - version()
  * Classes list:
  * - Api extends Main
  */
@@ -194,5 +195,10 @@ class Api extends Main
 	{
 		$languages = $this->languages->get_languages();
 		echo json_encode($languages);
+	}
+
+	function version()
+	{
+		echo "0.10.0";
 	}
 }
