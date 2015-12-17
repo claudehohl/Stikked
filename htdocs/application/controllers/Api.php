@@ -199,6 +199,6 @@ class Api extends Main
 
 	function version()
 	{
-		echo "0.10.0";
+		echo config_item('stikked_version');
 	}
 }
