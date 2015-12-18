@@ -105,7 +105,11 @@ class CI_Session_redis_driver extends CI_Session_driver implements SessionHandle
 
 		if ($this->_config['match_ip'] === TRUE)
 		{
-			$this->_key_prefix .= $_SERVER['REMOTE_ADDR'].':';
+			$ra = $_SERVER['REMOTE_ADDR'];
+                        if(isset($_SERVER['HTTP_X_REAL_IP']))
+                                $ra = $_SERVER['HTTP_X_REAL_IP'];
+
+			$this->_key_prefix .= $ra.':';
 		}
 	}
 

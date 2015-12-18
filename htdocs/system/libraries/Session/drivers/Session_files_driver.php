@@ -125,9 +125,14 @@ class CI_Session_files_driver extends CI_Session_driver implements SessionHandle
 		}
 
 		$this->_config['save_path'] = $save_path;
+
+		$ra = $_SERVER['REMOTE_ADDR'];
+		if(isset($_SERVER['HTTP_X_REAL_IP']))
+			$ra = $_SERVER['HTTP_X_REAL_IP'];
+
 		$this->_file_path = $this->_config['save_path'].DIRECTORY_SEPARATOR
 			.$name // we'll use the session cookie name as a prefix to avoid collisions
-			.($this->_config['match_ip'] ? md5($_SERVER['REMOTE_ADDR']) : '');
+			.($this->_config['match_ip'] ? md5($ra) : '');
 
 		return TRUE;
 	}

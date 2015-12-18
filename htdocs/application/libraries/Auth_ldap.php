@@ -194,7 +194,13 @@ class Auth_Ldap {
         
         if(!isset($entries[0])){
             //User either does not exist or has no permissions
-            $this->_audit("Failed login attempt: ".$username." from ".$_SERVER['REMOTE_ADDR']);
+            $ra = $_SERVER['REMOTE_ADDR'];
+
+            // handle PHP being used in a proxy setup
+            if (isset($_SERVER['HTTP_X_REAL_IP']))
+                $ra = $_SERVER['HTTP_X_REAL_IP'];
+
+            $this->_audit("Failed login attempt: ".$username." from ".$ra);
             return FALSE;
         }
         
@@ -203,7 +209,13 @@ class Auth_Ldap {
         // Now actually try to bind as the user
         $bind = ldap_bind($this->ldapconn, $binddn, $password);
         if(! $bind) {
-            $this->_audit("Failed login attempt: ".$username." from ".$_SERVER['REMOTE_ADDR']);
+            $ra = $_SERVER['REMOTE_ADDR'];
+
+            // handle PHP being used in a proxy setup
+            if (isset($_SERVER['HTTP_X_REAL_IP']))
+                $ra = $_SERVER['HTTP_X_REAL_IP'];
+
+            $this->_audit("Failed login attempt: ".$username." from ".$ra);
             return FALSE;
         }
         $cn = $entries[0]['cn'][0];
