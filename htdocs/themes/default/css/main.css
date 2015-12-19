@@ -141,7 +141,7 @@ h4 {
 
 .form_wrapper .item_group .item_captcha {
 	width: 450px;
-    margin-bottom: -10px;
+    margin-bottom: 25px;
 }
 
 .form_wrapper .item_group .captcha {
@@ -551,5 +551,13 @@ h4 {
 
 .login .form_wrapper label {
     width: 104px;
+}
+
+#code {
+    font-family: monospace;
+}
+
+.text {
+    word-wrap: break-word;
 }
 

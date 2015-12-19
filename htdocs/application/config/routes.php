@@ -51,6 +51,8 @@ $route['view/qr/:any'] = 'main/qr';
 $route['view/download/:any'] = 'main/download';
 $route['view/captcha'] = 'main/captcha';
 $route['view/:any'] = 'main/view';
+$route['view/:any/:num'] = 'main/view';
+$route['view/:any/diff'] = 'main/view';
 $route['lists'] = 'main/lists';
 $route['lists/rss'] = 'main/lists/rss';
 $route['lists/:num'] = 'main/lists/$1';
@@ -69,11 +71,11 @@ $route['iphone/view/:any'] = 'iphone/view';
 $route['404_override'] = 'main/error_404';
 $route['robots.txt'] = 'main/robots_txt';
 
-$route['themes/:any/css/:any'] = 'theme_assets/css';
-$route['themes/:any/images/:any'] = 'theme_assets/images';
-$route['themes/:any/img/:any'] = 'theme_assets/images';
-$route['themes/:any/js/:any'] = 'theme_assets/js';
-$route['themes/:any/fonts/:any'] = 'theme_assets/fonts';
+$route['themes/:any/css/.+'] = 'theme_assets/css';
+$route['themes/:any/images/.+'] = 'theme_assets/images';
+$route['themes/:any/img/.+'] = 'theme_assets/images';
+$route['themes/:any/js/.+'] = 'theme_assets/js';
+$route['themes/:any/fonts/.+'] = 'theme_assets/fonts';
 
 /* End of file routes.php */
 /* Location: ./application/config/routes.php */

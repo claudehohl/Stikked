@@ -273,7 +273,7 @@ h4 {
 }
 
 .form_wrapper button {
-	opacity; 1;
+	opacity: 1;
 	padding: 4px 12px;
 	border: 1px solid #fff;
 	color: #333;
@@ -565,3 +565,8 @@ h4 {
 a {color: #fff; text-decoration: underline;}
 a:hover {color: #ccc; text-decoration: none;}
 .CodeMirror-scroll {background-color: #fff;}
+
+.text {
+    word-wrap: break-word;
+}
+

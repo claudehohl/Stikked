@@ -110,3 +110,8 @@ table.table thead .sorting_desc_disabled { background: url('../images/sort_desc_
 blockquote.CodeMirror {
         background-color: #000;
 }
+
+.text {
+    word-wrap: break-word;
+}
+

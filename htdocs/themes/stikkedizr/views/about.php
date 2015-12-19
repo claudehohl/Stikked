@@ -25,4 +25,4 @@
 	</div>
 </div>
 
-<?php $this->load->view("defaults/footer");?>
+<?php $this->load->view("stikkedizr/footer");?>

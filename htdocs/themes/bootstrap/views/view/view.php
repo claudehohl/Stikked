@@ -21,17 +21,19 @@ if(isset($insert)){
 			<div class="row">
 				<div class="span12 meta">
 					<div class="detail by"><?php echo lang('paste_from'); ?> <?php echo $name; ?>, <?php $p = explode(',', timespan($created, time())); echo sprintf($this->lang->line('paste_ago'),$p[0]); ?>, <?php echo lang('paste_writtenin'); ?> <?php echo $lang; ?>.</div>
+			<?php if($expire > 0){?><span class="detail by"><?php echo sprintf(lang('paste_expire'), random_expire_msg()); ?> <?php echo timespan(time(), $expire, 1); ?>.</span><?php } ?>
 					<?php if(isset($inreply)){?><div class="detail by"><?php echo lang('paste_isareply'); ?> <a href="<?php echo $inreply['url']?>"><?php echo $inreply['title']; ?></a> <?php echo strtolower(lang('paste_from')); ?> <?php echo $inreply['name']; ?>
+<?php } ?>
 				<div class="qr">
-				<img src="<?php echo site_url('view/qr/' . $pid ); ?>">
+                    <img src="<?php echo site_url('view/qr/' . $pid ); ?>">
 				</div>
 <?php if($seg3 != 'diff'){ ?>
+    <?php if(isset($inreply)){ ?>
             - <a href="<?php echo $url . '/diff'; ?>"><?php echo lang('paste_viewdiff'); ?></a>
+    <?php }?>
 <?php }else{ ?>
             - <a href="<?php echo $url; ?>"><?php echo lang('paste_goback'); ?></a>
-<?php } ?>
-
-</div><?php }?>
+<?php }?>
 					<div class="detail"><span class="item"><?php echo lang('paste_url'); ?> </span><a href="<?php echo $url; ?>"><?php echo $url; ?></a></div>
 					<?php if(!empty($snipurl)){?>
 						<div class="detail"><div class="item"><?php echo lang('paste_shorturl');?> </div><a href="<?php echo $snipurl; ?>"><?php echo htmlspecialchars($snipurl) ?></a></div>

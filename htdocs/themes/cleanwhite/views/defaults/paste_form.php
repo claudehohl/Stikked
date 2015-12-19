@@ -51,7 +51,7 @@
 			<textarea id="code" name="code" cols="40" rows="20" tabindex="4"><?php if(isset($paste_set)){ echo $paste_set; }?></textarea>
 		</div>																											
 
-			<?php if($this->config->item('enable_captcha') && $this->db_session->userdata('is_human') === false){ ?>
+			<?php if($this->config->item('enable_captcha') && $this->session->userdata('is_human') === null){ ?>
 						<div class="item item_captcha">
 							<label for="captcha"><?php echo lang('paste_spam'); ?>
 								<span class="instruction"><?php echo lang('paste_spam_desc'); ?></span>
@@ -59,7 +59,7 @@
 			<?php if($use_recaptcha){
 			    echo recaptcha_get_html($recaptcha_publickey);
 			} else { ?>
-					<img class="captcha" style="padding-left: 10px;" src="<?php echo site_url('view/captcha'); ?>?<?php echo date('U', mktime()); ?>" alt="captcha" width="100" height="30" />
+					<img class="captcha" style="padding-left: 10px;" src="<?php echo site_url('view/captcha'); ?>?<?php echo date('U', time()); ?>" alt="captcha" width="100" height="30" />
 					<input value="" type="text" id="captcha" name="captcha" tabindex="2" maxlength="32" />
 			<?php } ?>
 						</div>

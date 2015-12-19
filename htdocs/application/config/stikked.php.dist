@@ -19,6 +19,7 @@ $config['db_hostname'] = '127.0.0.1';
 $config['db_database'] = 'stikked';
 $config['db_username'] = 'stikked';
 $config['db_password'] = 'stikked';
+//$config['db_driver'] = 'sqlite';
 
 /**
  * Table prefix
@@ -34,7 +35,7 @@ $config['db_prefix'] = '';
  *
  * Which theme to use
  * Folder name in htdocs/themes/
- * Currently: default, bootstrap, gabdark, gabdark3, geocities, snowkat, stikkedizr, cleanwhite
+ * Currently: default, bootstrap, gabdark, gabdark3, geocities, snowkat, stikkedizr, cleanwhite, i386
  *
 */
 $config['theme'] = 'default';
@@ -66,24 +67,63 @@ $config['cron_key'] = '';
 /**
  * url shortener config
  *
- * If yourls_url is set, yourls is used instead of gw.gd
- *
+ * url_shortening_use:
+ *    - Enables specific url shortening engine or disables them all
+ *    - Valid values:
+ *           @string yourls
+ *           @string gwgd
+ *           @string googl
+ *           @string bitly 
+ *           @string random - Randomly chose any of upper API-s !WARNING! May be slow! For maximum performanse, it's recommended to either set all API keys or use random_url_engines to list working engines.
+ *           @string none - same as off
+ * 
+ * random_url_engines:
+ *    - This variable sets list of APIs to be considered for usage if url_shortening_use is set to 'random'
+ *      To consider all API-s, either leave it empty (as empty array or string) or type all apis available (yourls,gwgd,googl,bitly)
+ *      be aware that considering all the APIs is not recommended because program will test them all, and that affects speed.
+ *      This will greatly improve performance of 'random' mode if listed are only valid, filled APIs.
+ *      Accepted inputs:
+ *           @array array('use this', 'and this', 'and this of course')
+ *           @string 'use this,and this,and this of course'
+ *      - If input is @string it must be comma delimited, otherwise will be ignored.
+ *      - Script will accept minimum of 2 APIs, ignored otherwise
+ *      - Only alphanumeric characters and "." are allowed. Everything else is filtered out.
+ * 
+ * -------------------------------------------------------------------------------------------------------------
  * yourls_url: Your own instance of yourls URL-shortener (Download: http://yourls.org/)
  * Example: http://example.com/yourls/
  *
  * yourls_signature: Your signature, used to authenticate API requests.
  * You can find your signature under http://your-yourls-installation.com/admin/tools.php
  *
- * OR
- *
  * gwgd_url: Your own instance of the gw.gd URL-shortener (Download: https://github.com/neofutur/gwgd)
  * Default: http://gw.gd/
  *
+ * googl_url_api: URL shortening service provided by Google Inc. (API: http://code.google.com/apis/console/) 
+ * Usage: Your API key
+ * 
+ * bitly_url_api: Famous URL shortening service (API: http://dev.bitly.com/get_started.html)
+ * Usage: Your API key
+ * 
 **/
+$config['url_shortening_use'] = 'off';
+$config['random_url_engines'] = 'googl,bitly'; // Used only in random mode, read comment above for more info
+
+
+// Yourls
 $config['yourls_url'] = '';
 $config['yourls_signature'] = '';
+
+// gwgd_url
 $config['gwgd_url'] = '';
 $config['shorturl_selected'] = false;
+
+// goo.gl API key
+$config['googl_url_api'] = '';
+// Bit.ly API key
+$config['bitly_url_api'] = '';
+
+
 
 /**
  * Credentials for the backup URL
@@ -235,4 +275,17 @@ $config['adjectives'] = array('Ample', 'Mature', 'Bulky', 'Burly', 'Capacious',
 'Botched', 'Tacky', 'Sludgy', 'Stained', 'Wet', 'Soiled', 'Big', 'Small', 'Sloppy',
 'Smelly', 'Funky', 'Putrid', 'Melodic', 'Corrupt', 'Lousy', 'Fiery', 'Red',
 'Sweet', 'Hot', 'Scorching', 'Sweltering', 'Torrid', 'Obese', 'Speedy', 'Flying',
-'Idiotic', 'Chunky');
+'Idiotic', 'Chunky', 'Forensic');
+
+/**
+ *
+ *
+ *  Words used for expiring pastes
+ *
+ *
+**/
+$config['expires'] = array('expire', 'perish', 'go to its last resting place',
+'go to meet its maker', 'cross the great divide', 'slip away', 'give up the ghost',
+'kick the bucket', 'croak', 'bite the big one', 'check out', 'buy the farm',
+'join the choir invisible', 'shuffle off the mortal coil', 'hop the perch',
+'run down the curtain', 'die', 'self destruct', 'explode');

@@ -618,3 +618,8 @@ button:active {
 	-moz-box-shadow: inset rgba(0,0,0, 0.15) 0px 0px 3px;
 	-webkit-box-shadow: inset rgba(0,0,0, 0.15) 0px 0px 3px;
 }
+
+.text {
+    word-wrap: break-word;
+}
+

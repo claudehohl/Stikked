@@ -35,14 +35,14 @@ Installation
 
 1. Download stikked from https://github.com/claudehohl/Stikked/tags
 2. Create a user and database for Stikked
-3. Copy application/config/stikked.php.default to application/config/stikked.php
+3. Copy application/config/stikked.php.dist to application/config/stikked.php
 4. Edit configuration settings in application/config/stikked.php - everything is described there
 5. You're done!
 
 * The database structure will be created automatically if it doesn't exist.
 * No special file permissions are needed by default. Optional: If you want to have the JavaScript- and CSS-files minified, the static/asset/ folder has to be writable.
 * To ensure that pastes with an expiration set get cleaned up, define the cron key in the config and set up a cronjob, for example:
-  * */5 * * * * curl --silent http://yoursite.com/cron/[key]
+  * `*/5 * * * * curl --silent http://yoursite.com/cron/[key]`
 
 
 Documentation
@@ -59,6 +59,29 @@ In the folder doc/, you will find:
 
 Changelog
 ---------
+
+### Version 0.10.0:
+
+* Upgrade to CodeIgniter 3.0.1 and with it, lots of improvements:
+  * SQLite support (yay!)
+  * Lots of "Error 500" and blank screens fixed
+* New theme: i386
+* New translations: Lithuanian, Danish, Polish
+* Automatic language detection
+* Support for the new ReCaptcha API
+* Support for Goo.gl and Bit.ly URL shorteners
+* Display expiration time if set
+* XSS fixes
+* Word wrap for looong words in paste display
+* And many more
+
+#### Upgrade instructions
+
+Copy your htdocs/application/stikked.php config file away. Upload the new version.
+
+Append the $config['expires'] part at the bottom of application/config/stikked.php.dist to your config.
+
+Copy it back.
 
 ### Version 0.9.0:
 

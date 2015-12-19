@@ -1,4 +1,13 @@
-<?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+<?php
+/**
+ * Class and Function List:
+ * Function list:
+ * - lang()
+ * - random_expire_msg()
+ * Classes list:
+ */
+
+if (!defined('BASEPATH')) exit('No direct script access allowed');
 /**
  * CodeIgniter
  *
@@ -37,22 +46,44 @@
  * @param	string	the id of the form element
  * @return	string
  */
-if ( ! function_exists('lang'))
+
+if (!function_exists('lang')) 
 {
-	function lang($index, $id = '')
+	
+	function lang($index, $id = '') 
 	{
-		$CI =& get_instance();
+		$CI = & get_instance();
 		$line = $CI->lang->line($index);
-
-		if ($id != '')
+		
+		if ($id != '') 
 		{
-			$line = '<label for="'.$id.'">'.$line."</label>";
+			$line = '<label for="' . $id . '">' . $line . "</label>";
 		}
+		return ($line != '' ? $line : '[' . $index . ']');
+	}
+}
+/**
+ * Random expire msg
+ *
+ * Displays a random expire message
+ *
+ * @access	public
+ * @return	string
+ */
 
-        return ($line != '' ? $line : '[' . $index . ']');
+if (!function_exists('random_expire_msg')) 
+{
+	
+	function random_expire_msg() 
+	{
+		$CI = & get_instance();
+		$expires = $CI->config->item('expires');
+		return $expires[rand(0, sizeof($expires) - 1) ];
 	}
 }
 
 // ------------------------------------------------------------------------
 /* End of file language_helper.php */
+
+
 /* Location: ./system/helpers/language_helper.php */
