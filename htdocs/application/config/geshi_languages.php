@@ -128,6 +128,7 @@ $config['geshi_languages'] = array(
 	//'kixtart' => 'PHP',
 	'klonec' => 'KLone with C',
 	'klonecpp' => 'KLone with C++',
+	'kotlin' => 'Kotlin',
 	'lb' => 'Liberty BASIC',
 	'ldif' => 'LDIF',
 	'lisp' => 'Generic Lisp',
