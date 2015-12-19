@@ -219,6 +219,7 @@ $config['geshi_languages'] = array(
 	'sparql' => 'SPARQL',
 	'standardml' => 'StandardML',
 	'stonescript' => 'StoneScript',
+	'swift' => 'Swift',
 	'systemverilog' => 'SystemVerilog IEEE 1800-2009(draft8)',
 	'tcl' => 'TCL/iTCL',
 	'teraterm' => 'Tera Term Macro',
