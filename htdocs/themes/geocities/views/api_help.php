@@ -74,6 +74,10 @@
 		<code>curl -d lang=php --data-urlencode text@main.php <?php echo site_url('api/create'); ?></code>
 	    <p class="explain">Create a paste with PHP syntax highlighting.</p>
 
+		<h3>Create paste via a pipe</h3>
+		<code>echo foo | curl --data-urlencode text@- <?php echo site_url('api/create'); ?></code>
+	    <p class="explain">Create a paste based on standard output of a command.</p>
+
 		<h3>Get paste ;-)</h3>
 		<code>curl <?php echo site_url('view/raw/[pasteid]'); ?></code>
 	    <p class="explain">Display paste.</p>
