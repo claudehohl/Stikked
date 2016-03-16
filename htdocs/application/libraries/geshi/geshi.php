@@ -594,11 +594,11 @@ class GeSHi {
      *               {@link GeSHi->set_language_path()}
      * @since 1.0.0
      */
-    function GeSHi($source = '', $language = '', $path = '') {
-        if (!empty($source)) {
+    function __construct($source = '', $language = '', $path = '') {
+        if ( is_string($source) && ($source !== '') ) {
             $this->set_source($source);
         }
-        if (!empty($language)) {
+        if ( is_string($language) && ($language !== '') ) {
             $this->set_language($language);
         }
         $this->set_language_path($path);
@@ -2151,7 +2151,7 @@ class GeSHi {
                 }
 
                 $this->language_data['NUMBERS_RXCACHE'][$key] =
-                    "/(?<!<\|\/)(?<!<\|!REG3XP)(?<!<\|\/NUM!)(?<!\d\/>)($regexp)(?!(?:<DOT>|(?>[^\<]))+>)(?![^<]*>)(?!\|>)(?!\/>)/i"; //
+                    "/(?<!<\|\/)(?<!<\|!REG3XP)(?<!<\|\/NUM!)(?<!\d\/>)($regexp)(?!(?:<DOT>|(?>[^\<]))+>)(?![^<]*>)(?!\|>)(?!\/>)/i";
             }
 
             if(!isset($this->language_data['PARSER_CONTROL']['NUMBERS']['PRECHECK_RX'])) {

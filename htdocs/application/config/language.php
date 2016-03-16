@@ -5,7 +5,7 @@
  *
  * Which language to use
  * Translate Stikked to your own language, see htdocs/application/language files
- * Currently: english, german, swissgerman, spanish, norwegian, danish, portuguese, turkish, french, japanese, polish, russian, chinese-simplified, chinese-traditional
+ * Currently: english, german, swissgerman, spanish, norwegian, danish, portuguese, turkish, french, japanese, polish, russian, chinese-simplified, chinese-traditional, indonesia
  *
 */
 
@@ -108,11 +108,11 @@ $config['supported_languages'] = array(
         'codes'       => array('cht', 'chinese-traditional', 'zh-TW'),
         'ckeditor'    => NULL
     ),
-    'lt' => array(
-        'name'        => 'Lietuvių',
-        'folder'      => 'lithuanian',
+    'id' => array(
+        'name'        => 'Indonesia',
+        'folder'      => 'indonesia',
         'direction'   => 'ltr',
-        'codes'       => array('lt', 'lithuanian', 'lt-LT'),
+        'codes'       => array('id', 'indonesia', 'id-ID'),
         'ckeditor'    => NULL
     ),
 );
@@ -124,9 +124,9 @@ $config['supported_languages'] = array(
  * Currently: english (en) | german (de)    | swissgerman (sw) 
  *            spanish (es) | norwegian (no) | portuguese (pt) 
  *            turkish (tr) | french (fr)    | japanese (jp) 
- *            polish (pl)  | russian (ru) 
- *            chinese-simplified (cn) |  chinese-traditional (zh) | lithuanian (lt)
- *
+ *            polish (pl)  | russian (ru)   | indonesia (id)
+ *            chinese-simplified (cn) |  chinese-traditional (zh)
+ *				
 */
 $config['language'] = 'en';
 
