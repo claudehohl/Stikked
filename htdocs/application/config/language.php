@@ -109,10 +109,10 @@ $config['supported_languages'] = array(
         'ckeditor'    => NULL
     ),
     'lt' => array(
-        'name' => 'Lietuvių',
-        'folder' => 'lithuanian',
-        'direction' => 'ltr',
-        'codes' => array('lt', 'lithuanian', 'lt-LT'),
+        'name'        => 'Lietuvių',
+        'folder'      => 'lithuanian',
+        'direction'   => 'ltr',
+        'codes'       => array('lt', 'lithuanian', 'lt-LT'),
         'ckeditor'    => NULL
     ),
     'id' => array(
