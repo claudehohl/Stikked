@@ -108,6 +108,13 @@ $config['supported_languages'] = array(
         'codes'       => array('cht', 'chinese-traditional', 'zh-TW'),
         'ckeditor'    => NULL
     ),
+    'lt' => array(
+        'name' => 'Lietuvių',
+        'folder' => 'lithuanian',
+        'direction' => 'ltr',
+        'codes' => array('lt', 'lithuanian', 'lt-LT'),
+        'ckeditor'    => NULL
+    ),
     'id' => array(
         'name'        => 'Indonesia',
         'folder'      => 'indonesia',
@@ -124,8 +131,8 @@ $config['supported_languages'] = array(
  * Currently: english (en) | german (de)    | swissgerman (sw) 
  *            spanish (es) | norwegian (no) | portuguese (pt) 
  *            turkish (tr) | french (fr)    | japanese (jp) 
- *            polish (pl)  | russian (ru)   | indonesia (id)
- *            chinese-simplified (cn) |  chinese-traditional (zh)
+ *            polish (pl)  | russian (ru)   | bahasa indonesia (id)
+ *            chinese-simplified (cn) |  chinese-traditional (zh) | lithuanian (lt)
  *				
 */
 $config['language'] = 'en';
