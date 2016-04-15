@@ -1,6 +1,6 @@
 <?php
 
-$lang['date_year'] = "'Ετος";
+$lang['date_year'] = "Έτος";
 $lang['date_years'] = "Έτη";
 $lang['date_month'] = "Μήνας";
 $lang['date_months'] = "Μήνες";
