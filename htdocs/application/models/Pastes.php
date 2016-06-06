@@ -289,6 +289,16 @@ class Pastes extends CI_Model
 					$config_yourls_url = $this->config->item('yourls_url');
 					$config_yourls_signature = $this->config->item('yourls_signature');
 					$timestamp = time();
+					// grab title to avoid 404s in yourls
+					if ($this->input->post('title')) 
+					{
+						$yourl_title = htmlspecialchars($this->input->post('title'));
+					}
+					else
+					{
+						$yourl_title = $this->config->item('unknown_title');
+					}
+					
 					$prep_data = array(
 						CURLOPT_URL => $config_yourls_url . 'yourls-api.php',
 						CURLOPT_RETURNTRANSFER => true,
@@ -297,6 +307,7 @@ class Pastes extends CI_Model
 							'url' => $url,
 							'format' => 'simple',
 							'action' => 'shorturl',
+							'title' => $yourl_title,
 							'signature' => md5($timestamp . $config_yourls_signature) ,
 							'timestamp' => $timestamp
 						)
@@ -378,6 +389,15 @@ class Pastes extends CI_Model
 				//use yourls
 				$config_yourls_signature = $this->config->item('yourls_signature');
 				$timestamp = time();
+				// grab title to avoid 404s in yourls
+				if ($this->input->post('title')) 
+				{
+					$yourl_title = htmlspecialchars($this->input->post('title'));
+				}
+				else
+				{
+					$yourl_title = $this->config->item('unknown_title');
+				}
 				$prep_data = array(
 					CURLOPT_URL => $config_yourls_url . 'yourls-api.php',
 					CURLOPT_RETURNTRANSFER => true,
@@ -386,6 +406,7 @@ class Pastes extends CI_Model
 						'url' => $url,
 						'format' => 'simple',
 						'action' => 'shorturl',
+						'title' => $yourl_title,
 						'signature' => md5($timestamp . $config_yourls_signature) ,
 						'timestamp' => $timestamp
 					)
