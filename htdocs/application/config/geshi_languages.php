@@ -52,6 +52,7 @@ $config['geshi_languages'] = array(
 	'awk' => 'Awk',
 	'bascomavr' => 'BASCOM AVR',
 	'basic4gl' => 'Basic4GL',
+	'bbcode' => 'BBCode',
 	'bf' => 'Brainfuck',
 	'bibtex' => 'BibTeX',
 	'blitzbasic' => 'BlitzBasic',
