@@ -414,6 +414,16 @@ $config['rewrite_short_tags'] = FALSE;
 */
 $config['proxy_ips'] = '';
 
+/*
+|--------------------------------------------------------------------------
+| Favorite Languages
+|--------------------------------------------------------------------------
+|
+| The favorite languages, that's at the beginning of the list. 
+|
+*/
+$config['favorite_languages'] = array('text', 'html5', 'css', 'javascript', 'php', 'python', 'ruby', 
+		'lua', 'bash', 'erlang', 'go', 'c', 'cpp', 'diff', 'latex', 'sql', 'xml');
 
 /* End of file config.php */
 /* Location: ./application/config/config.php */
