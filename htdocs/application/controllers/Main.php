@@ -127,7 +127,7 @@ class Main extends CI_Controller
 					'constraint' => 1,
 				) ,
 				'raw' => array(
-					'type' => 'LONGTEXT',
+					'type' => ($this->db->dbdriver == "postgre") ? 'TEXT' : 'LONGTEXT',
 				) ,
 				'created' => array(
 					'type' => 'INT',
