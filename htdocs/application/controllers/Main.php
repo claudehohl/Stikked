@@ -85,7 +85,7 @@ class Main extends CI_Controller
 					'default' => 0,
 				) ,
 				'data' => array(
-					'type' => 'BLOB',
+					'type' => ($this->db->dbdriver == "postgre") ? 'TEXT' : 'BLOB',
 				) ,
 			);
 			$this->dbforge->add_field($fields);
