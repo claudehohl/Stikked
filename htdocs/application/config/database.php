@@ -85,7 +85,14 @@ else
 	$db['default']['username'] = $CI->config->item('db_username');
 	$db['default']['password'] = $CI->config->item('db_password');
 	$db['default']['database'] = $CI->config->item('db_database');
-	$db['default']['dbdriver'] = 'mysqli';
+	if (null !== $CI->config->item('db_driver'))
+	{
+		$db['default']['dbdriver'] = $CI->config->item('db_driver');
+	}
+	else
+	{
+		$db['default']['dbdriver'] = 'mysqli';
+	}
 }
 $db['default']['dbprefix'] = $CI->config->item('db_prefix');
 $db['default']['pconnect'] = FALSE;
