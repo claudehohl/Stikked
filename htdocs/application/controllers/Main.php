@@ -540,8 +540,13 @@ class Main extends CI_Controller
 	function qr() 
 	{
 		$this->load->model('pastes');
-		$data = $this->pastes->getPaste(3);
-		$this->load->view('view/qr', $data);
+		$check = $this->pastes->checkPaste(3);
+		
+		if ($check) 
+		{
+			$data = $this->pastes->getPaste(3);
+			$this->load->view('view/qr', $data);
+		}
 	}
 	
 	function download() 
