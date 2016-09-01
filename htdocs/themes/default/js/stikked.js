@@ -206,7 +206,7 @@ ST.crypto_generate_key = function(len) {
 }
 
 ST.filereader = function() {
-    var options = {
+    $("#code").fileReaderJS({
         // CSS Class to add to the drop element when a drag is active
         dragClass: "drag",
 
@@ -231,7 +231,13 @@ ST.filereader = function() {
             progress: function(e, file) { /* Native ProgressEvent */ },
             load: function(e, file) { /* Native ProgressEvent */ },
             error: function(e, file) { /* Native ProgressEvent */ },
-            loadend: function(e, file) { /* Native ProgressEvent */ },
+            loadend: function(e, file) {
+                try {
+                    var words = CryptoJS.enc.Base64.parse(e.target.result.split(',')[1]);
+                    var utf8 = CryptoJS.enc.Utf8.stringify(words);
+                    $('#code').val(utf8);
+                } catch (undefined) {};
+            },
             abort: function(e, file) { /* Native ProgressEvent */ },
             skip: function(e, file) {
                 // Called when a file is skipped.  This happens when:
@@ -248,8 +254,7 @@ ST.filereader = function() {
                 // You can ignore this event if you don't care about groups
             }
         }
-    };
-    $("textarea").fileReaderJS(opts);
+    });
 }
 
 ST.init = function() {
