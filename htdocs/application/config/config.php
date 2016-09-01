@@ -14,7 +14,7 @@
 | path to your installation.
 |
 */
-$config['base_url']	= 'http://stikked/';
+$config['base_url']	= '';
 
 /*
 |--------------------------------------------------------------------------
