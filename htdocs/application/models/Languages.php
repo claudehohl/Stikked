@@ -42,7 +42,7 @@ class Languages extends CI_Model
 		foreach ($this->geshi_languages as $key => $value) 
 		{
 			
-			if (!in_array($key, $a)) 
+			if (!in_array($key, $data)) 
 			{
 				$data[$key] = $value;
 			}
