@@ -37,7 +37,8 @@ Installation
 2. Create a user and database for Stikked
 3. Copy application/config/stikked.php.dist to application/config/stikked.php
 4. Edit configuration settings in application/config/stikked.php - everything is described there
-5. You're done!
+5. Set the base_url in application/config/config.php
+6. You're done!
 
 * The database structure will be created automatically if it doesn't exist.
 * No special file permissions are needed by default. Optional: If you want to have the JavaScript- and CSS-files minified, the static/asset/ folder has to be writable.
@@ -60,6 +61,16 @@ In the folder doc/, you will find:
 
 Changelog
 ---------
+
+### Version 0.11.0:
+
+* Upgrade to CodeIgniter 3.1.0
+
+#### Upgrade instructions
+
+Copy your htdocs/application/stikked.php config file away. Upload the new version. Copy it back.
+
+Set the base_url in application/config/config.php
 
 ### Version 0.10.0:
 
