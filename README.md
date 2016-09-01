@@ -30,6 +30,15 @@ http://paste.scratchbook.ch/
 See an encrypted paste: http://paste.scratchbook.ch/view/1427473f#iP7p05DRH0BC72qQjxv01BjUeOmNV073
 
 
+Prerequisites
+-------------
+
+* A web server: Apache, Lighttpd, Nginx, Cherokee.
+* A database: MySQL, Postgres. OR a writable folder on your filesystem for SQLite.
+* PHP version 5.6 or newer is recommended.
+* PHP-GD for the creation of QR-codes.
+
+
 Installation
 ------------
 
