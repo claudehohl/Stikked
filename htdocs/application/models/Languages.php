@@ -18,8 +18,13 @@ class Languages extends CI_Model
 		parent::__construct();
 		$this->load->config('geshi_languages');
 		$this->geshi_languages = $this->config->item('geshi_languages');
-		$this->load->config('config');
 		$this->favorite_languages = $this->config->item('favorite_languages');
+		
+		if ($this->favorite_languages === NULL) 
+		{
+			$this->load->config('config');
+			$this->favorite_languages = $this->config->item('favorite_languages');
+		}
 	}
 	
 	function valid_language($lang) 
