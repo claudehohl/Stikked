@@ -39,7 +39,6 @@ class Main extends CI_Controller
 	function __construct() 
 	{
 		parent::__construct();
-		$this->config->set_item('base_url', config_item('site_root'));
 		$this->output->enable_profiler(false);
 		$this->load->model('languages');
 		$this->load->library('curl');

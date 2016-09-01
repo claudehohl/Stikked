@@ -9,12 +9,12 @@
 $config['site_name'] = 'Stikked';
 
 /**
- * Site Root
+ * Base URL
  *
- * The base URL of Stikked. WITH trailing slash!
+ * Set the base URL of Stikked. WITH trailing slash!
  *
 */
-$config['site_root'] = 'https://yourpastebin.com/';
+$config['base_url'] = 'https://yourpastebin.com/';
 
 /**
  * Database connection

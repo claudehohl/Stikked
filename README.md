@@ -52,7 +52,7 @@ Installation
 * No special file permissions are needed by default. Optional: If you want to have the JavaScript- and CSS-files minified, the static/asset/ folder has to be writable.
 * To ensure that pastes with an expiration set get cleaned up, define the cron key in the config and set up a cronjob, for example:
   * `*/5 * * * * curl --silent http://yoursite.com/cron/[key]`
-* If you encounter errors with stylesheets and paths, make sure your site_root config value is not empty (see [here](http://www.codeigniter.com/user_guide/installation/upgrade_303.html)).
+* If you encounter errors with stylesheets and paths, make sure your base_url config value is not empty (see [here](http://www.codeigniter.com/user_guide/installation/upgrade_303.html)).
 * Be sure to also copy the .htaccess file when you move files around. This is a hidden file and easily overlooked.
 
 
@@ -79,7 +79,7 @@ Changelog
 
 Copy your htdocs/application/stikked.php config file away. Upload the new version. Copy it back.
 
-Add and set the site_root in application/config/stikked.php
+Add and set the base_url in htdocs/application/config/stikked.php
 
 ### Version 0.10.0:
 
