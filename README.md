@@ -45,6 +45,7 @@ Installation
 * To ensure that pastes with an expiration set get cleaned up, define the cron key in the config and set up a cronjob, for example:
   * `*/5 * * * * curl --silent http://yoursite.com/cron/[key]`
 * If you encounter errors with stylesheets and paths, make sure your base_url config value is not empty (see [here](http://www.codeigniter.com/user_guide/installation/upgrade_303.html)).
+* Be sure to also copy the .htaccess file when you move files around. This is a hidden file and easily overlooked.
 
 
 Documentation
