@@ -1,6 +1,6 @@
 <?php $this->load->view('defaults/header'); ?>
     <?php
-        $message = $this->db_session->flashdata('login_error');
+        $message = $this->session->flashdata('login_error');
         if ($message){
             echo '<div class="login_error">';
             echo $message;

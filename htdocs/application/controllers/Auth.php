@@ -53,13 +53,13 @@ class Auth extends CI_Controller
 	
 	function index() 
 	{
-		$this->db_session->keep_flashdata('tried_to');
+		$this->session->keep_flashdata('tried_to');
 		$this->login();
 	}
 	
 	function login($errorMsg = NULL) 
 	{
-		$this->db_session->keep_flashdata('tried_to');
+		$this->session->keep_flashdata('tried_to');
 		
 		if (!$this->auth_ldap->is_authenticated()) 
 		{
@@ -76,9 +76,9 @@ class Auth extends CI_Controller
 
 				// Login WIN!
 				
-				if ($this->db_session->flashdata('tried_to')) 
+				if ($this->session->flashdata('tried_to')) 
 				{
-					redirect($this->db_session->flashdata('tried_to'));
+					redirect($this->session->flashdata('tried_to'));
 				}
 				else
 				{
@@ -89,7 +89,7 @@ class Auth extends CI_Controller
 			{
 
 				// Login FAIL
-				$this->db_session->set_flashdata('login_error', 'Incorrect username or password.');
+				$this->session->set_flashdata('login_error', 'Incorrect username or password.');
 				$this->load->view('auth/login_form');
 			}
 		}
@@ -104,10 +104,10 @@ class Auth extends CI_Controller
 	function logout() 
 	{
 		
-		if ($this->db_session->userdata('logged_in')) 
+		if ($this->session->userdata('logged_in')) 
 		{
-			$data['name'] = $this->db_session->userdata('cn');
-			$data['username'] = $this->db_session->userdata('username');
+			$data['name'] = $this->session->userdata('cn');
+			$data['username'] = $this->session->userdata('username');
 			$data['logged_in'] = TRUE;
 			$this->auth_ldap->logout();
 		}

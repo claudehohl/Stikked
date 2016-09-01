@@ -38,7 +38,7 @@ class Auth_Ldap {
         log_message('debug', 'Auth_Ldap initialization commencing...');
 
         // Load the session library
-        $this->ci->load->library('db_session');
+        $this->ci->load->library('session');
 
         // Load the configuration
         $this->ci->load->config('auth_ldap');
@@ -104,7 +104,7 @@ class Auth_Ldap {
                             'role' => $user_info['role'],
                             'logged_in' => TRUE);
     
-        $this->ci->db_session->set_userdata($customdata);
+        $this->ci->session->set_userdata($customdata);
         return TRUE;
     }
 
@@ -113,7 +113,7 @@ class Auth_Ldap {
      * @return bool
      */
     function is_authenticated() {
-        if($this->ci->db_session->userdata('logged_in')) {
+        if($this->ci->session->userdata('logged_in')) {
             return TRUE;
         } else {
             return FALSE;
@@ -125,8 +125,8 @@ class Auth_Ldap {
      */
     function logout() {
         // Just set logged_in to FALSE and then destroy everything for good measure
-        $this->ci->db_session->set_userdata(array('logged_in' => FALSE));
-        $this->ci->db_session->sess_destroy();
+        $this->ci->session->set_userdata(array('logged_in' => FALSE));
+        $this->ci->session->sess_destroy();
     }
 
     /**
