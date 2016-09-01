@@ -245,6 +245,7 @@ class Pastes extends CI_Model
 						case "yourls":
 							$var_yourls_url = $this->config->item('yourls_url');
 							$var_yourls_signature = $this->config->item('yourls_signature');
+							
 							if (!empty($var_yourls_url) && !empty($v_yourls_signature)) 
 							{
 								$url_shortening_api = "yourls";
@@ -253,6 +254,7 @@ class Pastes extends CI_Model
 						case "gwgd":
 						case "gw.gd":
 							$var_gwgd_url = $this->config->item('gwgd_url');
+							
 							if (!empty($var_gwgd_url)) 
 							{
 								$url_shortening_api = "gwgd";
@@ -262,6 +264,7 @@ class Pastes extends CI_Model
 						case "google":
 						case "goo.gl":
 							$var_googl_url_api = $this->config->item('googl_url_api');
+							
 							if (!empty($var_googl_url_api)) 
 							{
 								$url_shortening_api = "googl";
@@ -270,6 +273,7 @@ class Pastes extends CI_Model
 						case "bitly":
 						case "bit.ly":
 							$var_bitly_url_api = $this->config->item('bitly_url_api');
+							
 							if (!empty($var_bitly_url_api)) 
 							{
 								$url_shortening_api = "bitly";
@@ -289,7 +293,9 @@ class Pastes extends CI_Model
 					$config_yourls_url = $this->config->item('yourls_url');
 					$config_yourls_signature = $this->config->item('yourls_signature');
 					$timestamp = time();
+
 					// grab title to avoid 404s in yourls
+					
 					if ($this->input->post('title')) 
 					{
 						$yourl_title = htmlspecialchars($this->input->post('title'));
@@ -298,7 +304,6 @@ class Pastes extends CI_Model
 					{
 						$yourl_title = $this->config->item('unknown_title');
 					}
-					
 					$prep_data = array(
 						CURLOPT_URL => $config_yourls_url . 'yourls-api.php',
 						CURLOPT_RETURNTRANSFER => true,
@@ -389,7 +394,9 @@ class Pastes extends CI_Model
 				//use yourls
 				$config_yourls_signature = $this->config->item('yourls_signature');
 				$timestamp = time();
+
 				// grab title to avoid 404s in yourls
+				
 				if ($this->input->post('title')) 
 				{
 					$yourl_title = htmlspecialchars($this->input->post('title'));
@@ -434,6 +441,7 @@ class Pastes extends CI_Model
 		}
 		return $shorturl;
 	}
+	
 	function checkPaste($seg = 2) 
 	{
 		
@@ -699,12 +707,13 @@ class Pastes extends CI_Model
 			$total_rows = $query->num_rows();
 
 			// query
+			
 			if ($this->db->dbdriver == "postgre") 
 			{
 				$sql = "SELECT id, title, name, created, pid, lang, raw FROM $TABLE WHERE private = 0 AND (title LIKE ? OR raw LIKE ?) ORDER BY created DESC LIMIT $amount OFFSET $page";
 			}
-			else
-			if ($root == 'api/recent')
+			else 
+			if ($root == 'api/recent') 
 			{
 				$sql = "SELECT id, title, name, created, pid, lang, raw FROM $TABLE WHERE private = 0 AND (title LIKE ? OR raw LIKE ?) ORDER BY created DESC LIMIT 0,15";
 			}
@@ -731,11 +740,11 @@ class Pastes extends CI_Model
 			{
 				$sql = "SELECT id, title, name, created, pid, lang, raw FROM $TABLE WHERE private = 0 ORDER BY created DESC LIMIT $amount OFFSET $page";
 			}
-                        else
-                        if ($root == 'api/recent')
-                        {
-                                $sql = "SELECT id, title, name, created, pid, lang, raw FROM $TABLE WHERE private = 0 ORDER BY created DESC LIMIT 0,15";
-                        }
+			else 
+			if ($root == 'api/recent') 
+			{
+				$sql = "SELECT id, title, name, created, pid, lang, raw FROM $TABLE WHERE private = 0 ORDER BY created DESC LIMIT 0,15";
+			}
 			else
 			{
 				$sql = "SELECT id, title, name, created, pid, lang, raw FROM $TABLE WHERE private = 0 ORDER BY created DESC LIMIT $page,$amount";
@@ -832,11 +841,11 @@ class Pastes extends CI_Model
 			{
 				$sql = "SELECT id, title, name, created, pid, lang, raw, hits FROM $TABLE WHERE private = 0 ORDER BY hits DESC, created DESC LIMIT $amount OFFSET $page";
 			}
-                        else 
-                        if ($root == "api/trending") 
-                        {
-                                $sql = "SELECT id, title, name, created, pid, lang, raw, hits FROM $TABLE WHERE private = 0 ORDER BY hits DESC, created DESC LIMIT 0,15";
-                        }
+			else 
+			if ($root == "api/trending") 
+			{
+				$sql = "SELECT id, title, name, created, pid, lang, raw, hits FROM $TABLE WHERE private = 0 ORDER BY hits DESC, created DESC LIMIT 0,15";
+			}
 			else
 			{
 				$sql = "SELECT id, title, name, created, pid, lang, raw, hits FROM $TABLE WHERE private = 0 ORDER BY hits DESC, created DESC LIMIT $page,$amount";
