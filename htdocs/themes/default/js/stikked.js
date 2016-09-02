@@ -239,12 +239,16 @@ ST.filereader = function() {
     });
 }
 
-ST.ace = function() {
+ST.ace_init = function() {
     // prepare the editor, needs to be a div
     var $code = $('#code');
 
-    // exit if there is no code textarea
+    // exit if there is no #code textarea
     if ($code.length < 1) {
+        return false;
+    }
+
+    if (typeof ace == 'undefined') {
         return false;
     }
 
@@ -263,6 +267,38 @@ ST.ace = function() {
     });
 }
 
+ST.codemirror_init = function() {
+    if (typeof CodeMirror == 'undefined') {
+        return false;
+    }
+    ST.cm_modes = $.parseJSON($('#codemirror_modes').text());
+    $('#lang').change(function() {
+        ST.codemirror_setlang();
+    });
+    if (typeof ST.cm_editor == 'undefined') {
+        ST.cm_editor = CodeMirror.fromTextArea(document.getElementById('code'), {
+            lineNumbers: true,
+            lineWrapping: true,
+        });
+    }
+    ST.codemirror_setlang();
+}
+
+ST.codemirror_setlang = function() {
+    var lang = $('#lang').val();
+    mode = ST.cm_modes[lang];
+
+    $.get(base_url + 'main/get_cm_js/' + lang,
+        function(data) {
+            if (data != '') {
+                ST.cm_editor.setOption('mode', mode);
+            } else {
+                ST.cm_editor.setOption('mode', null);
+            }
+        },
+        'script');
+}
+
 ST.init = function() {
     ST.expand();
     ST.show_embed();
@@ -270,7 +306,8 @@ ST.init = function() {
     ST.line_highlighter();
     ST.crypto();
     ST.filereader();
-    ST.ace();
+    ST.codemirror_init();
+    ST.ace_init();
 };
 
 $(document).ready(function() {

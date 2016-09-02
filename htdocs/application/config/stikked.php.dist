@@ -55,6 +55,19 @@ $config['db_prefix'] = '';
 $config['theme'] = 'default';
 
 /**
+ * JavaScript-Editor
+ *
+ * Which editor to use
+ * CodeMirror, ACE or none
+ *
+ * none:        ~130kb JS
+ * CodeMirror:  ~300kb JS
+ * ACE:         >800kb JS
+ *
+*/
+$config['js_editor'] = ''; // codemirror, ace, ''
+
+/**
  * Language
  *
  * New Language settings in application/config/language.php
@@ -87,10 +100,10 @@ $config['cron_key'] = '';
  *           @string yourls
  *           @string gwgd
  *           @string googl
- *           @string bitly 
+ *           @string bitly
  *           @string random - Randomly chose any of upper API-s !WARNING! May be slow! For maximum performanse, it's recommended to either set all API keys or use random_url_engines to list working engines.
  *           @string none - same as off
- * 
+ *
  * random_url_engines:
  *    - This variable sets list of APIs to be considered for usage if url_shortening_use is set to 'random'
  *      To consider all API-s, either leave it empty (as empty array or string) or type all apis available (yourls,gwgd,googl,bitly)
@@ -102,7 +115,7 @@ $config['cron_key'] = '';
  *      - If input is @string it must be comma delimited, otherwise will be ignored.
  *      - Script will accept minimum of 2 APIs, ignored otherwise
  *      - Only alphanumeric characters and "." are allowed. Everything else is filtered out.
- * 
+ *
  * -------------------------------------------------------------------------------------------------------------
  * yourls_url: Your own instance of yourls URL-shortener (Download: http://yourls.org/)
  * Example: http://example.com/yourls/
@@ -113,12 +126,12 @@ $config['cron_key'] = '';
  * gwgd_url: Your own instance of the gw.gd URL-shortener (Download: https://github.com/neofutur/gwgd)
  * Default: http://gw.gd/
  *
- * googl_url_api: URL shortening service provided by Google Inc. (API: http://code.google.com/apis/console/) 
+ * googl_url_api: URL shortening service provided by Google Inc. (API: http://code.google.com/apis/console/)
  * Usage: Your API key
- * 
+ *
  * bitly_url_api: Famous URL shortening service (API: http://dev.bitly.com/get_started.html)
  * Usage: Your API key
- * 
+ *
 **/
 $config['url_shortening_use'] = 'off';
 $config['random_url_engines'] = 'googl,bitly'; // Used only in random mode, read comment above for more info
@@ -241,9 +254,9 @@ $config['unknown_title'] = 'Untitled';
  * Weather to require LDAP authenticaiton or not.
  * Set to either 'true' to require authentication or 'false' not to.
  * NOTE: if changed, set LDAP settings in auth_ldap.php
-**/ 
+**/
 $config['require_auth'] = false;
- 
+
 /**
  * Override the displayed URL
  *
