@@ -9,7 +9,7 @@ if (!defined('BASEPATH')) exit('No direct script access allowed');
 
 //codemirror languages
 $config['ace_languages'] = array(
-	'text' => 'plain_text',
+	'text' => 'text',
 	'html5' => 'html',
 	'css' => 'css',
 	'javascript' => 'javascript',
@@ -17,6 +17,7 @@ $config['ace_languages'] = array(
 	'python' => 'python',
 	'ruby' => 'ruby',
 	'lua' => 'lua',
+	'bash' => 'sh',
 	'erlang' => 'erlang',
 	'go' => 'golang',
 	'c' => 'c_cpp',
@@ -58,4 +59,21 @@ $config['ace_languages'] = array(
 	'objc' => 'objectivec',
 	'ocaml' => 'ocaml',
 	'pascal' => 'pascal',
+	'perl' => 'perl',
+	'perl6' => 'perl',
+	'postgresql' => 'pgsql',
+	'powershell' => 'powershell',
+	'prolog' => 'prolog',
+	'properties' => 'properties',
+	'rails' => 'ruby',
+	'rust' => 'rust',
+	'scala' => 'scala',
+	'scheme' => 'scheme',
+	'smarty' => 'smarty',
+	'tcl' => 'tcl',
+	'vala' => 'vala',
+	'vb' => 'vbscript',
+	'verilog' => 'verilog',
+	'vhdl' => 'vhdl',
+	'yaml' => 'yaml',
 );
