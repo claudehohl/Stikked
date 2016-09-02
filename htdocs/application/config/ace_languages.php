@@ -8,7 +8,7 @@
 if (!defined('BASEPATH')) exit('No direct script access allowed');
 
 //codemirror languages
-$config['codemirror_languages'] = array(
+$config['ace_languages'] = array(
 	'html5' => array(
 		'mode' => 'htmlmixed',
 		'js' => array(
