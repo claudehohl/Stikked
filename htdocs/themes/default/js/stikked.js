@@ -240,7 +240,17 @@ ST.filereader = function() {
 }
 
 ST.ace = function() {
+    // prepare the editor, needs to be a div
+    // replace textarea
+    var $code = $('#code');
+    $code.after('<div id="editor" style="left: 10px; width: 703px; height: 312px;"></div>');
+    $code.remove();
 
+    // init ace
+    ace.config.set("basePath", base_url + "themes/default/js/ace");
+    var editor = ace.edit("editor");
+    editor.setTheme("ace/theme/monokai");
+    editor.getSession().setMode("ace/mode/javascript");
 }
 
 ST.init = function() {
