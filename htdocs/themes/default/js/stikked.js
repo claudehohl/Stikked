@@ -275,7 +275,15 @@ ST.ace_init = function() {
 
 ST.ace_setlang = function() {
     var lang = $('#lang').val();
-    var mode = ST.ace_modes[lang];
+    var mode = '';
+    try {
+        mode = ST.ace_modes[lang];
+    } catch (undefined) {
+        mode = 'text';
+    }
+    if (mode === undefined) {
+        mode = 'text';
+    }
     ST.ace_editor.getSession().setMode("ace/mode/" + mode);
 }
 
