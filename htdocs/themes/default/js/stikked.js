@@ -256,6 +256,9 @@ ST.ace_init = function() {
     $code.after('<div id="editor" style="left: 10px; width: 703px; height: 312px;"></div>');
     $code.hide();
 
+    // init modes
+    ST.ace_modes = $.parseJSON($('#ace_modes').text());
+
     // init ace
     ace.config.set("basePath", base_url + "themes/default/js/ace");
     ST.ace_editor = ace.edit("editor");
@@ -272,7 +275,8 @@ ST.ace_init = function() {
 
 ST.ace_setlang = function() {
     var lang = $('#lang').val();
-    ST.ace_editor.getSession().setMode("ace/mode/" + lang);
+    var mode = ST.ace_modes[lang];
+    ST.ace_editor.getSession().setMode("ace/mode/" + mode);
 }
 
 ST.codemirror_init = function() {
@@ -294,7 +298,7 @@ ST.codemirror_init = function() {
 
 ST.codemirror_setlang = function() {
     var lang = $('#lang').val();
-    mode = ST.cm_modes[lang];
+    var mode = ST.cm_modes[lang];
 
     $.get(base_url + 'main/get_cm_js/' + lang,
         function(data) {
