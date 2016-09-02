@@ -236,7 +236,11 @@ ST.filereader = function() {
                     var words = CryptoJS.enc.Base64.parse(e.target.result.split(',')[1]);
                     var utf8 = CryptoJS.enc.Utf8.stringify(words);
                     $('#code').val(utf8);
-                } catch (undefined) {};
+                } catch (err) {
+                    console.error(err);
+                    console.info('event: ', e);
+                    console.info('file: ', file);
+                };
             },
             abort: function(e, file) { /* Native ProgressEvent */ },
             skip: function(e, file) {
