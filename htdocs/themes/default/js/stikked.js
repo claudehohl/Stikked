@@ -249,7 +249,7 @@ ST.ace = function() {
     // init ace
     ace.config.set("basePath", base_url + "themes/default/js/ace");
     var editor = ace.edit("editor");
-    editor.setTheme("ace/theme/monokai");
+    editor.setTheme("ace/theme/clouds");
     editor.getSession().setMode("ace/mode/javascript");
 }
 
