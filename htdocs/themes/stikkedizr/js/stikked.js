@@ -202,12 +202,69 @@ ST.crypto_generate_key = function(len) {
 	return key;
 }
 
+ST.filereader = function() {
+    $("#code").fileReaderJS({
+        // CSS Class to add to the drop element when a drag is active
+        dragClass: "drag",
+
+        // A string to match MIME types, for instance
+        accept: false,
+
+        // An object specifying how to read certain MIME types
+        // For example: {
+        //  'image/*': 'DataURL',
+        //  'data/*': 'ArrayBuffer',
+        //  'text/*' : 'Text'
+        // }
+        readAsMap: {},
+
+        // How to read any files not specified by readAsMap
+        readAsDefault: 'DataURL',
+        on: {
+            beforestart: function(e, file) {
+                // return false if you want to skip this file
+            },
+            loadstart: function(e, file) { /* Native ProgressEvent */ },
+            progress: function(e, file) { /* Native ProgressEvent */ },
+            load: function(e, file) { /* Native ProgressEvent */ },
+            error: function(e, file) { /* Native ProgressEvent */ },
+            loadend: function(e, file) {
+                try {
+                    var words = CryptoJS.enc.Base64.parse(e.target.result.split(',')[1]);
+                    var utf8 = CryptoJS.enc.Utf8.stringify(words);
+                    $('#code').val(utf8);
+                } catch (err) {
+                    console.error(err);
+                    console.info('event: ', e);
+                    console.info('file: ', file);
+                };
+            },
+            abort: function(e, file) { /* Native ProgressEvent */ },
+            skip: function(e, file) {
+                // Called when a file is skipped.  This happens when:
+                //  1) A file doesn't match the accept option
+                //  2) false is returned in the beforestart callback
+            },
+            groupstart: function(group) {
+                // Called when a 'group' (a single drop / copy / select that may
+                // contain multiple files) is receieved.
+                // You can ignore this event if you don't care about groups
+            },
+            groupend: function(group) {
+                // Called when a 'group' is finished.
+                // You can ignore this event if you don't care about groups
+            }
+        }
+    });
+}
+
 ST.init = function() {
 	ST.expand();
 	ST.show_embed();
 	ST.spamadmin();
 	ST.line_highlighter();
 	ST.crypto();
+    ST.filereader();
 };
 
 $(document).ready(function() {
