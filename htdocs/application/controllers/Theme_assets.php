@@ -206,6 +206,14 @@ class Theme_assets extends CI_Controller
 			$file_path = 'themes/default/js/' . $js_file;
 		}
 
+		// return empty string if not found, to not mess up existing JS
+		
+		if (!file_exists($file_path)) 
+		{
+			header('HTTP/1.1 404 Not Found');
+			return '';
+		}
+
 		//send
 		header('Content-Type: application/x-javascript; charset=utf-8');
 		$this->_expires_header(30);
