@@ -52,7 +52,7 @@ if(isset($insert)){
 <section>
 	<div class="row">
 		<div class="span12">
-			<blockquote class="hero-unit"><?php echo $paste; ?></blockquote>
+			<blockquote class="hero-unit" id="code"><?php echo $paste; ?></blockquote>
 		</div>
 	</div>
 </section>
