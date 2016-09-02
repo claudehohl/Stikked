@@ -350,11 +350,7 @@ class Main extends CI_Controller
 			$acem = array();
 			foreach ($ace_languages as $geshi_name => $l) 
 			{
-				
-				if (gettype($l) == 'array') 
-				{
-					$acem[$geshi_name] = $l['mode'];
-				}
+				$acem[$geshi_name] = $l;
 			}
 			$data['ace_modes'] = $acem;
 		}
