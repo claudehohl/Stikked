@@ -316,23 +316,48 @@ class Main extends CI_Controller
 		$this->load->model('languages');
 		$this->load->helper('form');
 		$data['languages'] = $this->languages->get_languages();
-
-		//codemirror languages
-		$this->load->config('codemirror_languages');
-		$codemirror_languages = config_item('codemirror_languages');
-		$data['codemirror_languages'] = $codemirror_languages;
-
-		//codemirror modes
-		$cmm = array();
-		foreach ($codemirror_languages as $geshi_name => $l) 
+		
+		if (config_item('js_editor') == 'codemirror') 
 		{
-			
-			if (gettype($l) == 'array') 
+
+			//codemirror languages
+			$this->load->config('codemirror_languages');
+			$codemirror_languages = config_item('codemirror_languages');
+			$data['codemirror_languages'] = $codemirror_languages;
+
+			//codemirror modes
+			$cmm = array();
+			foreach ($codemirror_languages as $geshi_name => $l) 
 			{
-				$cmm[$geshi_name] = $l['mode'];
+				
+				if (gettype($l) == 'array') 
+				{
+					$cmm[$geshi_name] = $l['mode'];
+				}
 			}
+			$data['codemirror_modes'] = $cmm;
 		}
-		$data['codemirror_modes'] = $cmm;
+		
+		if (config_item('js_editor') == 'ace') 
+		{
+
+			//ace languages
+			$this->load->config('ace_languages');
+			$ace_languages = config_item('ace_languages');
+			$data['ace_languages'] = $ace_languages;
+
+			//ace modes
+			$acem = array();
+			foreach ($ace_languages as $geshi_name => $l) 
+			{
+				
+				if (gettype($l) == 'array') 
+				{
+					$acem[$geshi_name] = $l['mode'];
+				}
+			}
+			$data['ace_modes'] = $acem;
+		}
 
 		//recaptcha
 		$data['use_recaptcha'] = $this->use_recaptcha;
