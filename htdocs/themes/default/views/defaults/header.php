@@ -21,7 +21,7 @@ $this->carabiner->config(array(
     'script_dir' => 'themes/default/js/',
     'style_dir'  => 'themes/' . $theme . '/css/',
     'cache_dir'  => 'static/asset/',
-    'base_uri'	 => base_url(),
+    'base_uri'	 => $this->config->item('base_url'),
     'combine'	 => true,
     'dev'		 => !$this->config->item('combine_assets'),
 ));

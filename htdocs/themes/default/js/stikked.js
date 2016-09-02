@@ -261,6 +261,10 @@ ST.filereader = function() {
     });
 }
 
+ST.ace = function() {
+    //
+}
+
 ST.init = function() {
     ST.expand();
     ST.show_embed();
@@ -268,6 +272,7 @@ ST.init = function() {
     ST.line_highlighter();
     ST.crypto();
     ST.filereader();
+    ST.ace();
 };
 
 $(document).ready(function() {
