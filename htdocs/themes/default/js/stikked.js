@@ -205,7 +205,7 @@ ST.crypto_generate_key = function(len) {
     return key;
 }
 
-ST.filereader = function() {
+ST.dragdrop = function() {
     $("#code").fileReaderJS({
         // CSS Class to add to the drop element when a drag is active
         dragClass: "drag",
@@ -258,13 +258,21 @@ ST.ace_init = function() {
 
     // init ace
     ace.config.set("basePath", base_url + "themes/default/js/ace");
-    var editor = ace.edit("editor");
-    editor.setTheme("ace/theme/clouds");
-    editor.getSession().setValue($code.val());
-    editor.getSession().setMode("ace/mode/javascript");
-    editor.getSession().on('change', function(e) {
-        $code.val(editor.getValue());
+    ST.ace_editor = ace.edit("editor");
+    ST.ace_editor.setTheme("ace/theme/clouds");
+    ST.ace_editor.getSession().setValue($code.val());
+    ST.ace_editor.getSession().on('change', function(e) {
+        $code.val(ST.ace_editor.getValue());
     });
+    ST.ace_setlang();
+    $('#lang').change(function() {
+        ST.ace_setlang();
+    });
+}
+
+ST.ace_setlang = function() {
+    var lang = $('#lang').val();
+    ST.ace_editor.getSession().setMode("ace/mode/" + lang);
 }
 
 ST.codemirror_init = function() {
@@ -305,7 +313,7 @@ ST.init = function() {
     ST.spamadmin();
     ST.line_highlighter();
     ST.crypto();
-    ST.filereader();
+    ST.dragdrop();
     ST.codemirror_init();
     ST.ace_init();
 };
