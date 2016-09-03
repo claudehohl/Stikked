@@ -25,7 +25,7 @@ $this->carabiner->js('filereader.js');
 $this->carabiner->js('linkify.min.js');
 $this->carabiner->js('linkify-jquery.min.js');
 if(config_item('js_editor') == 'codemirror') {
-    $this->carabiner->js('codemirror/codemirror.js');
+    $this->carabiner->js('codemirror/lib/codemirror.js');
 }
 if(config_item('js_editor') == 'ace') {
     $this->carabiner->js('ace/ace.js');
