@@ -51,6 +51,23 @@ ST.spamadmin = function() {
             return false;
         });
     }
+
+    // needed by .selectable
+    $.fn.addBack = function(selector) {
+        return this.add(selector == null ? this.prevObject : this.prevObject.filter(selector));
+    }
+
+    $('.selectable>tbody').selectable({
+        filter: 'tr',
+        cancel: 'a',
+        stop: function() {
+            var result = $("#select-result").empty();
+            $(".ui-selected", this).each(function() {
+                var index = $("tr").index(this);
+                result.append(" #" + (index + 1));
+            });
+        }
+    });
 };
 
 ST.line_highlighter = function() {

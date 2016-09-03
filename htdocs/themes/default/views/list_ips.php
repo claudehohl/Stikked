@@ -8,7 +8,7 @@
 		}
 		$n = 0;
 		if(!empty($pastes)){ ?>
-			<table class="recent">
+			<table class="recent selectable">
 				<tbody>
 					<tr>
 						<th class="title">Title</th>

@@ -565,3 +565,6 @@ h4 {
     word-wrap: break-word;
 }
 
+.ui-selectable>.ui-selected { background-color: #a6c9e2; }
+.ui-selectable>.ui-selecting { background: #FECA40; }
+
