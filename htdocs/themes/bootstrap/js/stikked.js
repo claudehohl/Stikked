@@ -219,7 +219,7 @@ ST.ace_init = function() {
     }
 
     // replace textarea
-    $code.after('<div id="editor" style="left: 10px; width: 703px; height: 312px;"></div>');
+    $code.after('<div id="editor" style="left: 0px; width: 900px; height: 379px;"></div>');
     $code.hide();
 
     // init modes
