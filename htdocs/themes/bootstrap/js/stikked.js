@@ -263,8 +263,10 @@ ST.codemirror_init = function() {
     });
     if (typeof ST.cm_editor == 'undefined') {
         ST.cm_editor = CodeMirror.fromTextArea(document.getElementById('code'), {
+            mode: "scheme",
             lineNumbers: true,
             lineWrapping: true,
+            tabMode: "indent"
         });
     }
     ST.codemirror_setlang();
