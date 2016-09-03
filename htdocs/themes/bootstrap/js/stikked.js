@@ -1,9 +1,5 @@
 var ST = window.ST || {};
 
-ST.init = function() {
-    ST.show_embed();
-};
-
 ST.show_embed = function() {
     $embed_field = $('#embed_field');
     var lang_showcode = $embed_field.data('lang-showcode');
@@ -18,51 +14,6 @@ ST.show_embed = function() {
         $(this).hide();
         $('#show_code').show();
     });
-};
-
-var CM = {
-    init: function() {
-        var txtAreas = $("textarea").length;
-
-        if (txtAreas > 0) {
-            modes = $.parseJSON($('#codemirror_modes').text());
-
-
-            CM.editor = CodeMirror.fromTextArea(document.getElementById("code"), {
-                mode: "scheme",
-                lineNumbers: true,
-                matchBrackets: true,
-                tabMode: "indent"
-            });
-
-            $('#lang').change(function() {
-                set_language();
-            });
-
-            set_syntax = function(mode) {
-                CM.editor.setOption('mode', mode);
-            };
-
-            set_language = function() {
-
-                var lang = $('#lang').val();
-                mode = modes[lang];
-
-                $.get(base_url + 'main/get_cm_js/' + lang,
-                    function(data) {
-                        if (data !== '') {
-                            set_syntax(mode);
-                        } else {
-                            set_syntax(null);
-                        }
-                    },
-                    'script'
-                );
-            };
-
-            set_language();
-        }
-    }
 };
 
 ST.line_highlighter = function() {
@@ -220,9 +171,134 @@ ST.crypto_generate_key = function(len) {
     return key;
 }
 
-$(document).ready(function() {
-    ST.init();
-    CM.init();
+ST.dragdrop = function() {
+    $("#code").fileReaderJS({
+        // CSS Class to add to the drop element when a drag is active
+        dragClass: "drag",
+
+        // A string to match MIME types, for instance
+        accept: false,
+
+        // An object specifying how to read certain MIME types
+        // For example: {
+        //  'image/*': 'DataURL',
+        //  'data/*': 'ArrayBuffer',
+        //  'text/*' : 'Text'
+        // }
+        readAsMap: {},
+
+        // How to read any files not specified by readAsMap
+        readAsDefault: 'DataURL',
+        on: {
+            loadend: function(e, file) {
+                try {
+                    var words = CryptoJS.enc.Base64.parse(e.target.result.split(',')[1]);
+                    var utf8 = CryptoJS.enc.Utf8.stringify(words);
+                    $('#code').val(utf8);
+                } catch (err) {
+                    console.error(err);
+                    console.info('event: ', e);
+                    console.info('file: ', file);
+                };
+            }
+        }
+    });
+}
+
+ST.ace_init = function() {
+    // prepare the editor, needs to be a div
+    var $code = $('#code');
+
+    // exit if there is no #code textarea
+    if ($code.length < 1) {
+        return false;
+    }
+
+    if (typeof ace == 'undefined') {
+        return false;
+    }
+
+    // replace textarea
+    $code.after('<div id="editor" style="left: 10px; width: 703px; height: 312px;"></div>');
+    $code.hide();
+
+    // init modes
+    ST.ace_modes = $.parseJSON($('#ace_modes').text());
+
+    // init ace
+    ace.config.set("basePath", base_url + "themes/default/js/ace");
+    ST.ace_editor = ace.edit("editor");
+    ST.ace_editor.setTheme("ace/theme/clouds");
+    ST.ace_editor.getSession().setValue($code.val());
+    ST.ace_editor.getSession().on('change', function(e) {
+        $code.val(ST.ace_editor.getValue());
+    });
+    ST.ace_setlang();
+    $('#lang').change(function() {
+        ST.ace_setlang();
+    });
+}
+
+ST.ace_setlang = function() {
+    var lang = $('#lang').val();
+    var mode = '';
+    try {
+        mode = ST.ace_modes[lang];
+    } catch (undefined) {
+        mode = 'text';
+    }
+    if (mode === undefined) {
+        mode = 'text';
+    }
+    ST.ace_editor.getSession().setMode("ace/mode/" + mode);
+}
+
+ST.codemirror_init = function() {
+    if (typeof CodeMirror == 'undefined') {
+        return false;
+    }
+    ST.cm_modes = $.parseJSON($('#codemirror_modes').text());
+    $('#lang').change(function() {
+        ST.codemirror_setlang();
+    });
+    if (typeof ST.cm_editor == 'undefined') {
+        ST.cm_editor = CodeMirror.fromTextArea(document.getElementById('code'), {
+            lineNumbers: true,
+            lineWrapping: true,
+        });
+    }
+    ST.codemirror_setlang();
+}
+
+ST.codemirror_setlang = function() {
+    var lang = $('#lang').val();
+    var mode = ST.cm_modes[lang];
+
+    $.get(base_url + 'main/get_cm_js/' + lang,
+        function(data) {
+            if (data != '') {
+                ST.cm_editor.setOption('mode', mode);
+            } else {
+                ST.cm_editor.setOption('mode', null);
+            }
+        },
+        'script');
+}
+
+ST.clickable_urls = function() {
+    $('.container .row .span12').linkify();
+}
+
+ST.init = function() {
+    ST.show_embed();
     ST.line_highlighter();
     ST.crypto();
+    ST.dragdrop();
+    ST.clickable_urls();
+    ST.codemirror_init();
+    ST.ace_init();
+};
+
+$(document).ready(function() {
+    ST.init();
 });
