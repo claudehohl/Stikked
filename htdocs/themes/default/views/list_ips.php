@@ -37,6 +37,7 @@
 		<?php }?>
 				</tbody>
 			</table>
+            <div id="select-result"></div>
 		<?php } else { ?>
 			<p><?php echo lang('paste_missing'); ?> :(</p>
 		<?php }?>
