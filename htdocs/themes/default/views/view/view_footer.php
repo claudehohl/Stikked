@@ -17,6 +17,8 @@ $this->carabiner->js('jquery.timers.js');
 $this->carabiner->js('crypto-js/rollups/aes.js');
 $this->carabiner->js('lz-string-1.3.3-min.js');
 $this->carabiner->js('filereader.js');
+$this->carabiner->js('linkify.min.js');
+$this->carabiner->js('linkify-jquery.min.js');
 if(config_item('js_editor') == 'codemirror') {
     $this->carabiner->js('codemirror/codemirror.js');
 }

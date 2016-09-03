@@ -319,6 +319,10 @@ ST.codemirror_setlang = function() {
         'script');
 }
 
+ST.clickable_urls = function() {
+    $('.paste .container').linkify();
+}
+
 ST.init = function() {
     ST.expand();
     ST.show_embed();
@@ -326,6 +330,7 @@ ST.init = function() {
     ST.line_highlighter();
     ST.crypto();
     ST.dragdrop();
+    ST.clickable_urls();
     ST.codemirror_init();
     ST.ace_init();
 };
