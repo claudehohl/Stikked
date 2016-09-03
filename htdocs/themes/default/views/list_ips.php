@@ -15,7 +15,7 @@
 						<th class="name">Name</th>
 						<th class="time">When</th>
 						<th class="time">IP</th>
-						<th title="Quick remove" class="qr hidden">X</th>
+						<th title="Quick remove" class="hidden">X</th>
 					</tr>
 		<?php	foreach($pastes as $paste) {
 				if(checkNum($n) == TRUE) {
