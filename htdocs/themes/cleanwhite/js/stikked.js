@@ -53,10 +53,15 @@ ST.spamadmin = function() {
     }
 };
 
+ST.clickable_urls = function() {
+    $('.paste .container').linkify();
+}
+
 ST.init = function() {
     ST.expand();
     ST.show_embed();
     ST.spamadmin();
+    ST.clickable_urls();
 };
 
 $(document).ready(function() {
