@@ -1,4 +1,4 @@
-var ST = window.ST || {}
+var ST = window.ST || {};
 
 ST.show_embed = function() {
     $embed_field = $('#embed_field');
