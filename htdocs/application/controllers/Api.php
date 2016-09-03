@@ -40,7 +40,7 @@ class Api extends Main
 	function create() 
 	{
 		
-		if (config_item('apikey') != $this->input->get('apikey')) 
+		if (config_item('apikey') != $this->input->get('apikey') && config_item('soft_api') == false) 
 		{
 			die("Invalid API key\n");
 		}
@@ -74,9 +74,19 @@ class Api extends Main
 				die("You are not allowed to paste\n");
 			}
 			
-			if (!$this->_blockwords_check()) 
+			if (config_item('soft_api') == true && (config_item('apikey') == $this->input->get('apikey'))) 
 			{
-				die("Your paste contains blocked words\n");
+
+				//pass
+				
+			}
+			else
+			{
+				
+				if (!$this->_blockwords_check()) 
+				{
+					die("Your paste contains blocked words\n");
+				}
 			}
 
 			//create paste
