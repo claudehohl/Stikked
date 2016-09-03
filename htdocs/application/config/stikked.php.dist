@@ -185,7 +185,7 @@ $config['apikey'] = '';
  *   without apikey: badword-check applies
  *   with apikey: badwords are ignored
  *
- * this is useful to maintain a restrictive blocklist
+ * This is useful to maintain a restrictive blocklist
  * for spammers and bypass it using the apikey.
  *
 **/
