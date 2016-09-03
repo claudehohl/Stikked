@@ -39,7 +39,10 @@ class Api extends Main
 	
 	function create() 
 	{
-		
+
+		// if config soft_api is set, allow interaction:
+		// without api_key: use blockwords
+		// with api_key: pass blockwords
 		if (config_item('apikey') != $this->input->get('apikey')) 
 		{
 			die("Invalid API key\n");
