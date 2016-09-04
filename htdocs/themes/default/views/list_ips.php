@@ -37,7 +37,9 @@
 		<?php }?>
 				</tbody>
 			</table>
-            <div id="select-result"></div>
+            <h2 class="confirm_title">Confirm deletion of the following pastes:</h2>
+            <div class="paste_deletestack"></div>
+            <input type="hidden" name="pastes_to_delete" />
 		<?php } else { ?>
 			<p><?php echo lang('paste_missing'); ?> :(</p>
 		<?php }?>

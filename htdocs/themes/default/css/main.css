@@ -568,3 +568,8 @@ h4 {
 .ui-selectable>.ui-selected { background-color: #a6c9e2; }
 .ui-selectable>.ui-selecting { background: #FECA40; }
 
+.ui-selectable-helper {
+    position: absolute; 
+    z-index: 100; 
+    border:1px dotted black; 
+}

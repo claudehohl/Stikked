@@ -61,13 +61,15 @@ ST.spamadmin = function() {
         filter: 'tr',
         cancel: 'a',
         stop: function() {
-            var $result = $("#select-result").empty();
-            $result.append('Delete: ');
-            $(".ui-selected", this).each(function(i, el) {
+            var $result = $(".paste_deletestack");
+            var $input = $("input[name=pastes_to_delete]");
+
+            $result.empty();
+            $input.empty();
+            $(".ui-selected").each(function(i, el) {
                 var id = $('a', el).attr('href').split('view/')[1];
-                $result.append(" " + (id));
+                $result.append(id + ' ');
             });
-            $result.append('?');
         }
     });
 };
