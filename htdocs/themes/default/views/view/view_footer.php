@@ -14,6 +14,7 @@ if(isset($ace_modes)){
 //Javascript
 $this->carabiner->js('jquery.js');
 $this->carabiner->js('jquery.timers.js');
+$this->carabiner->js('jquery-ui-selectable-combined.min.js');
 $this->carabiner->js('crypto-js/rollups/aes.js');
 $this->carabiner->js('lz-string-1.3.3-min.js');
 $this->carabiner->js('filereader.js');
