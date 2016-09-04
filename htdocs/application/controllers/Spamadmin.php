@@ -33,6 +33,19 @@ class Spamadmin extends CI_Controller
 	function index() 
 	{
 		$this->load->model('pastes');
+		$pastes_to_delete = $this->input->post('pastes_to_delete');
+		
+		if ($pastes_to_delete) 
+		{
+			foreach (explode(' ', $pastes_to_delete) as $pid) 
+			{
+				$this->db->where('pid', $pid);
+				$this->db->delete('pastes');
+			}
+			redirect(site_url('spamadmin'));
+		}
+
+		//render view
 		$data = $this->pastes->getSpamLists();
 		$this->load->view('list_ips', $data);
 	}
