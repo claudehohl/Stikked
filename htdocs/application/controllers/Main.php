@@ -512,6 +512,12 @@ class Main extends CI_Controller
 		if ($check) 
 		{
 			$data = $this->pastes->getPaste(3);
+			
+			if (isset($_GET['preview'])) 
+			{
+				$this->load->helper('text');
+				$data['raw'] = character_limiter($data['raw'], 500);
+			}
 			$this->load->view('view/raw', $data);
 		}
 		else

@@ -50,6 +50,18 @@ ST.spamadmin = function() {
             }
             return false;
         });
+
+        $(document).tooltip({
+            items: "td.first a",
+            content: function(done) {
+                var pid = $(this).attr('href').split('view/')[1];
+                $.get(base_url + 'view/raw/' + pid + '?preview', function(data) {
+                    done(data);
+                });
+            },
+            show: false,
+            hide: false
+        });
     }
 
     // needed by .selectable
