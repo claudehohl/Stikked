@@ -21,6 +21,9 @@ class Spamadmin extends CI_Controller
 		//protection
 		$user = $this->config->item('spamadmin_user');
 		$pass = $this->config->item('spamadmin_pass');
+
+		// basic auth for fastcgi
+		list($_SERVER['PHP_AUTH_USER'], $_SERVER['PHP_AUTH_PW']) = explode(':', base64_decode(substr($_SERVER['HTTP_AUTHORIZATION'], 6)));
 		
 		if ($user == '' || $pass == '' || !isset($_SERVER['PHP_AUTH_USER']) || $_SERVER['PHP_AUTH_USER'] != $user || $_SERVER['PHP_AUTH_PW'] != $pass) 
 		{
@@ -33,6 +36,19 @@ class Spamadmin extends CI_Controller
 	function index() 
 	{
 		$this->load->model('pastes');
+		$pastes_to_delete = $this->input->post('pastes_to_delete');
+		
+		if ($pastes_to_delete) 
+		{
+			foreach (explode(' ', $pastes_to_delete) as $pid) 
+			{
+				$this->db->where('pid', $pid);
+				$this->db->delete('pastes');
+			}
+			redirect(site_url('spamadmin/' . $this->uri->segment(2)));
+		}
+
+		//render view
 		$data = $this->pastes->getSpamLists();
 		$this->load->view('list_ips', $data);
 	}

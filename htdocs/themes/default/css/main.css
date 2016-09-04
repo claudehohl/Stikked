@@ -172,7 +172,7 @@ h4 {
 	margin-bottom: 10px;
 }
 
-.hidden, .email, .url {
+.hidden, .email, .url, .inv {
 	display: none;
 }
 
@@ -565,3 +565,11 @@ h4 {
     word-wrap: break-word;
 }
 
+.ui-selectable>.ui-selected { background-color: #a6c9e2; }
+.ui-selectable>.ui-selecting { background: #FECA40; }
+
+.ui-selectable-helper {
+    position: absolute;
+    z-index: 100;
+    border:1px dotted black;
+}
