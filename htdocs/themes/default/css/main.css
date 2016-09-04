@@ -172,7 +172,7 @@ h4 {
 	margin-bottom: 10px;
 }
 
-.hidden, .email, .url {
+.hidden, .email, .url, .inv {
 	display: none;
 }
 

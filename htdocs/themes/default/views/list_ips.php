@@ -37,9 +37,15 @@
 		<?php }?>
 				</tbody>
 			</table>
-            <h2 class="confirm_title">Confirm deletion of the following pastes:</h2>
-            <div class="paste_deletestack"></div>
-            <input type="hidden" name="pastes_to_delete" />
+
+            <form action="" method="post">
+                <h2 class="confirm_title inv">Confirm deletion of the following pastes:</h2>
+                <div class="paste_deletestack"></div>
+                <input type="hidden" name="pastes_to_delete" />
+
+                <input type="submit" name="delete_pastes" value="Delete selected pastes" class="inv" />
+            </form>
+
 		<?php } else { ?>
 			<p><?php echo lang('paste_missing'); ?> :(</p>
 		<?php }?>
