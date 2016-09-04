@@ -45,7 +45,7 @@ class Spamadmin extends CI_Controller
 				$this->db->where('pid', $pid);
 				$this->db->delete('pastes');
 			}
-			redirect(site_url('spamadmin'));
+			redirect(site_url('spamadmin/' . $this->uri->segment(2)));
 		}
 
 		//render view

@@ -5,7 +5,7 @@
 	}
 }
 
-.hidden {
+.hidden, .inv {
 	display: none;
 }
 
@@ -127,3 +127,11 @@ table.table thead .sorting_desc_disabled { background: url('../images/sort_desc_
     word-wrap: break-word;
 }
 
+.ui-selectable>.ui-selected { background-color: #a6c9e2; }
+.ui-selectable>.ui-selecting { background: #FECA40; }
+
+.ui-selectable-helper {
+    position: absolute;
+    z-index: 100;
+    border:1px dotted black;
+}
