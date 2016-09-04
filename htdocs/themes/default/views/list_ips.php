@@ -8,14 +8,14 @@
 		}
 		$n = 0;
 		if(!empty($pastes)){ ?>
-			<table class="recent">
+			<table class="recent selectable">
 				<tbody>
 					<tr>
 						<th class="title">Title</th>
 						<th class="name">Name</th>
 						<th class="time">When</th>
 						<th class="time">IP</th>
-						<th title="Quick remove" class="qr hidden">X</th>
+						<th title="Quick remove" class="hidden">X</th>
 					</tr>
 		<?php	foreach($pastes as $paste) {
 				if(checkNum($n) == TRUE) {
@@ -37,6 +37,15 @@
 		<?php }?>
 				</tbody>
 			</table>
+
+            <form action="" method="post">
+                <h2 class="confirm_title inv">Confirm deletion of the following pastes:</h2>
+                <div class="paste_deletestack"></div>
+                <input type="hidden" name="pastes_to_delete" />
+
+                <input type="submit" name="delete_pastes" value="Delete selected pastes" class="inv" />
+            </form>
+
 		<?php } else { ?>
 			<p><?php echo lang('paste_missing'); ?> :(</p>
 		<?php }?>

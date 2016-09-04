@@ -9,10 +9,8 @@
 			<?php } else { ?>
 				<?php echo $page['title']; ?>
 			<?php } ?>
-			
 			</h1>
 		</div>
-		
 	</div>
 	<div class="span12">
 		<form action="<?php echo base_url(); ?>" method="post" class="form-vertical well">
@@ -20,19 +18,15 @@
 				<div class="span3">
 					<label for="name"><?php echo lang('paste_author'); ?>
 					</label>
-					
 					<?php $set = array('name' => 'name', 'id' => 'name', 'class' => 'span3', 'value' => $name_set, 'maxlength' => '32', 'tabindex' => '1');
 					echo form_input($set);?>
 				</div>
-				
 				<div class="span3">
 					<label for="title">
 						<?php echo lang('paste_title'); ?>
 					</label>
-					
 					<input value="<?php if(isset($title_set)){ echo $title_set; }?>" class="span3" type="text" id="title" name="title" tabindex="2" maxlength="50" />
 				</div>
-		
 				<div class="span3">
 					<label for="lang">
 						<?php echo lang('paste_lang'); ?>
@@ -40,7 +34,6 @@
 					<?php $lang_extra = 'id="lang" class="select span3" tabindex="3"'; echo form_dropdown('lang', $languages, $lang_set, $lang_extra); ?>
 				</div>
 			</div>
-			
 			<div class="row">
 				<div class="span12">
 					<label for="code"><?php echo lang('paste_yourpaste'); ?>
@@ -109,11 +102,9 @@
 					</div>
 				</div>
 			</div>
-			
 		<?php if($reply){ ?>
 			<input type="hidden" value="<?php echo $reply; ?>" name="reply" />
 		<?php } ?>
-		
         <?php if($this->config->item('enable_captcha') && $this->session->userdata('is_human') === null){ ?>
 			<div class="item_group">
 				<div class="item item_captcha">

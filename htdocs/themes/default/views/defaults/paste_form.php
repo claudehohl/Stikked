@@ -1,4 +1,3 @@
-
 <?php echo validation_errors(); ?>
 
 <div class="form_wrapper margin">
@@ -13,7 +12,7 @@
 			<?php echo lang('paste_create_new_desc'); ?>
 		<?php } else { ?>
 			<?php echo $page['instructions']; ?>
-		<?php } ?></p>								
+		<?php } ?></p>
 
 		<div class="item_group">
 			<div class="item">
@@ -85,7 +84,7 @@
 				<label for="expire"><?php echo lang('paste_delete'); ?>
 					<span class="instruction"><?php echo lang('paste_delete_desc'); ?></span>
 				</label>
-				<?php 
+				<?php
 					$expire_extra = 'id="expire" class="select" tabindex="7"';
                     $default_expiration = config_item('default_expiration');
 					$options = array(
