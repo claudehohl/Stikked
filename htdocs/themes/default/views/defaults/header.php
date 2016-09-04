@@ -28,6 +28,7 @@ $this->carabiner->config(array(
 
 // CSS
 $this->carabiner->css('reset.css');
+$this->carabiner->css('jquery-ui.min.css');
 $this->carabiner->css('fonts.css');
 $this->carabiner->css('main.css');
 $this->carabiner->css('print.css', 'print');
