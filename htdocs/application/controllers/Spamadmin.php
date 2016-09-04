@@ -21,6 +21,9 @@ class Spamadmin extends CI_Controller
 		//protection
 		$user = $this->config->item('spamadmin_user');
 		$pass = $this->config->item('spamadmin_pass');
+
+		// basic auth for fastcgi
+		list($_SERVER['PHP_AUTH_USER'], $_SERVER['PHP_AUTH_PW']) = explode(':', base64_decode(substr($_SERVER['HTTP_AUTHORIZATION'], 6)));
 		
 		if ($user == '' || $pass == '' || !isset($_SERVER['PHP_AUTH_USER']) || $_SERVER['PHP_AUTH_USER'] != $user || $_SERVER['PHP_AUTH_PW'] != $pass) 
 		{
