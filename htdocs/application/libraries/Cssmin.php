@@ -61,7 +61,7 @@
  
  class cssmin {
  	
- 	public function cssmin()
+ 	public function __construct()
  	{
  		log_message('debug', 'CSSMin library initialized.');
  	}
