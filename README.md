@@ -19,7 +19,7 @@ Here are some features:
 * An [Android app](https://play.google.com/store/apps/details?id=org.teamblueridge.pasteitapp)
 * Stikked client with support for client side encryption/decryption: [gostikkit](https://github.com/tcolgate/gostikkit)
 * Another CLI tool requiring only curl program: [pbin](https://github.com/glensc/pbin)
-* And many more. View [this review](http://maketecheasier.com/run-your-own-pastebin-with-stikked/2013/01/11) 
+* And many more. View [this review](http://maketecheasier.com/run-your-own-pastebin-with-stikked/2013/01/11)
 
 
 Try it out
@@ -74,6 +74,13 @@ Changelog
 ### Version 0.11.0:
 
 * Upgrade to CodeIgniter 3.1.0
+* Added ACE editor
+* Ability to select JS editor (CodeMirror, ACE or none)
+* Insert paste text via drag & drop
+* BBCode support
+* Improved Spamadmin; ability to delete single and multiple pastes at once
+* Soft api key
+* Lots of bugfixes and improvements
 
 #### Upgrade instructions
 
