@@ -6,4 +6,5 @@ Some guidelines:
 ```
 php_beautifier --indent_tabs -l "IndentStyles(style=bsd) ArrayNested() NewLines(before=function:T_CLASS:if,after=T_COMMENT) ListClassFunction()"
 ```
+* Optionally, use https://phpbeautifier.com/ with "Allman style" formatting for smaller segments of PHP-only code
 * Other people may modify your contribution. Don't take that personal; we all want to improve Stikked. Your input is always welcome!
