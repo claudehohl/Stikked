@@ -1,7 +1,7 @@
 Stikked troubleshooting guide
 -----------------------------
 
-First, be sure to double-check whether you meet the [prerequisites](//github.com/techjwalker/Stikked#prerequisites).
+First, be sure to double-check whether you meet the [prerequisites](//github.com/claudehohl/Stikked#prerequisites).
 
 ### Apache
 
