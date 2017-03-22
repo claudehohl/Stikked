@@ -7,6 +7,11 @@
 	</div>
 
 		<?php
+		//Import geshi_langages array to display pretty lang names in table
+		include 'geshi_languages.php';
+		?>
+
+		<?php
 		if(!empty($pastes)){ ?>
 			<table class="recent table table-striped table-bordered">
 				<thead>
@@ -25,7 +30,7 @@
 		<tr>
 			<td class="first"><a href="<?php echo site_url("view/".$paste['pid']); ?>"><?php echo $paste['title']; ?></a></td>
 			<td><?php echo $paste['name']; ?></td>
-			<td><?php echo $paste['lang']; ?></td>
+			<td><?php echo $geshi_languages[$paste['lang']]; ?></td>
 			<td class="hidden"><?php echo $paste['created']; ?></td>
 			<td><?php echo number_format($paste['hits'], 0, '.', "'"); ?></td>
 			<td><?php $p = explode(",", timespan($paste['created'], time()));
