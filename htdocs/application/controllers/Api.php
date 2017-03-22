@@ -26,6 +26,13 @@ class Api extends Main
 		{
 			die("The API has been disabled\n");
 		}
+
+        // if ldap is configured and no api token is configured, fail the request
+        if ((config_item('require_auth') == true) && (config_item('apikey') == ''))
+        {
+             die("API key not configured");
+        }
+
 	}
 	
 	function index() 
