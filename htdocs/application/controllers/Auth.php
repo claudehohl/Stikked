@@ -120,7 +120,7 @@ class Auth extends CI_Controller
 	public 
 	function alpha_dash_dot($str) 
 	{
-		return (!preg_match("/^([-a-z0-9_-\.])+$/i", $str)) ? FALSE : TRUE;
+		return (!preg_match("/^([-a-z0-9_\-\.])+$/i", $str)) ? FALSE : TRUE;
 	}
 }
 ?>
