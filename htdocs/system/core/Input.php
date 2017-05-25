@@ -433,6 +433,9 @@ class CI_Input {
 		}
 
 		$this->ip_address = $this->server('REMOTE_ADDR');
+		// Set real IP if proxy is used
+		if (isset($this->server('HTTP_X_REAL_IP')))
+			$this->ip_address = $this->server('HTTP_X_REAL_IP');
 
 		if ($proxy_ips)
 		{

@@ -768,10 +768,15 @@ class Main extends CI_Controller
 			die("To use reCAPTCHA you must get an API key from <a href='https://www.google.com/recaptcha/admin/create'>https://www.google.com/recaptcha/admin/create</a>");
 		}
 		
-		if ($this->input->post('g-recaptcha-response')) 
+		if ($this->input->post('g-recaptcha-response'))
 		{
 			$pk = $this->recaptcha_privatekey;
 			$ra = $_SERVER['REMOTE_ADDR'];
+
+			// handle PHP being used in a proxy setup
+			if (isset($_SERVER['HTTP_X_REAL_IP']))
+				$ra = $_SERVER['HTTP_X_REAL_IP'];
+
 			$rf = trim($this->input->post('g-recaptcha-response'));
 			$url = "https://www.google.com/recaptcha/api/siteverify?secret=" . $pk . "&response;=" . $rf . "&remoteip;=" . $ra;
 			$response = $this->curl->simple_get($url);

@@ -163,7 +163,11 @@ class CI_Session_database_driver extends CI_Session_driver implements SessionHan
 
 			if ($this->_config['match_ip'])
 			{
-				$this->_db->where('ip_address', $_SERVER['REMOTE_ADDR']);
+				$ra = $_SERVER['REMOTE_ADDR'];
+				if(isset($_SERVER['HTTP_X_REAL_IP']))
+					$ra = $_SERVER['HTTP_X_REAL_IP'];
+
+				$this->_db->where('ip_address', $ra);
 			}
 
 			if ( ! ($result = $this->_db->get()) OR ($result = $result->row()) === NULL)
@@ -226,9 +230,13 @@ class CI_Session_database_driver extends CI_Session_driver implements SessionHan
 
 		if ($this->_row_exists === FALSE)
 		{
+			$ra = $_SERVER['REMOTE_ADDR'];
+			if(isset($_SERVER['HTTP_X_REAL_IP']))
+				$ra = $_SERVER['HTTP_X_REAL_IP'];
+
 			$insert_data = array(
 				'id' => $session_id,
-				'ip_address' => $_SERVER['REMOTE_ADDR'],
+				'ip_address' => $ra,
 				'timestamp' => time(),
 				'data' => ($this->_platform === 'postgre' ? base64_encode($session_data) : $session_data)
 			);
@@ -246,7 +254,11 @@ class CI_Session_database_driver extends CI_Session_driver implements SessionHan
 		$this->_db->where('id', $session_id);
 		if ($this->_config['match_ip'])
 		{
-			$this->_db->where('ip_address', $_SERVER['REMOTE_ADDR']);
+			$ra = $_SERVER['REMOTE_ADDR'];
+			if(isset($_SERVER['HTTP_X_REAL_IP']))
+				$ra = $_SERVER['HTTP_X_REAL_IP'];
+
+			$this->_db->where('ip_address', $ra);
 		}
 
 		$update_data = array('timestamp' => time());
@@ -302,7 +314,11 @@ class CI_Session_database_driver extends CI_Session_driver implements SessionHan
 			$this->_db->where('id', $session_id);
 			if ($this->_config['match_ip'])
 			{
-				$this->_db->where('ip_address', $_SERVER['REMOTE_ADDR']);
+				$ra = $_SERVER['REMOTE_ADDR'];
+				if(isset($_SERVER['HTTP_X_REAL_IP']))
+					$ra = $_SERVER['HTTP_X_REAL_IP'];
+
+				$this->_db->where('ip_address', $ra);
 			}
 
 			if ( ! $this->_db->delete($this->_config['save_path']))
@@ -354,7 +370,11 @@ class CI_Session_database_driver extends CI_Session_driver implements SessionHan
 	{
 		if ($this->_platform === 'mysql')
 		{
-			$arg = $session_id.($this->_config['match_ip'] ? '_'.$_SERVER['REMOTE_ADDR'] : '');
+			$ra = $_SERVER['REMOTE_ADDR'];
+			if(isset($_SERVER['HTTP_X_REAL_IP']))
+				$ra = $_SERVER['HTTP_X_REAL_IP'];
+
+			$arg = $session_id.($this->_config['match_ip'] ? '_'.$ra : '');
 			if ($this->_db->query("SELECT GET_LOCK('".$arg."', 300) AS ci_session_lock")->row()->ci_session_lock)
 			{
 				$this->_lock = $arg;
@@ -365,7 +385,11 @@ class CI_Session_database_driver extends CI_Session_driver implements SessionHan
 		}
 		elseif ($this->_platform === 'postgre')
 		{
-			$arg = "hashtext('".$session_id."')".($this->_config['match_ip'] ? ", hashtext('".$_SERVER['REMOTE_ADDR']."')" : '');
+			$ra = $_SERVER['REMOTE_ADDR'];
+                        if(isset($_SERVER['HTTP_X_REAL_IP']))
+                                $ra = $_SERVER['HTTP_X_REAL_IP'];
+
+			$arg = "hashtext('".$session_id."')".($this->_config['match_ip'] ? ", hashtext('".$ra."')" : '');
 			if ($this->_db->simple_query('SELECT pg_advisory_lock('.$arg.')'))
 			{
 				$this->_lock = $arg;
