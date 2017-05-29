@@ -186,7 +186,7 @@ class Pastes extends CI_Model
 			"bit.ly",
 			"yourls",
 			"gwgd",
-      "polr",
+                        "polr",
 			"random"
 		);
 		
@@ -284,14 +284,14 @@ class Pastes extends CI_Model
 								$url_shortening_api = "bitly";
 							}
 						break;
-            case "polr":
-              $var_polr_url = $this->config->item('polr_url');
-              $var_polr_api = $this->config->item('polr_api');
-              if ((!empty($var_polr_url)) && (!empty($var_polr_api)))
-              {
-                $url_shortening_api = "polr";
-              }
-            break;
+            				        case "polr":
+              						$var_polr_url = $this->config->item('polr_url');
+              						$var_polr_api = $this->config->item('polr_api');
+              						if ((!empty($var_polr_url)) && (!empty($var_polr_api)))
+              						{
+              							$url_shortening_api = "polr";
+              						}
+            				        break;
 						default:
 							$url_shortening_api = false;
 						break;
@@ -385,12 +385,12 @@ class Pastes extends CI_Model
 					$fetchResp = $this->curl_connect($prep_data);
 					$shorturl = ((strlen($fetchResp) > 4) ? $fetchResp : false);
 				break;
-        case "polr":
-          $config_polr_url = $this->config->item('polr_url');
-          $config_polr_api = $this->config->item('polr_api');
-          $url = urlencode($url);
+        			case "polr":
+          			        $config_polr_url = $this->config->item('polr_url');
+                                        $config_polr_api = $this->config->item('polr_api');
+                                        $url = urlencode($url);
 
-          // Prepare CURL options array
+                                        // Prepare CURL options array
 					$prep_data = array(
 						CURLOPT_URL => "{$config_polr_url}/api/v2/action/shorten?key={$config_polr_api}&url={$url}&is_secret=false",
 						CURLOPT_RETURNTRANSFER => true,
@@ -398,7 +398,7 @@ class Pastes extends CI_Model
 					);
 					$fetchResp = $this->curl_connect($prep_data);
 					$shorturl = ((strlen($fetchResp) > 4) ? $fetchResp : false);
-        break;
+                                break;
 				default:
 					$shorturl = false;
 				break;
