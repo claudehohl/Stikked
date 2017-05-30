@@ -101,6 +101,7 @@ $config['cron_key'] = '';
  *           @string gwgd
  *           @string googl
  *           @string bitly
+ *           @string polr
  *           @string random - Randomly chose any of upper API-s !WARNING! May be slow! For maximum performanse, it's recommended to either set all API keys or use random_url_engines to list working engines.
  *           @string none - same as off
  *
