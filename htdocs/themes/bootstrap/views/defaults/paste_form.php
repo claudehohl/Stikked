@@ -125,6 +125,14 @@
 					<i class="icon-pencil icon-white"></i>
 					<?php echo lang('paste_create'); ?>
 				</button>
+				<?php
+				if ($this->config->item('csrf_protection') === TRUE)
+				{
+					if(isset($_COOKIE[$this->config->item('csrf_cookie_name')])) {
+						echo '<input type="hidden" name="'.$this->config->item('csrf_token_name').'" value="'.html_escape($_COOKIE[$this->config->item('csrf_cookie_name')]).'" style="display:none;" />'."\n";
+					}
+				}
+				?>
 			</div>
 		</form>
 	</div>

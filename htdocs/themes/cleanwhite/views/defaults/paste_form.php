@@ -133,5 +133,13 @@
 
 		<div><button type="submit" value="submit" name="submit"><?php echo lang('paste_create'); ?></button></div>
 		<div class="spacer"></div>
+		<?php
+		if ($this->config->item('csrf_protection') === TRUE)
+		{
+			if(isset($_COOKIE[$this->config->item('csrf_cookie_name')])) {
+				echo '<input type="hidden" name="'.$this->config->item('csrf_token_name').'" value="'.html_escape($_COOKIE[$this->config->item('csrf_cookie_name')]).'" style="display:none;" />'."\n";
+			}
+		}
+		?>
 	</form>
 </div>
