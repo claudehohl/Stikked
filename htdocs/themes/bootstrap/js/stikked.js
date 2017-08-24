@@ -38,24 +38,24 @@ ST.spamadmin = function() {
         return this.add(selector == null ? this.prevObject : this.prevObject.filter(selector));
     }
 
-    // $('.selectable>tbody').selectable({
-    //     filter: 'tr',
-    //     cancel: 'a',
-    //     stop: function() {
-    //         var $deletestack = $(".paste_deletestack");
-    //         var $input = $("input[name=pastes_to_delete]");
-    //         $('.inv').show();
-    //         $deletestack.empty();
-    //         $input.empty();
-    //         var res = [];
-    //         $(".ui-selected").each(function(i, el) {
-    //             var id = $('a', el).attr('href').split('view/')[1];
-    //             res.push(id);
-    //         });
-    //         $deletestack.text(res.join(' '));
-    //         $input.val(res.join(' '));
-    //     }
-    // });
+    $('.selectable>tbody').selectable({
+        filter: 'tr',
+        cancel: 'a',
+        stop: function() {
+            var $deletestack = $(".paste_deletestack");
+            var $input = $("input[name=pastes_to_delete]");
+            $('.inv').show();
+            $deletestack.empty();
+            $input.empty();
+            var res = [];
+            $(".ui-selected").each(function(i, el) {
+                var id = $('a', el).attr('href').split('view/')[1];
+                res.push(id);
+            });
+            $deletestack.text(res.join(' '));
+            $input.val(res.join(' '));
+        }
+    });
 };
 
 ST.line_highlighter = function() {
