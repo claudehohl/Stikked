@@ -209,6 +209,11 @@ class Api extends Main
 	
 	function langs() 
 	{
+		if (config_item('apikey') != $this->input->get('apikey')) 
+		{
+			die("Invalid API key\n");
+		}
+		
 		$languages = $this->languages->get_languages();
 		echo json_encode($languages);
 	}
