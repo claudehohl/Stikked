@@ -151,6 +151,7 @@ $config['shorturl_selected'] = false;
 
 // goo.gl API key
 $config['googl_url_api'] = '';
+
 // Bit.ly API key
 $config['bitly_url_api'] = '';
 
