@@ -70,7 +70,7 @@ class Main extends CI_Controller
 			$fields = array(
 				'id' => array(
 					'type' => 'VARCHAR',
-					'constraint' => 40,
+					'constraint' => 128,
 					'default' => 0,
 				) ,
 				'ip_address' => array(
