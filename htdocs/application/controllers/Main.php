@@ -309,6 +309,23 @@ class Main extends CI_Controller
 				}
 			}
 		}
+
+		//upgrade to CI 3.1.2
+		$fields = $this->db->field_data('sessions');
+		
+		if ($field->max_length < 128) 
+		{
+			$db_prefix = config_item('db_prefix');
+			
+			if ($this->db->dbdriver == "postgre") 
+			{
+				$this->db->query("ALTER TABLE " . $db_prefix . "sessions ALTER COLUMN id SET DATA TYPE varchar(128)");
+			}
+			else
+			{
+				$this->db->query("ALTER TABLE " . $db_prefix . "sessions CHANGE id id VARCHAR(128) NOT NULL");
+			}
+		}
 	}
 	
 	function _form_prep($lang = false, $title = '', $paste = '', $reply = false) 
