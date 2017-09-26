@@ -16,7 +16,7 @@ services:
       - db
     image: stikked
     env_file:
-      stikked-envvars.txt
+      docker/stikked-envvars.txt
     ports:
       - 80:80
 
