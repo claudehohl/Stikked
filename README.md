@@ -55,6 +55,17 @@ Installation
 * Be sure to also copy the .htaccess file when you move files around. This is a hidden file and easily overlooked.
 
 
+How to run it in Docker
+-----------------------
+
+    sudo docker build -t stikked .
+    sudo docker-compose up -d
+
+This automatically creates a database with passwords that are configurable in the docker-compose.yml file.
+
+NOTE: This sets the captcha to false and requires port 80 to be accessible on the host machine. Also, a host entry of 127.0.0.1 stikked.local will fix the base_url issues.
+
+
 Documentation
 -------------
 
