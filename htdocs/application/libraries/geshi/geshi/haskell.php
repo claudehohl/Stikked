@@ -6,7 +6,7 @@
  *         Based on haskell.php by Jason Dagit (dagit@codersbase.com), which was
  *         based on ocaml.php by Flaie (fireflaie@gmail.com).
  * Copyright: (c) 2005 Flaie, Nigel McNie (http://qbnz.com/highlighter)
- * Release Version: 1.0.8.12
+ * Release Version: 1.0.9.0
  * Date Started: 2014/05/12
  *
  * Haskell language file for GeSHi.
@@ -40,7 +40,7 @@ $language_data = array (
         3 => "/{-(?:(?R)|.)-}/s", //Nested Comments
         ),
     'CASE_KEYWORDS' => 0,
-    'QUOTEMARKS' => array('"',"'"),
+    'QUOTEMARKS' => array('"'),
     'ESCAPE_CHAR' => '\\',
     'KEYWORDS' => array(
         /* main haskell keywords */
@@ -152,7 +152,7 @@ $language_data = array (
             0 => 'color: green;'
             ),
         'STRINGS' => array(
-            0 => 'background-color: #3cb371;' /* nice green */
+            0 => 'color: #3cb371;' /* nice green */
             ),
         'NUMBERS' => array(
             0 => 'color: red;' /* pink */

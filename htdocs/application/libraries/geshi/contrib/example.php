@@ -15,14 +15,16 @@ error_reporting(E_ALL);
 // Rudimentary checking of where GeSHi is. In a default install it will be in ../, but
 // it could be in the current directory if the include_path is set. There's nowhere else
 // we can reasonably guess.
-if (is_readable('../geshi.php')) {
-    $path = '../';
-} elseif (is_readable('geshi.php')) {
-    $path = './';
+if (file_exists(__DIR__ . '/../vendor/autoload.php')) {
+    //composer install
+    require __DIR__ . '/../vendor/autoload.php';
+} else if (file_exists(__DIR__ . '/../src/geshi.php')) {
+    //git checkout
+    require __DIR__ . '/../src/geshi.php';
 } else {
-    die('Could not find geshi.php - make sure it is in your include path!');
+    // Assume you've put geshi in the include_path already
+    require_once("geshi.php");
 }
-require $path . 'geshi.php';
 
 $fill_source = false;
 if (isset($_POST['submit'])) {
@@ -94,6 +96,7 @@ if (isset($_POST['submit'])) {
 } else {
     // make sure we don't preselect any language
     $_POST['language'] = null;
+    $geshi = new GeSHi();
 }
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
@@ -178,20 +181,10 @@ if (isset($_POST['submit'])) {
 <p>
 <select name="language" id="language">
 <?php
-if (!($dir = @opendir(dirname(__FILE__) . '/geshi'))) {
-    if (!($dir = @opendir(dirname(__FILE__) . '/../geshi'))) {
-        echo '<option>No languages available!</option>';
-    }
+$languages = $geshi->get_supported_languages();
+if (!count($languages)) {
+    echo '<option>No languages available!</option>';
 }
-$languages = array();
-while ($file = readdir($dir)) {
-    if ( $file[0] == '.' || strpos($file, '.', 1) === false) {
-        continue;
-    }
-    $lang = substr($file, 0,  strpos($file, '.'));
-    $languages[] = $lang;
-}
-closedir($dir);
 sort($languages);
 foreach ($languages as $lang) {
     if (isset($_POST['language']) && $_POST['language'] == $lang) {

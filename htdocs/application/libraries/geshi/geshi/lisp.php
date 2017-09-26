@@ -4,14 +4,14 @@
  * --------
  * Author: Roberto Rossi (rsoftware@altervista.org)
  * Copyright: (c) 2004 Roberto Rossi (http://rsoftware.altervista.org), Nigel McNie (http://qbnz.com/highlighter)
- * Release Version: 1.0.8.12
+ * Release Version: 1.0.9.0
  * Date Started: 2004/08/30
  *
  * Generic Lisp language file for GeSHi.
  *
  * CHANGES
  * -------
- * 2013/11/13 (1.0.8.12)
+ * 2013/11/13 (1.0.8.13)
  *  -  Fixed bug where a keyword was highlighted in identifiers (Edward Hart)
  * 2005/12/9  (1.0.2)
  *  -  Added support for :keywords and ::access (Denis Mashkevich)

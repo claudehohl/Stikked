@@ -6,7 +6,7 @@
  * Contributors:
  *  - Jürgen Thomas (Juergen.Thomas@vs-polis.de)
  * Copyright: (c) 2004 Nigel McNie (http://qbnz.com/highlighter)
- * Release Version: 1.0.8.12
+ * Release Version: 1.0.9.0
  * Date Started: 2004/06/04
  *
  * SQL language file for GeSHi.
@@ -71,8 +71,8 @@ $language_data = array (
             'DATA', 'DATABASE', 'DATABASES', 'DATE', 'DAY', 'DEC', 'DECIMAL', 'DECLARE',
             'DEFAULT', 'DELAYED', 'DELETE', 'DESC', 'DESCRIBE', 'DISTINCT', 'DOUBLE',
             'DOMAIN', 'DROP',
-            'ELSE', 'ENCLOSED', 'END', 'ESCAPED', 'EXCEPT', 'EXEC', 'EXECUTE', 'EXISTS', 'EXP',
-            'EXPLAIN', 'EXTRACT',
+            'ELSE', 'ELSEIF', 'ENCLOSED', 'END', 'ESCAPED', 'EXCEPT', 'EXEC', 'EXECUTE', 'EXISTS',
+            'EXP', 'EXPLAIN', 'EXTRACT',
             'FALSE', 'FIELD', 'FIELDS', 'FILTER', 'FIRST', 'FLOAT', 'FLOOR', 'FLUSH', 'FOR',
             'FOREIGN', 'FROM', 'FULL', 'FUNCTION',
             'GET', 'GROUP', 'GROUPING', 'GO', 'GOTO', 'GRANT', 'GRANTED',

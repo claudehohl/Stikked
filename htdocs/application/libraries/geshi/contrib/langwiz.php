@@ -173,17 +173,20 @@ features are made available through this script.</p>
 // Rudimentary checking of where GeSHi is. In a default install it will be in ../, but
 // it could be in the current directory if the include_path is set. There's nowhere else
 // we can reasonably guess.
-if (is_readable('../geshi.php')) {
-    $path = '../';
-} elseif (is_readable('geshi.php')) {
-    $path = './';
+if (file_exists(__DIR__ . '/../vendor/autoload.php')) {
+    //composer install
+    require __DIR__ . '/../vendor/autoload.php';
+} else if (file_exists(__DIR__ . '/../src/geshi.php')) {
+    //git checkout
+    require __DIR__ . '/../src/geshi.php';
+} else if (stream_resolve_include_path('geshi.php')) {
+    // Assume you've put geshi in the include_path already
+    require_once 'geshi.php';
 } else {
     report_error(TYPE_ERROR, 'Could not find geshi.php - make sure it is in your include path!');
 }
 
 if(!$error_abort) {
-    require $path . 'geshi.php';
-
     if(!class_exists('GeSHi')) {
         report_error(TYPE_ERROR, 'The GeSHi class was not found, although it seemed we loaded the correct file!');
     }
@@ -347,7 +350,7 @@ for($i = 1; $i <= count($kw_cases_sel); $i += 1) {
 }
 
 $lang = validate_lang();
-var_dump($lang);
+//var_dump($lang);
 echo "</pre>";
 
 ?>
