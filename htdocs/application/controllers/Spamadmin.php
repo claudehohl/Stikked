@@ -74,7 +74,7 @@ class Spamadmin extends CI_Controller
 				{
 					$this->db->insert('blocked_ips', array(
 						'ip_address' => $ip_address,
-						'blocked_at' => mktime() ,
+						'blocked_at' => time() ,
 						'spam_attempts' => $paste_count,
 					));
 				}
