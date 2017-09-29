@@ -141,10 +141,10 @@ class Pastes extends CI_Model
 		
 		if ($burn) 
 		{
-			echo 'copy this URL, it will become invalid on visit: <a href="' . site_url('view/' . $data['pid']) . '">' . site_url('view/' . $data['pid']) . '</a>';
+			echo 'copy this URL, it will become invalid on visit: ' . site_url('view/' . $data['pid']);
 			if ($data['snipurl'] !== false)
 			{
-				echo '<br>Shorturl: <a href="' . $shorturl . '">' . $shorturl . '</a><br>';
+				echo '<br>Shorturl: ' . $shorturl . '">' . $shorturl . '<br>';
 			}
 			exit;
 		}

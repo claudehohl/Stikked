@@ -180,6 +180,8 @@ ST.crypto = function() {
                 if (redirect_url.indexOf('E_CAPTCHA') > -1) {
                     $('.content .container .message').remove();
                     $('.content .container').prepend('<div class="message error"><div class="container">The captcha is incorrect.</div></div>');
+                } else if (redirect_url.indexOf('invalid') > -1) {
+                    $('#create_encrypted').parent().html('<p>' + redirect_url + '#' + key + '</p>');
                 } else {
                     window.location.href = base_url + redirect_url + '#' + key;
                 }
