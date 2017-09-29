@@ -524,11 +524,20 @@ class Main extends CI_Controller
 	
 	function post_encrypted() 
 	{
-		$this->load->model('pastes');
-		$_POST['private'] = 1;
-		$_POST['snipurl'] = 0;
-		$ret_url = $this->pastes->createPaste();
-		echo $ret_url;
+		$this->_valid_authentication();
+		
+		if ($this->_valid_captcha($this->input->post('captcha'))) 
+		{
+			$this->load->model('pastes');
+			$_POST['private'] = 1;
+			$_POST['snipurl'] = 0;
+			$ret_url = $this->pastes->createPaste();
+			echo $ret_url;
+		}
+		else
+		{
+			echo 'E_CAPTCHA';
+		}
 	}
 	
 	function raw() 
@@ -753,7 +762,11 @@ class Main extends CI_Controller
 		
 		if (config_item('enable_captcha') && $this->session->userdata('is_human') === null) 
 		{
-			$this->form_validation->set_message('_valid_captcha', lang('captcha'));
+			
+			if (isset($this->form_validation)) 
+			{
+				$this->form_validation->set_message('_valid_captcha', lang('captcha'));
+			}
 			
 			if ($this->use_recaptcha) 
 			{
