@@ -1,6 +1,4 @@
-﻿
-<?php echo validation_errors(); ?>
-<?php echo "hello"; ?>
+﻿<?php echo validation_errors(); ?>
 
 <div class="row">
 	<div class="col-12 col-sm-12 col-lg-12">

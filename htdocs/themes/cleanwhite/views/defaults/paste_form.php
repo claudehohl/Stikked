@@ -1,4 +1,3 @@
-
 <?php echo validation_errors(); ?>
 
 <div class="form_wrapper margin">
