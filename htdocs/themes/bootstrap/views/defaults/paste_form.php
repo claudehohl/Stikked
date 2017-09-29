@@ -85,7 +85,6 @@
 						</label>
 						<?php 
 							$expire_extra = 'id="expire" class="select" tabindex="7"';
-                            $default_expiration = config_item('default_expiration');
 							$options = array(
                                         "burn" => lang('exp_burn'),
                                         "5" => lang('exp_5min'),
@@ -98,7 +97,7 @@
                             if(! config_item('disable_keep_forever')) {
                                 $options['0'] = lang('exp_forever');
                             }
-						echo form_dropdown('expire', $options, $default_expiration, $expire_extra); ?>
+						echo form_dropdown('expire', $options, $expire_set, $expire_extra); ?>
 					</div>
 				</div>
 			</div>
