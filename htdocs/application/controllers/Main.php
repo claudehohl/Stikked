@@ -266,7 +266,7 @@ class Main extends CI_Controller
 		//ipv6 migration
 		$fields = $this->db->field_data('trending');
 		
-		if (config_item('db_driver') != 'sqlite' && $fields[1]->max_length < 45) 
+		if (stristr(config_item('db_driver') , 'sqlite') === false && $fields[1]->max_length < 45) 
 		{
 			$db_prefix = config_item('db_prefix');
 			
@@ -294,7 +294,7 @@ class Main extends CI_Controller
 			if ($field->name == 'title') 
 			{
 				
-				if (config_item('db_driver') != 'sqlite' && $field->max_length < 50) 
+				if (stristr(config_item('db_driver') , 'sqlite') === false && $field->max_length < 50) 
 				{
 					$db_prefix = config_item('db_prefix');
 					
@@ -318,17 +318,21 @@ class Main extends CI_Controller
 			if ($field->name == 'id') 
 			{
 				
-				if ($field->max_length < 128) 
+				if (stristr(config_item('db_driver') , 'sqlite') === false) 
 				{
-					$db_prefix = config_item('db_prefix');
 					
-					if ($this->db->dbdriver == "postgre") 
+					if ($field->max_length < 128) 
 					{
-						$this->db->query("ALTER TABLE " . $db_prefix . "sessions ALTER COLUMN id SET DATA TYPE varchar(128)");
-					}
-					else
-					{
-						$this->db->query("ALTER TABLE " . $db_prefix . "sessions CHANGE id id VARCHAR(128) NOT NULL");
+						$db_prefix = config_item('db_prefix');
+						
+						if ($this->db->dbdriver == "postgre") 
+						{
+							$this->db->query("ALTER TABLE " . $db_prefix . "sessions ALTER COLUMN id SET DATA TYPE varchar(128)");
+						}
+						else
+						{
+							$this->db->query("ALTER TABLE " . $db_prefix . "sessions CHANGE id id VARCHAR(128) NOT NULL");
+						}
 					}
 				}
 			}
