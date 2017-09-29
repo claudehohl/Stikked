@@ -7,7 +7,7 @@
  * Contributors:
  *  - Deoren Moor (http://www.whyaskwhy.org/blog/)
  *  - Thomas Joiner
- * Release Version: 1.0.8.12
+ * Release Version: 1.0.9.0
  * Date Started: 2010/08/24
  *
  * nginx language file for GeSHi.

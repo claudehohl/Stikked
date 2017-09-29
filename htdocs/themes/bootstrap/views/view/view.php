@@ -25,7 +25,9 @@ if(isset($insert)){
 					<?php if(isset($inreply)){?><div class="detail by"><?php echo lang('paste_isareply'); ?> <a href="<?php echo $inreply['url']?>"><?php echo $inreply['title']; ?></a> <?php echo strtolower(lang('paste_from')); ?> <?php echo $inreply['name']; ?>
 <?php } ?>
 				<div class="qr">
+<?php if($this->config->item('qr_enabled')) { ?>
                     <img src="<?php echo site_url('view/qr/' . $pid ); ?>">
+<?php } ?>
 				</div>
 <?php if($seg3 != 'diff'){ ?>
     <?php if(isset($inreply)){ ?>

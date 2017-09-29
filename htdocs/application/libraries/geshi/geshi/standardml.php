@@ -4,7 +4,7 @@
  * ----------
  * Author: eldesh (nephits@gmail.com)
  * Copyright: (c) 2014 eldesh (http://d.hatena.ne.jp/eldesh/)
- * Release Version: 1.0.8.12
+ * Release Version: 1.0.9.0
  * Date Started: 2014/02/04
  *
  * SML (StandardML'97) language file for GeSHi.
@@ -68,12 +68,12 @@ $language_data = array (
             /* deprecated: SML90 */
             'abstype',
 
-            'and', 'andalso', 'as', 'begin', 'case', 'datatype', 'else',
+            'and', 'andalso', 'as', 'case', 'datatype', 'else',
             'end', 'exception', 'fn', 'fun', 'functor',
-            'if', 'in', 'infix', 'infixr', 'include', 'let', 'local', 'nonfix',
+            'if', 'in', 'infix', 'infixr', 'let', 'local', 'nonfix',
             'of', 'op', 'open', 'orelse',
             'rec', 'raise', 'sharing', 'sig', 'signature', 'struct', 'structure', 'then',
-            'type', 'val', 'while', 'where', 'with', 'withtype'
+            'type', 'val', 'while', 'with', 'withtype'
             ),
         /* Top-level type and constructors */
         2 => array(

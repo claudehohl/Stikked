@@ -1,4 +1,3 @@
-
 <?php echo validation_errors(); ?>
 
 <div class="row">
@@ -43,7 +42,7 @@
 			</div>
 			<div class="control-group">
 				<div class="controls">
-					<textarea id="code" class="span12" name="code" rows="20" tabindex="4"><?php if(isset($paste_set)){ echo $paste_set; }?></textarea>
+					<textarea id="code" class="span12" name="code" rows="20" tabindex="4"><?php if(isset($paste_set)){ echo htmlspecialchars($paste_set); }?></textarea>
 				</div>
 			</div>
 
@@ -85,7 +84,6 @@
 						</label>
 						<?php 
 							$expire_extra = 'id="expire" class="select" tabindex="7"';
-                            $default_expiration = config_item('default_expiration');
 							$options = array(
                                         "burn" => lang('exp_burn'),
                                         "5" => lang('exp_5min'),
@@ -98,7 +96,7 @@
                             if(! config_item('disable_keep_forever')) {
                                 $options['0'] = lang('exp_forever');
                             }
-						echo form_dropdown('expire', $options, $default_expiration, $expire_extra); ?>
+						echo form_dropdown('expire', $options, $expire_set, $expire_extra); ?>
 					</div>
 				</div>
 			</div>
@@ -125,6 +123,14 @@
 					<i class="icon-pencil icon-white"></i>
 					<?php echo lang('paste_create'); ?>
 				</button>
+				<?php
+				if ($this->config->item('csrf_protection') === TRUE)
+				{
+					if(isset($_COOKIE[$this->config->item('csrf_cookie_name')])) {
+						echo '<input type="hidden" name="'.$this->config->item('csrf_token_name').'" value="'.html_escape($_COOKIE[$this->config->item('csrf_cookie_name')]).'" style="display:none;" />'."\n";
+					}
+				}
+				?>
 			</div>
 		</form>
 	</div>

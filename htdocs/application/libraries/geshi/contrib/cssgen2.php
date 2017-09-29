@@ -28,19 +28,19 @@
  *
  */
 
-require dirname(dirname(__FILE__)) . DIRECTORY_SEPARATOR . 'geshi.php';
-$geshi = new GeSHi;
-
-$languages = array();
-if ($handle = opendir($geshi->language_path)) {
-    while (($file = readdir($handle)) !== false) {
-        $pos = strpos($file, '.');
-        if ($pos > 0 && substr($file, $pos) == '.php') {
-            $languages[] = substr($file, 0, $pos);
-        }
-    }
-    closedir($handle);
+if (file_exists(__DIR__ . '/../vendor/autoload.php')) {
+    //composer install
+    require __DIR__ . '/../vendor/autoload.php';
+} else if (file_exists(__DIR__ . '/../src/geshi.php')) {
+    //git checkout
+    require __DIR__ . '/../src/geshi.php';
+} else {
+    // Assume you've put geshi in the include_path already
+    require_once "geshi.php";
 }
+
+$geshi = new GeSHi();
+$languages = $geshi->get_supported_languages();
 sort($languages);
 
 header('Content-Type: application/octet-stream');

@@ -1,0 +1,7 @@
+SITENAME=Stikked
+BASEURL=http:\/\/stikked.local\/
+DBHOST=db
+DBNAME=stikked
+DBUSER=stikked
+DBPASS=stikked
+CAPTCHA=false

@@ -4,7 +4,7 @@
  * -------
  * Author: GuShH
  * Copyright: (c) 2009 Gustavo Julio Fiorenza
- * Release Version: 1.0.8.12
+ * Release Version: 1.0.9.0
  * Date Started: 13/06/2009
  *
  * PureBasic language file for GeSHi.

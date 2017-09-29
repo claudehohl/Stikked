@@ -95,10 +95,10 @@ $config['supported_languages'] = array(
         'ckeditor'    => NULL
     ),
     'cn' => array(
-        'name'        => '繁體中文',
+        'name'        => '简体中文',
         'folder'      => 'chinese-simplified',
         'direction'   => 'ltr',
-        'codes'       => array('cht', 'chinese-simplified', 'zh-CN'),
+        'codes'       => array('chs', 'chinese-simplified', 'zh-CN'),
         'ckeditor'    => NULL
     ),
     'zh' => array(

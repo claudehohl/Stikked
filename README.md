@@ -16,7 +16,6 @@ Here are some features:
 * Anti-Spam features
 * Themes support
 * Multilanguage support
-* An [Android app](https://play.google.com/store/apps/details?id=org.teamblueridge.pasteitapp)
 * Stikked client with support for client side encryption/decryption: [gostikkit](https://github.com/tcolgate/gostikkit)
 * Another CLI tool requiring only curl program: [pbin](https://github.com/glensc/pbin)
 * And many more. View [this review](http://maketecheasier.com/run-your-own-pastebin-with-stikked/2013/01/11)
@@ -56,6 +55,17 @@ Installation
 * Be sure to also copy the .htaccess file when you move files around. This is a hidden file and easily overlooked.
 
 
+How to run it in Docker
+-----------------------
+
+    sudo docker build -t stikked .
+    sudo docker-compose up -d
+
+This automatically creates a database with passwords that are configurable in the docker-compose.yml file.
+
+NOTE: This sets the captcha to false and requires port 80 to be accessible on the host machine. Also, a host entry of 127.0.0.1 stikked.local will fix the base_url issues.
+
+
 Documentation
 -------------
 
@@ -70,6 +80,25 @@ In the folder doc/, you will find:
 
 Changelog
 ---------
+
+### Version 0.12.0:
+
+* Updates ensuring the compatibility with PHP7:
+  * Updated CodeIgniter to 3.1.5
+  * Updated GeSHi to 1.0.9.0
+* Ability to run Stikked in Docker
+* Small security fixes regarding XSS and LDAP
+* Various bugfixes and improvements
+
+#### Upgrade instructions
+
+Copy your htdocs/application/stikked.php config file away. Upload the new version. Copy it back.
+
+If you want to keep QR codes being displayed, add the following line in config/stikked.php:
+
+```php
+$config['qr_enabled'] = true;
+```
 
 ### Version 0.11.0:
 

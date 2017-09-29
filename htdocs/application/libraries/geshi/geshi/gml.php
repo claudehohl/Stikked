@@ -4,7 +4,7 @@
  * -------
  * Author: José Jorge Enríquez <jenriquez@users.sourceforge.net>, Timon Knigge <timonknigge@live.nl>
  * Copyright: (c) 2005 José Jorge Enríquez Rodríguez (http://www.zonamakers.com), (c) 2013 Timon Knigge (http://www.bluemoonproductions.nl)
- * Release Version: 1.0.8.12
+ * Release Version: 1.0.9.0
  * Date Started: 2005/06/21
  *
  * GML language file for GeSHi.
@@ -183,7 +183,7 @@ $language_data = array(
             'move_outside_solid','move_random','move_snap','move_towards_point','move_wrap','mp_grid_add_cell','mp_grid_add_instances','mp_grid_add_rectangle','mp_grid_clear_all','mp_grid_clear_cell',
             'mp_grid_clear_rectangle','mp_grid_create','mp_grid_destroy','mp_grid_draw','mp_grid_path','mp_linear_path','mp_linear_path_object','mp_linear_step','mp_linear_step_object','mp_potential_path',
             'mp_potential_path_object','mp_potential_settings','mp_potential_step','mp_potential_step_object','network_connect','network_connect_raw','network_create_server','network_create_socket','network_destroy',
-            'network_destroy','network_resolve','network_send_broadcast','network_send_packet','network_send_raw','network_send_udp','network_set_timeout','object_exists','object_get_depth','object_get_mask',
+            'network_resolve','network_send_broadcast','network_send_packet','network_send_raw','network_send_udp','network_set_timeout','object_exists','object_get_depth','object_get_mask',
             'object_get_name','object_get_parent','object_get_persistent','object_get_physics','object_get_solid','object_get_sprite','object_get_visible','object_is_ancestor','object_set_depth','object_set_mask',
             'object_set_persistent','object_set_solid','object_set_sprite','object_set_visible','ord','os_get_config','os_get_info','os_get_language','os_is_network_connected','os_is_paused','os_lock_orientation',
             'os_powersave_enable','parameter_count','parameter_string','part_emitter_burst','part_emitter_clear','part_emitter_create','part_emitter_destroy','part_emitter_destroy_all','part_emitter_exists',
@@ -207,7 +207,7 @@ $language_data = array(
             'room_instance_clear','room_next','room_previous','room_restart','room_set_background','room_set_background_color','room_set_height','room_set_persistent','room_set_view','room_set_view_enabled','room_set_width',
             'room_tile_add','room_tile_add_ext','room_tile_clear','round','screen_save','screen_save_part','script_execute','script_exists','script_get_name','sha1_file','sha1_string_unicode','sha1_string_utf8','shader_enable_corner_id',
             'shader_get_sampler_index','shader_get_uniform','shader_is_compiled','shader_reset','shader_set','shader_set_uniform_f','shader_set_uniform_f_array','shader_set_uniform_i','shader_set_uniform_i_array',
-            'shader_set_uniform_matrix','shader_set_uniform_matrix_array','shaders_are_supported','shop_leave_rating','show_debug_message','show_debug_overlay','show_error','show_message','show_message','show_message_async',
+            'shader_set_uniform_matrix','shader_set_uniform_matrix_array','shaders_are_supported','shop_leave_rating','show_debug_message','show_debug_overlay','show_error','show_message','show_message_async',
             'show_question','show_question_async','sign','sin','sound_add','sound_delete','sound_exists','sound_fade','sound_get_name','sound_global_volume','sound_isplaying','sound_loop','sound_play','sound_replace',
             'sound_stop','sound_stop_all','sound_volume','sprite_add','sprite_add_from_surface','sprite_assign','sprite_collision_mask','sprite_create_from_surface','sprite_delete','sprite_duplicate','sprite_exists',
             'sprite_get_bbox_bottom','sprite_get_bbox_left','sprite_get_bbox_right','sprite_get_bbox_top','sprite_get_height','sprite_get_name','sprite_get_number','sprite_get_texture','sprite_get_tpe','sprite_get_uvs',
@@ -292,8 +292,8 @@ $language_data = array(
         // Keywords
         4 => array(
             'if','while','do','until','exit','break','continue','for','switch','case','default',
-            'else','then','begin','end','repeat','switch','var','globalvar','with','div','mod',
-            'self','noone','other','all','global','local','return',
+            'else','then','begin','end','repeat','var','globalvar','with','div','mod',
+            'self','noone','other','global','local','return',
             'and','or','xor','not'
             )
         ),

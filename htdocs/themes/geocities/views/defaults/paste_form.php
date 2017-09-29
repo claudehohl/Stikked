@@ -1,4 +1,3 @@
-
 <?php echo validation_errors(); ?>
 
 <div class="row">
@@ -50,7 +49,7 @@
 			</div>
 			<div class="control-group">
 				<div class="controls">
-					<textarea id="code" class="span12" name="code" rows="20" tabindex="4"><?php if(isset($paste_set)){ echo $paste_set; }?></textarea>
+					<textarea id="code" class="span12" name="code" rows="20" tabindex="4"><?php if(isset($paste_set)){ echo htmlspecialchars($paste_set); }?></textarea>
 				</div>
 			</div>
 
@@ -132,6 +131,14 @@
 					<?php echo lang('paste_create'); ?>
 				</button>
 			</div>
+			<?php
+			if ($this->config->item('csrf_protection') === TRUE)
+			{
+				if(isset($_COOKIE[$this->config->item('csrf_cookie_name')])) {
+					echo '<input type="hidden" name="'.$this->config->item('csrf_token_name').'" value="'.html_escape($_COOKIE[$this->config->item('csrf_cookie_name')]).'" style="display:none;" />'."\n";
+				}
+			}
+			?>
 		</form>
 	</div>
 </div>

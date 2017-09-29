@@ -4,14 +4,14 @@
  * -----
  * Author: Benny Baumann (BenBE@geshi.org)
  * Copyright: (c) 2014 Benny Baumann (http://qbnz.com/highlighter/)
- * Release Version: 1.0.8.12
+ * Release Version: 1.0.9.0
  * Date Started: 2014/08/10
  *
  * PostScript language file for GeSHi.
  *
  * CHANGES
  * -------
- * 2014/08/10 (1.0.8.12)
+ * 2014/08/10 (1.0.8.13)
  *   -  First Release
  *
  * TODO (updated 2014/08/10)

@@ -7,7 +7,7 @@
  *  - Sandra Rossi (sandra.rossi@gmail.com)
  *  - Jacob Laursen (jlu@kmd.dk)
  * Copyright: (c) 2007 Andres Picazo
- * Release Version: 1.0.8.12
+ * Release Version: 1.0.9.0
  * Date Started: 2004/06/04
  *
  * ABAP language file for GeSHi.
@@ -1326,15 +1326,15 @@ $language_data = array(
         ),
     'STYLES' => array(
         'KEYWORDS' => array(
-            1 => 'color: #000066; text-transform: uppercase; font-weight: bold; zzz:control;', //control statements
-            2 => 'color: #cc4050; text-transform: uppercase; font-weight: bold; zzz:data;', //data statements
-            3 => 'color: #005066; text-transform: uppercase; font-weight: bold; zzz:statement;', //first token of other statements
-            4 => 'color: #500066; text-transform: uppercase; font-weight: bold; zzz:keyword;', // next tokens of other statements ("keywords")
-            5 => 'color: #005066; text-transform: uppercase; font-weight: bold; zzz:statement;',
-            6 => 'color: #000066; text-transform: uppercase; font-weight: bold; zzz:control;',
-            7 => 'color: #000066; text-transform: uppercase; font-weight: bold; zzz:control;',
-            8 => 'color: #005066; text-transform: uppercase; font-weight: bold; zzz:statement;',
-            9 => 'color: #500066; text-transform: uppercase; font-weight: bold; zzz:keyword;'
+            1 => 'color: #000066; font-weight: bold; zzz:control;', //control statements
+            2 => 'color: #cc4050; font-weight: bold; zzz:data;', //data statements
+            3 => 'color: #005066; font-weight: bold; zzz:statement;', //first token of other statements
+            4 => 'color: #500066; font-weight: bold; zzz:keyword;', // next tokens of other statements ("keywords")
+            5 => 'color: #005066; font-weight: bold; zzz:statement;',
+            6 => 'color: #000066; font-weight: bold; zzz:control;',
+            7 => 'color: #000066; font-weight: bold; zzz:control;',
+            8 => 'color: #005066; font-weight: bold; zzz:statement;',
+            9 => 'color: #500066; font-weight: bold; zzz:keyword;'
             ),
         'COMMENTS' => array(
             1 => 'color: #808080; font-style: italic;',
@@ -1368,9 +1368,9 @@ $language_data = array(
             )
         ),
     'URLS' => array(
-        1 => 'http://help.sap.com/abapdocu/en/ABAP{FNAMEU}.htm',
-        2 => 'http://help.sap.com/abapdocu/en/ABAP{FNAMEU}.htm',
-        3 => 'http://help.sap.com/abapdocu/en/ABAP{FNAMEU}.htm',
+        1 => 'http://help.sap.com/abapdocu_740/en/ABAP{FNAMEU}.htm',
+        2 => 'http://help.sap.com/abapdocu_740/en/ABAP{FNAMEU}.htm',
+        3 => 'http://help.sap.com/abapdocu_740/en/ABAP{FNAMEU}.htm',
         4 => '',
         5 => '',
         6 => '',

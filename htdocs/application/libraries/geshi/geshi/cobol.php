@@ -4,7 +4,7 @@
  * ----------
  * Author: BenBE (BenBE@omorphia.org)
  * Copyright: (c) 2007-2008 BenBE (http://www.omorphia.de/)
- * Release Version: 1.0.8.12
+ * Release Version: 1.0.9.0
  * Date Started: 2007/07/02
  *
  * COBOL language file for GeSHi.
@@ -16,13 +16,13 @@
  *
  * CHANGES
  * -------
- * 2013/11/17 (1.0.8.12)
+ * 2013/11/17 (1.0.8.13)
  *  -  Changed compiler directives to be handled like comments.
  *  -  Fixed bug where keywords in identifiers were highlighted.
- * 2013/08/19 (1.0.8.12)
+ * 2013/08/19 (1.0.8.13)
  *  -  Added more intrinsic functions, reserved words, and compiler directives
  *     from the (upcoming) standard.
- * 2013/07/07 (1.0.8.12)
+ * 2013/07/07 (1.0.8.13)
  *  -  Added more reserved words, compiler directives and intrinsic functions.
  *  -  Added modern comment syntax and corrected the other one.
  *  -  Set OOLANG to true and added an object splitter.

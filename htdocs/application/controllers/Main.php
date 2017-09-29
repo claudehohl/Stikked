@@ -70,7 +70,7 @@ class Main extends CI_Controller
 			$fields = array(
 				'id' => array(
 					'type' => 'VARCHAR',
-					'constraint' => 40,
+					'constraint' => 128,
 					'default' => 0,
 				) ,
 				'ip_address' => array(
@@ -266,7 +266,7 @@ class Main extends CI_Controller
 		//ipv6 migration
 		$fields = $this->db->field_data('trending');
 		
-		if (config_item('db_driver') != 'sqlite' && $fields[1]->max_length < 45) 
+		if (stristr(config_item('db_driver') , 'sqlite') === false && $fields[1]->max_length < 45) 
 		{
 			$db_prefix = config_item('db_prefix');
 			
@@ -294,7 +294,7 @@ class Main extends CI_Controller
 			if ($field->name == 'title') 
 			{
 				
-				if (config_item('db_driver') != 'sqlite' && $field->max_length < 50) 
+				if (stristr(config_item('db_driver') , 'sqlite') === false && $field->max_length < 50) 
 				{
 					$db_prefix = config_item('db_prefix');
 					
@@ -305,6 +305,34 @@ class Main extends CI_Controller
 					else
 					{
 						$this->db->query("ALTER TABLE " . $db_prefix . "pastes CHANGE COLUMN title title VARCHAR(50) NOT NULL");
+					}
+				}
+			}
+		}
+
+		//upgrade to CI 3.1.2
+		$fields = $this->db->field_data('sessions');
+		foreach ($fields as $field) 
+		{
+			
+			if ($field->name == 'id') 
+			{
+				
+				if (stristr(config_item('db_driver') , 'sqlite') === false) 
+				{
+					
+					if ($field->max_length < 128) 
+					{
+						$db_prefix = config_item('db_prefix');
+						
+						if ($this->db->dbdriver == "postgre") 
+						{
+							$this->db->query("ALTER TABLE " . $db_prefix . "sessions ALTER COLUMN id SET DATA TYPE varchar(128)");
+						}
+						else
+						{
+							$this->db->query("ALTER TABLE " . $db_prefix . "sessions CHANGE id id VARCHAR(128) NOT NULL");
+						}
 					}
 				}
 			}
@@ -496,11 +524,20 @@ class Main extends CI_Controller
 	
 	function post_encrypted() 
 	{
-		$this->load->model('pastes');
-		$_POST['private'] = 1;
-		$_POST['snipurl'] = 0;
-		$ret_url = $this->pastes->createPaste();
-		echo $ret_url;
+		$this->_valid_authentication();
+		
+		if ($this->_valid_captcha($this->input->post('captcha'))) 
+		{
+			$this->load->model('pastes');
+			$_POST['private'] = 1;
+			$_POST['snipurl'] = 0;
+			$ret_url = $this->pastes->createPaste();
+			echo $ret_url;
+		}
+		else
+		{
+			echo 'E_CAPTCHA';
+		}
 	}
 	
 	function raw() 
@@ -725,7 +762,11 @@ class Main extends CI_Controller
 		
 		if (config_item('enable_captcha') && $this->session->userdata('is_human') === null) 
 		{
-			$this->form_validation->set_message('_valid_captcha', lang('captcha'));
+			
+			if (isset($this->form_validation)) 
+			{
+				$this->form_validation->set_message('_valid_captcha', lang('captcha'));
+			}
 			
 			if ($this->use_recaptcha) 
 			{

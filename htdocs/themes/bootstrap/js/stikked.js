@@ -38,24 +38,24 @@ ST.spamadmin = function() {
         return this.add(selector == null ? this.prevObject : this.prevObject.filter(selector));
     }
 
-    $('.selectable>tbody').selectable({
-        filter: 'tr',
-        cancel: 'a',
-        stop: function() {
-            var $deletestack = $(".paste_deletestack");
-            var $input = $("input[name=pastes_to_delete]");
-            $('.inv').show();
-            $deletestack.empty();
-            $input.empty();
-            var res = [];
-            $(".ui-selected").each(function(i, el) {
-                var id = $('a', el).attr('href').split('view/')[1];
-                res.push(id);
-            });
-            $deletestack.text(res.join(' '));
-            $input.val(res.join(' '));
-        }
-    });
+    // $('.selectable>tbody').selectable({
+    //     filter: 'tr',
+    //     cancel: 'a',
+    //     stop: function() {
+    //         var $deletestack = $(".paste_deletestack");
+    //         var $input = $("input[name=pastes_to_delete]");
+    //         $('.inv').show();
+    //         $deletestack.empty();
+    //         $input.empty();
+    //         var res = [];
+    //         $(".ui-selected").each(function(i, el) {
+    //             var id = $('a', el).attr('href').split('view/')[1];
+    //             res.push(id);
+    //         });
+    //         $deletestack.text(res.join(' '));
+    //         $input.val(res.join(' '));
+    //     }
+    // });
 };
 
 ST.line_highlighter = function() {
@@ -128,9 +128,6 @@ ST.crypto = function() {
     $('#create_encrypted').on('click', function() {
         var $code = $('#code');
 
-        // save CM into textarea
-        CM.editor.save();
-
         // encrypt the paste
         var key = ST.crypto_generate_key(32);
         var plaintext = $code.val();
@@ -147,10 +144,14 @@ ST.crypto = function() {
                 'code': encrypted,
                 'lang': $('#lang').val(),
                 'expire': $('#expire').val(),
+                'captcha': $('#captcha').val(),
                 'reply': $('input[name=reply]').val()
             },
             function(redirect_url) {
-                if (redirect_url.indexOf('invalid') > -1) {
+                if (redirect_url.indexOf('E_CAPTCHA') > -1) {
+                    $('.container .message').remove();
+                    $('.container:eq(1)').prepend('<div class="message error"><div class="container">The captcha is incorrect.</div></div>');
+                } else if (redirect_url.indexOf('invalid') > -1) {
                     $('#create_encrypted').parent().html('<p>' + redirect_url + '#' + key + '</p>');
                 } else {
                     window.location.href = base_url + redirect_url + '#' + key;
@@ -190,14 +191,16 @@ ST.crypto = function() {
                     .replace(/{{{breaking_space}}}/g, ' ')
                     .replace(/\n/g, '<br />')
 
-                $('section blockquote.CodeMirror div').html(decrypted);
+                $('.row .span12 .CodeMirror').html(decrypted);
 
                 // kick out potential dangerous and unnecessary stuff
-                $('section blockquote.CodeMirror div').css('background', '#efe');
+                $('.text_formatted').css('background', '#efe');
                 $('.replies').hide();
-                for (var i = 2; i <= 5; i++) {
+                for (var i = 2; i <= 7; i++) {
                     $('.meta .detail:nth-child(' + i + ')').hide();
                 }
+                $('.meta .spacer:first').hide();
+                $('.qr').hide();
             } catch (e) {}
         }
     }

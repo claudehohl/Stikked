@@ -4,7 +4,7 @@
  * -----
  * Author: Alberto 'Birckin' de Areba (Birckin@hotmail.com)
  * Copyright: (c) 2006 Alberto de Areba
- * Release Version: 1.0.8.12
+ * Release Version: 1.0.9.0
  * Date Started: 2006/05/29
  *
  * mIRC Scripting language file for GeSHi.
@@ -125,7 +125,7 @@ $language_data = array (
     'URLS' => array(
         1 => '',
         2 => '',
-        3 => 'http://www.mirc.com/{FNAMEL}'
+        3 => 'http://en.wikichip.org/wiki/mirc/commands/{FNAMEL}'
         ),
     'OOLANG' => true,
     'OBJECT_SPLITTERS' => array('.'),

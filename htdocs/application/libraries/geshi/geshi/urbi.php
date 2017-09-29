@@ -4,7 +4,7 @@
  * -------
  * Author: Alexandre Morgand (morgand.alexandre@gmail.com)
  * Copyright: (c) 2011 Morgand (http://gostai.com)
- * Release Version: 1.0.8.12
+ * Release Version: 1.0.9.0
  * Date Started: 2011/09/10
  *
  * Urbi language file for GeSHi.

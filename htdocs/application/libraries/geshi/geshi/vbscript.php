@@ -6,7 +6,7 @@
  * Copyright: (c) 2004 Roberto Rossi (http://rsoftware.altervista.org),
  *                     Nigel McNie (http://qbnz.com/highlighter),
  *                     Rory Prendergast (http://www.tanium.com)
- * Release Version: 1.0.8.12
+ * Release Version: 1.0.9.0
  * Date Started: 2012/08/20
  *
  * VBScript language file for GeSHi.

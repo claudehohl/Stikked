@@ -6,7 +6,7 @@
  * Contributors:
  *  - Kevin Thibedeau (kevinpt@yahoo.com)
  * Copyright: (c) 2005 Alexander Krause
- * Release Version: 1.0.8.12
+ * Release Version: 1.0.9.0
  * Date Started: 2005/06/15
  *
  * VHDL (VHSICADL, very high speed integrated circuit HDL) language file for GeSHi.

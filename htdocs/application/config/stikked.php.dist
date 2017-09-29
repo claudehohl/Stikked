@@ -55,6 +55,14 @@ $config['db_prefix'] = '';
 $config['theme'] = 'default';
 
 /**
+ * Display QR code
+ *
+ * Whether or not to display the QR code
+ *
+*/
+$config['qr_enabled'] = true;
+
+/**
  * JavaScript-Editor
  *
  * Which editor to use
@@ -101,6 +109,7 @@ $config['cron_key'] = '';
  *           @string gwgd
  *           @string googl
  *           @string bitly
+ *           @string polr
  *           @string random - Randomly chose any of upper API-s !WARNING! May be slow! For maximum performanse, it's recommended to either set all API keys or use random_url_engines to list working engines.
  *           @string none - same as off
  *
@@ -132,6 +141,9 @@ $config['cron_key'] = '';
  * bitly_url_api: Famous URL shortening service (API: http://dev.bitly.com/get_started.html)
  * Usage: Your API key
  *
+ * polr_url: Your own instance of polr URL-shortener (Download: https://github.com/cydrobolt/polr)
+ * polr_api: Your polr api key
+ *
 **/
 $config['url_shortening_use'] = 'off';
 $config['random_url_engines'] = 'googl,bitly'; // Used only in random mode, read comment above for more info
@@ -147,9 +159,13 @@ $config['shorturl_selected'] = false;
 
 // goo.gl API key
 $config['googl_url_api'] = '';
+
 // Bit.ly API key
 $config['bitly_url_api'] = '';
 
+// polr
+$config['polr_url'] = '';
+$config['polr_api'] = '';
 
 
 /**

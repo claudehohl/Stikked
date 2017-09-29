@@ -7,13 +7,15 @@
  *  - M. Uli Kusterer (witness.of.teachtext@gmx.net)
  *  - Jack Lloyd (lloyd@randombit.net)
  * Copyright: (c) 2004 Dennis Bayer, Nigel McNie (http://qbnz.com/highlighter)
- * Release Version: 1.0.8.12
+ * Release Version: 1.0.9.0
  * Date Started: 2004/09/27
  *
  * C++ language file for GeSHi.
  *
  * CHANGES
  * -------
+ * 2013/11/06
+ *  -  Added nullptr from c++11 & others
  * 2008/05/23 (1.0.7.22)
  *  -  Added description of extra language features (SF#1970248)
  * 2004/XX/XX (1.0.2)
@@ -101,10 +103,13 @@ $language_data = array (
             'EXIT_FAILURE', 'EXIT_SUCCESS', 'RAND_MAX', 'CLOCKS_PER_SEC',
             'virtual', 'public', 'private', 'protected', 'template', 'using', 'namespace',
             'try', 'catch', 'inline', 'dynamic_cast', 'const_cast', 'reinterpret_cast',
-            'static_cast', 'explicit', 'friend', 'typename', 'typeid', 'class'
+            'static_cast', 'explicit', 'friend', 'typename', 'typeid', 'class', 'nullptr',
+            'decltype', 'override', 'final', 'noexcept', 'alignas', 'alignof', 'noreturn',
+            'constexpr', 'and', 'and_eq', 'asm', 'bitand', 'bitor', 'thread_local',
+            'static_assert', 'compl', 'or', 'or_eq', 'xor', 'xor_eq', 'not', 'not_eq'
             ),
         3 => array(
-            'cin', 'cerr', 'clog', 'cout', 'delete', 'new', 'this',
+            'cin', 'cerr', 'clog', 'cout', 'delete', 'new', 'this', 'export',
             'printf', 'fprintf', 'snprintf', 'sprintf', 'assert',
             'isalnum', 'isalpha', 'isdigit', 'iscntrl', 'isgraph', 'islower', 'isprint',
             'ispunct', 'isspace', 'isupper', 'isxdigit', 'tolower', 'toupper',
@@ -126,11 +131,12 @@ $language_data = array (
             'asctime', 'ctime', 'gmtime', 'localtime', 'strftime'
             ),
         4 => array(
-            'auto', 'bool', 'char', 'const', 'double', 'float', 'int', 'long', 'longint',
-            'register', 'short', 'shortint', 'signed', 'static', 'struct',
-            'typedef', 'union', 'unsigned', 'void', 'volatile', 'extern', 'jmp_buf',
-            'signal', 'raise', 'va_list', 'ptrdiff_t', 'size_t', 'FILE', 'fpos_t',
-            'div_t', 'ldiv_t', 'clock_t', 'time_t', 'tm', 'wchar_t',
+            'auto', 'bool', 'char', 'char16_t', 'char32_t', 'const', 'double', 'float',
+            'int', 'long', 'longint','register', 'short', 'shortint', 'signed',
+            'static', 'struct', 'typedef', 'union', 'unsigned', 'void', 'volatile',
+            'extern', 'jmp_buf','signal', 'raise', 'va_list', 'ptrdiff_t', 'size_t',
+            'FILE', 'fpos_t', 'div_t', 'ldiv_t', 'clock_t', 'time_t', 'tm', 'wchar_t',
+            'mutable',
 
             'int8', 'int16', 'int32', 'int64',
             'uint8', 'uint16', 'uint32', 'uint64',
