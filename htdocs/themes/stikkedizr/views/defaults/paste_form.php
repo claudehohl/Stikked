@@ -1,5 +1,6 @@
 ﻿
 <?php echo validation_errors(); ?>
+<?php echo "hello"; ?>
 
 <div class="row">
 	<div class="col-12 col-sm-12 col-lg-12">
@@ -49,7 +50,7 @@
 			</div>
 			<div class="control-group">
 				<div class="controls">
-					<textarea id="code" class="form-control" name="code" rows="20" tabindex="4"><?php if(isset($paste_set)){ echo $paste_set; }?></textarea>
+					<textarea id="code" class="form-control" name="code" rows="20" tabindex="4"><?php if(isset($paste_set)){ echo htmlspecialchars($paste_set); }?></textarea>
 				</div>
 			</div>
 
