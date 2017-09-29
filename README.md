@@ -81,6 +81,25 @@ In the folder doc/, you will find:
 Changelog
 ---------
 
+### Version 0.12.0:
+
+* Updates ensuring the compatibility with PHP7:
+  * Updated CodeIgniter to 3.1.5
+  * Updated GeSHi to 1.0.9.0
+* Ability to run Stikked in Docker
+* Small security fixes regarding XSS and LDAP
+* Various bugfixes and improvements
+
+#### Upgrade instructions
+
+Copy your htdocs/application/stikked.php config file away. Upload the new version. Copy it back.
+
+If you want to keep QR codes being displayed, add the following line in config/stikked.php:
+
+```php
+$config['qr_enabled'] = true;
+```
+
 ### Version 0.11.0:
 
 * Upgrade to CodeIgniter 3.1.0
