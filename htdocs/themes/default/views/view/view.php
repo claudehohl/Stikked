@@ -45,7 +45,9 @@ if(isset($insert)){
             </span>
 		</div>
 		<div class="qr">
+<?php if($this->config->item('qr_enabled')) { ?>
 			<img src="<?php echo site_url('view/qr/' . $pid); ?>">
+<?php } ?>
 		</div>
 	</div>
 </div>

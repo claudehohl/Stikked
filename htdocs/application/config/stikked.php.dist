@@ -55,6 +55,14 @@ $config['db_prefix'] = '';
 $config['theme'] = 'default';
 
 /**
+ * Display QR code
+ *
+ * Whether or not to display the QR code
+ *
+*/
+$config['qr_enabled'] = true;
+
+/**
  * JavaScript-Editor
  *
  * Which editor to use
