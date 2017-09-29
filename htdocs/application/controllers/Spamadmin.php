@@ -85,8 +85,20 @@ class Spamadmin extends CI_Controller
 		$data = $this->pastes->getSpamLists('spamadmin/' . $ip_address, $seg = 3, $ip_address);
 		$data['ip_address'] = $ip_address;
 		$ip = explode('.', $ip_address);
-		$ip_firstpart = $ip[0] . '.' . $ip[1] . '.';
-		$data['ip_range'] = $ip_firstpart . '*.*';
+		
+		if (count($ip) > 1) 
+		{
+			$ip_firstpart = $ip[0] . '.' . $ip[1] . '.';
+			$data['ip_range'] = $ip_firstpart . '*.*';
+		}
+		else
+		{
+
+			// ipv6
+			$ip = explode(':', $ip_address);
+			$ip_firstpart = $ip[0] . ':' . $ip[1] . ':' . $ip[2] . ':' . $ip[3] . ':' . $ip[4] . ':' . $ip[5] . ':' . $ip[6];
+			$data['ip_range'] = $ip_firstpart . ':*';
+		}
 
 		//view
 		$this->load->view('spam_detail', $data);
