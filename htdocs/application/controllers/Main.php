@@ -426,7 +426,7 @@ class Main extends CI_Controller
 			$data['expire_set'] = $this->input->post('expire');
 			$data['private_set'] = $this->input->post('private');
 			$data['snipurl_set'] = $this->input->post('snipurl');
-			$data['paste_set'] = $this->input->post('code');
+			$data['paste_set'] = htmlspecialchars($this->input->post('code'));
 			$data['title_set'] = $this->input->post('title');
 			$data['reply'] = $this->input->post('reply');
 			$data['lang_set'] = $this->input->post('lang');

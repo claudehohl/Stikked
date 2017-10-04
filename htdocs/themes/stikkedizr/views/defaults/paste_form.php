@@ -48,7 +48,7 @@
 			</div>
 			<div class="control-group">
 				<div class="controls">
-					<textarea id="code" class="form-control" name="code" rows="20" tabindex="4"><?php if(isset($paste_set)){ echo htmlspecialchars($paste_set); }?></textarea>
+					<textarea id="code" class="form-control" name="code" rows="20" tabindex="4"><?php if(isset($paste_set)){ echo $paste_set; }?></textarea>
 				</div>
 			</div>
 
