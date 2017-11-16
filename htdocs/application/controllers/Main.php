@@ -695,7 +695,7 @@ class Main extends CI_Controller
 			
 			if ($data['private'] == 1) 
 			{
-				$data['reply_form']['use_recaptcha'] = 0;
+				$data['reply_form']['use_recaptcha'] = $this->use_recaptcha;
 			}
 			$this->load->view('view/view', $data);
 		}
