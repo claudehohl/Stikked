@@ -17,6 +17,18 @@ $config['site_name'] = 'Stikked';
 $config['base_url'] = 'https://yourpastebin.com/';
 
 /**
+ * TruePaste
+ *
+ * Should pastes be converted to HTML entities before saving.
+ *
+ * Default, for backwards compatibility, is false.
+ *
+ * Set to true if you want your paste to be saved as supplied.
+*/
+
+$config['true_paste'] = false;
+
+/**
  * Database connection
  *
  * Credentials for your database
