@@ -35,7 +35,7 @@ class Spamadmin extends CI_Controller
 		{
 			$_SERVER['PHP_AUTH_USER'] = "";
 		}
-		if (empty($$_SERVER['PHP_AUTH_PW']))
+		if (empty($_SERVER['PHP_AUTH_PW']))
 		{
 			$_SERVER['PHP_AUTH_PW'] = "";
 		}
