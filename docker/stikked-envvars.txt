@@ -8,20 +8,20 @@ STIKKED_SITE_NAME=Stikked
 STIKKED_BASE_URL=http://stikked.local/
 
 # This should match the database container name
-STIKKIT_DB_HOSTNAME=db
+STIKKED_DB_HOSTNAME=db
 
 # These do NOT need to be set, as they will be inherited from
 # the MYSQL_DATABASE settings above. However, you can set them
 # if you are using a seperately managed database.
-#STIKKIT_DB_DATABASE=stikked
-#STIKKIT_DB_USERNAME=stikked
-#STIKKIT_DB_PASS=stikked
+#STIKKED_DB_DATABASE=stikked
+#STIKKED_DB_USERNAME=stikked
+#STIKKED_DB_PASS=stikked
 
 # Other random examples
-STIKKIT_DISALLOW_SEARCH_ENGINES="true"
-STIKKIT_JS_EDITOR="codemirror"
+STIKKED_DISALLOW_SEARCH_ENGINES="true"
+STIKKED_JS_EDITOR="codemirror"
 
 # Example of enabling CAPTCHA
-#STIKKIT_ENABLE_CAPTCHA="true"
-#STIKKIT_RECAPTCHA_PUBLICKEY="_replace_this_with_your_public_key_"
-#STIKKIT_RECAPTCHA_PRIVATEKEY="_replace_this_with_your_private_key_"
+#STIKKED_ENABLE_CAPTCHA="true"
+#STIKKED_RECAPTCHA_PUBLICKEY="_replace_this_with_your_public_key_"
+#STIKKED_RECAPTCHA_PRIVATEKEY="_replace_this_with_your_private_key_"

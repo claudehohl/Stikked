@@ -1,16 +1,16 @@
 #!/bin/bash
 
 # This is copied from the original docker-php-entrypoint and was updated
-# by the Stikkit container
+# by the Stikked container
 
 set -e
 
-# Check to see where Stikkit might be - If you added Stikkit to this
+# Check to see where Stikked might be - If you added Stikked to this
 # container with something like:
 # ADD https://github.com/claudehohl/Stikked/archive/0.12.0.tar.gz /usr/local
 # then it will be in /usr/local/stikked/Stikked-0.12.0/htdocs/application/config/stikked.php.dist
 
-# If you're using the standard Dockerfile from Stikkit, it will be in
+# If you're using the standard Dockerfile from Stikked, it will be in
 # /var/www/html/htdocs/applcation/config/stikked.php.dist
 
 if [ -e /var/www/html/application/config/stikked.php.dist ]; then
@@ -26,31 +26,31 @@ else
 fi
 
 # Set some default variables
-STIKKIT_SITE_NAME="${STIKKIT_SITE_NAME:-Dockerised Stikkit Container}"
-STIKKIT_BASE_URL="${STIKKIT_BASE_URL:-https://bogus.example.com/}"
-STIKKIT_DB_HOSTNAME="${STIKKIT_DB_HOSTNAME:-db}"
+STIKKED_SITE_NAME="${STIKKED_SITE_NAME:-Dockerised Stikked Container}"
+STIKKED_BASE_URL="${STIKKED_BASE_URL:-https://bogus.example.com/}"
+STIKKED_DB_HOSTNAME="${STIKKED_DB_HOSTNAME:-db}"
 
 # If these aren't set, use MYSQL_ values. If they're not set, then
 # just guess.
-STIKKIT_DB_DATABASE="${STIKKIT_DB_DATABASE:-${MYSQL_DATABASE:-stikked}}"
-STIKKIT_DB_USERNAME="${STIKKIT_DB_USERNAME:-${MYSQL_USER:-stikked}}"
-STIKKIT_DB_PASS="${STIKKIT_DB_PASSWORD:-${MYSQL_PASSWORD:-stikked}}"
+STIKKED_DB_DATABASE="${STIKKED_DB_DATABASE:-${MYSQL_DATABASE:-stikked}}"
+STIKKED_DB_USERNAME="${STIKKED_DB_USERNAME:-${MYSQL_USER:-stikked}}"
+STIKKED_DB_PASS="${STIKKED_DB_PASSWORD:-${MYSQL_PASSWORD:-stikked}}"
 
 # If there's not a cron key, set a random one.
-if [ ! "$STIKKIT_CRON_KEY" ]; then
+if [ ! "$STIKKED_CRON_KEY" ]; then
 	# Note - this is not very random. But it'll do in a pinch.
-	STIKKIT_CRON_KEY=$RANDOM.$RANDOM.$RANDOM.$RANDOM
+	STIKKED_CRON_KEY=$RANDOM.$RANDOM.$RANDOM.$RANDOM
 fi
 
 # Put the cron file in place
-echo "*/5 * * * * root curl --silent http://localhost/cron/$STIKKIT_CRON_KEY" > /etc/cron.d/stikkit
+echo "*/5 * * * * root curl --silent http://localhost/cron/$STIKKED_CRON_KEY" > /etc/cron.d/stikked
 
-# This gets all environment variables that start with STIKKIT_
-svars=$(set | grep \^STIKKIT_ | cut -d= -f1)
+# This gets all environment variables that start with STIKKED_
+svars=$(set | grep \^STIKKED_ | cut -d= -f1)
 for svar in $svars; do
-	# Remove STIKKIT_ from the front, and convert it to lower
-	# case (STIKKIT_CRON_KEY is now cron_key)
-        val=$(echo $svar | sed 's/STIKKIT_\(.*\)/\L\1/')
+	# Remove STIKKED_ from the front, and convert it to lower
+	# case (STIKKED_CRON_KEY is now cron_key)
+        val=$(echo $svar | sed 's/STIKKED_\(.*\)/\L\1/')
         # if it has a /, escape it - for example, in a path or URL.
         FIXED=$(echo ${!svar} | sed 's_/_\\/_g')
 	# Tell the user what's going on
