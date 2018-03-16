@@ -4,7 +4,8 @@ MYSQL_USER=stikked
 MYSQL_PASSWORD=stikked
 
 STIKKED_SITE_NAME=Stikked
-STIKKED_BASE_URL=http:\/\/stikked.local\/
+# Note that there is no need to escape the URL
+STIKKED_BASE_URL=http://stikked.local/
 
 # This should match the database container name
 STIKKIT_DB_HOSTNAME=db
