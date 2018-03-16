@@ -1,21 +1,29 @@
-version: '2'
+version: "3.2"
 
 services:
   db:
     image: mysql:latest
     volumes:
       - db_data:/var/lib/mysql
-    env_file:
-      docker/stikked-envvars.txt
+    env_file: docker/stikked-envvars.txt
 
   stikked:
     depends_on:
       - db
     image: stikked
-    env_file:
-      docker/stikked-envvars.txt
+    env_file: docker/stikked-envvars.txt
     ports:
       - 80:80
 
+# You should use persistant storage for this,
+# as if the volume is deleted, everything is gone!
 volumes:
   db_data:
+
+# Example of NFS backed persistant storage:
+#  db_data:
+#    driver_opts:
+#      type: "nfs"
+#        o: "addr=192.168.1.254,nolock,soft,rw"
+#        device: ":/nfs/export/pbdatabase"
+
