@@ -1,7 +1,27 @@
-SITENAME=Stikked
-BASEURL=http:\/\/stikked.local\/
-DBHOST=db
-DBNAME=stikked
-DBUSER=stikked
-DBPASS=stikked
-CAPTCHA=false
+MYSQL_ROOT_PASSWORD=thisREALLYshouldBEchanged
+MYSQL_DATABASE=stikked
+MYSQL_USER=stikked
+MYSQL_PASSWORD=stikked
+
+STIKKED_SITE_NAME=Stikked
+# Note that there is no need to escape the URL
+STIKKED_BASE_URL=http://stikked.local/
+
+# This should match the database container name
+STIKKED_DB_HOSTNAME=db
+
+# These do NOT need to be set, as they will be inherited from
+# the MYSQL_DATABASE settings above. However, you can set them
+# if you are using a seperately managed database.
+#STIKKED_DB_DATABASE=stikked
+#STIKKED_DB_USERNAME=stikked
+#STIKKED_DB_PASS=stikked
+
+# Other random examples
+STIKKED_DISALLOW_SEARCH_ENGINES="true"
+STIKKED_JS_EDITOR="codemirror"
+
+# Example of enabling CAPTCHA
+#STIKKED_ENABLE_CAPTCHA="true"
+#STIKKED_RECAPTCHA_PUBLICKEY="_replace_this_with_your_public_key_"
+#STIKKED_RECAPTCHA_PRIVATEKEY="_replace_this_with_your_private_key_"

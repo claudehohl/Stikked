@@ -1,12 +1,70 @@
-#!/bin/sh
+#!/bin/bash
+
+# This is copied from the original docker-php-entrypoint and was updated
+# by the Stikked container
+
 set -e
 
-# custom script to overwrite stikked config variables
-bash /bin/replace-envvars.sh
+# Check to see where Stikked might be - If you added Stikked to this
+# container with something like:
+# ADD https://github.com/claudehohl/Stikked/archive/0.12.0.tar.gz /usr/local
+# then it will be in /usr/local/stikked/Stikked-0.12.0/htdocs/application/config/stikked.php.dist
+
+# If you're using the standard Dockerfile from Stikked, it will be in
+# /var/www/html/htdocs/applcation/config/stikked.php.dist
+
+if [ -e /var/www/html/application/config/stikked.php.dist ]; then
+	CFG=/var/www/html/application/config/stikked.php
+	cp /var/www/html/application/config/stikked.php.dist $CFG
+elif [ -e /usr/local/stikked/Stikked-*/htdocs/application/config/stikked.php.dist ]; then
+	CFG=$(echo /usr/local/stikked/Stikked-*/htdocs/application/config/stikked.php.dist | sed 's/\.dist//')
+	cp /usr/local/stikked/Stikked-*/htdocs/application/config/stikked.php.dist $CFG
+else
+	echo I can not find the stikked.php.dist file, which means docker-php-entrypoint
+	echo needs to be updated. Sorry. I can not continue. Exiting.
+	exit -1
+fi
+
+# Set some default variables
+STIKKED_SITE_NAME="${STIKKED_SITE_NAME:-Dockerised Stikked Container}"
+STIKKED_BASE_URL="${STIKKED_BASE_URL:-https://bogus.example.com/}"
+STIKKED_DB_HOSTNAME="${STIKKED_DB_HOSTNAME:-db}"
+
+# If these aren't set, use MYSQL_ values. If they're not set, then
+# just guess.
+STIKKED_DB_DATABASE="${STIKKED_DB_DATABASE:-${MYSQL_DATABASE:-stikked}}"
+STIKKED_DB_USERNAME="${STIKKED_DB_USERNAME:-${MYSQL_USER:-stikked}}"
+STIKKED_DB_PASS="${STIKKED_DB_PASSWORD:-${MYSQL_PASSWORD:-stikked}}"
+
+# If there's not a cron key, set a random one.
+if [ ! "$STIKKED_CRON_KEY" ]; then
+	# Note - this is not very random. But it'll do in a pinch.
+	STIKKED_CRON_KEY=$RANDOM.$RANDOM.$RANDOM.$RANDOM
+fi
+
+# Put the cron file in place
+echo "*/5 * * * * root curl --silent http://localhost/cron/$STIKKED_CRON_KEY" > /etc/cron.d/stikked
+
+# This gets all environment variables that start with STIKKED_
+svars=$(set | grep \^STIKKED_ | cut -d= -f1)
+for svar in $svars; do
+	# Remove STIKKED_ from the front, and convert it to lower
+	# case (STIKKED_CRON_KEY is now cron_key)
+        val=$(echo $svar | sed 's/STIKKED_\(.*\)/\L\1/')
+        # if it has a /, escape it - for example, in a path or URL.
+        FIXED=$(echo ${!svar} | sed 's_/_\\/_g')
+	# Tell the user what's going on
+        echo Setting $val to be $FIXED
+	# And actually update the file
+        sed -i "s/\['$val'\].*/['$val'] = '$FIXED';/" $CFG
+done
+
+# Start Cron, if it exists
+[ -e /usr/sbin/cron ] && /usr/sbin/cron
 
 # first arg is `-f` or `--some-option`
 if [ "${1#-}" != "$1" ]; then
-	set -- php "$@"
+        set -- apache2-foreground "$@"
 fi
 
 exec "$@"
