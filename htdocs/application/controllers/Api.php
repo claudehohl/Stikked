@@ -96,6 +96,11 @@ class Api extends Main
 				}
 			}
 
+			if (!$this->input->post('expire')) 
+			{
+				$_POST['expire'] = config_item('default_expiration');
+			}
+
 			//create paste
 			$paste_url = $this->pastes->createPaste();
 			$data['msg'] = base_url() . $paste_url;
