@@ -60,7 +60,7 @@ if(isset($insert)){
 		</div>
 	</div>
 </section>
-<section>
+<section class="replies">
 <?php
 
 function checkNum($num){
