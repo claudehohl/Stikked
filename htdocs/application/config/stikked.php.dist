@@ -91,6 +91,16 @@ $config['js_editor'] = ''; // codemirror, ace, ''
 $config['combine_assets'] = false;
 
 /**
+ * Content expiration
+ *
+ * Sets the "Expires:"-header to make use of browser-caching
+ * Format: http://php.net/manual/en/function.strtotime.php
+ * Examples: '+10 seconds', '+1 year', '-1 week'
+ *
+*/
+$config['content_expiration'] = '-1 week';
+
+/**
  * Key for Cron
  *
  * The password required to run the cron job */

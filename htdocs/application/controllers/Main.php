@@ -442,6 +442,7 @@ class Main extends CI_Controller
 		if (!$this->input->post('submit')) 
 		{
 			$data = $this->_form_prep();
+			$this->content_expiration(config_item('content_expiration'));
 			$this->load->view('home', $data);
 		}
 		else
@@ -555,6 +556,7 @@ class Main extends CI_Controller
 				$this->load->helper('text');
 				$data['raw'] = character_limiter($data['raw'], 500);
 			}
+			$this->content_expiration(config_item('content_expiration'));
 			$this->load->view('view/raw', $data);
 		}
 		else
@@ -593,6 +595,7 @@ class Main extends CI_Controller
 		if ($check) 
 		{
 			$data = $this->pastes->getPaste(3, true, $this->uri->segment(4) == 'diff');
+			$this->content_expiration(config_item('content_expiration'));
 			$this->load->view('view/embed', $data);
 		}
 		else
@@ -609,6 +612,7 @@ class Main extends CI_Controller
 		if ($check) 
 		{
 			$data = $this->pastes->getPaste(3);
+			$this->content_expiration('+1 year');
 			$this->load->view('view/qr', $data);
 		}
 	}
@@ -697,6 +701,7 @@ class Main extends CI_Controller
 			{
 				$data['reply_form']['use_recaptcha'] = 0;
 			}
+			$this->content_expiration(config_item('content_expiration'));
 			$this->load->view('view/view', $data);
 		}
 		else
@@ -1017,5 +1022,17 @@ class Main extends CI_Controller
 		{
 			echo '';
 		}
+	}
+
+	function content_expiration($cache_time)
+	{
+		if(!$cache_time)
+		{
+			$cache_time = '-1 week';
+		}
+		$cache_expiration = strtotime($cache_time);
+		$this->output->set_header('Pragma: ', true);
+		$this->output->set_header('Cache-Control: ', true);
+		$this->output->set_header('Expires: ' . gmdate('D, d M Y H:i:s', $cache_expiration) . ' GMT', true);
 	}
 }
