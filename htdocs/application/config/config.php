@@ -201,7 +201,7 @@ $config['log_threshold'] = 4;
 | application/logs/ folder. Use a full server path with trailing slash.
 |
 */
-$config['log_path'] = '/tmp/ci.log';
+$config['log_path'] = '';
 
 /*
 |--------------------------------------------------------------------------
