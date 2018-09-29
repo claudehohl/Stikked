@@ -141,11 +141,16 @@ class Pastes extends CI_Model
 		
 		if ($burn) 
 		{
-			echo 'copy this URL, it will become invalid on visit: ' . site_url('view/' . $data['pid']);
+			$CItemp =& get_instance();
+			echo '<!DOCTYPE html><html><head><title>Warning!</title></head><body>';
+			echo '<pre>Copy this URL:</pre>';
+			echo '<span style="background-color: black; color: white">' . site_url('view/'.$data['pid']) . "</span>\n";
 			if ($data['snipurl'] !== false)
 			{
 				echo '<br>Shorturl: ' . $shorturl . '">' . $shorturl . '<br>';
 			}
+			echo "<pre>It will become invalid on visit (will be deleted after first read)</pre><br />\n";
+			echo '<a href="' . base_url() . '" class="title">Return to ' . $CItemp->config->item('site_name') . '</a></body></html>';
 			exit;
 		}
 		else
