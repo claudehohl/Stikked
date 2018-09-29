@@ -22,10 +22,25 @@ class Spamadmin extends CI_Controller
 		$user = $this->config->item('spamadmin_user');
 		$pass = $this->config->item('spamadmin_pass');
 
-		// basic auth for fastcgi
-		list($_SERVER['PHP_AUTH_USER'], $_SERVER['PHP_AUTH_PW']) = explode(':', base64_decode(substr($_SERVER['HTTP_AUTHORIZATION'], 6)));
+		// FastCGI doesn't provide PHP_AUTH_USER and PHP_AUTH_PW, apparently?
+		if (empty($_SERVER['PHP_AUTH_USER']) && empty($_SERVER['PHP_AUTH_PW'])) {
+			if (!empty($_SERVER['HTTP_AUTHORIZATION'])) {
+				list($_SERVER['PHP_AUTH_USER'], $_SERVER['PHP_AUTH_PW']) = explode(':', base64_decode(substr($_SERVER['HTTP_AUTHORIZATION'], 6)));
+			}
+		}
+
+		// If they're not set, set them to blank. The null coalesce operator would be handy here, but
+		// that's PHP 7.0 and higher...
+		if (empty($_SERVER['PHP_AUTH_USER']))
+		{
+			$_SERVER['PHP_AUTH_USER'] = "";
+		}
+		if (empty($_SERVER['PHP_AUTH_PW']))
+		{
+			$_SERVER['PHP_AUTH_PW'] = "";
+		}
 		
-		if ($user == '' || $pass == '' || !isset($_SERVER['PHP_AUTH_USER']) || $_SERVER['PHP_AUTH_USER'] != $user || $_SERVER['PHP_AUTH_PW'] != $pass) 
+		if ($user === '' || $pass === '' || $_SERVER['PHP_AUTH_USER'] !== $user || $_SERVER['PHP_AUTH_PW'] !== $pass) 
 		{
 			header('WWW-Authenticate: Basic realm="Spamadmin"');
 			header('HTTP/1.0 401 Unauthorized');
