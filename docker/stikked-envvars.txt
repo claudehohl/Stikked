@@ -15,7 +15,7 @@ STIKKED_DB_HOSTNAME=db
 # if you are using a seperately managed database.
 #STIKKED_DB_DATABASE=stikked
 #STIKKED_DB_USERNAME=stikked
-#STIKKED_DB_PASS=stikked
+#STIKKED_DB_PASSWORD=stikked
 
 # Other random examples
 STIKKED_DISALLOW_SEARCH_ENGINES="true"
