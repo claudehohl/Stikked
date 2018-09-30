@@ -41,6 +41,10 @@ You can adapt that to your system.
 
 PHP FastCGI must be running. See the php-fcgi section under Nginx.
 
+#### Lighttpd + mod_rewrite requires $config['uri_protocol'] = 'QUERY_STRING'
+
+If you're using Lighttpd and mod_rewrite, you need to set $config['uri_protocol'] = 'QUERY_STRING' in htdocs/application/config/config.php
+
 ### Cherokee
 
 ### PHP
