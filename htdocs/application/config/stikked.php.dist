@@ -30,10 +30,8 @@ $config['db_password'] = 'stikked';
 
 // If you are using sqlite:
 // uncomment the configuration lines below.
-//$config['db_database'] = 'db/stikked';
+//$config['db_database'] = 'db/stikked'; // you need to create a directory "db" and give the webserver write access. sqlite needs a writable folder to work properly!
 //$config['db_driver'] = 'sqlite';
-// you need to create a directory "db" and give the webserver write access.
-// sqlite needs a writable folder to work properly!
 
 /**
  * Table prefix
