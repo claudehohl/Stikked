@@ -76,9 +76,12 @@ $config['js_editor'] = ''; // codemirror, ace, ''
 /**
  * Language
  *
- * New Language settings in application/config/language.php
+ * Which language to use
+ * Translate Stikked to your own language, see htdocs/application/language files
+ * Currently: english, german, swissgerman, spanish, norwegian, danish, portuguese, turkish, french, japanese, polish, russian, chinese-simplified, chinese-traditional, indonesia
  *
 */
+$config['language'] = 'english';
 
 /**
  * Combine JS & CSS files (recommended)
