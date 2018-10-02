@@ -100,10 +100,10 @@ The language setting in config/stikked.php is back, you can set a fixed language
 $config['language'] = 'english';
 ```
 
-New config option: Content expiration.
-Sets the "Expires:"-header to make use of browser-caching
-Format: http://php.net/manual/en/function.strtotime.php
-Examples: '+10 seconds', '+1 year', '-1 week'
+New config option: Content expiration.\
+Sets the "Expires:"-header to make use of browser-caching\
+Format: http://php.net/manual/en/function.strtotime.php\
+Examples: '+10 seconds', '+1 year', '-1 week'\
 Browser-caching is disabled when this option is not set.
 
 ```php
