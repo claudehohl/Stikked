@@ -24,9 +24,9 @@ Here are some features:
 Try it out
 ----------
 
-http://paste.scratchbook.ch/
+https://paste.scratchbook.ch/
 
-See an encrypted paste: http://paste.scratchbook.ch/view/1427473f#iP7p05DRH0BC72qQjxv01BjUeOmNV073
+See an encrypted paste: https://paste.scratchbook.ch/view/1427473f#iP7p05DRH0BC72qQjxv01BjUeOmNV073
 
 
 Prerequisites
@@ -80,6 +80,35 @@ In the folder doc/, you will find:
 
 Changelog
 ---------
+
+### Version 0.13.0:
+
+* Updated CodeIgniter to 3.1.9
+* Various improvements in the Docker setup
+* An automated Docker-build: https://hub.docker.com/r/claudehohl/stikked/
+* Reverted the "intelligent language switcher" back to a fixed language setting because of too many side-effects
+* Fixed encodings and decryption functionality in various themes
+* Various bugfixes and improvements
+
+#### Upgrade instructions
+
+Copy your htdocs/application/stikked.php config file away. Upload the new version. Copy it back.
+
+The language setting in config/stikked.php is back, you can set a fixed language:
+
+```php
+$config['language'] = 'english';
+```
+
+New config option: Content expiration.
+Sets the "Expires:"-header to make use of browser-caching
+Format: http://php.net/manual/en/function.strtotime.php
+Examples: '+10 seconds', '+1 year', '-1 week'
+Browser-caching is disabled when this option is not set.
+
+```php
+$config['content_expiration'] = '+1 week';
+```
 
 ### Version 0.12.0:
 
