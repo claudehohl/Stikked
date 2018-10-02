@@ -30,10 +30,8 @@ $config['db_password'] = 'stikked';
 
 // If you are using sqlite:
 // uncomment the configuration lines below.
-//$config['db_database'] = 'db/stikked';
+//$config['db_database'] = 'db/stikked'; // you need to create a directory "db" and give the webserver write access. sqlite needs a writable folder to work properly!
 //$config['db_driver'] = 'sqlite';
-// you need to create a directory "db" and give the webserver write access.
-// sqlite needs a writable folder to work properly!
 
 /**
  * Table prefix
@@ -78,9 +76,12 @@ $config['js_editor'] = ''; // codemirror, ace, ''
 /**
  * Language
  *
- * New Language settings in application/config/language.php
+ * Which language to use
+ * Translate Stikked to your own language, see htdocs/application/language files
+ * Currently: english, german, swissgerman, spanish, norwegian, danish, portuguese, turkish, french, japanese, polish, russian, chinese-simplified, chinese-traditional, indonesia
  *
 */
+$config['language'] = 'english';
 
 /**
  * Combine JS & CSS files (recommended)
