@@ -935,7 +935,6 @@ class Main extends CI_Controller
 		//check
 		$blocked_words = config_item('blocked_words');
 		$post = $this->input->post();
-		$raw = $post['code'];
 		
 		if (!$blocked_words) 
 		{
@@ -947,7 +946,7 @@ class Main extends CI_Controller
 		{
 			$word = trim($word);
 			
-			if (stristr($raw, $word)) 
+			if (stristr($post['code'], $word) || stristr($post['title'], $word)) 
 			{
 				return false;
 			}
