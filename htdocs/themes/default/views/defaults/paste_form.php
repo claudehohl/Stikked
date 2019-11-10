@@ -38,12 +38,12 @@
 		</div>
 
 		<div class="item">
-			<label for="paste"><?php echo lang('paste_yourpaste'); ?>
+			<label for="code"><?php echo lang('paste_yourpaste'); ?>
 				<span class="instruction"><?php echo lang('paste_yourpaste_desc'); ?></span>
                 <span class="instruction"><a href="#" id="enable_codemirror" data-lang-enablesynhl="<?php echo lang('paste_enablesynhl'); ?>" data-lang-disablesynhl="<?php echo lang('paste_disablesynhl'); ?>"></a></span>
 			</label>
 
-			<textarea id="code" name="code" cols="40" rows="20" tabindex="4"><?php if(isset($paste_set)){ echo $paste_set; }?></textarea>
+			<textarea id="code" name="code" cols="40" rows="20" tabindex="4" required><?php if(isset($paste_set)){ echo $paste_set; }?></textarea>
 
 		</div>
 
