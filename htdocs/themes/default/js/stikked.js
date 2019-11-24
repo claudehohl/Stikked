@@ -1,21 +1,21 @@
 var ST = window.ST || {};
 
-ST.show_embed = function() {
+ST.show_embed = function () {
     $embed_field = $('#embed_field');
     var lang_showcode = $embed_field.data('lang-showcode');
     $embed_field.hide();
     $embed_field.after('<a id="show_code" href="#">' + lang_showcode + '</a>');
     $('#show_code').live('click',
-        function() {
+        function () {
             $(this).hide();
             $embed_field.show().select();
             return false;
         });
 };
 
-ST.expand = function() {
+ST.expand = function () {
     $('.expander').show();
-    $('.expand').click(function() {
+    $('.expand').click(function () {
         if ($('.paste').hasClass('full')) {
             return false;
         }
@@ -27,24 +27,24 @@ ST.expand = function() {
         }
         var new_width = (window_width - (spacer * 3));
         $('.text_formatted').animate({
-                'width': new_width + 'px',
-                'left': '-' + (((window_width - 900) / 2 - spacer)) + 'px'
-            },
+            'width': new_width + 'px',
+            'left': '-' + (((window_width - 900) / 2 - spacer)) + 'px'
+        },
             200);
         return false;
     });
 };
 
-ST.spamadmin = function() {
+ST.spamadmin = function () {
     if ($('.content h1').text() == 'Spamadmin') {
         $('.content .hidden').show();
-        $('.content .quick_remove').live('click', function(ev) {
+        $('.content .quick_remove').live('click', function (ev) {
             var ip = $(ev.target).data('ip');
             if (confirm('Delete all pastes belonging to ' + ip + '?')) {
                 $.post(base_url + 'spamadmin/' + ip, {
                     'confirm_remove': 'yes',
                     'block_ip': 1
-                }, function() {
+                }, function () {
                     window.location.reload();
                 });
             }
@@ -53,9 +53,9 @@ ST.spamadmin = function() {
 
         $(document).tooltip({
             items: "td.first a",
-            content: function(done) {
+            content: function (done) {
                 var pid = $(this).attr('href').split('view/')[1];
-                $.get(base_url + 'view/raw/' + pid + '?preview', function(data) {
+                $.get(base_url + 'view/raw/' + pid + '?preview', function (data) {
                     done(data);
                 });
             },
@@ -65,21 +65,21 @@ ST.spamadmin = function() {
     }
 
     // needed by .selectable
-    $.fn.addBack = function(selector) {
+    $.fn.addBack = function (selector) {
         return this.add(selector == null ? this.prevObject : this.prevObject.filter(selector));
     }
 
     $('.selectable>tbody').selectable({
         filter: 'tr',
         cancel: 'a',
-        stop: function() {
+        stop: function () {
             var $deletestack = $(".paste_deletestack");
             var $input = $("input[name=pastes_to_delete]");
             $('.inv').show();
             $deletestack.empty();
             $input.empty();
             var res = [];
-            $(".ui-selected").each(function(i, el) {
+            $(".ui-selected").each(function (i, el) {
                 var id = $('a', el).attr('href').split('view/')[1];
                 res.push(id);
             });
@@ -89,18 +89,18 @@ ST.spamadmin = function() {
     });
 };
 
-ST.line_highlighter = function() {
+ST.line_highlighter = function () {
     var org_href = window.location.href.replace(/(.*?)#(.*)/, '$1');
     var first_line = false;
     var second_line = false;
 
-    $('.text_formatted').on('mousedown', function(ev) {
+    $('.text_formatted').on('mousedown', function (ev) {
         if (ev.which == 1) { // left mouse button has been clicked
             window.getSelection().removeAllRanges();
         }
     });
 
-    $('.text_formatted').on('click', 'li', function(ev) {
+    $('.text_formatted').on('click', 'li', function (ev) {
         var $this = $(this);
         var li_num = ($this.index() + 1);
         if (ev.shiftKey == 1) {
@@ -129,7 +129,7 @@ ST.line_highlighter = function() {
     ST.highlight_lines();
 }
 
-ST.highlight_lines = function() {
+ST.highlight_lines = function () {
     var wloc = window.location.href;
     if (wloc.indexOf('#') > -1) {
         $('.text_formatted .container li').css('background', 'none');
@@ -152,9 +152,9 @@ ST.highlight_lines = function() {
     }
 }
 
-ST.crypto = function() {
+ST.crypto = function () {
     $('button[name=submit]').after('<button id="create_encrypted">Create encrypted</button>');
-    $('#create_encrypted').on('click', function() {
+    $('#create_encrypted').on('click', function () {
         var $code = $('#code');
 
         // encrypt the paste
@@ -168,15 +168,15 @@ ST.crypto = function() {
 
         // post request via JS
         $.post(base_url + 'post_encrypted', {
-                'name': $('#name').val(),
-                'title': $('#title').val(),
-                'code': encrypted,
-                'lang': $('#lang').val(),
-                'expire': $('#expire').val(),
-                'captcha': $('#captcha').val(),
-                'reply': $('input[name=reply]').val()
-            },
-            function(redirect_url) {
+            'name': $('#name').val(),
+            'title': $('#title').val(),
+            'code': encrypted,
+            'lang': $('#lang').val(),
+            'expire': $('#expire').val(),
+            'captcha': $('#captcha').val(),
+            'reply': $('input[name=reply]').val()
+        },
+            function (redirect_url) {
                 if (redirect_url.indexOf('E_CAPTCHA') > -1) {
                     $('.content .container .message').remove();
                     $('.content .container').prepend('<div class="message error"><div class="container">The captcha is incorrect.</div></div>');
@@ -230,13 +230,13 @@ ST.crypto = function() {
                 }
                 $('.meta .spacer:first').hide();
                 $('.qr').hide();
-            } catch (e) {}
+            } catch (e) { }
         }
     }
 }
 
 // generate a random key
-ST.crypto_generate_key = function(len) {
+ST.crypto_generate_key = function (len) {
     var index = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
     var key = '';
     for (var i = 0; i < len; i++) {
@@ -245,7 +245,7 @@ ST.crypto_generate_key = function(len) {
     return key;
 }
 
-ST.dragdrop = function() {
+ST.dragdrop = function () {
     $("#code").fileReaderJS({
         // CSS Class to add to the drop element when a drag is active
         dragClass: "drag",
@@ -264,7 +264,7 @@ ST.dragdrop = function() {
         // How to read any files not specified by readAsMap
         readAsDefault: 'DataURL',
         on: {
-            loadend: function(e, file) {
+            loadend: function (e, file) {
                 try {
                     var words = CryptoJS.enc.Base64.parse(e.target.result.split(',')[1]);
                     var utf8 = CryptoJS.enc.Utf8.stringify(words);
@@ -279,7 +279,7 @@ ST.dragdrop = function() {
     });
 }
 
-ST.ace_init = function() {
+ST.ace_init = function () {
     // prepare the editor, needs to be a div
     var $code = $('#code');
 
@@ -304,16 +304,16 @@ ST.ace_init = function() {
     ST.ace_editor = ace.edit("editor");
     ST.ace_editor.setTheme("ace/theme/clouds");
     ST.ace_editor.getSession().setValue($code.val());
-    ST.ace_editor.getSession().on('change', function(e) {
+    ST.ace_editor.getSession().on('change', function (e) {
         $code.val(ST.ace_editor.getValue());
     });
     ST.ace_setlang();
-    $('#lang').change(function() {
+    $('#lang').change(function () {
         ST.ace_setlang();
     });
 }
 
-ST.ace_setlang = function() {
+ST.ace_setlang = function () {
     var lang = $('#lang').val();
     var mode = '';
     try {
@@ -327,12 +327,12 @@ ST.ace_setlang = function() {
     ST.ace_editor.getSession().setMode("ace/mode/" + mode);
 }
 
-ST.codemirror_init = function() {
+ST.codemirror_init = function () {
     if (typeof CodeMirror == 'undefined') {
         return false;
     }
     ST.cm_modes = $.parseJSON($('#codemirror_modes').text());
-    $('#lang').change(function() {
+    $('#lang').change(function () {
         ST.codemirror_setlang();
     });
     if (typeof ST.cm_editor == 'undefined') {
@@ -344,12 +344,12 @@ ST.codemirror_init = function() {
     ST.codemirror_setlang();
 }
 
-ST.codemirror_setlang = function() {
+ST.codemirror_setlang = function () {
     var lang = $('#lang').val();
     var mode = ST.cm_modes[lang];
 
     $.get(base_url + 'main/get_cm_js/' + lang,
-        function(data) {
+        function (data) {
             if (data != '') {
                 ST.cm_editor.setOption('mode', mode);
             } else {
@@ -359,11 +359,11 @@ ST.codemirror_setlang = function() {
         'script');
 }
 
-ST.clickable_urls = function() {
+ST.clickable_urls = function () {
     $('.paste .container').linkify();
 }
 
-ST.init = function() {
+ST.init = function () {
     ST.expand();
     ST.show_embed();
     ST.spamadmin();
@@ -375,6 +375,6 @@ ST.init = function() {
     ST.ace_init();
 };
 
-$(document).ready(function() {
+$(document).ready(function () {
     ST.init();
 });
