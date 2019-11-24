@@ -91,7 +91,7 @@ $config['language'] = 'english';
  * htdocs/static/asset/ folder must be writeable
  *
  */
-$config['combine_assets'] = false;
+$config['combine_assets'] = false; # chown 82 htdocs/static/asset/ for Docker
 
 /**
  * Content expiration
