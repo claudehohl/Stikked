@@ -56,6 +56,11 @@ class Pastes extends CI_Model
         }
         $data['private'] = ($this->input->post('private') === null ? '0' : $this->input->post('private'));
 
+        // force private when a previously encrypted paste gets pasted publicly
+        if (preg_match('/^U2FsdGVkX1/', $data['raw'])) {
+            $data['private'] = 1;
+        }
+
         do {
             $data['pid'] = substr(md5(md5(mt_rand(0, 1000000) . time())), rand(0, 24), 8);
             $this->db->select('id');
