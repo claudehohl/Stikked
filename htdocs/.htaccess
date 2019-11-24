@@ -9,11 +9,11 @@ RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization},L]
 SetOutputFilter DEFLATE
 FileETag MTime Size
 
-<IfModule !mod_rewrite>
+<IfModule !mod_rewrite.c>
     ErrorDocument 404 /index.php
 </IfModule>
 
-<IfModule mod_expires>
+<IfModule mod_expires.c>
     ExpiresActive On
     ExpiresByType text/javascript "access plus 1 year"
     ExpiresByType application/x-javascript "access plus 1 year"
