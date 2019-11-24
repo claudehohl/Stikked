@@ -348,7 +348,7 @@ class Pastes extends CI_Model
 
 					// Prepare CURL options array
 					$prep_data = array(
-						CURLOPT_URL => $target = $gwgd_url . 'api.php?long=' . $url,
+						CURLOPT_URL => $gwgd_url . 'api.php?long=' . $url,
 						CURLOPT_RETURNTRANSFER => true,
 						CURLOPT_ENCODING => 'identity'
 					);
@@ -463,7 +463,7 @@ class Pastes extends CI_Model
 
 				// Prepare CURL options array
 				$prep_data = array(
-					CURLOPT_URL => $target = $gwgd_url . 'api.php?long=' . $url,
+					CURLOPT_URL => $gwgd_url . 'api.php?long=' . $url,
 					CURLOPT_RETURNTRANSFER => true,
 					CURLOPT_ENCODING => 'identity'
 				);
