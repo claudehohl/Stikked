@@ -669,7 +669,7 @@ class Main extends CI_Controller
                 }
             } else {
 
-                if (strtolower($text) == strtolower($this->session->userdata('captcha'))) {
+                if ($text && strtolower($text) == strtolower($this->session->userdata('captcha'))) {
                     $this->session->set_userdata('is_human', true);
                     return true;
                 } else {
