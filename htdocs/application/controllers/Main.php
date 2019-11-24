@@ -472,6 +472,7 @@ class Main extends CI_Controller
             if (isset($_GET['preview'])) {
                 $this->load->helper('text');
                 $data['raw'] = character_limiter($data['raw'], 500);
+                $data['raw'] = htmlspecialchars($data['raw']);
             }
             $this->content_expiration(config_item('content_expiration'));
             $this->load->view('view/raw', $data);
