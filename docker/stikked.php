@@ -1,11 +1,13 @@
-<?php if (!defined('BASEPATH')) exit('No direct script access allowed');
+<?php if (!defined('BASEPATH')) {
+    exit('No direct script access allowed');
+}
 
 /**
  * Site Name
  *
  * The name of your site
  *
-*/
+ */
 $config['site_name'] = 'Stikked';
 
 /**
@@ -13,7 +15,7 @@ $config['site_name'] = 'Stikked';
  *
  * Set the base URL of Stikked. WITH trailing slash!
  *
-*/
+ */
 $config['base_url'] = 'http://localhost/';
 
 /**
@@ -22,7 +24,7 @@ $config['base_url'] = 'http://localhost/';
  * Credentials for your database
  * The database structure will be created automatically
  *
-*/
+ */
 $config['db_hostname'] = 'mysql';
 $config['db_database'] = 'stikked';
 $config['db_username'] = 'stikked';
@@ -39,7 +41,7 @@ $config['db_password'] = 'stikked';
  * Use underscore as suffix to easily see the tables.
  * example: $config['db_prefix'] = 'stikked_';
  * use $config['db_prefix'] = ''; if you don't want to use table prefix.
-*/
+ */
 $config['db_prefix'] = '';
 
 /**
@@ -49,7 +51,7 @@ $config['db_prefix'] = '';
  * Folder name in htdocs/themes/
  * Currently: default, bootstrap, gabdark, gabdark3, geocities, snowkat, stikkedizr, cleanwhite, i386
  *
-*/
+ */
 $config['theme'] = 'default';
 
 /**
@@ -57,7 +59,7 @@ $config['theme'] = 'default';
  *
  * Whether or not to display the QR code
  *
-*/
+ */
 $config['qr_enabled'] = true;
 
 /**
@@ -70,7 +72,7 @@ $config['qr_enabled'] = true;
  * CodeMirror:  ~300kb JS
  * ACE:         >800kb JS
  *
-*/
+ */
 $config['js_editor'] = ''; // codemirror, ace, ''
 
 /**
@@ -80,7 +82,7 @@ $config['js_editor'] = ''; // codemirror, ace, ''
  * Translate Stikked to your own language, see htdocs/application/language files
  * Currently: english, german, swissgerman, spanish, norwegian, danish, portuguese, turkish, french, japanese, polish, russian, chinese-simplified, chinese-traditional, indonesia
  *
-*/
+ */
 $config['language'] = 'english';
 
 /**
@@ -88,7 +90,7 @@ $config['language'] = 'english';
  *
  * htdocs/static/asset/ folder must be writeable
  *
-*/
+ */
 $config['combine_assets'] = false;
 
 /**
@@ -98,7 +100,7 @@ $config['combine_assets'] = false;
  * Format: http://php.net/manual/en/function.strtotime.php
  * Examples: '+10 seconds', '+1 year', '-1 week'
  *
-*/
+ */
 $config['content_expiration'] = '-1 week';
 
 /**
@@ -155,10 +157,9 @@ $config['cron_key'] = '';
  * polr_url: Your own instance of polr URL-shortener (Download: https://github.com/cydrobolt/polr)
  * polr_api: Your polr api key
  *
-**/
+ **/
 $config['url_shortening_use'] = 'off';
 $config['random_url_engines'] = 'googl,bitly'; // Used only in random mode, read comment above for more info
-
 
 // Yourls
 $config['yourls_url'] = '';
@@ -178,13 +179,12 @@ $config['bitly_url_api'] = '';
 $config['polr_url'] = '';
 $config['polr_api'] = '';
 
-
 /**
  * Credentials for the backup URL
  *
  * Basic auth user & pass for the backup URL, accessible via http://yoursite.com/backup
  *
-**/
+ **/
 $config['backup_user'] = '';
 $config['backup_pass'] = '';
 
@@ -193,7 +193,7 @@ $config['backup_pass'] = '';
  *
  * Number of pastes per page, on the recent pastes listings.
  *
-**/
+ **/
 $config['per_page'] = 15;
 
 /**
@@ -202,7 +202,7 @@ $config['per_page'] = 15;
  * Require a key to interact with the API.
  * Append to all API requests: ?apikey=[yourkey]
  *
-**/
+ **/
 $config['apikey'] = '';
 
 /**
@@ -215,7 +215,7 @@ $config['apikey'] = '';
  * This is useful to maintain a restrictive blocklist
  * for spammers and bypass it using the apikey.
  *
-**/
+ **/
 $config['soft_api'] = false;
 
 /**
@@ -230,7 +230,7 @@ $config['soft_api'] = false;
  * disable_shorturl: "Create Shorturl" option will be disabled
  * disallow_search_engines: displays a robots.txt that forbids indexing
  *
-**/
+ **/
 $config['private_only'] = false;
 $config['enable_captcha'] = true;
 $config['recaptcha_publickey'] = '';
@@ -257,7 +257,7 @@ $config['spamadmin_pass'] = '';
  *  40320 (1 month)
  *  483840 (1 year)
  *  0 (keep forever)
-**/
+ **/
 $config['default_expiration'] = 0;
 
 /**
@@ -265,7 +265,7 @@ $config['default_expiration'] = 0;
  *
  * Preselected language. See application/config/geshi_languages.php for valid values (array keys)
  *
-**/
+ **/
 $config['default_language'] = 'text';
 
 /**
@@ -276,7 +276,7 @@ $config['default_language'] = 'text';
  * Set to random for a random paste to be generated
  * NOTE: if changed only pastes from then on will be updated.
  *
-**/
+ **/
 $config['unknown_poster'] = 'random';
 
 /**
@@ -285,7 +285,7 @@ $config['unknown_poster'] = 'random';
  * What name is to be set for untitled pastes.
  * DO NOT SET BLANK
  * NOTE: if changed only pastes from then on will be updated.
-**/
+ **/
 $config['unknown_title'] = 'Untitled';
 
 /**
@@ -294,7 +294,7 @@ $config['unknown_title'] = 'Untitled';
  * Weather to require LDAP authenticaiton or not.
  * Set to either 'true' to require authentication or 'false' not to.
  * NOTE: if changed, set LDAP settings in auth_ldap.php
-**/
+ **/
 $config['require_auth'] = false;
 
 /**
@@ -304,7 +304,7 @@ $config['require_auth'] = false;
  * Variable $id: the paste_id
  * Example: 'http://example.com/$id'
  *
-**/
+ **/
 $config['displayurl_override'] = '';
 
 /**
@@ -313,36 +313,36 @@ $config['displayurl_override'] = '';
  *  Words used for when unknown_poster is set to random
  *
  *
-**/
+ **/
 $config['nouns'] = array('Hornbill', 'Elephant', 'Bison', 'Lion', 'Camel', 'Sheep',
-'Monkey', 'Prairie Dog', 'Plover', 'Tapir', 'Capybara', 'Cheetah', 'Flamingo', 'Peccary', 'Eider',	'Porcupine', 'Pelican', 'Dove', 'Crane', 'Tortoise', 'Agouti',
-'Tamarin', 'Pheasant', 'Owl', 'Gibbon', 'Goose', 'Baboon', 'Hamerkop', 'Zebra',
-'Macaw', 'Gibbon', 'Madrill', 'Wolf', 'Stork', 'Armadillo', 'Ostrich', 'Marmoset',
-'Lizard', 'Panda', 'Giraffe', 'Cassowary', 'Kangaroo', 'Gorilla', 'Pheasant',
-'Finch', 'Duck', 'Matamata', 'Teal', 'Macaque', 'Goat', 'Lechwe', 'Ibis', 'Parrot',
-'Parakeet', 'Bongo', 'Pudu', 'Echidna', 'Lemur', 'Bat', 'Curlew', 'Terrapin',
-'Peafowl', 'Duck', 'Owl', 'Parakeet', 'Meerkat', 'Tern', 'Wigeon', 'Pintail',
-'Meerkat', 'Motmot', 'Motmot', 'Shama', 'Dormouse', 'Horse', 'Rhinoceros', 'Sloth',
- 'Mousedeer', 'Treeshrew', 'Bushbaby', 'Guinea Pig', 'Agouti', 'Water Vole', 'Hog',
-'Pig', 'Anoa', 'Octupus', 'Butterfly', 'Cat', 'Kitten', 'Coyote', 'Crocodile',
-'Cockroach', 'Crow', 'Bird', 'Dolphin', 'Earthworm', 'Frog', 'Hamster', 'Hedgehog',
-'Hog', 'Human', 'Hummingbird', 'Iguana', 'Leech', 'Leopard', ' Marten',
-'Mockingbird', 'Mockingjay', 'Mosquito', 'Moth', 'Partdridge', 'Bee', 'Penguin');
+    'Monkey', 'Prairie Dog', 'Plover', 'Tapir', 'Capybara', 'Cheetah', 'Flamingo', 'Peccary', 'Eider', 'Porcupine', 'Pelican', 'Dove', 'Crane', 'Tortoise', 'Agouti',
+    'Tamarin', 'Pheasant', 'Owl', 'Gibbon', 'Goose', 'Baboon', 'Hamerkop', 'Zebra',
+    'Macaw', 'Gibbon', 'Madrill', 'Wolf', 'Stork', 'Armadillo', 'Ostrich', 'Marmoset',
+    'Lizard', 'Panda', 'Giraffe', 'Cassowary', 'Kangaroo', 'Gorilla', 'Pheasant',
+    'Finch', 'Duck', 'Matamata', 'Teal', 'Macaque', 'Goat', 'Lechwe', 'Ibis', 'Parrot',
+    'Parakeet', 'Bongo', 'Pudu', 'Echidna', 'Lemur', 'Bat', 'Curlew', 'Terrapin',
+    'Peafowl', 'Duck', 'Owl', 'Parakeet', 'Meerkat', 'Tern', 'Wigeon', 'Pintail',
+    'Meerkat', 'Motmot', 'Motmot', 'Shama', 'Dormouse', 'Horse', 'Rhinoceros', 'Sloth',
+    'Mousedeer', 'Treeshrew', 'Bushbaby', 'Guinea Pig', 'Agouti', 'Water Vole', 'Hog',
+    'Pig', 'Anoa', 'Octupus', 'Butterfly', 'Cat', 'Kitten', 'Coyote', 'Crocodile',
+    'Cockroach', 'Crow', 'Bird', 'Dolphin', 'Earthworm', 'Frog', 'Hamster', 'Hedgehog',
+    'Hog', 'Human', 'Hummingbird', 'Iguana', 'Leech', 'Leopard', ' Marten',
+    'Mockingbird', 'Mockingjay', 'Mosquito', 'Moth', 'Partdridge', 'Bee', 'Penguin');
 
 $config['adjectives'] = array('Ample', 'Mature', 'Bulky', 'Burly', 'Capacious',
-'Colossal', 'Commodious', 'Thundering', 'Mammoth', 'Mungo', 'Voluminous',
-'Walloping', 'Tiny', 'Baby', 'Bitty', 'Diminutive', 'Little', 'Paltry', 'Scanty',
-'Trivial', 'Scribby', 'Blush', 'Tinct', 'Colorant', 'Aqua', 'Beige', 'Bistre',
-'Buff', 'Bistre', 'Chartreuse', 'Chocolate', 'Cobalt', 'Coral', 'Cream', 'Crimson',
-'Denim', 'Emerald', 'Gray', 'Gamboge', 'Ivory', 'Mustard', 'Silly', 'Perl',
-'Whipped', 'Violet', 'Harmless', 'Gentle', 'Innocent', 'Reliable', 'Unreliable',
-'Soft', 'Toxic', 'Anorexic', 'Beefy', 'Sexy', 'Morose', 'Rude', 'Ungracious',
-'Abrupt', 'Gracious', 'Queen', 'Cute', 'Edgy', 'Insensitive', 'Round', 'Sharp',
-'Gruff', 'Subtle', 'Crippled', 'Eratic', 'Social', 'Jittery', 'Sole', 'Unique',
-'Botched', 'Tacky', 'Sludgy', 'Stained', 'Wet', 'Soiled', 'Big', 'Small', 'Sloppy',
-'Smelly', 'Funky', 'Putrid', 'Melodic', 'Corrupt', 'Lousy', 'Fiery', 'Red',
-'Sweet', 'Hot', 'Scorching', 'Sweltering', 'Torrid', 'Obese', 'Speedy', 'Flying',
-'Idiotic', 'Chunky', 'Forensic');
+    'Colossal', 'Commodious', 'Thundering', 'Mammoth', 'Mungo', 'Voluminous',
+    'Walloping', 'Tiny', 'Baby', 'Bitty', 'Diminutive', 'Little', 'Paltry', 'Scanty',
+    'Trivial', 'Scribby', 'Blush', 'Tinct', 'Colorant', 'Aqua', 'Beige', 'Bistre',
+    'Buff', 'Bistre', 'Chartreuse', 'Chocolate', 'Cobalt', 'Coral', 'Cream', 'Crimson',
+    'Denim', 'Emerald', 'Gray', 'Gamboge', 'Ivory', 'Mustard', 'Silly', 'Perl',
+    'Whipped', 'Violet', 'Harmless', 'Gentle', 'Innocent', 'Reliable', 'Unreliable',
+    'Soft', 'Toxic', 'Anorexic', 'Beefy', 'Sexy', 'Morose', 'Rude', 'Ungracious',
+    'Abrupt', 'Gracious', 'Queen', 'Cute', 'Edgy', 'Insensitive', 'Round', 'Sharp',
+    'Gruff', 'Subtle', 'Crippled', 'Eratic', 'Social', 'Jittery', 'Sole', 'Unique',
+    'Botched', 'Tacky', 'Sludgy', 'Stained', 'Wet', 'Soiled', 'Big', 'Small', 'Sloppy',
+    'Smelly', 'Funky', 'Putrid', 'Melodic', 'Corrupt', 'Lousy', 'Fiery', 'Red',
+    'Sweet', 'Hot', 'Scorching', 'Sweltering', 'Torrid', 'Obese', 'Speedy', 'Flying',
+    'Idiotic', 'Chunky', 'Forensic');
 
 /**
  *
@@ -350,9 +350,9 @@ $config['adjectives'] = array('Ample', 'Mature', 'Bulky', 'Burly', 'Capacious',
  *  Words used for expiring pastes
  *
  *
-**/
+ **/
 $config['expires'] = array('expire', 'perish', 'go to its last resting place',
-'go to meet its maker', 'cross the great divide', 'slip away', 'give up the ghost',
-'kick the bucket', 'croak', 'bite the big one', 'check out', 'buy the farm',
-'join the choir invisible', 'shuffle off the mortal coil', 'hop the perch',
-'run down the curtain', 'die', 'self destruct', 'explode');
+    'go to meet its maker', 'cross the great divide', 'slip away', 'give up the ghost',
+    'kick the bucket', 'croak', 'bite the big one', 'check out', 'buy the farm',
+    'join the choir invisible', 'shuffle off the mortal coil', 'hop the perch',
+    'run down the curtain', 'die', 'self destruct', 'explode');

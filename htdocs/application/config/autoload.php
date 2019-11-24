@@ -1,4 +1,7 @@
-<?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+<?php if (!defined('BASEPATH')) {
+    exit('No direct script access allowed');
+}
+
 /*
 | -------------------------------------------------------------------
 | AUTO-LOADER
@@ -25,7 +28,7 @@
 | 5. Language files
 | 6. Models
 |
-*/
+ */
 
 /*
 | -------------------------------------------------------------------
@@ -35,10 +38,9 @@
 |
 |  $autoload['packages'] = array(APPPATH.'third_party', '/usr/local/shared');
 |
-*/
+ */
 
 $autoload['packages'] = array();
-
 
 /*
 | -------------------------------------------------------------------
@@ -49,11 +51,10 @@ $autoload['packages'] = array();
 |
 | Prototype:
 |
-|	$autoload['libraries'] = array('database', 'session', 'xmlrpc');
-*/
+|    $autoload['libraries'] = array('database', 'session', 'xmlrpc');
+ */
 
 $autoload['libraries'] = array('database', 'carabiner');
-
 
 /*
 | -------------------------------------------------------------------
@@ -61,11 +62,10 @@ $autoload['libraries'] = array('database', 'carabiner');
 | -------------------------------------------------------------------
 | Prototype:
 |
-|	$autoload['helper'] = array('url', 'file');
-*/
+|    $autoload['helper'] = array('url', 'file');
+ */
 
 $autoload['helper'] = array('url', 'date', 'language');
-
 
 /*
 | -------------------------------------------------------------------
@@ -73,15 +73,14 @@ $autoload['helper'] = array('url', 'date', 'language');
 | -------------------------------------------------------------------
 | Prototype:
 |
-|	$autoload['config'] = array('config1', 'config2');
+|    $autoload['config'] = array('config1', 'config2');
 |
 | NOTE: This item is intended for use ONLY if you have created custom
 | config files.  Otherwise, leave it blank.
 |
-*/
+ */
 
 $autoload['config'] = array('stikked');
-
 
 /*
 | -------------------------------------------------------------------
@@ -89,15 +88,14 @@ $autoload['config'] = array('stikked');
 | -------------------------------------------------------------------
 | Prototype:
 |
-|	$autoload['language'] = array('lang1', 'lang2');
+|    $autoload['language'] = array('lang1', 'lang2');
 |
 | NOTE: Do not include the "_lang" part of your file.  For example
 | "codeigniter_lang.php" would be referenced as array('codeigniter');
 |
-*/
+ */
 
 $autoload['language'] = array('stikked');
-
 
 /*
 | -------------------------------------------------------------------
@@ -105,12 +103,11 @@ $autoload['language'] = array('stikked');
 | -------------------------------------------------------------------
 | Prototype:
 |
-|	$autoload['model'] = array('model1', 'model2');
+|    $autoload['model'] = array('model1', 'model2');
 |
-*/
+ */
 
 $autoload['model'] = array();
-
 
 /* End of file autoload.php */
 /* Location: ./application/config/autoload.php */

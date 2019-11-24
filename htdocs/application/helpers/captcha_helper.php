@@ -1,25 +1,18 @@
-<?php
-/**
- * Class and Function List:
- * Function list:
- * - create_captcha()
- * - display_captcha()
- * - b()
- * Classes list:
- */
+<?php if (!defined('BASEPATH')) {
+    exit('No direct script access allowed');
+}
 
-if (!defined('BASEPATH')) exit('No direct script access allowed');
 /**
  * CodeIgniter
  *
  * An open source application development framework for PHP 5.1.6 or newer
  *
- * @package		CodeIgniter
- * @author		ExpressionEngine Dev Team
- * @copyright	Copyright (c) 2008 - 2011, EllisLab, Inc.
- * @license		http://codeigniter.com/user_guide/license.html
- * @link		http://codeigniter.com
- * @since		Version 1.0
+ * @package        CodeIgniter
+ * @author        ExpressionEngine Dev Team
+ * @copyright    Copyright (c) 2008 - 2011, EllisLab, Inc.
+ * @license        http://codeigniter.com/user_guide/license.html
+ * @link        http://codeigniter.com
+ * @since        Version 1.0
  * @filesource
  */
 
@@ -28,11 +21,11 @@ if (!defined('BASEPATH')) exit('No direct script access allowed');
 /**
  * CodeIgniter CAPTCHA Helper
  *
- * @package		CodeIgniter
- * @subpackage	Helpers
- * @category	Helpers
- * @author		ExpressionEngine Dev Team
- * @link		http://codeigniter.com/user_guide/helpers/xml_helper.html
+ * @package        CodeIgniter
+ * @subpackage    Helpers
+ * @category    Helpers
+ * @author        ExpressionEngine Dev Team
+ * @link        http://codeigniter.com/user_guide/helpers/xml_helper.html
  */
 
 // ------------------------------------------------------------------------
@@ -40,432 +33,380 @@ if (!defined('BASEPATH')) exit('No direct script access allowed');
 /**
  * Create CAPTCHA
  *
- * @access	public
- * @param	array	array of data for the CAPTCHA
- * @param	string	path to create the image in
- * @param	string	URL to the CAPTCHA image folder
- * @param	string	server path to font
- * @return	string
+ * @access    public
+ * @param    array    array of data for the CAPTCHA
+ * @param    string    path to create the image in
+ * @param    string    URL to the CAPTCHA image folder
+ * @param    string    server path to font
+ * @return    string
  */
 
-if (!function_exists('create_captcha')) 
-{
-	
-	function create_captcha($data = '', $img_path = '', $img_url = '', $font_path = '') 
-	{
-		$defaults = array(
-			'word' => '',
-			'img_path' => '',
-			'img_url' => '',
-			'img_width' => '150',
-			'img_height' => '30',
-			'font_path' => '',
-			'expiration' => 7200
-		);
-		foreach ($defaults as $key => $val) 
-		{
-			
-			if (!is_array($data)) 
-			{
-				
-				if (!isset($$key) OR $$key == '') 
-				{
-					$$key = $val;
-				}
-			}
-			else
-			{
-				$$key = (!isset($data[$key])) ? $val : $data[$key];
-			}
-		}
-		
-		if ($img_path == '' OR $img_url == '') 
-		{
-			return FALSE;
-		}
-		
-		if (!@is_dir($img_path)) 
-		{
-			return FALSE;
-		}
-		
-		if (!is_writable($img_path)) 
-		{
-			return FALSE;
-		}
-		
-		if (!extension_loaded('gd')) 
-		{
-			return FALSE;
-		}
+if (!function_exists('create_captcha')) {
 
-		// -----------------------------------
-		// Remove old images
+    function create_captcha($data = '', $img_path = '', $img_url = '', $font_path = '')
+    {
+        $defaults = array(
+            'word' => '',
+            'img_path' => '',
+            'img_url' => '',
+            'img_width' => '150',
+            'img_height' => '30',
+            'font_path' => '',
+            'expiration' => 7200,
+        );
+        foreach ($defaults as $key => $val) {
 
-		// -----------------------------------
+            if (!is_array($data)) {
 
-		list($usec, $sec) = explode(" ", microtime());
-		$now = ((float)$usec + (float)$sec);
-		$current_dir = @opendir($img_path);
-		while ($filename = @readdir($current_dir)) 
-		{
-			
-			if ($filename != "." and $filename != ".." and $filename != "index.html") 
-			{
-				$name = str_replace(".jpg", "", $filename);
-				
-				if (($name + $expiration) < $now) 
-				{
-					@unlink($img_path . $filename);
-				}
-			}
-		}
-		@closedir($current_dir);
+                if (!isset($$key) or $$key == '') {
+                    $$key = $val;
+                }
+            } else {
+                $$key = (!isset($data[$key])) ? $val : $data[$key];
+            }
+        }
 
-		// -----------------------------------
-		// Do we have a "word" yet?
+        if ($img_path == '' or $img_url == '') {
+            return false;
+        }
 
-		// -----------------------------------
+        if (!@is_dir($img_path)) {
+            return false;
+        }
 
-		
-		if ($word == '') 
-		{
-			$pool = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
-			$str = '';
-			for ($i = 0;$i < 8;$i++) 
-			{
-				$str.= substr($pool, mt_rand(0, strlen($pool) - 1) , 1);
-			}
-			$word = $str;
-		}
+        if (!is_writable($img_path)) {
+            return false;
+        }
 
-		// -----------------------------------
-		// Determine angle and position
+        if (!extension_loaded('gd')) {
+            return false;
+        }
 
-		// -----------------------------------
+        // -----------------------------------
+        // Remove old images
 
-		$length = strlen($word);
-		$angle = ($length >= 6) ? rand(-($length - 6) , ($length - 6)) : 0;
-		$x_axis = rand(6, (360 / $length) - 16);
-		$y_axis = ($angle >= 0) ? rand($img_height, $img_width) : rand(6, $img_height);
+        // -----------------------------------
 
-		// -----------------------------------
-		// Create image
+        list($usec, $sec) = explode(" ", microtime());
+        $now = ((float) $usec + (float) $sec);
+        $current_dir = @opendir($img_path);
+        while ($filename = @readdir($current_dir)) {
 
-		// -----------------------------------
+            if ($filename != "." and $filename != ".." and $filename != "index.html") {
+                $name = str_replace(".jpg", "", $filename);
 
-		// PHP.net recommends imagecreatetruecolor(), but it isn't always available
+                if (($name + $expiration) < $now) {
+                    @unlink($img_path . $filename);
+                }
+            }
+        }
+        @closedir($current_dir);
 
-		
-		if (function_exists('imagecreatetruecolor')) 
-		{
-			$im = imagecreatetruecolor($img_width, $img_height);
-		}
-		else
-		{
-			$im = imagecreate($img_width, $img_height);
-		}
+        // -----------------------------------
+        // Do we have a "word" yet?
 
-		// -----------------------------------
-		//  Assign colors
+        // -----------------------------------
 
-		// -----------------------------------
+        if ($word == '') {
+            $pool = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+            $str = '';
+            for ($i = 0; $i < 8; $i++) {
+                $str .= substr($pool, mt_rand(0, strlen($pool) - 1), 1);
+            }
+            $word = $str;
+        }
 
-		$bg_color = imagecolorallocate($im, 255, 255, 255);
-		$border_color = imagecolorallocate($im, 153, 102, 102);
-		$text_color = imagecolorallocate($im, 204, 153, 153);
-		$grid_color = imagecolorallocate($im, 255, 182, 182);
-		$shadow_color = imagecolorallocate($im, 255, 240, 240);
+        // -----------------------------------
+        // Determine angle and position
 
-		// -----------------------------------
-		//  Create the rectangle
+        // -----------------------------------
 
-		// -----------------------------------
+        $length = strlen($word);
+        $angle = ($length >= 6) ? rand(-($length - 6), ($length - 6)) : 0;
+        $x_axis = rand(6, (360 / $length) - 16);
+        $y_axis = ($angle >= 0) ? rand($img_height, $img_width) : rand(6, $img_height);
 
-		ImageFilledRectangle($im, 0, 0, $img_width, $img_height, $bg_color);
+        // -----------------------------------
+        // Create image
 
-		// -----------------------------------
-		//  Create the spiral pattern
+        // -----------------------------------
 
-		// -----------------------------------
+        // PHP.net recommends imagecreatetruecolor(), but it isn't always available
 
-		$theta = 1;
-		$thetac = 7;
-		$radius = 16;
-		$circles = 20;
-		$points = 32;
-		for ($i = 0;$i < ($circles * $points) - 1;$i++) 
-		{
-			$theta = $theta + $thetac;
-			$rad = $radius * ($i / $points);
-			$x = ($rad * cos($theta)) + $x_axis;
-			$y = ($rad * sin($theta)) + $y_axis;
-			$theta = $theta + $thetac;
-			$rad1 = $radius * (($i + 1) / $points);
-			$x1 = ($rad1 * cos($theta)) + $x_axis;
-			$y1 = ($rad1 * sin($theta)) + $y_axis;
-			imageline($im, $x, $y, $x1, $y1, $grid_color);
-			$theta = $theta - $thetac;
-		}
+        if (function_exists('imagecreatetruecolor')) {
+            $im = imagecreatetruecolor($img_width, $img_height);
+        } else {
+            $im = imagecreate($img_width, $img_height);
+        }
 
-		// -----------------------------------
-		//  Write the text
+        // -----------------------------------
+        //  Assign colors
 
-		// -----------------------------------
+        // -----------------------------------
 
-		$use_font = ($font_path != '' AND file_exists($font_path) AND function_exists('imagettftext')) ? TRUE : FALSE;
-		
-		if ($use_font == FALSE) 
-		{
-			$font_size = 5;
-			$x = rand(0, $img_width / ($length / 3));
-			$y = 0;
-		}
-		else
-		{
-			$font_size = 16;
-			$x = rand(0, $img_width / ($length / 1.5));
-			$y = $font_size + 2;
-		}
-		for ($i = 0;$i < strlen($word);$i++) 
-		{
-			
-			if ($use_font == FALSE) 
-			{
-				$y = rand(0, $img_height / 2);
-				imagestring($im, $font_size, $x, $y, substr($word, $i, 1) , $text_color);
-				$x+= ($font_size * 2);
-			}
-			else
-			{
-				$y = rand($img_height / 2, $img_height - 3);
-				imagettftext($im, $font_size, $angle, $x, $y, $text_color, $font_path, substr($word, $i, 1));
-				$x+= $font_size;
-			}
-		}
+        $bg_color = imagecolorallocate($im, 255, 255, 255);
+        $border_color = imagecolorallocate($im, 153, 102, 102);
+        $text_color = imagecolorallocate($im, 204, 153, 153);
+        $grid_color = imagecolorallocate($im, 255, 182, 182);
+        $shadow_color = imagecolorallocate($im, 255, 240, 240);
 
-		// -----------------------------------
-		//  Create the border
+        // -----------------------------------
+        //  Create the rectangle
 
-		// -----------------------------------
+        // -----------------------------------
 
-		imagerectangle($im, 0, 0, $img_width - 1, $img_height - 1, $border_color);
+        ImageFilledRectangle($im, 0, 0, $img_width, $img_height, $bg_color);
 
-		// -----------------------------------
-		//  Generate the image
+        // -----------------------------------
+        //  Create the spiral pattern
 
-		// -----------------------------------
+        // -----------------------------------
 
-		$img_name = $now . '.jpg';
-		ImageJPEG($im, $img_path . $img_name);
-		$img = "<img src=\"$img_url$img_name\" width=\"$img_width\" height=\"$img_height\" style=\"border:0;\" alt=\" \" />";
-		ImageDestroy($im);
-		return array(
-			'word' => $word,
-			'time' => $now,
-			'image' => $img
-		);
-	}
+        $theta = 1;
+        $thetac = 7;
+        $radius = 16;
+        $circles = 20;
+        $points = 32;
+        for ($i = 0; $i < ($circles * $points) - 1; $i++) {
+            $theta = $theta + $thetac;
+            $rad = $radius * ($i / $points);
+            $x = ($rad * cos($theta)) + $x_axis;
+            $y = ($rad * sin($theta)) + $y_axis;
+            $theta = $theta + $thetac;
+            $rad1 = $radius * (($i + 1) / $points);
+            $x1 = ($rad1 * cos($theta)) + $x_axis;
+            $y1 = ($rad1 * sin($theta)) + $y_axis;
+            imageline($im, $x, $y, $x1, $y1, $grid_color);
+            $theta = $theta - $thetac;
+        }
+
+        // -----------------------------------
+        //  Write the text
+
+        // -----------------------------------
+
+        $use_font = ($font_path != '' and file_exists($font_path) and function_exists('imagettftext')) ? true : false;
+
+        if ($use_font == false) {
+            $font_size = 5;
+            $x = rand(0, $img_width / ($length / 3));
+            $y = 0;
+        } else {
+            $font_size = 16;
+            $x = rand(0, $img_width / ($length / 1.5));
+            $y = $font_size + 2;
+        }
+        for ($i = 0; $i < strlen($word); $i++) {
+
+            if ($use_font == false) {
+                $y = rand(0, $img_height / 2);
+                imagestring($im, $font_size, $x, $y, substr($word, $i, 1), $text_color);
+                $x += ($font_size * 2);
+            } else {
+                $y = rand($img_height / 2, $img_height - 3);
+                imagettftext($im, $font_size, $angle, $x, $y, $text_color, $font_path, substr($word, $i, 1));
+                $x += $font_size;
+            }
+        }
+
+        // -----------------------------------
+        //  Create the border
+
+        // -----------------------------------
+
+        imagerectangle($im, 0, 0, $img_width - 1, $img_height - 1, $border_color);
+
+        // -----------------------------------
+        //  Generate the image
+
+        // -----------------------------------
+
+        $img_name = $now . '.jpg';
+        ImageJPEG($im, $img_path . $img_name);
+        $img = "<img src=\"$img_url$img_name\" width=\"$img_width\" height=\"$img_height\" style=\"border:0;\" alt=\" \" />";
+        ImageDestroy($im);
+        return array(
+            'word' => $word,
+            'time' => $now,
+            'image' => $img,
+        );
+    }
 }
 /**
  * Display CAPTCHA
  *
- * @access	public
- * @return	string
+ * @access    public
+ * @return    string
  */
 
-if (!function_exists('display_captcha')) 
-{
-	
-	function display_captcha($word = '') 
-	{
-		$data = '';
-		list($usec, $sec) = explode(" ", microtime());
-		$now = ((float)$usec + (float)$sec);
-		$defaults = array(
-			'word' => $word,
-			'img_path' => '',
-			'img_url' => '',
-			'img_width' => '180',
-			'img_height' => '40',
-			'font_path' => '',
-			'expiration' => 7200
-		);
-		foreach ($defaults as $key => $val) 
-		{
-			
-			if (!is_array($data)) 
-			{
-				
-				if (!isset($$key) OR $$key == '') 
-				{
-					$$key = $val;
-				}
-			}
-			else
-			{
-				$$key = (!isset($data[$key])) ? $val : $data[$key];
-			}
-		}
-		
-		if (!extension_loaded('gd')) 
-		{
-			return FALSE;
-		}
+if (!function_exists('display_captcha')) {
 
-		// -----------------------------------
-		// Do we have a "word" yet?
+    function display_captcha($word = '')
+    {
+        $data = '';
+        list($usec, $sec) = explode(" ", microtime());
+        $now = ((float) $usec + (float) $sec);
+        $defaults = array(
+            'word' => $word,
+            'img_path' => '',
+            'img_url' => '',
+            'img_width' => '180',
+            'img_height' => '40',
+            'font_path' => '',
+            'expiration' => 7200,
+        );
+        foreach ($defaults as $key => $val) {
 
-		// -----------------------------------
+            if (!is_array($data)) {
 
-		
-		if ($word == '') 
-		{
-			$pool = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
-			$str = '';
-			for ($i = 0;$i < 4;$i++) 
-			{
-				$str.= substr($pool, mt_rand(0, strlen($pool) - 1) , 1);
-			}
-			$word = $str;
-		}
+                if (!isset($$key) or $$key == '') {
+                    $$key = $val;
+                }
+            } else {
+                $$key = (!isset($data[$key])) ? $val : $data[$key];
+            }
+        }
 
-		// -----------------------------------
-		// Determine angle and position
+        if (!extension_loaded('gd')) {
+            return false;
+        }
 
-		// -----------------------------------
+        // -----------------------------------
+        // Do we have a "word" yet?
 
-		$length = strlen($word);
-		$angle = ($length >= 6) ? mt_rand(-($length - 6) , ($length - 6)) : 0;
-		$angle = 10;
-		$x_axis = mt_rand(6, (360 / $length) - 16);
-		$y_axis = ($angle >= 0) ? mt_rand($img_height, $img_width) : mt_rand(6, $img_height);
+        // -----------------------------------
 
-		// -----------------------------------
-		// Create image
+        if ($word == '') {
+            $pool = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+            $str = '';
+            for ($i = 0; $i < 4; $i++) {
+                $str .= substr($pool, mt_rand(0, strlen($pool) - 1), 1);
+            }
+            $word = $str;
+        }
 
-		// -----------------------------------
+        // -----------------------------------
+        // Determine angle and position
 
-		// PHP.net recommends imagecreatetruecolor(), but it isn't always available
+        // -----------------------------------
 
-		
-		if (function_exists('imagecreatetruecolor')) 
-		{
-			$im = imagecreatetruecolor($img_width, $img_height);
-		}
-		else
-		{
-			$im = imagecreate($img_width, $img_height);
-		}
+        $length = strlen($word);
+        $angle = ($length >= 6) ? mt_rand(-($length - 6), ($length - 6)) : 0;
+        $angle = 10;
+        $x_axis = mt_rand(6, (360 / $length) - 16);
+        $y_axis = ($angle >= 0) ? mt_rand($img_height, $img_width) : mt_rand(6, $img_height);
 
-		// -----------------------------------
-		//  Assign colors
+        // -----------------------------------
+        // Create image
 
-		// -----------------------------------
+        // -----------------------------------
 
-		
-		function b() 
-		{
-			return mt_rand(240, 255);
-		}
-		$bg_color = imagecolorallocate($im, b() , b() , b());
-		$border_color = imagecolorallocate($im, 153, 102, 102);
-		$text_color = imagecolorallocate($im, 204, 153, 153);
-		$grid_color = imagecolorallocate($im, 255, 182, 182);
-		$shadow_color = imagecolorallocate($im, 255, 240, 240);
+        // PHP.net recommends imagecreatetruecolor(), but it isn't always available
 
-		// -----------------------------------
-		//  Create the rectangle
+        if (function_exists('imagecreatetruecolor')) {
+            $im = imagecreatetruecolor($img_width, $img_height);
+        } else {
+            $im = imagecreate($img_width, $img_height);
+        }
 
-		// -----------------------------------
+        // -----------------------------------
+        //  Assign colors
 
-		ImageFilledRectangle($im, 0, 0, $img_width, $img_height, $bg_color);
+        // -----------------------------------
 
-		// -----------------------------------
-		//  Create the spiral pattern
+        function b()
+        {
+            return mt_rand(240, 255);
+        }
+        $bg_color = imagecolorallocate($im, b(), b(), b());
+        $border_color = imagecolorallocate($im, 153, 102, 102);
+        $text_color = imagecolorallocate($im, 204, 153, 153);
+        $grid_color = imagecolorallocate($im, 255, 182, 182);
+        $shadow_color = imagecolorallocate($im, 255, 240, 240);
 
-		// -----------------------------------
+        // -----------------------------------
+        //  Create the rectangle
 
-		$theta = 1;
-		$thetac = 7;
-		$radius = 16;
-		$circles = 20;
-		$points = 32;
-		for ($i = 0;$i < ($circles * $points) - 1;$i++) 
-		{
-			$theta = $theta + $thetac;
-			$rad = $radius * ($i / $points);
-			$x = ($rad * cos($theta)) + $x_axis;
-			$y = ($rad * sin($theta)) + $y_axis;
-			$theta = $theta + $thetac;
-			$rad1 = $radius * (($i + 1) / $points);
-			$x1 = ($rad1 * cos($theta)) + $x_axis;
-			$y1 = ($rad1 * sin($theta)) + $y_axis;
-			imageline($im, $x, $y, $x1, $y1, $grid_color);
-			$theta = $theta - $thetac;
-		}
+        // -----------------------------------
 
-		// -----------------------------------
-		//  Write the text
+        ImageFilledRectangle($im, 0, 0, $img_width, $img_height, $bg_color);
 
-		// -----------------------------------
+        // -----------------------------------
+        //  Create the spiral pattern
 
-		//get random font
+        // -----------------------------------
 
-		$fn = explode(',', '4,5,6,8,16,17,19,24,26');
-		$f = mt_rand(0, count($fn) - 1);
-		$font_path = './static/fonts/font' . $fn[$f] . '.ttf';
-		$use_font = ($font_path != '' AND file_exists($font_path) AND function_exists('imagettftext')) ? TRUE : FALSE;
-		
-		if ($use_font == FALSE) 
-		{
-			$font_size = 5;
-			$x = mt_rand(0, $img_width / ($length / 3));
-			$y = 0;
-		}
-		else
-		{
-			$font_size = 16;
-			$x = mt_rand(0, $img_width / ($length / 1.5));
-			$y = $font_size + 2;
-		}
-		for ($i = 0;$i < strlen($word);$i++) 
-		{
-			
-			if ($use_font == FALSE) 
-			{
-				$y = mt_rand(0, $img_height / 2);
-				imagestring($im, $font_size, $x, $y, substr($word, $i, 1) , $text_color);
-				$x+= ($font_size * 2);
-			}
-			else
-			{
-				$y = mt_rand($img_height / 2, $img_height - 3);
-				imagettftext($im, $font_size, $angle, $x, $y, $text_color, $font_path, substr($word, $i, 1));
-				$x+= $font_size;
-			}
-		}
+        $theta = 1;
+        $thetac = 7;
+        $radius = 16;
+        $circles = 20;
+        $points = 32;
+        for ($i = 0; $i < ($circles * $points) - 1; $i++) {
+            $theta = $theta + $thetac;
+            $rad = $radius * ($i / $points);
+            $x = ($rad * cos($theta)) + $x_axis;
+            $y = ($rad * sin($theta)) + $y_axis;
+            $theta = $theta + $thetac;
+            $rad1 = $radius * (($i + 1) / $points);
+            $x1 = ($rad1 * cos($theta)) + $x_axis;
+            $y1 = ($rad1 * sin($theta)) + $y_axis;
+            imageline($im, $x, $y, $x1, $y1, $grid_color);
+            $theta = $theta - $thetac;
+        }
 
-		// -----------------------------------
-		//  Create the border
+        // -----------------------------------
+        //  Write the text
 
-		// -----------------------------------
+        // -----------------------------------
 
-		imagerectangle($im, 0, 0, $img_width - 1, $img_height - 1, $border_color);
+        //get random font
 
-		// -----------------------------------
-		//  Generate the image
+        $fn = explode(',', '4,5,6,8,16,17,19,24,26');
+        $f = mt_rand(0, count($fn) - 1);
+        $font_path = './static/fonts/font' . $fn[$f] . '.ttf';
+        $use_font = ($font_path != '' and file_exists($font_path) and function_exists('imagettftext')) ? true : false;
 
-		// -----------------------------------
+        if ($use_font == false) {
+            $font_size = 5;
+            $x = mt_rand(0, $img_width / ($length / 3));
+            $y = 0;
+        } else {
+            $font_size = 16;
+            $x = mt_rand(0, $img_width / ($length / 1.5));
+            $y = $font_size + 2;
+        }
+        for ($i = 0; $i < strlen($word); $i++) {
 
-		$img_name = $now . '.jpg';
-		echo ImageJPEG($im);
-		ImageDestroy($im);
-	}
+            if ($use_font == false) {
+                $y = mt_rand(0, $img_height / 2);
+                imagestring($im, $font_size, $x, $y, substr($word, $i, 1), $text_color);
+                $x += ($font_size * 2);
+            } else {
+                $y = mt_rand($img_height / 2, $img_height - 3);
+                imagettftext($im, $font_size, $angle, $x, $y, $text_color, $font_path, substr($word, $i, 1));
+                $x += $font_size;
+            }
+        }
+
+        // -----------------------------------
+        //  Create the border
+
+        // -----------------------------------
+
+        imagerectangle($im, 0, 0, $img_width - 1, $img_height - 1, $border_color);
+
+        // -----------------------------------
+        //  Generate the image
+
+        // -----------------------------------
+
+        $img_name = $now . '.jpg';
+        echo ImageJPEG($im);
+        ImageDestroy($im);
+    }
 }
 
 // ------------------------------------------------------------------------
 /* End of file captcha_helper.php */
-
 
 /* Location: ./system/heleprs/captcha_helper.php */
