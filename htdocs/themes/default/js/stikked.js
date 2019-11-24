@@ -181,7 +181,9 @@ ST.crypto = function () {
                     $('.content .container .message').remove();
                     $('.content .container').prepend('<div class="message error"><div class="container">The captcha is incorrect.</div></div>');
                 } else if (redirect_url.indexOf('invalid') > -1) {
-                    $('#create_encrypted').parent().html('<p>' + redirect_url + '#' + key + '</p>');
+                    // burn on read
+                    redirect_url = redirect_url.replace('" /><!-- behind you -->', '#' + key + '" />')
+                    $('#create_encrypted').parent().html('<p>' + redirect_url + '</p>');
                 } else {
                     window.location.href = base_url + redirect_url + '#' + key;
                 }

@@ -104,7 +104,7 @@ class Pastes extends CI_Model
             $CItemp = &get_instance();
             echo '<!DOCTYPE html><html><head><title>Warning!</title></head><body>';
             echo '<pre>Copy this URL:</pre>';
-            echo '<span style="background-color: black; color: white">' . site_url('view/' . $data['pid']) . "</span>\n";
+            echo '<input type="text" style="background-color: black; color: white; margin: 0; width: 42em;" value="' . site_url('view/' . $data['pid']) . '" /><!-- behind you --><br /><br />';
             if ($data['snipurl'] !== false) {
                 echo '<br>Shorturl: ' . $shorturl . '">' . $shorturl . '<br>';
             }
