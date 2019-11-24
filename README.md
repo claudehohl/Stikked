@@ -41,7 +41,7 @@ Prerequisites
 Installation
 ------------
 
-1. Download stikked from https://github.com/claudehohl/Stikked/tags
+1. Download Stikked from https://github.com/claudehohl/Stikked/releases
 2. Create a user and database for Stikked
 3. Copy application/config/stikked.php.dist to application/config/stikked.php
 4. Edit configuration settings in application/config/stikked.php - everything is described there
@@ -79,6 +79,21 @@ In the folder doc/, you will find:
 
 Changelog
 ---------
+
+### Version 0.14.0:
+
+* Rewritten the Docker setup to be simple and clean:
+  * switch to nginx-alpine, php-fpm-alpine and mariadb
+  * docker-compose: autobuild php-image for stikked
+  * serve all files directly (htdocs is mounted instead of copied)
+  * stikked-configuration for docker resides in docker/stikked.php
+* force private-flag when a previously encrypted paste gets pasted public
+* Fixed a critical bug that allowed pasting despite captcha
+* Various bugfixes and improvements
+
+#### Upgrade instructions
+
+Copy your htdocs/application/stikked.php config file away. Upload the new version. Copy it back.
 
 ### Version 0.13.0:
 
