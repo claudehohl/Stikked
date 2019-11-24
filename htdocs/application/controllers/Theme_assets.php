@@ -4,7 +4,6 @@
 
 class Theme_assets extends CI_Controller
 {
-
     public function __construct()
     {
         parent::__construct();
@@ -56,6 +55,7 @@ class Theme_assets extends CI_Controller
             //send
             $this->_expires_header(1);
             readfile($file_path);
+
         } else {
 
             //file path
@@ -89,7 +89,6 @@ class Theme_assets extends CI_Controller
 
         //no fallback to default, since default has no such fonts
         //since no fallbcack, there is no doucle checking for file
-
         if (!file_exists($file_path)) {
             return false;
         }
@@ -134,13 +133,11 @@ class Theme_assets extends CI_Controller
         $file_path = 'themes/' . $this->theme . '/images/' . $image_file;
 
         //fallback to default css if view in theme not found
-
         if (!file_exists($file_path)) {
             $file_path = 'themes/default/images/' . $image_file;
         }
 
         // double checking file
-
         if (!file_exists($file_path)) {
             return false;
         }
@@ -154,7 +151,6 @@ class Theme_assets extends CI_Controller
 
     public function js()
     {
-
         //get js
         $segments = $this->uri->segment_array();
         array_shift($segments);
@@ -167,13 +163,11 @@ class Theme_assets extends CI_Controller
         $file_path = 'themes/' . $this->theme . '/js/' . $js_file;
 
         //fallback to default js if js in theme not found
-
         if (!file_exists($file_path)) {
             $file_path = 'themes/default/js/' . $js_file;
         }
 
         // return empty string if not found, to not mess up existing JS
-
         if (!file_exists($file_path)) {
             header('HTTP/1.1 404 Not Found');
             return '';
@@ -184,6 +178,7 @@ class Theme_assets extends CI_Controller
         $this->_expires_header(30);
         readfile($file_path);
     }
+
     private function _expires_header($days)
     {
         header('Expires: ' . gmdate('D, d M Y H:i:s \G\M\T', time() + 60 * 60 * 24 * $days));
