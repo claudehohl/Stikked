@@ -350,7 +350,7 @@ if (!function_exists('display_captcha')) {
             $rad1 = $radius * (($i + 1) / $points);
             $x1 = ($rad1 * cos($theta)) + $x_axis;
             $y1 = ($rad1 * sin($theta)) + $y_axis;
-            imageline($im, $x, $y, $x1, $y1, $grid_color);
+            imageline($im, (int)$x, (int)$y, (int)$x1, (int)$y1, $grid_color);
             $theta = $theta - $thetac;
         }
 
@@ -368,11 +368,11 @@ if (!function_exists('display_captcha')) {
 
         if ($use_font == false) {
             $font_size = 5;
-            $x = mt_rand(0, $img_width / ($length / 3));
+            $x = mt_rand(0, (int)($img_width / ($length / 3)));
             $y = 0;
         } else {
             $font_size = 16;
-            $x = mt_rand(0, $img_width / ($length / 1.5));
+            $x = mt_rand(0, (int)($img_width / ($length / 1.5)));
             $y = $font_size + 2;
         }
         for ($i = 0; $i < strlen($word); $i++) {

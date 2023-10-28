@@ -461,7 +461,7 @@ class Carabiner {
 	* @param	String of the group name with which the asset is to be associated. NOT REQUIRED
 	* @return   Void
 	*/		
-	private function _asset($type, $dev_file, $prod_file = '', $combine, $minify, $media = 'screen', $group = 'main')
+	private function _asset($type, $dev_file, $prod_file = '', $combine = TRUE, $minify = TRUE, $media = 'screen', $group = 'main')
 	{
 		if ($type == 'css') : 
 		
