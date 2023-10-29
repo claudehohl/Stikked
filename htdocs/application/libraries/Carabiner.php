@@ -938,14 +938,16 @@ class Carabiner {
 	private function _get_contents($ref)
 	{
 
+		$contents = false;
 		if( $this->isURL($ref) && ( ini_get('allow_url_fopen') == 0 || $this->force_curl ) ):
 
 			$this->_load('curl');
 			$contents = $this->CI->curl->simple_get($ref);
 			
 		else:
-
-			$contents = file_get_contents( $ref );
+			if($ref){
+				$contents = file_get_contents( $ref );
+			}
 			
 		endif;
 		
